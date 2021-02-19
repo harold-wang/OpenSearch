@@ -17,13 +17,13 @@
  * under the License.
  */
 
-import org.elasticsearch.gradle.testclusters.DefaultTestClustersTask;
-apply plugin: 'elasticsearch.validate-rest-spec'
-apply plugin: 'elasticsearch.yaml-rest-test'
+import org.renameme.gradle.testclusters.DefaultTestClustersTask;
+apply plugin: 'renameme.validate-rest-spec'
+apply plugin: 'renameme.yaml-rest-test'
 
 esplugin {
-  description 'An easy, safe and fast scripting language for Elasticsearch'
-  classname 'org.elasticsearch.painless.PainlessPlugin'
+  description 'An easy, safe and fast scripting language for Renameme'
+  classname 'org.renameme.painless.PainlessPlugin'
 }
 
 testClusters.all {
@@ -64,7 +64,7 @@ tasks.named("test").configure {
 tasks.register("apiJavadoc", Javadoc) {
   source = sourceSets.main.allJava
   classpath = sourceSets.main.runtimeClasspath
-  include '**/org/elasticsearch/painless/api/'
+  include '**/org/renameme/painless/api/'
   destinationDir = new File(docsDir, 'apiJavadoc')
 }
 
@@ -100,7 +100,7 @@ tasks.register("generateContextDoc", DefaultTestClustersTask) {
   useCluster testClusters.generateContextCluster
   doFirst {
     project.javaexec {
-      main = 'org.elasticsearch.painless.ContextDocGenerator'
+      main = 'org.renameme.painless.ContextDocGenerator'
       classpath = sourceSets.doc.runtimeClasspath
       systemProperty "cluster.uri", "${-> testClusters.generateContextCluster.singleNode().getAllHttpSocketURI().get(0)}"
     }.assertNormalExitValue()
@@ -120,7 +120,7 @@ dependencies {
 }
 
 String grammarPath = 'src/main/antlr'
-String outputPath = 'src/main/java/org/elasticsearch/painless/antlr'
+String outputPath = 'src/main/java/org/renameme/painless/antlr'
 
 tasks.register("cleanGenerated", Delete) {
   delete fileTree(grammarPath) {
@@ -140,7 +140,7 @@ tasks.register("regenLexer", JavaExec) {
   systemProperty 'user.country', 'US'
   systemProperty 'user.variant', ''
   args '-Werror',
-    '-package', 'org.elasticsearch.painless.antlr',
+    '-package', 'org.renameme.painless.antlr',
     '-o', outputPath,
     "${file(grammarPath)}/PainlessLexer.g4"
 }
@@ -154,7 +154,7 @@ tasks.register("regenParser", JavaExec) {
   systemProperty 'user.country', 'US'
   systemProperty 'user.variant', ''
   args '-Werror',
-    '-package', 'org.elasticsearch.painless.antlr',
+    '-package', 'org.renameme.painless.antlr',
     '-no-listener',
     '-visitor',
     // '-Xlog',

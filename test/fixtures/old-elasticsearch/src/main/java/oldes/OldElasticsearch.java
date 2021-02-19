@@ -37,7 +37,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Starts a version of Elasticsearch that has been unzipped into an empty directory,
+ * Starts a version of Renameme that has been unzipped into an empty directory,
  * instructing it to ask the OS for an unused port, grepping the logs for the port
  * it actually got, and writing a {@code ports} file with the port. This is only
  * required for versions of Elasticsearch before 5.0 because they do not support
@@ -79,8 +79,8 @@ public class OldElasticsearch {
             System.exit(1);
         }
 
-        Path bin = esDir.resolve("bin").resolve("elasticsearch" + (Constants.WINDOWS ? ".bat" : ""));
-        Path config = esDir.resolve("config").resolve("elasticsearch.yml");
+        Path bin = esDir.resolve("bin").resolve("renameme" + (Constants.WINDOWS ? ".bat" : ""));
+        Path config = esDir.resolve("config").resolve("renameme.yml");
 
         Files.write(config, Arrays.asList("http.port: 0", "transport.tcp.port: 0", "network.host: 127.0.0.1"), StandardCharsets.UTF_8);
 

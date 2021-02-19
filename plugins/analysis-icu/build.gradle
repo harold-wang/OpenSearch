@@ -18,12 +18,12 @@ import de.thetaphi.forbiddenapis.gradle.CheckForbiddenApis
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: 'renameme.yaml-rest-test'
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
-  description 'The ICU Analysis plugin integrates the Lucene ICU module into Elasticsearch, adding ICU-related analysis components.'
-  classname 'org.elasticsearch.plugin.analysis.icu.AnalysisICUPlugin'
+  description 'The ICU Analysis plugin integrates the Lucene ICU module into Renameme, adding ICU-related analysis components.'
+  classname 'org.renameme.plugin.analysis.icu.AnalysisICUPlugin'
   hasClientJar = true
 }
 

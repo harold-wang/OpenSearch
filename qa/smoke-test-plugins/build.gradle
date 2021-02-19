@@ -17,13 +17,13 @@
  * under the License.
  */
 
-import org.elasticsearch.gradle.MavenFilteringHack
-import org.elasticsearch.gradle.info.BuildParams
+import org.renameme.gradle.MavenFilteringHack
+import org.renameme.gradle.info.BuildParams
 
-apply plugin: 'elasticsearch.testclusters'
-apply plugin: 'elasticsearch.standalone-rest-test'
-apply plugin: 'elasticsearch.rest-test'
-apply plugin: 'elasticsearch.rest-resources'
+apply plugin: 'renameme.testclusters'
+apply plugin: 'renameme.standalone-rest-test'
+apply plugin: 'renameme.rest-test'
+apply plugin: 'renameme.rest-resources'
 
 int pluginsCount = 0
 

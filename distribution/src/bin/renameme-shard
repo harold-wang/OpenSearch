@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ES_MAIN_CLASS=org.renameme.index.shard.ShardToolCli \
+  "`dirname "$0"`"/renameme-cli \
+  "$@"

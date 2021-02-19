@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
+apply plugin: 'renameme.yaml-rest-test'
 
 esplugin {
-  description 'The Ukrainian Analysis plugin integrates the Lucene UkrainianMorfologikAnalyzer into elasticsearch.'
-  classname 'org.elasticsearch.plugin.analysis.ukrainian.AnalysisUkrainianPlugin'
+  description 'The Ukrainian Analysis plugin integrates the Lucene UkrainianMorfologikAnalyzer into renameme.'
+  classname 'org.renameme.plugin.analysis.ukrainian.AnalysisUkrainianPlugin'
 }
 
 dependencies {

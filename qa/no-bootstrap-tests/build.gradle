@@ -18,8 +18,8 @@
  */
 
 /*
- * Tests that need to run without the Elasticsearch bootstrap, for
+ * Tests that need to run without the Renameme bootstrap, for
  * example to test process spawning.
  */
 
-apply plugin: 'elasticsearch.standalone-test'
+apply plugin: 'renameme.standalone-test'

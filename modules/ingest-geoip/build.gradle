@@ -19,12 +19,12 @@
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
-apply plugin: 'elasticsearch.yaml-rest-test'
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: 'renameme.yaml-rest-test'
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
   description 'Ingest processor that uses looksup geo data based on ip adresses using the Maxmind geo database'
-  classname 'org.elasticsearch.ingest.geoip.IngestGeoIpPlugin'
+  classname 'org.renameme.ingest.geoip.IngestGeoIpPlugin'
 }
 
 dependencies {
@@ -34,7 +34,7 @@ dependencies {
   api("com.fasterxml.jackson.core:jackson-databind:${versions.jackson}")
   api('com.maxmind.db:maxmind-db:1.3.1')
 
-  testImplementation 'org.elasticsearch:geolite2-databases:20191119'
+  testImplementation 'org.renameme:geolite2-databases:20191119'
 }
 
 restResources {

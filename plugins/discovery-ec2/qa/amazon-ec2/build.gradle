@@ -18,15 +18,15 @@
  */
 
 
-import org.elasticsearch.gradle.MavenFilteringHack
-import org.elasticsearch.gradle.info.BuildParams
-import org.elasticsearch.gradle.test.AntFixture
-import org.elasticsearch.gradle.test.RestIntegTestTask
-import org.elasticsearch.gradle.test.rest.YamlRestTestPlugin
+import org.renameme.gradle.MavenFilteringHack
+import org.renameme.gradle.info.BuildParams
+import org.renameme.gradle.test.AntFixture
+import org.renameme.gradle.test.RestIntegTestTask
+import org.renameme.gradle.test.rest.YamlRestTestPlugin
 
-import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
+import static org.renameme.gradle.PropertyNormalization.IGNORE_VALUE
 
-apply plugin: 'elasticsearch.yaml-rest-test'
+apply plugin: 'renameme.yaml-rest-test'
 
 dependencies {
   yamlRestTestImplementation project(':plugins:discovery-ec2')
@@ -54,7 +54,7 @@ yamlRestTest.enabled = false
 
 /*
  * Test using various credential providers (see also https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/credentials.html):
- * - Elasticsearch Keystore (secure settings discovery.ec2.access_key and discovery.ec2.secret_key)
+ * - Renameme Keystore (secure settings discovery.ec2.access_key and discovery.ec2.secret_key)
  * - Java system properties (aws.accessKeyId and aws.secretAccessKey)
  * - Environment variables (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY)
  * - ECS container credentials (loaded from ECS if the environment variable AWS_CONTAINER_CREDENTIALS_RELATIVE_URI is set)
@@ -68,7 +68,7 @@ yamlRestTest.enabled = false
     dependsOn project.sourceSets.yamlRestTest.runtimeClasspath
     env 'CLASSPATH', "${-> project.sourceSets.yamlRestTest.runtimeClasspath.asPath}"
     executable = "${BuildParams.runtimeJavaHome}/bin/java"
-    args 'org.elasticsearch.discovery.ec2.AmazonEC2Fixture', baseDir, "${buildDir}/testclusters/yamlRestTest${action}-1/config/unicast_hosts.txt"
+    args 'org.renameme.discovery.ec2.AmazonEC2Fixture', baseDir, "${buildDir}/testclusters/yamlRestTest${action}-1/config/unicast_hosts.txt"
   }
 
   tasks.create(name: "yamlRestTest${action}", type: RestIntegTestTask) {

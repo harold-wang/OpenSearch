@@ -1,10 +1,10 @@
-import org.elasticsearch.gradle.MavenFilteringHack
-import org.elasticsearch.gradle.info.BuildParams
-import org.elasticsearch.gradle.test.RestIntegTestTask
-import org.elasticsearch.gradle.test.rest.YamlRestTestPlugin
-import org.elasticsearch.gradle.test.InternalClusterTestPlugin
+import org.renameme.gradle.MavenFilteringHack
+import org.renameme.gradle.info.BuildParams
+import org.renameme.gradle.test.RestIntegTestTask
+import org.renameme.gradle.test.rest.YamlRestTestPlugin
+import org.renameme.gradle.test.InternalClusterTestPlugin
 
-import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
+import static org.renameme.gradle.PropertyNormalization.IGNORE_VALUE
 
 /*
  * Licensed to Elasticsearch under one or more contributor
@@ -24,12 +24,12 @@ import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: 'renameme.yaml-rest-test'
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
   description 'The S3 repository plugin adds S3 repositories'
-  classname 'org.elasticsearch.repositories.s3.S3RepositoryPlugin'
+  classname 'org.renameme.repositories.s3.S3RepositoryPlugin'
 }
 
 versions << [
@@ -129,7 +129,7 @@ if (!s3PermanentAccessKey && !s3PermanentSecretKey && !s3PermanentBucket && !s3P
   s3PermanentBucket = 'bucket'
   s3PermanentBasePath = 'base_path'
 
-  apply plugin: 'elasticsearch.test.fixtures'
+  apply plugin: 'renameme.test.fixtures'
   useFixture = true
 
 } else if (!s3PermanentAccessKey || !s3PermanentSecretKey || !s3PermanentBucket || !s3PermanentBasePath) {

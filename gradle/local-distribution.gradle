@@ -23,11 +23,11 @@
  * The local distribution will be installed to
  * build/distributions/local
  * */
-import org.elasticsearch.gradle.Architecture
+import org.renameme.gradle.Architecture
 
-apply plugin:'elasticsearch.internal-distribution-download'
+apply plugin:'renameme.internal-distribution-download'
 
-elasticsearch_distributions {
+renameme_distributions {
   local {
     flavor = 'oss'
     type = 'archive'
@@ -36,9 +36,9 @@ elasticsearch_distributions {
 }
 
 tasks.register('localDistro', Sync) {
-  from(elasticsearch_distributions.local.extracted)
+  from(renameme_distributions.local.extracted)
   into("build/distribution/local")
   doLast {
-    logger.lifecycle("Elasticsearch distribution installed to ${destinationDir}.")
+    logger.lifecycle("Renameme distribution installed to ${destinationDir}.")
   }
 }

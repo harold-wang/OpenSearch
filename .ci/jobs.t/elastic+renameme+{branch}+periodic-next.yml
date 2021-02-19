@@ -1,0 +1,6 @@
+- job:
+    name: elastic+renameme+%BRANCH%+periodic-next
+    workspace: /dev/shm/elastic+renameme+%BRANCH%+periodic
+    display-name: "elastic / renameme # %BRANCH% - periodic (experimental)"
+    description: "Periodic testing of the Renameme %BRANCH% branch.\n"
+    triggers: []

@@ -16,12 +16,12 @@
 */ %>
 ################################################################################
 # Build stage 0 `builder`:
-# Extract Elasticsearch artifact
+# Extract Renameme artifact
 ################################################################################
 
 FROM ${base_image} AS builder
 <% if (docker_base == 'ubi') { %>
-# Install required packages to extract the Elasticsearch distribution
+# Install required packages to extract the Renameme distribution
 RUN ${package_manager} install -y tar gzip
 <% } %>
 # `tini` is a tiny but valid init for containers. This is used to cleanly
@@ -44,22 +44,22 @@ RUN set -eux ; \\
     mv \${tini_bin} /tini ; \\
     chmod +x /tini
 
-RUN mkdir /usr/share/elasticsearch
-WORKDIR /usr/share/elasticsearch
+RUN mkdir /usr/share/renameme
+WORKDIR /usr/share/renameme
 
-${source_elasticsearch}
+${source_renameme}
 
-RUN tar zxf /opt/elasticsearch.tar.gz --strip-components=1
-RUN sed -i -e 's/ES_DISTRIBUTION_TYPE=tar/ES_DISTRIBUTION_TYPE=docker/' /usr/share/elasticsearch/bin/elasticsearch-env
+RUN tar zxf /opt/renameme.tar.gz --strip-components=1
+RUN sed -i -e 's/ES_DISTRIBUTION_TYPE=tar/ES_DISTRIBUTION_TYPE=docker/' /usr/share/renameme/bin/renameme-env
 RUN mkdir -p config config/jvm.options.d data logs
 RUN chmod 0775 config config/jvm.options.d data logs
-COPY config/elasticsearch.yml config/log4j2.properties config/
-RUN chmod 0660 config/elasticsearch.yml config/log4j2.properties
+COPY config/renameme.yml config/log4j2.properties config/
+RUN chmod 0660 config/renameme.yml config/log4j2.properties
 
 ################################################################################
-# Build stage 1 (the actual Elasticsearch image):
+# Build stage 1 (the actual Renameme image):
 #
-# Copy elasticsearch from stage 0
+# Copy renameme from stage 0
 # Add entrypoint
 ################################################################################
 
@@ -76,27 +76,27 @@ RUN for iter in {1..10}; do \\
     done; \\
     (exit \$exit_code)
 
-RUN groupadd -g 1000 elasticsearch && \\
-    adduser -u 1000 -g 1000 -G 0 -d /usr/share/elasticsearch elasticsearch && \\
-    chmod 0775 /usr/share/elasticsearch && \\
-    chown -R 1000:0 /usr/share/elasticsearch
+RUN groupadd -g 1000 renameme && \\
+    adduser -u 1000 -g 1000 -G 0 -d /usr/share/renameme renameme && \\
+    chmod 0775 /usr/share/renameme && \\
+    chown -R 1000:0 /usr/share/renameme
 
-WORKDIR /usr/share/elasticsearch
-COPY --from=builder --chown=1000:0 /usr/share/elasticsearch /usr/share/elasticsearch
+WORKDIR /usr/share/renameme
+COPY --from=builder --chown=1000:0 /usr/share/renameme /usr/share/renameme
 COPY --from=builder --chown=0:0 /tini /tini
 
 # Replace OpenJDK's built-in CA certificate keystore with the one from the OS
 # vendor. The latter is superior in several ways.
 # REF: https://github.com/elastic/elasticsearch-docker/issues/171
-RUN ln -sf /etc/pki/ca-trust/extracted/java/cacerts /usr/share/elasticsearch/jdk/lib/security/cacerts
+RUN ln -sf /etc/pki/ca-trust/extracted/java/cacerts /usr/share/renameme/jdk/lib/security/cacerts
 
-ENV PATH /usr/share/elasticsearch/bin:\$PATH
+ENV PATH /usr/share/renameme/bin:\$PATH
 
 COPY bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # The JDK's directories' permissions don't allow `java` to be executed under a different
 # group to the default. Fix this.
-RUN find /usr/share/elasticsearch/jdk -type d -exec chmod 0755 '{}' \\; && \\
+RUN find /usr/share/renameme/jdk -type d -exec chmod 0755 '{}' \\; && \\
     chmod g=u /etc/passwd && \\
     chmod 0775 /usr/local/bin/docker-entrypoint.sh
 
@@ -107,7 +107,7 @@ EXPOSE 9200 9300
 
 LABEL org.label-schema.build-date="${build_date}" \\
   org.label-schema.license="${license}" \\
-  org.label-schema.name="Elasticsearch" \\
+  org.label-schema.name="Renameme" \\
   org.label-schema.schema-version="1.0" \\
   org.label-schema.url="https://www.elastic.co/products/elasticsearch" \\
   org.label-schema.usage="https://www.elastic.co/guide/en/elasticsearch/reference/index.html" \\
@@ -119,19 +119,19 @@ LABEL org.label-schema.build-date="${build_date}" \\
   org.opencontainers.image.documentation="https://www.elastic.co/guide/en/elasticsearch/reference/index.html" \\
   org.opencontainers.image.licenses="${license}" \\
   org.opencontainers.image.revision="${git_revision}" \\
-  org.opencontainers.image.source="https://github.com/elastic/elasticsearch" \\
-  org.opencontainers.image.title="Elasticsearch" \\
+  org.opencontainers.image.source="https://github.com/opendistro-for-elasticsearch/search" \\
+  org.opencontainers.image.title="Renameme" \\
   org.opencontainers.image.url="https://www.elastic.co/products/elasticsearch" \\
-  org.opencontainers.image.vendor="Elastic" \\
+  org.opencontainers.image.vendor="Renameme" \\
   org.opencontainers.image.version="${version}"
 <% if (docker_base == 'ubi') { %>
-LABEL name="Elasticsearch" \\
+LABEL name="Renameme" \\
   maintainer="infra@elastic.co" \\
-  vendor="Elastic" \\
+  vendor="Renameme" \\
   version="${version}" \\
   release="1" \\
-  summary="Elasticsearch" \\
-  description="You know, for search."
+  summary="Renameme" \\
+  description="You know, for open search."
 
 RUN mkdir /licenses && \\
     cp LICENSE.txt /licenses/LICENSE

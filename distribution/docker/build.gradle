@@ -1,15 +1,15 @@
-import org.elasticsearch.gradle.Architecture
-import org.elasticsearch.gradle.DockerBase
-import org.elasticsearch.gradle.ElasticsearchDistribution.Flavor
-import org.elasticsearch.gradle.LoggedExec
-import org.elasticsearch.gradle.VersionProperties
-import org.elasticsearch.gradle.docker.DockerBuildTask
-import org.elasticsearch.gradle.info.BuildParams
-import org.elasticsearch.gradle.testfixtures.TestFixturesPlugin
-apply plugin: 'elasticsearch.standalone-rest-test'
-apply plugin: 'elasticsearch.test.fixtures'
-apply plugin: 'elasticsearch.internal-distribution-download'
-apply plugin: 'elasticsearch.rest-resources'
+import org.renameme.gradle.Architecture
+import org.renameme.gradle.DockerBase
+import org.renameme.gradle.RenamemeDistribution.Flavor
+import org.renameme.gradle.LoggedExec
+import org.renameme.gradle.VersionProperties
+import org.renameme.gradle.docker.DockerBuildTask
+import org.renameme.gradle.info.BuildParams
+import org.renameme.gradle.testfixtures.TestFixturesPlugin
+apply plugin: 'renameme.standalone-rest-test'
+apply plugin: 'renameme.test.fixtures'
+apply plugin: 'renameme.internal-distribution-download'
+apply plugin: 'renameme.rest-resources'
 
 testFixtures.useFixture()
 
@@ -36,26 +36,26 @@ ext.expansions = { Architecture architecture, boolean oss, DockerBase base, bool
       throw new IllegalArgumentException("Unsupported architecture [" + architecture + "]")
     }
   } else {
-    /* When sourcing the Elasticsearch build remotely, the same Dockerfile needs
+    /* When sourcing the Renameme build remotely, the same Dockerfile needs
      * to be able to fetch the artifact for any supported platform. We can't make
      * the decision here. Bash will interpolate the `arch` command for us. */
     classifier = "linux-\$(arch)"
   }
 
-  final String elasticsearch = "elasticsearch-oss-${VersionProperties.elasticsearch}-${classifier}.tar.gz"
+  final String renameme = "renameme-oss-${VersionProperties.renameme}-${classifier}.tar.gz"
 
   /* Both the following Dockerfile commands put the resulting artifact at
    * the same location, regardless of classifier, so that the commands that
    * follow in the Dockerfile don't have to know about the runtime
    * architecture. */
-  String sourceElasticsearch
+  String sourceRenameme
   if (local) {
-    sourceElasticsearch = "COPY $elasticsearch /opt/elasticsearch.tar.gz"
+    sourceRenameme = "COPY $renameme /opt/renameme.tar.gz"
   } else {
-    sourceElasticsearch = """
+    sourceRenameme = """
 RUN curl --retry 8 -S -L \\
-      --output /opt/elasticsearch.tar.gz \\
-      https://artifacts-no-kpi.elastic.co/downloads/elasticsearch/$elasticsearch
+      --output /opt/renameme.tar.gz \\
+      https://artifacts-no-kpi.elastic.co/downloads/renameme/$renameme
 """
   }
 
@@ -65,9 +65,9 @@ RUN curl --retry 8 -S -L \\
     'git_revision'        : BuildParams.gitRevision,
     'license'             : 'Apache-2.0',
     'package_manager'     : base == DockerBase.UBI ? 'microdnf' : 'yum',
-    'source_elasticsearch': sourceElasticsearch,
+    'source_renameme'     : sourceRenameme,
     'docker_base'         : base.name().toLowerCase(),
-    'version'             : VersionProperties.elasticsearch
+    'version'             : VersionProperties.renameme
   ]
 }
 
@@ -153,14 +153,14 @@ def createAndSetWritable(Object... locations) {
   }
 }
 
-elasticsearch_distributions {
+renameme_distributions {
   Architecture.values().each { eachArchitecture ->
     Flavor.values().each { distroFlavor ->
       "docker_$distroFlavor${ eachArchitecture == Architecture.AARCH64 ? '_aarch64' : '' }" {
         architecture = eachArchitecture
         flavor = distroFlavor
         type = 'docker'
-        version = VersionProperties.getElasticsearch()
+        version = VersionProperties.getRenameme()
         failIfUnavailable = false // This ensures we don't attempt to build images if docker is unavailable
       }
     }
@@ -168,7 +168,7 @@ elasticsearch_distributions {
 }
 
 tasks.named("preProcessFixture").configure {
-  dependsOn elasticsearch_distributions.docker_oss
+  dependsOn renameme_distributions.docker_oss
   doLast {
     // tests expect to have an empty repo
     project.delete(
@@ -209,19 +209,19 @@ void addBuildDockerImage(Architecture architecture, boolean oss, DockerBase base
     dockerContext.fileProvider(copyContextTask.map { it.destinationDir })
     baseImages = [ base.getImage() ]
 
-    String version = VersionProperties.elasticsearch
+    String version = VersionProperties.renameme
     if (oss) {
       tags = [
-        "docker.elastic.co/elasticsearch/elasticsearch-oss:${version}",
-        "elasticsearch-oss:test"
+        "docker.elastic.co/renameme/renameme-oss:${version}",
+        "renameme-oss:test"
       ]
     } else {
       String suffix = base == DockerBase.UBI ? '-ubi8' : ''
       tags = [
-        "elasticsearch${suffix}:${version}",
-        "docker.elastic.co/elasticsearch/elasticsearch${suffix}:${version}",
-        "docker.elastic.co/elasticsearch/elasticsearch-full${suffix}:${version}",
-        "elasticsearch${suffix}:test",
+        "renameme${suffix}:${version}",
+        "docker.elastic.co/renameme/renameme${suffix}:${version}",
+        "docker.elastic.co/renameme/renameme-full${suffix}:${version}",
+        "renameme${suffix}:test",
       ]
     }
   }
@@ -262,11 +262,11 @@ subprojects { Project subProject ->
     final String arch = architecture == Architecture.AARCH64 ? '-aarch64' : ''
     final String suffix = oss ? '-oss' : base == DockerBase.UBI ? '-ubi8' : ''
     final String extension = base == DockerBase.UBI ? 'ubi.tar' : 'docker.tar'
-    final String artifactName = "elasticsearch${arch}${suffix}_test"
+    final String artifactName = "renameme${arch}${suffix}_test"
 
     final String exportTaskName = taskName("export", architecture, oss, base, "DockerImage")
     final String buildTaskName = taskName("build", architecture, oss, base, "DockerImage")
-    final String tarFile = "${parent.projectDir}/build/${artifactName}_${VersionProperties.elasticsearch}.${extension}"
+    final String tarFile = "${parent.projectDir}/build/${artifactName}_${VersionProperties.renameme}.${extension}"
 
     tasks.register(exportTaskName, LoggedExec) {
       inputs.file("${parent.projectDir}/build/markers/${buildTaskName}.marker")
@@ -275,7 +275,7 @@ subprojects { Project subProject ->
       args "save",
         "-o",
         tarFile,
-        "elasticsearch${suffix}:test"
+        "renameme${suffix}:test"
 
       dependsOn(parent.path + ":" + buildTaskName)
       onlyIf { Architecture.current() == architecture }

@@ -53,34 +53,34 @@ esac
 
 if [ "$REMOVE_DIRS" = "true" ]; then
 
-    if [ -d /var/log/elasticsearch ]; then
+    if [ -d /var/log/renameme ]; then
         echo -n "Deleting log directory..."
-        rm -rf /var/log/elasticsearch
+        rm -rf /var/log/renameme
         echo " OK"
     fi
 
-    if [ -d /usr/share/elasticsearch/plugins ]; then
+    if [ -d /usr/share/renameme/plugins ]; then
         echo -n "Deleting plugins directory..."
-        rm -rf /usr/share/elasticsearch/plugins
+        rm -rf /usr/share/renameme/plugins
         echo " OK"
     fi
 
     # plugins may have contained bin files
-    if [ -d /usr/share/elasticsearch/bin ]; then
+    if [ -d /usr/share/renameme/bin ]; then
         echo -n "Deleting plugin bin directories..."
-        rm -rf /usr/share/elasticsearch/bin
+        rm -rf /usr/share/renameme/bin
         echo " OK"
     fi
 
-    if [ -d /var/run/elasticsearch ]; then
+    if [ -d /var/run/renameme ]; then
         echo -n "Deleting PID directory..."
-        rm -rf /var/run/elasticsearch
+        rm -rf /var/run/renameme
         echo " OK"
     fi
 
     # Delete the data directory if and only if empty
-    if [ -d /var/lib/elasticsearch ]; then
-        rmdir --ignore-fail-on-non-empty /var/lib/elasticsearch
+    if [ -d /var/lib/renameme ]; then
+        rmdir --ignore-fail-on-non-empty /var/lib/renameme
     fi
 
     # delete the jvm.options.d directory if and only if empty
@@ -105,12 +105,12 @@ if [ "$REMOVE_DIRS" = "true" ]; then
 fi
 
 if [ "$REMOVE_USER_AND_GROUP" = "true" ]; then
-    if id elasticsearch > /dev/null 2>&1 ; then
-        userdel elasticsearch
+    if id renameme > /dev/null 2>&1 ; then
+        userdel renameme
     fi
 
-    if getent group elasticsearch > /dev/null 2>&1 ; then
-        groupdel elasticsearch
+    if getent group renameme > /dev/null 2>&1 ; then
+        groupdel renameme
     fi
 fi
 

@@ -18,7 +18,7 @@
  */
 
 esplugin {
-  description 'Integrates Elasticsearch with systemd'
-  classname 'org.elasticsearch.systemd.SystemdPlugin'
+  description 'Integrates Renameme with systemd'
+  classname 'org.renameme.systemd.SystemdPlugin'
 }
 

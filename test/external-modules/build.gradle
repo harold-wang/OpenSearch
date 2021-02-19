@@ -1,9 +1,9 @@
 
-import org.elasticsearch.gradle.info.BuildParams;
+import org.renameme.gradle.info.BuildParams;
 
 subprojects {
-  apply plugin: 'elasticsearch.esplugin'
-  apply plugin: 'elasticsearch.yaml-rest-test'
+  apply plugin: 'renameme.esplugin'
+  apply plugin: 'renameme.yaml-rest-test'
 
   esplugin {
     name it.name

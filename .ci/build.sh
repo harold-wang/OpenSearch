@@ -39,6 +39,6 @@ fi
 export GRADLE_OPTS="-XX:+HeapDumpOnOutOfMemoryError -Xmx128m -Xms128m"
 set -e
 ./gradlew --parallel --scan \
-  -Dorg.elasticsearch.build.cache.url=https://gradle-enterprise.elastic.co/cache/ \
+  -Dorg.renameme.build.cache.url=https://gradle-enterprise.elastic.co/cache/ \
   --parallel --max-workers=$MAX_WORKERS \
    "$@"

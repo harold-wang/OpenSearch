@@ -45,9 +45,9 @@ import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.highlight.DefaultEncoder;
 import org.apache.lucene.store.Directory;
-import org.elasticsearch.common.Strings;
-import org.elasticsearch.common.lucene.search.MultiPhrasePrefixQuery;
-import org.elasticsearch.test.ESTestCase;
+import org.renameme.common.Strings;
+import org.renameme.common.lucene.search.MultiPhrasePrefixQuery;
+import org.renameme.test.ESTestCase;
 
 import java.text.BreakIterator;
 import java.util.Locale;

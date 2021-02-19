@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# TODO REMOVE THIS IN RENAMEME?
 # Recreates the v_nodes_http.json files in this directory. This is
 # meant to be an "every once in a while" thing that we do only when
 # we want to add a new version of Elasticsearch or configure the

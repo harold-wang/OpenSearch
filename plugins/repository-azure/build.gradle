@@ -1,9 +1,9 @@
-import org.elasticsearch.gradle.MavenFilteringHack
-import org.elasticsearch.gradle.info.BuildParams
-import org.elasticsearch.gradle.test.InternalClusterTestPlugin
+import org.renameme.gradle.MavenFilteringHack
+import org.renameme.gradle.info.BuildParams
+import org.renameme.gradle.test.InternalClusterTestPlugin
 
-import static org.elasticsearch.gradle.PropertyNormalization.DEFAULT
-import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
+import static org.renameme.gradle.PropertyNormalization.DEFAULT
+import static org.renameme.gradle.PropertyNormalization.IGNORE_VALUE
 
 /*
  * Licensed to Elasticsearch under one or more contributor
@@ -23,12 +23,12 @@ import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: 'renameme.yaml-rest-test'
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
   description 'The Azure Repository plugin adds support for Azure storage repositories.'
-  classname 'org.elasticsearch.repositories.azure.AzureRepositoryPlugin'
+  classname 'org.renameme.repositories.azure.AzureRepositoryPlugin'
 }
 
 dependencies {
@@ -55,7 +55,7 @@ tasks.named("dependencyLicenses").configure {
 
 thirdPartyAudit {
   ignoreMissingClasses(
-    // Optional and not enabled by Elasticsearch
+    // Optional and not enabled by Renameme
     'org.slf4j.Logger',
     'org.slf4j.LoggerFactory'
   )
@@ -99,7 +99,7 @@ if (!azureAccount && !azureKey && !azureContainer && !azureBasePath && !azureSas
   azureSasToken = ''
   useFixture = true
 
-  apply plugin: 'elasticsearch.test.fixtures'
+  apply plugin: 'renameme.test.fixtures'
   testFixtures.useFixture ':test:fixtures:azure-fixture', 'azure-fixture'
 }
 

@@ -19,12 +19,12 @@
 
 
 import org.apache.tools.ant.filters.FixCrLfFilter
-import org.elasticsearch.gradle.ConcatFilesTask
-import org.elasticsearch.gradle.DependenciesInfoTask
-import org.elasticsearch.gradle.MavenFilteringHack
-import org.elasticsearch.gradle.NoticeTask
-import org.elasticsearch.gradle.VersionProperties
-import org.elasticsearch.gradle.info.BuildParams
+import org.renameme.gradle.ConcatFilesTask
+import org.renameme.gradle.DependenciesInfoTask
+import org.renameme.gradle.MavenFilteringHack
+import org.renameme.gradle.NoticeTask
+import org.renameme.gradle.VersionProperties
+import org.renameme.gradle.info.BuildParams
 
 import java.nio.file.Files
 import java.nio.file.Path
@@ -179,7 +179,7 @@ void copyModule(TaskProvider<Sync> copyTask, Project module) {
       exclude 'config/log4j2.properties'
 
       eachFile { details ->
-        String name = module.plugins.hasPlugin('elasticsearch.esplugin') ? module.esplugin.name : module.es_meta_plugin.name
+        String name = module.plugins.hasPlugin('renameme.esplugin') ? module.esplugin.name : module.es_meta_plugin.name
         // Copy all non config/bin files
         // Note these might be unde a subdirectory in the case of a meta plugin
         if ((details.relativePath.pathString ==~ /([^\/]+\/)?(config|bin)\/.*/) == false) {
@@ -284,8 +284,8 @@ project(':test:external-modules').subprojects.each { Project testModule ->
 
 configure(subprojects.findAll { ['archives', 'packages'].contains(it.name) }) {
 
-  apply plugin: 'elasticsearch.jdk-download'
-  apply plugin: 'elasticsearch.repositories'
+  apply plugin: 'renameme.jdk-download'
+  apply plugin: 'renameme.repositories'
 
   // Setup all required JDKs
   project.jdks {
@@ -321,7 +321,7 @@ configure(subprojects.findAll { ['archives', 'packages'].contains(it.name) }) {
 
   dependencies {
     libs project(':server')
-    libs project(':libs:elasticsearch-plugin-classloader')
+    libs project(':libs:renameme-plugin-classloader')
     libs project(':distribution:tools:java-version-checker')
     libs project(':distribution:tools:launchers')
 
@@ -493,7 +493,7 @@ configure(subprojects.findAll { ['archives', 'packages'].contains(it.name) }) {
 
 /**
  * Build some variables that are replaced in the packages. This includes both
- * scripts like bin/elasticsearch and bin/elasticsearch-plugin that a user might run and also
+ * scripts like bin/renameme and bin/renameme-plugin that a user might run and also
  * scripts like postinst which are run as part of the installation.
  *
  * <dl>
@@ -505,18 +505,18 @@ configure(subprojects.findAll { ['archives', 'packages'].contains(it.name) }) {
  *  <dt>path.conf</dt>
  *  <dd>The default directory from which to load configuration. This is used in
  *    the packaging scripts, but in that context it is always
- *    /etc/elasticsearch. Its also used in bin/elasticsearch-plugin, where it is
- *    /etc/elasticsearch for the os packages but $ESHOME/config otherwise.</dd>
+ *    /etc/renameme. Its also used in bin/renameme-plugin, where it is
+ *    /etc/renameme for the os packages but $ESHOME/config otherwise.</dd>
  *  <dt>path.env</dt>
- *  <dd>The env file sourced before bin/elasticsearch to set environment
- *    variables. Think /etc/defaults/elasticsearch.</dd>
+ *  <dd>The env file sourced before bin/renameme to set environment
+ *    variables. Think /etc/defaults/renameme.</dd>
  *  <dt>heap.min and heap.max</dt>
  *  <dd>Default min and max heap</dd>
  *  <dt>scripts.footer</dt>
  *  <dd>Footer appended to control scripts embedded in the distribution that is
  *    (almost) entirely there for cosmetic reasons.</dd>
  *  <dt>stopping.timeout</dt>
- *  <dd>RPM's init script needs to wait for elasticsearch to stop before
+ *  <dd>RPM's init script needs to wait for renameme to stop before
  *    returning from stop and it needs a maximum time to wait. This is it. One
  *    day. DEB retries forever.</dd>
  * </dl>
@@ -524,8 +524,8 @@ configure(subprojects.findAll { ['archives', 'packages'].contains(it.name) }) {
 subprojects {
   ext.expansionsForDistribution = { distributionType, oss, jdk ->
     final String defaultHeapSize = "1g"
-    final String packagingPathData = "path.data: /var/lib/elasticsearch"
-    final String pathLogs = "/var/log/elasticsearch"
+    final String packagingPathData = "path.data: /var/lib/renameme"
+    final String pathLogs = "/var/log/renameme"
     final String packagingPathLogs = "path.logs: ${pathLogs}"
     final String packagingLoggc = "${pathLogs}/gc.log"
 
@@ -540,8 +540,8 @@ subprojects {
       'project.version': version,
 
       'path.conf': [
-        'deb': '/etc/elasticsearch',
-        'rpm': '/etc/elasticsearch',
+        'deb': '/etc/renameme',
+        'rpm': '/etc/renameme',
         'def': '"$ES_HOME"/config'
       ],
       'path.data': [
@@ -550,15 +550,15 @@ subprojects {
         'def': '#path.data: /path/to/data'
       ],
       'path.env': [
-        'deb': '/etc/default/elasticsearch',
-        'rpm': '/etc/sysconfig/elasticsearch',
+        'deb': '/etc/default/renameme',
+        'rpm': '/etc/sysconfig/renameme',
         /* There isn't one of these files for tar or zip but its important to
           make an empty string here so the script can properly skip it. */
         'def': 'if [ -z "$ES_PATH_CONF" ]; then ES_PATH_CONF="$ES_HOME"/config; done',
       ],
       'source.path.env': [
-        'deb': 'source /etc/default/elasticsearch',
-        'rpm': 'source /etc/sysconfig/elasticsearch',
+        'deb': 'source /etc/default/renameme',
+        'rpm': 'source /etc/sysconfig/renameme',
         'def': 'if [ -z "$ES_PATH_CONF" ]; then ES_PATH_CONF="$ES_HOME"/config; fi',
       ],
       'path.logs': [
@@ -576,14 +576,14 @@ subprojects {
       'heap.max': defaultHeapSize,
 
       'heap.dump.path': [
-        'deb': "-XX:HeapDumpPath=/var/lib/elasticsearch",
-        'rpm': "-XX:HeapDumpPath=/var/lib/elasticsearch",
+        'deb': "-XX:HeapDumpPath=/var/lib/renameme",
+        'rpm': "-XX:HeapDumpPath=/var/lib/renameme",
         'def': "-XX:HeapDumpPath=data"
       ],
 
       'error.file': [
-        'deb': "-XX:ErrorFile=/var/log/elasticsearch/hs_err_pid%p.log",
-        'rpm': "-XX:ErrorFile=/var/log/elasticsearch/hs_err_pid%p.log",
+        'deb': "-XX:ErrorFile=/var/log/renameme/hs_err_pid%p.log",
+        'rpm': "-XX:ErrorFile=/var/log/renameme/hs_err_pid%p.log",
         'def': "-XX:ErrorFile=logs/hs_err_pid%p.log"
       ],
 

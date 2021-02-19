@@ -18,22 +18,22 @@
  */
 
 import org.apache.tools.ant.taskdefs.condition.Os
-import org.elasticsearch.gradle.info.BuildParams
-import org.elasticsearch.gradle.test.RestIntegTestTask
+import org.renameme.gradle.info.BuildParams
+import org.renameme.gradle.test.RestIntegTestTask
 
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
+import static org.renameme.gradle.PropertyNormalization.IGNORE_VALUE
 
-apply plugin: 'elasticsearch.test.fixtures'
-apply plugin: 'elasticsearch.rest-resources'
-apply plugin: 'elasticsearch.rest-test'
+apply plugin: 'renameme.test.fixtures'
+apply plugin: 'renameme.rest-resources'
+apply plugin: 'renameme.rest-test'
 
 esplugin {
   description 'The HDFS repository plugin adds support for Hadoop Distributed File-System (HDFS) repositories.'
-  classname 'org.elasticsearch.repositories.hdfs.HdfsPlugin'
+  classname 'org.renameme.repositories.hdfs.HdfsPlugin'
 }
 
 versions << [
@@ -108,7 +108,7 @@ String krb5conf = project(':test:fixtures:krb5kdc-fixture').ext.krb5Conf("hdfs")
 
 // Create HDFS File System Testing Fixtures for HA/Secure combinations
 for (String fixtureName : ['hdfsFixture', 'haHdfsFixture', 'secureHdfsFixture', 'secureHaHdfsFixture']) {
-  def tsk = project.tasks.register(fixtureName, org.elasticsearch.gradle.test.AntFixture) {
+  def tsk = project.tasks.register(fixtureName, org.renameme.gradle.test.AntFixture) {
     dependsOn project.configurations.hdfsFixture, project(':test:fixtures:krb5kdc-fixture').tasks.postProcessFixture
     executable = "${BuildParams.runtimeJavaHome}/bin/java"
     env 'CLASSPATH', "${-> project.configurations.hdfsFixture.asPath}"
@@ -157,7 +157,7 @@ Set disabledIntegTestTaskNames = []
 
 for (String integTestTaskName : ['integTestHa', 'integTestSecure', 'integTestSecureHa']) {
   task "${integTestTaskName}"(type: RestIntegTestTask) {
-    description = "Runs rest tests against an elasticsearch cluster with HDFS."
+    description = "Runs rest tests against an renameme cluster with HDFS."
     dependsOn(project.bundlePlugin)
 
     if (disabledIntegTestTaskNames.contains(integTestTaskName)) {
@@ -201,7 +201,7 @@ for (String integTestTaskName : ['integTestHa', 'integTestSecure', 'integTestSec
 
       if (integTestTaskName.contains("Secure")) {
         if (disabledIntegTestTaskNames.contains(integTestTaskName) == false) {
-          nonInputProperties.systemProperty "test.krb5.principal.es", "elasticsearch@${realm}"
+          nonInputProperties.systemProperty "test.krb5.principal.es", "renameme@${realm}"
           nonInputProperties.systemProperty "test.krb5.principal.hdfs", "hdfs/hdfs.build.elastic.co@${realm}"
           jvmArgs "-Djava.security.krb5.conf=${krb5conf}"
           nonInputProperties.systemProperty(
@@ -218,7 +218,7 @@ for (String integTestTaskName : ['integTestHa', 'integTestSecure', 'integTestSec
       systemProperty "java.security.krb5.conf", krb5conf
       extraConfigFile(
         "repository-hdfs/krb5.keytab",
-        file("${project(':test:fixtures:krb5kdc-fixture').ext.krb5Keytabs("hdfs", "elasticsearch.keytab")}"), IGNORE_VALUE
+        file("${project(':test:fixtures:krb5kdc-fixture').ext.krb5Keytabs("hdfs", "renameme.keytab")}"), IGNORE_VALUE
       )
     }
   }

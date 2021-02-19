@@ -16,20 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.esplugin'
-apply plugin: 'elasticsearch.yaml-rest-test'
+apply plugin: 'renameme.esplugin'
+apply plugin: 'renameme.yaml-rest-test'
 
 esplugin {
   name 'painless-whitelist'
   description 'An example whitelisting additional classes and methods in painless'
-  classname 'org.elasticsearch.example.painlesswhitelist.MyWhitelistPlugin'
+  classname 'org.renameme.example.painlesswhitelist.MyWhitelistPlugin'
   extendedPlugins = ['lang-painless']
   licenseFile rootProject.file('licenses/APACHE-LICENSE-2.0.txt')
   noticeFile rootProject.file('NOTICE.txt')
 }
 
 dependencies {
-  compileOnly "org.elasticsearch.plugin:elasticsearch-scripting-painless-spi:${versions.elasticsearch}"
+  compileOnly "org.renameme.plugin:renameme-scripting-painless-spi:${versions.renameme}"
 }
 
 testClusters.all {

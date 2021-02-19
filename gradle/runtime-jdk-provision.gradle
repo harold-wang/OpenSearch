@@ -1,9 +1,9 @@
-import org.elasticsearch.gradle.Architecture
-import org.elasticsearch.gradle.OS
-import org.elasticsearch.gradle.VersionProperties
-import org.elasticsearch.gradle.info.BuildParams
+import org.renameme.gradle.Architecture
+import org.renameme.gradle.OS
+import org.renameme.gradle.VersionProperties
+import org.renameme.gradle.info.BuildParams
 
-apply plugin: 'elasticsearch.jdk-download'
+apply plugin: 'renameme.jdk-download'
 
 if (BuildParams.getIsRuntimeJavaHomeSet()) {
   configure(allprojects - project(':build-tools')) {

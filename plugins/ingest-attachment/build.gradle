@@ -1,4 +1,4 @@
-import org.elasticsearch.gradle.info.BuildParams
+import org.renameme.gradle.info.BuildParams
 
 /*
  * Licensed to Elasticsearch under one or more contributor
@@ -18,11 +18,11 @@ import org.elasticsearch.gradle.info.BuildParams
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
+apply plugin: 'renameme.yaml-rest-test'
 
 esplugin {
   description 'Ingest processor that uses Apache Tika to extract contents'
-  classname 'org.elasticsearch.ingest.attachment.IngestAttachmentPlugin'
+  classname 'org.renameme.ingest.attachment.IngestAttachmentPlugin'
 }
 
 versions << [

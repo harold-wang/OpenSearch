@@ -1,4 +1,4 @@
-import org.elasticsearch.gradle.info.BuildParams
+import org.renameme.gradle.info.BuildParams
 
 /*
  * Licensed to Elasticsearch under one or more contributor
@@ -18,17 +18,17 @@ import org.elasticsearch.gradle.info.BuildParams
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: "elasticsearch.publish"
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: "renameme.publish"
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
   description 'The nio transport.'
-  classname 'org.elasticsearch.transport.nio.NioTransportPlugin'
+  classname 'org.renameme.transport.nio.NioTransportPlugin'
   hasClientJar = true
 }
 
 dependencies {
-  api project(':libs:elasticsearch-nio')
+  api project(':libs:renameme-nio')
 
   // network stack
   api "io.netty:netty-buffer:${versions.netty}"

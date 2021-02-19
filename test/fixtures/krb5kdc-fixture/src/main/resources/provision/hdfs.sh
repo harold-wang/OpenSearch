@@ -2,7 +2,7 @@
 
 set -e
 
-addprinc.sh "elasticsearch"
+addprinc.sh "renameme"
 addprinc.sh "hdfs/hdfs.build.elastic.co"
 
 # Use this as a signal that setup is complete

@@ -17,10 +17,10 @@
  * under the License.
  */
 
-apply plugin:"elasticsearch.internal-distribution-bwc-setup"
+apply plugin:"renameme.internal-distribution-bwc-setup"
 
-import org.elasticsearch.gradle.Version
-import org.elasticsearch.gradle.info.BuildParams
+import org.renameme.gradle.Version
+import org.renameme.gradle.info.BuildParams
 
 
 BuildParams.getBwcVersions().forPreviousUnreleased { unreleasedVersion ->

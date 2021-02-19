@@ -16,17 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.publish'
+apply plugin: 'renameme.publish'
 
 dependencies {
-  api project(':libs:elasticsearch-core')
+  api project(':libs:renameme-core')
 
   testImplementation "com.carrotsearch.randomizedtesting:randomizedtesting-runner:${versions.randomizedrunner}"
   testImplementation "junit:junit:${versions.junit}"
   testImplementation "org.hamcrest:hamcrest:${versions.hamcrest}"
 
   testImplementation(project(":test:framework")) {
-    exclude group: 'org.elasticsearch', module: 'elasticsearch-nio'
+    exclude group: 'org.renameme', module: 'renameme-nio'
   }
 }
 

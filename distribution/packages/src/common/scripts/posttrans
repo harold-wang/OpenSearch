@@ -5,17 +5,17 @@ fi
 
 export ES_PATH_CONF=${ES_PATH_CONF:-${path.conf}}
 
-if [ ! -f "${ES_PATH_CONF}"/elasticsearch.keystore ]; then
-    /usr/share/elasticsearch/bin/elasticsearch-keystore create
-    chown root:elasticsearch "${ES_PATH_CONF}"/elasticsearch.keystore
-    chmod 660 "${ES_PATH_CONF}"/elasticsearch.keystore
-    md5sum "${ES_PATH_CONF}"/elasticsearch.keystore > "${ES_PATH_CONF}"/.elasticsearch.keystore.initial_md5sum
+if [ ! -f "${ES_PATH_CONF}"/renameme.keystore ]; then
+    /usr/share/renameme/bin/renameme-keystore create
+    chown root:renameme "${ES_PATH_CONF}"/renameme.keystore
+    chmod 660 "${ES_PATH_CONF}"/renameme.keystore
+    md5sum "${ES_PATH_CONF}"/renameme.keystore > "${ES_PATH_CONF}"/.renameme.keystore.initial_md5sum
 else
-    if /usr/share/elasticsearch/bin/elasticsearch-keystore has-passwd --silent ; then
+    if /usr/share/renameme/bin/renameme-keystore has-passwd --silent ; then
       echo "### Warning: unable to upgrade encrypted keystore" 1>&2
-      echo " Please run elasticsearch-keystore upgrade and enter password" 1>&2
+      echo " Please run renameme-keystore upgrade and enter password" 1>&2
     else
-      /usr/share/elasticsearch/bin/elasticsearch-keystore upgrade
+      /usr/share/renameme/bin/renameme-keystore upgrade
     fi
 fi
 

@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
-apply plugin: 'elasticsearch.java-rest-test'
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: 'renameme.yaml-rest-test'
+apply plugin: 'renameme.java-rest-test'
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
-  description 'Mustache scripting integration for Elasticsearch'
-  classname 'org.elasticsearch.script.mustache.MustachePlugin'
+  description 'Mustache scripting integration for Renameme'
+  classname 'org.renameme.script.mustache.MustachePlugin'
   hasClientJar = true // For the template apis and query
 }
 

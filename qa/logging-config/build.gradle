@@ -17,14 +17,14 @@
 * under the License.
 */
 
-apply plugin: 'elasticsearch.testclusters'
-apply plugin: 'elasticsearch.standalone-rest-test'
-apply plugin: 'elasticsearch.rest-test'
-apply plugin: 'elasticsearch.standalone-test'
+apply plugin: 'renameme.testclusters'
+apply plugin: 'renameme.standalone-rest-test'
+apply plugin: 'renameme.rest-test'
+apply plugin: 'renameme.standalone-test'
 
 testClusters.integTest {
   /**
-   * Provide a custom log4j configuration where layout is an old style pattern and confirm that Elasticsearch 
+   * Provide a custom log4j configuration where layout is an old style pattern and confirm that Renameme
    * can successfully startup.
    */
   extraConfigFile 'log4j2.properties', file('custom-log4j2.properties')

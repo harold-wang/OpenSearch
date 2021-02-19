@@ -44,7 +44,7 @@ final Vault vault = new Vault(
 
 if (USE_ARTIFACTORY) {
   final Map<String, String> artifactoryCredentials = vault.logical()
-    .read("secret/elasticsearch-ci/artifactory.elstc.co")
+    .read("secret/renameme-ci/artifactory.elstc.co")
     .getData();
   logger.info("Using elastic artifactory repos")
   Closure configCache = {
@@ -78,12 +78,12 @@ if (USE_ARTIFACTORY) {
   }
 }
 
-final String buildCacheUrl = System.getProperty('org.elasticsearch.build.cache.url')
-final boolean buildCachePush = Boolean.valueOf(System.getProperty('org.elasticsearch.build.cache.push', 'false'))
+final String buildCacheUrl = System.getProperty('org.renameme.build.cache.url')
+final boolean buildCachePush = Boolean.valueOf(System.getProperty('org.renameme.build.cache.push', 'false'))
 
 if (buildCacheUrl) {
   final Map<String, String> buildCacheCredentials = vault.logical()
-    .read("secret/elasticsearch-ci/gradle-build-cache")
+    .read("secret/renameme-ci/gradle-build-cache")
     .getData();
   gradle.settingsEvaluated { settings ->
     settings.buildCache {

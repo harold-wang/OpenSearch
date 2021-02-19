@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# Files created by Elasticsearch should always be group writable too
+# Files created by Renameme should always be group writable too
 umask 0002
 
 run_as_other_user_if_needed() {
@@ -15,21 +15,21 @@ run_as_other_user_if_needed() {
   fi
 }
 
-# Allow user specify custom CMD, maybe bin/elasticsearch itself
-# for example to directly specify `-E` style parameters for elasticsearch on k8s
+# Allow user specify custom CMD, maybe bin/renameme itself
+# for example to directly specify `-E` style parameters for renameme on k8s
 # or simply to run /bin/bash to check the image
 if [[ "$1" != "eswrapper" ]]; then
-  if [[ "$(id -u)" == "0" && $(basename "$1") == "elasticsearch" ]]; then
+  if [[ "$(id -u)" == "0" && $(basename "$1") == "renameme" ]]; then
     # centos:7 chroot doesn't have the `--skip-chdir` option and
     # changes our CWD.
-    # Rewrite CMD args to replace $1 with `elasticsearch` explicitly,
+    # Rewrite CMD args to replace $1 with `renameme` explicitly,
     # so that we are backwards compatible with the docs
-    # from the previous Elasticsearch versions<6
+    # from the previous Renameme versions<6
     # and configuration option D:
     # https://www.elastic.co/guide/en/elasticsearch/reference/5.6/docker.html#_d_override_the_image_8217_s_default_ulink_url_https_docs_docker_com_engine_reference_run_cmd_default_command_or_options_cmd_ulink
-    # Without this, user could specify `elasticsearch -E x.y=z` but
-    # `bin/elasticsearch -E x.y=z` would not work.
-    set -- "elasticsearch" "${@:2}"
+    # Without this, user could specify `renameme -E x.y=z` but
+    # `bin/renameme -E x.y=z` would not work.
+    set -- "renameme" "${@:2}"
     # Use chroot to switch to UID 1000 / GID 0
     exec chroot --userspec=1000:0 / "$@"
   else
@@ -43,12 +43,12 @@ fi
 # point to it. This can be used to provide secrets to a container, without
 # the values being specified explicitly when running the container.
 #
-# This is also sourced in elasticsearch-env, and is only needed here
+# This is also sourced in renameme-env, and is only needed here
 # as well because we use ELASTIC_PASSWORD below. Sourcing this script
 # is idempotent.
-source /usr/share/elasticsearch/bin/elasticsearch-env-from-file
+source /usr/share/renameme/bin/renameme-env-from-file
 
-if [[ -f bin/elasticsearch-users ]]; then
+if [[ -f bin/renameme-users ]]; then
   # Check for the ELASTIC_PASSWORD environment variable to set the
   # bootstrap password for Security.
   #
@@ -56,18 +56,18 @@ if [[ -f bin/elasticsearch-users ]]; then
   # enabled, but we have no way of knowing which node we are yet. We'll just
   # honor the variable if it's present.
   if [[ -n "$ELASTIC_PASSWORD" ]]; then
-    [[ -f /usr/share/elasticsearch/config/elasticsearch.keystore ]] || (run_as_other_user_if_needed elasticsearch-keystore create)
-    if ! (run_as_other_user_if_needed elasticsearch-keystore has-passwd --silent) ; then
+    [[ -f /usr/share/renameme/config/renameme.keystore ]] || (run_as_other_user_if_needed renameme-keystore create)
+    if ! (run_as_other_user_if_needed renameme-keystore has-passwd --silent) ; then
       # keystore is unencrypted
-      if ! (run_as_other_user_if_needed elasticsearch-keystore list | grep -q '^bootstrap.password$'); then
-        (run_as_other_user_if_needed echo "$ELASTIC_PASSWORD" | elasticsearch-keystore add -x 'bootstrap.password')
+      if ! (run_as_other_user_if_needed renameme-keystore list | grep -q '^bootstrap.password$'); then
+        (run_as_other_user_if_needed echo "$ELASTIC_PASSWORD" | renameme-keystore add -x 'bootstrap.password')
       fi
     else
       # keystore requires password
       if ! (run_as_other_user_if_needed echo "$KEYSTORE_PASSWORD" \
-          | elasticsearch-keystore list | grep -q '^bootstrap.password$') ; then
+          | renameme-keystore list | grep -q '^bootstrap.password$') ; then
         COMMANDS="$(printf "%s\n%s" "$KEYSTORE_PASSWORD" "$ELASTIC_PASSWORD")"
-        (run_as_other_user_if_needed echo "$COMMANDS" | elasticsearch-keystore add -x 'bootstrap.password')
+        (run_as_other_user_if_needed echo "$COMMANDS" | renameme-keystore add -x 'bootstrap.password')
       fi
     fi
   fi
@@ -76,8 +76,8 @@ fi
 if [[ "$(id -u)" == "0" ]]; then
   # If requested and running as root, mutate the ownership of bind-mounts
   if [[ -n "$TAKE_FILE_OWNERSHIP" ]]; then
-    chown -R 1000:0 /usr/share/elasticsearch/{data,logs}
+    chown -R 1000:0 /usr/share/renameme/{data,logs}
   fi
 fi
 
-run_as_other_user_if_needed /usr/share/elasticsearch/bin/elasticsearch <<<"$KEYSTORE_PASSWORD"
+run_as_other_user_if_needed /usr/share/renameme/bin/renameme <<<"$KEYSTORE_PASSWORD"

@@ -21,21 +21,21 @@ import com.avast.gradle.dockercompose.tasks.ComposePull
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import de.thetaphi.forbiddenapis.gradle.ForbiddenApisPlugin
 import org.apache.tools.ant.taskdefs.condition.Os
-import org.elasticsearch.gradle.BuildPlugin
-import org.elasticsearch.gradle.Version
-import org.elasticsearch.gradle.VersionProperties
-import org.elasticsearch.gradle.info.BuildParams
-import org.elasticsearch.gradle.plugin.PluginBuildPlugin
+import org.renameme.gradle.BuildPlugin
+import org.renameme.gradle.Version
+import org.renameme.gradle.VersionProperties
+import org.renameme.gradle.info.BuildParams
+import org.renameme.gradle.plugin.PluginBuildPlugin
 import org.gradle.plugins.ide.eclipse.model.AccessRule
 import org.gradle.plugins.ide.eclipse.model.SourceFolder
 import org.gradle.util.DistributionLocator
 import org.gradle.util.GradleVersion
-import static org.elasticsearch.gradle.util.GradleUtils.maybeConfigure
+import static org.renameme.gradle.util.GradleUtils.maybeConfigure
 
 plugins {
   id 'lifecycle-base'
-  id 'elasticsearch.docker-support'
-  id 'elasticsearch.global-build-info'
+  id 'renameme.docker-support'
+  id 'renameme.global-build-info'
   id "com.diffplug.spotless" version "5.6.1" apply false
 }
 
@@ -50,14 +50,14 @@ apply from: 'gradle/run.gradle'
 
 // common maven publishing configuration
 allprojects {
-  group = 'org.elasticsearch'
-  version = VersionProperties.elasticsearch
-  description = "Elasticsearch subproject ${project.path}"
+  group = 'org.renameme'
+  version = VersionProperties.renameme
+  description = "Renameme subproject ${project.path}"
 }
 
 configure(allprojects - project(':distribution:archives:integ-test-zip')) {
   project.pluginManager.withPlugin('nebula.maven-base-publish') {
-    if (project.pluginManager.hasPlugin('elasticsearch.build') == false) {
+    if (project.pluginManager.hasPlugin('renameme.build') == false) {
       throw new GradleException("Project ${path} publishes a pom but doesn't apply the build plugin.")
     }
   }
@@ -146,7 +146,7 @@ tasks.register("verifyVersions") {
     // Read the list from maven central.
     // Fetch the metadata and parse the xml into Version instances because it's more straight forward here
     // rather than bwcVersion ( VersionCollection ).
-    new URL('https://repo1.maven.org/maven2/org/elasticsearch/elasticsearch/maven-metadata.xml').openStream().withStream { s ->
+    new URL('https://repo1.maven.org/maven2/org/renameme/renameme/maven-metadata.xml').openStream().withStream { s ->
       BuildParams.bwcVersions.compareToAuthoritative(
         new XmlParser().parse(s)
           .versioning.versions.version
@@ -218,11 +218,11 @@ allprojects {
 
   project.afterEvaluate {
     // Handle javadoc dependencies across projects. Order matters: the linksOffline for
-    // org.elasticsearch:elasticsearch must be the last one or all the links for the
-    // other packages (e.g org.elasticsearch.client) will point to server rather than
+    // org.renameme:renameme must be the last one or all the links for the
+    // other packages (e.g org.renameme.client) will point to server rather than
     // their own artifacts.
     if (project.plugins.hasPlugin(BuildPlugin) || project.plugins.hasPlugin(PluginBuildPlugin)) {
-      String artifactsHost = VersionProperties.elasticsearch.endsWith("-SNAPSHOT") ? "https://snapshots.elastic.co" : "https://artifacts.elastic.co"
+      String artifactsHost = VersionProperties.renameme.endsWith("-SNAPSHOT") ? "https://snapshots.elastic.co" : "https://artifacts.elastic.co"
       Closure sortClosure = { a, b -> b.group <=> a.group }
       Closure depJavadocClosure = { shadowed, dep ->
         if ((dep instanceof ProjectDependency) == false) {
@@ -415,7 +415,7 @@ gradle.projectsEvaluated {
 }
 
 allprojects {
-  tasks.register('resolveAllDependencies', org.elasticsearch.gradle.ResolveAllDependencies) {
+  tasks.register('resolveAllDependencies', org.renameme.gradle.ResolveAllDependencies) {
     configs = project.configurations
     if (project.path.contains("fixture")) {
       dependsOn tasks.withType(ComposePull)

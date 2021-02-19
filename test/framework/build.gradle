@@ -16,17 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import org.elasticsearch.gradle.info.BuildParams;
+import org.renameme.gradle.info.BuildParams;
 
-apply plugin: 'elasticsearch.build'
-apply plugin: 'elasticsearch.publish'
+apply plugin: 'renameme.build'
+apply plugin: 'renameme.publish'
 
 dependencies {
   api project(":client:rest")
   api project(":client:sniffer")
-  api project(':libs:elasticsearch-nio')
+  api project(':libs:renameme-nio')
   api project(":server")
-  api project(":libs:elasticsearch-cli")
+  api project(":libs:renameme-cli")
   api "com.carrotsearch.randomizedtesting:randomizedtesting-runner:${versions.randomizedrunner}"
   api "junit:junit:${versions.junit}"
   api "org.hamcrest:hamcrest:${versions.hamcrest}"
@@ -34,8 +34,8 @@ dependencies {
   api "org.apache.lucene:lucene-codecs:${versions.lucene}"
   api "commons-logging:commons-logging:${versions.commonslogging}"
   api "commons-codec:commons-codec:${versions.commonscodec}"
-  api "org.elasticsearch:securemock:${versions.securemock}"
-  api "org.elasticsearch:mocksocket:${versions.mocksocket}"
+  api "org.renameme:securemock:${versions.securemock}"
+  api "org.renameme:mocksocket:${versions.mocksocket}"
 }
 
 compileJava.options.compilerArgs << '-Xlint:-cast,-rawtypes,-unchecked'

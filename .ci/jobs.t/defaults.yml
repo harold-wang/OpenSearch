@@ -3,7 +3,7 @@
 ##### GLOBAL METADATA
 
 - meta:
-    cluster: elasticsearch-ci
+    cluster: renameme-ci
 
 ##### JOB DEFAULTS
 
@@ -22,10 +22,10 @@
           name: origin
           # master node jenkins user ~/.ssh
           credentials-id: f6c7695a-671e-4f4f-a331-acdce44ff9ba
-          reference-repo: "/var/lib/jenkins/.git-references/elasticsearch.git"
+          reference-repo: "/var/lib/jenkins/.git-references/renameme.git"
           branches:
             - "%BRANCH%"
-          url: "https://github.com/elastic/elasticsearch.git"
+          url: "https://github.com/elastic/renameme.git"
           basedir: ""
           wipe-workspace: "yes"
     wrappers:
@@ -37,24 +37,24 @@
       - timestamps
     properties:
         - github:
-            url: https://github.com/elastic/elasticsearch/
+            url: https://github.com/elastic/renameme/
         - inject:
             properties-content: |
               HOME=$JENKINS_HOME
     builders:
        - shell: |
-          #!/usr/local/bin/runbld --redirect-stderr --last-good-commit elastic+elasticsearch+%BRANCH%+git+push
+          #!/usr/local/bin/runbld --redirect-stderr --last-good-commit elastic+renameme+%BRANCH%+git+push
           .ci/build.sh -Dbwc.checkout.align=true check
     publishers:
       - email:
           recipients: infra-root+build@elastic.co
       # Upload additional logs
       - google-cloud-storage:
-          credentials-id: 'elasticsearch-ci-gcs-plugin'
+          credentials-id: 'renameme-ci-gcs-plugin'
           uploads:
             - classic:
                 file-pattern: 'build/*.tar.bz2'
-                storage-location: 'gs://elasticsearch-ci-artifacts/jobs/$JOB_NAME'
+                storage-location: 'gs://renameme-ci-artifacts/jobs/$JOB_NAME'
                 share-publicly: false
                 upload-for-failed-jobs: true
                 show-inline: true
@@ -75,4 +75,4 @@
 
 
 
-            
+

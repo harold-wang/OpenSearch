@@ -1,13 +1,13 @@
 # Only used for testing the docker images
 version: '3'
 services:
-  elasticsearch-default-1:
-    image: elasticsearch:test
+  renameme-default-1:
+    image: renameme:test
     environment:
-       - node.name=elasticsearch-default-1
-       - cluster.initial_master_nodes=elasticsearch-default-1,elasticsearch-default-2
-       - discovery.seed_hosts=elasticsearch-default-2:9300
-       - cluster.name=elasticsearch-default
+       - node.name=renameme-default-1
+       - cluster.initial_master_nodes=renameme-default-1,renameme-default-2
+       - discovery.seed_hosts=renameme-default-2:9300
+       - cluster.name=renameme-default
        - bootstrap.memory_lock=true
        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
        - path.repo=/tmp/es-repo
@@ -18,8 +18,8 @@ services:
        - node.store.allow_mmap=false
     volumes:
        - ./build/repo:/tmp/es-repo
-       - ./build/certs/testnode.jks:/usr/share/elasticsearch/config/testnode.jks
-       - ./build/logs/default-1:/usr/share/elasticsearch/logs
+       - ./build/certs/testnode.jks:/usr/share/renameme/config/testnode.jks
+       - ./build/logs/default-1:/usr/share/renameme/logs
        - ./docker-test-entrypoint.sh:/docker-test-entrypoint.sh
     ports:
       - "9200"
@@ -28,13 +28,13 @@ services:
         soft: -1
         hard: -1
     entrypoint: /docker-test-entrypoint.sh
-  elasticsearch-default-2:
-    image: elasticsearch:test
+  renameme-default-2:
+    image: renameme:test
     environment:
-       - node.name=elasticsearch-default-2
-       - cluster.initial_master_nodes=elasticsearch-default-1,elasticsearch-default-2
-       - discovery.seed_hosts=elasticsearch-default-1:9300
-       - cluster.name=elasticsearch-default
+       - node.name=renameme-default-2
+       - cluster.initial_master_nodes=renameme-default-1,renameme-default-2
+       - discovery.seed_hosts=renameme-default-1:9300
+       - cluster.name=renameme-default
        - bootstrap.memory_lock=true
        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
        - path.repo=/tmp/es-repo
@@ -45,8 +45,8 @@ services:
        - node.store.allow_mmap=false
     volumes:
        - ./build/repo:/tmp/es-repo
-       - ./build/certs/testnode.jks:/usr/share/elasticsearch/config/testnode.jks
-       - ./build/logs/default-2:/usr/share/elasticsearch/logs
+       - ./build/certs/testnode.jks:/usr/share/renameme/config/testnode.jks
+       - ./build/logs/default-2:/usr/share/renameme/logs
        - ./docker-test-entrypoint.sh:/docker-test-entrypoint.sh
     ports:
       - "9200"
@@ -55,13 +55,13 @@ services:
         soft: -1
         hard: -1
     entrypoint: /docker-test-entrypoint.sh
-  elasticsearch-oss-1:
-    image: elasticsearch:test
+  renameme-oss-1:
+    image: renameme:test
     environment:
-       - node.name=elasticsearch-oss-1
-       - cluster.initial_master_nodes=elasticsearch-oss-1,elasticsearch-oss-2
-       - discovery.seed_hosts=elasticsearch-oss-2:9300
-       - cluster.name=elasticsearch-oss
+       - node.name=renameme-oss-1
+       - cluster.initial_master_nodes=renameme-oss-1,renameme-oss-2
+       - discovery.seed_hosts=renameme-oss-2:9300
+       - cluster.name=renameme-oss
        - bootstrap.memory_lock=true
        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
        - path.repo=/tmp/es-repo
@@ -72,20 +72,20 @@ services:
        - node.store.allow_mmap=false
     volumes:
        - ./build/oss-repo:/tmp/es-repo
-       - ./build/logs/oss-1:/usr/share/elasticsearch/logs
+       - ./build/logs/oss-1:/usr/share/renameme/logs
     ports:
       - "9200"
     ulimits:
       memlock:
         soft: -1
         hard: -1
-  elasticsearch-oss-2:
-    image: elasticsearch:test
+  renameme-oss-2:
+    image: renameme:test
     environment:
-       - node.name=elasticsearch-oss-2
-       - cluster.initial_master_nodes=elasticsearch-oss-1,elasticsearch-oss-2
-       - discovery.seed_hosts=elasticsearch-oss-1:9300
-       - cluster.name=elasticsearch-oss
+       - node.name=renameme-oss-2
+       - cluster.initial_master_nodes=renameme-oss-1,renameme-oss-2
+       - discovery.seed_hosts=renameme-oss-1:9300
+       - cluster.name=renameme-oss
        - bootstrap.memory_lock=true
        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
        - path.repo=/tmp/es-repo
@@ -96,7 +96,7 @@ services:
        - node.store.allow_mmap=false
     volumes:
        - ./build/oss-repo:/tmp/es-repo
-       - ./build/logs/oss-2:/usr/share/elasticsearch/logs
+       - ./build/logs/oss-2:/usr/share/renameme/logs
     ports:
       - "9200"
     ulimits:

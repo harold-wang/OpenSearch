@@ -16,12 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: 'renameme.yaml-rest-test'
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
   description 'The Rank Eval module adds APIs to evaluate ranking quality.'
-  classname 'org.elasticsearch.index.rankeval.RankEvalPlugin'
+  classname 'org.renameme.index.rankeval.RankEvalPlugin'
   hasClientJar = true
 }
 

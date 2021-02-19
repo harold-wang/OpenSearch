@@ -119,7 +119,7 @@ public class MiniHDFS {
         MiniDFSCluster dfs = builder.build();
 
         // Configure contents of the filesystem
-        org.apache.hadoop.fs.Path esUserPath = new org.apache.hadoop.fs.Path("/user/elasticsearch");
+        org.apache.hadoop.fs.Path esUserPath = new org.apache.hadoop.fs.Path("/user/renameme");
 
         FileSystem fs;
         if (haEnabled) {
@@ -130,11 +130,11 @@ public class MiniHDFS {
         }
 
         try {
-            // Set the elasticsearch user directory up
+            // Set the renameme user directory up
             fs.mkdirs(esUserPath);
             if (UserGroupInformation.isSecurityEnabled()) {
                 List<AclEntry> acls = new ArrayList<>();
-                acls.add(new AclEntry.Builder().setType(AclEntryType.USER).setName("elasticsearch").setPermission(FsAction.ALL).build());
+                acls.add(new AclEntry.Builder().setType(AclEntryType.USER).setName("renameme").setPermission(FsAction.ALL).build());
                 fs.modifyAclEntries(esUserPath, acls);
             }
 

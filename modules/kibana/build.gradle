@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.java-rest-test'
+apply plugin: 'renameme.java-rest-test'
 
 esplugin {
   description 'Plugin exposing APIs for Kibana system indices'
-  classname 'org.elasticsearch.kibana.KibanaPlugin'
+  classname 'org.renameme.kibana.KibanaPlugin'
 }
 
 dependencies {

@@ -15,10 +15,10 @@
  * KIND, either express or implied.  See the License for the
  */
 
-import org.elasticsearch.gradle.LoggedExec
-import org.elasticsearch.gradle.MavenFilteringHack
-import org.elasticsearch.gradle.OS
-import org.elasticsearch.gradle.info.BuildParams
+import org.renameme.gradle.LoggedExec
+import org.renameme.gradle.MavenFilteringHack
+import org.renameme.gradle.OS
+import org.renameme.gradle.info.BuildParams
 import org.redline_rpm.header.Flags
 
 import java.nio.file.Files
@@ -47,8 +47,8 @@ import java.util.regex.Pattern
  * The following commands are useful when it comes to check the user/group
  * and files permissions set within the RPM and DEB packages:
  *
- *    rpm -qlp --dump path/to/elasticsearch.rpm
- *    dpkg -c path/to/elasticsearch.deb
+ *    rpm -qlp --dump path/to/renameme.rpm
+ *    dpkg -c path/to/renameme.deb
  */
 
 plugins {
@@ -68,20 +68,20 @@ void addProcessFilesTask(String type, boolean oss, boolean jdk) {
       MavenFilteringHack.filter(it, expansionsForDistribution(type, oss, jdk))
     }
 
-    into('etc/elasticsearch') {
+    into('etc/renameme') {
       with configFiles(type, oss, jdk)
     }
     MavenFilteringHack.filter(it, expansionsForDistribution(type, oss, jdk))
 
     doLast {
       // create empty dirs, we set the permissions when configuring the packages
-      mkdir "${packagingFiles}/var/log/elasticsearch"
-      mkdir "${packagingFiles}/var/lib/elasticsearch"
-      mkdir "${packagingFiles}/usr/share/elasticsearch/plugins"
+      mkdir "${packagingFiles}/var/log/renameme"
+      mkdir "${packagingFiles}/var/lib/renameme"
+      mkdir "${packagingFiles}/usr/share/renameme/plugins"
 
-      // bare empty dir for /etc/elasticsearch and /etc/elasticsearch/jvm.options.d
-      mkdir "${packagingFiles}/elasticsearch"
-      mkdir "${packagingFiles}/elasticsearch/jvm.options.d"
+      // bare empty dir for /etc/renameme and /etc/renameme/jvm.options.d
+      mkdir "${packagingFiles}/renameme"
+      mkdir "${packagingFiles}/renameme/jvm.options.d"
     }
   }
 }
@@ -104,7 +104,7 @@ Closure commonPackageConfig(String type, boolean oss, boolean jdk, String archit
       OS.current().equals(OS.WINDOWS) == false
     }
     dependsOn "process${oss ? 'Oss' : ''}${jdk ? '' : 'NoJdk'}${type.capitalize()}Files"
-    packageName "elasticsearch${oss ? '-oss' : ''}"
+    packageName "renameme${oss ? '-oss' : ''}"
     if (type == 'deb') {
       if (architecture == 'x64') {
         arch('amd64')
@@ -121,7 +121,7 @@ Closure commonPackageConfig(String type, boolean oss, boolean jdk, String archit
         arch('aarch64')
       }
     }
-    // Follow elasticsearch's file naming convention
+    // Follow renameme's file naming convention
     String jdkString = jdk ? "" : "no-jdk-"
     String prefix = "${architecture == 'aarch64' ? 'aarch64-' : ''}${oss ? 'oss-' : ''}${jdk ? '' : 'no-jdk-'}${type}"
     destinationDirectory = file("${prefix}/build/distributions")
@@ -142,7 +142,7 @@ Closure commonPackageConfig(String type, boolean oss, boolean jdk, String archit
 
     // top level "into" directive is not inherited from ospackage for some reason, so we must
     // specify it again explicitly for copying common files
-    into('/usr/share/elasticsearch') {
+    into('/usr/share/renameme') {
       into('bin') {
         with binFiles(type, oss, jdk)
       }
@@ -187,7 +187,7 @@ Closure commonPackageConfig(String type, boolean oss, boolean jdk, String archit
       }
     } else {
       assert type == 'rpm'
-      into('/usr/share/elasticsearch') {
+      into('/usr/share/renameme') {
         from(rootProject.file('licenses')) {
           include 'APACHE-LICENSE-2.0.txt'
           rename { 'LICENSE.txt' }
@@ -197,29 +197,29 @@ Closure commonPackageConfig(String type, boolean oss, boolean jdk, String archit
     }
 
     // ========= config files =========
-    configurationFile '/etc/elasticsearch/elasticsearch.yml'
-    configurationFile '/etc/elasticsearch/jvm.options'
-    configurationFile '/etc/elasticsearch/log4j2.properties'
+    configurationFile '/etc/renameme/renameme.yml'
+    configurationFile '/etc/renameme/jvm.options'
+    configurationFile '/etc/renameme/log4j2.properties'
     if (oss == false) {
-      configurationFile '/etc/elasticsearch/role_mapping.yml'
-      configurationFile '/etc/elasticsearch/roles.yml'
-      configurationFile '/etc/elasticsearch/users'
-      configurationFile '/etc/elasticsearch/users_roles'
+      configurationFile '/etc/renameme/role_mapping.yml'
+      configurationFile '/etc/renameme/roles.yml'
+      configurationFile '/etc/renameme/users'
+      configurationFile '/etc/renameme/users_roles'
     }
     from("${packagingFiles}") {
       dirMode 02750
       into('/etc')
-      permissionGroup 'elasticsearch'
+      permissionGroup 'renameme'
       includeEmptyDirs true
       createDirectoryEntry true
-      include("elasticsearch") // empty dir, just to add directory entry
-      include("elasticsearch/jvm.options.d") // empty dir, just to add directory entry
+      include("renameme") // empty dir, just to add directory entry
+      include("renameme/jvm.options.d") // empty dir, just to add directory entry
     }
-    from("${packagingFiles}/etc/elasticsearch") {
-      into('/etc/elasticsearch')
+    from("${packagingFiles}/etc/renameme") {
+      into('/etc/renameme')
       dirMode 02750
       fileMode 0660
-      permissionGroup 'elasticsearch'
+      permissionGroup 'renameme'
       includeEmptyDirs true
       createDirectoryEntry true
       fileType CONFIG | NOREPLACE
@@ -228,37 +228,37 @@ Closure commonPackageConfig(String type, boolean oss, boolean jdk, String archit
     configurationFile envFile
     into(new File(envFile).getParent()) {
       fileType CONFIG | NOREPLACE
-      permissionGroup 'elasticsearch'
+      permissionGroup 'renameme'
       fileMode 0660
-      from "${packagingFiles}/env/elasticsearch"
+      from "${packagingFiles}/env/renameme"
     }
 
     // ========= systemd =========
     into('/usr/lib/tmpfiles.d') {
-      from "${packagingFiles}/systemd/elasticsearch.conf"
+      from "${packagingFiles}/systemd/renameme.conf"
       fileMode 0644
     }
     into('/usr/lib/systemd/system') {
       fileType CONFIG | NOREPLACE
-      from "${packagingFiles}/systemd/elasticsearch.service"
+      from "${packagingFiles}/systemd/renameme.service"
       fileMode 0644
     }
     into('/usr/lib/sysctl.d') {
       fileType CONFIG | NOREPLACE
-      from "${packagingFiles}/systemd/sysctl/elasticsearch.conf"
+      from "${packagingFiles}/systemd/sysctl/renameme.conf"
       fileMode 0644
     }
-    into('/usr/share/elasticsearch/bin') {
+    into('/usr/share/renameme/bin') {
       from "${packagingFiles}/systemd/systemd-entrypoint"
       fileMode 0755
     }
 
     // ========= sysV init =========
-    configurationFile '/etc/init.d/elasticsearch'
+    configurationFile '/etc/init.d/renameme'
     into('/etc/init.d') {
       fileMode 0750
       fileType CONFIG | NOREPLACE
-      from "${packagingFiles}/init.d/elasticsearch"
+      from "${packagingFiles}/init.d/renameme"
     }
 
     // ========= empty dirs =========
@@ -275,14 +275,14 @@ Closure commonPackageConfig(String type, boolean oss, boolean jdk, String archit
         dirMode mode
       }
     }
-    copyEmptyDir('/var/log/elasticsearch', 'elasticsearch', 'elasticsearch', 02750)
-    copyEmptyDir('/var/lib/elasticsearch', 'elasticsearch', 'elasticsearch', 02750)
-    copyEmptyDir('/usr/share/elasticsearch/plugins', 'root', 'root', 0755)
+    copyEmptyDir('/var/log/renameme', 'renameme', 'renameme', 02750)
+    copyEmptyDir('/var/lib/renameme', 'renameme', 'renameme', 02750)
+    copyEmptyDir('/usr/share/renameme/plugins', 'root', 'root', 0755)
 
     // the oss package conflicts with the default distribution and vice versa
-    conflicts('elasticsearch' + (oss ? '' : '-oss'))
+    conflicts('renameme' + (oss ? '' : '-oss'))
 
-    into '/usr/share/elasticsearch'
+    into '/usr/share/renameme'
     with noticeFile(oss, jdk)
   }
 }
@@ -291,7 +291,7 @@ apply plugin: 'nebula.ospackage-base'
 
 // this is package indepdendent configuration
 ospackage {
-  maintainer 'Elasticsearch Team <info@elastic.co>'
+  maintainer 'Renameme Team <info@elastic.co>'
   summary 'Distributed RESTful search engine built for the cloud'
   packageDescription '''
     Reference documentation can be found at
@@ -318,7 +318,7 @@ ospackage {
   user 'root'
   permissionGroup 'root'
 
-  into '/usr/share/elasticsearch'
+  into '/usr/share/renameme'
 }
 
 Closure commonDebConfig(boolean oss, boolean jdk, String architecture) {
@@ -339,9 +339,9 @@ Closure commonDebConfig(boolean oss, boolean jdk, String architecture) {
     requires 'adduser'
 
     into('/usr/share/lintian/overrides') {
-      from('src/deb/lintian/elasticsearch')
+      from('src/deb/lintian/renameme')
       if (oss) {
-        rename('elasticsearch', 'elasticsearch-oss')
+        rename('renameme', 'renameme-oss')
       }
     }
   }
@@ -371,15 +371,15 @@ Closure commonRpmConfig(boolean oss, boolean jdk, String architecture) {
     obsoletes packageName, '7.0.0', Flags.LESS
 
     prefix '/usr'
-    packager 'Elasticsearch'
+    packager 'Renameme'
     archiveVersion = project.version.replace('-', '_')
     release = '1'
     os 'LINUX'
-    distribution 'Elasticsearch'
-    vendor 'Elasticsearch'
+    distribution 'Renameme'
+    vendor 'Renameme'
     // TODO ospackage doesn't support icon but we used to have one
 
-    // without this the rpm will have parent dirs of any files we copy in, eg /etc/elasticsearch
+    // without this the rpm will have parent dirs of any files we copy in, eg /etc/renameme
     addParentDirs false
   }
 }
@@ -470,7 +470,7 @@ subprojects {
           Path copyrightPath
           String expectedLicense
           String licenseFilename
-          copyrightPath = packageExtractionDir.toPath().resolve("usr/share/doc/elasticsearch-oss/copyright")
+          copyrightPath = packageExtractionDir.toPath().resolve("usr/share/doc/renameme-oss/copyright")
           expectedLicense = "ASL-2.0"
           licenseFilename = "APACHE-LICENSE-2.0.txt"
           final List<String> header = Arrays.asList("Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/",
@@ -488,7 +488,7 @@ subprojects {
         doLast {
           String licenseFilename = "APACHE-LICENSE-2.0.txt"
           final List<String> licenseLines = Files.readAllLines(rootDir.toPath().resolve("licenses/" + licenseFilename))
-          final Path licensePath = packageExtractionDir.toPath().resolve("usr/share/elasticsearch/LICENSE.txt")
+          final Path licensePath = packageExtractionDir.toPath().resolve("usr/share/renameme/LICENSE.txt")
           assertLinesInFile(licensePath, licenseLines)
         }
       }
@@ -501,7 +501,7 @@ subprojects {
       }
       doLast {
         final List<String> noticeLines = Arrays.asList("Elasticsearch", "Copyright 2009-2018 Elasticsearch")
-        final Path noticePath = packageExtractionDir.toPath().resolve("usr/share/elasticsearch/NOTICE.txt")
+        final Path noticePath = packageExtractionDir.toPath().resolve("usr/share/renameme/NOTICE.txt")
         assertLinesInFile(noticePath, noticeLines)
       }
     }

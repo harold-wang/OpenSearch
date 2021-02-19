@@ -1,0 +1,105 @@
+/*
+ * Licensed to Elasticsearch under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package org.renameme.index.reindex;
+
+import org.renameme.action.ActionRequest;
+import org.renameme.action.ActionResponse;
+import org.renameme.client.Client;
+import org.renameme.cluster.metadata.IndexNameExpressionResolver;
+import org.renameme.cluster.node.DiscoveryNodes;
+import org.renameme.cluster.service.ClusterService;
+import org.renameme.common.io.stream.NamedWriteableRegistry;
+import org.renameme.common.settings.ClusterSettings;
+import org.renameme.common.settings.IndexScopedSettings;
+import org.renameme.common.settings.Setting;
+import org.renameme.common.settings.Settings;
+import org.renameme.common.settings.SettingsFilter;
+import org.renameme.common.xcontent.NamedXContentRegistry;
+import org.renameme.env.Environment;
+import org.renameme.env.NodeEnvironment;
+import org.renameme.index.reindex.BulkByScrollTask;
+import org.renameme.index.reindex.DeleteByQueryAction;
+import org.renameme.index.reindex.ReindexAction;
+import org.renameme.index.reindex.UpdateByQueryAction;
+import org.renameme.plugins.ActionPlugin;
+import org.renameme.plugins.Plugin;
+import org.renameme.repositories.RepositoriesService;
+import org.renameme.rest.RestController;
+import org.renameme.rest.RestHandler;
+import org.renameme.script.ScriptService;
+import org.renameme.tasks.Task;
+import org.renameme.threadpool.ThreadPool;
+import org.renameme.watcher.ResourceWatcherService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Supplier;
+
+import static java.util.Collections.singletonList;
+
+public class ReindexPlugin extends Plugin implements ActionPlugin {
+    public static final String NAME = "reindex";
+
+    @Override
+    public List<ActionHandler<? extends ActionRequest, ? extends ActionResponse>> getActions() {
+        return Arrays.asList(new ActionHandler<>(ReindexAction.INSTANCE, TransportReindexAction.class),
+                new ActionHandler<>(UpdateByQueryAction.INSTANCE, TransportUpdateByQueryAction.class),
+                new ActionHandler<>(DeleteByQueryAction.INSTANCE, TransportDeleteByQueryAction.class),
+                new ActionHandler<>(RethrottleAction.INSTANCE, TransportRethrottleAction.class));
+    }
+
+    @Override
+    public List<NamedWriteableRegistry.Entry> getNamedWriteables() {
+        return singletonList(
+                new NamedWriteableRegistry.Entry(Task.Status.class, BulkByScrollTask.Status.NAME, BulkByScrollTask.Status::new));
+    }
+
+    @Override
+    public List<RestHandler> getRestHandlers(Settings settings, RestController restController, ClusterSettings clusterSettings,
+            IndexScopedSettings indexScopedSettings, SettingsFilter settingsFilter, IndexNameExpressionResolver indexNameExpressionResolver,
+            Supplier<DiscoveryNodes> nodesInCluster) {
+        return Arrays.asList(
+                new RestReindexAction(),
+                new RestUpdateByQueryAction(),
+                new RestDeleteByQueryAction(),
+                new RestRethrottleAction(nodesInCluster));
+    }
+
+    @Override
+    public Collection<Object> createComponents(Client client, ClusterService clusterService, ThreadPool threadPool,
+                                               ResourceWatcherService resourceWatcherService, ScriptService scriptService,
+                                               NamedXContentRegistry xContentRegistry, Environment environment,
+                                               NodeEnvironment nodeEnvironment, NamedWriteableRegistry namedWriteableRegistry,
+                                               IndexNameExpressionResolver expressionResolver,
+                                               Supplier<RepositoriesService> repositoriesServiceSupplier) {
+        return Collections.singletonList(new ReindexSslConfig(environment.settings(), environment, resourceWatcherService));
+    }
+
+    @Override
+    public List<Setting<?>> getSettings() {
+        final List<Setting<?>> settings = new ArrayList<>();
+        settings.add(TransportReindexAction.REMOTE_CLUSTER_WHITELIST);
+        settings.addAll(ReindexSslConfig.getSettings());
+        return settings;
+    }
+}

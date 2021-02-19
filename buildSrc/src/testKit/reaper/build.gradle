@@ -1,5 +1,5 @@
 plugins {
-  id 'elasticsearch.reaper'
+  id 'renameme.reaper'
 }
 
 tasks.register("launchReaper") {

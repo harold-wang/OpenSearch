@@ -1,12 +1,12 @@
 # Only used for testing the docker images
 version: '3.7'
 services:
-  elasticsearch-default-1:
-    image: elasticsearch:test
+  renameme-default-1:
+    image: renameme:test
     environment:
-       - node.name=elasticsearch-default-1
-       - cluster.initial_master_nodes=elasticsearch-default-1
-       - cluster.name=elasticsearch-default-1
+       - node.name=renameme-default-1
+       - cluster.initial_master_nodes=renameme-default-1
+       - cluster.name=renameme-default-1
        - bootstrap.memory_lock=true
        - network.publish_host=127.0.0.1
        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -18,8 +18,8 @@ services:
        - node.store.allow_mmap=false
     volumes:
        - ./build/repo:/tmp/es-repo
-       - ./build/certs/testnode.jks:/usr/share/elasticsearch/config/testnode.jks
-       - ./build/logs/default-1:/usr/share/elasticsearch/logs
+       - ./build/certs/testnode.jks:/usr/share/renameme/config/testnode.jks
+       - ./build/logs/default-1:/usr/share/renameme/logs
        - ./docker-test-entrypoint.sh:/docker-test-entrypoint.sh
     ports:
       - "9200"
@@ -38,12 +38,12 @@ services:
       interval: 10s
       timeout: 2s
       retries: 5
-  elasticsearch-default-2:
-    image: elasticsearch:test
+  renameme-default-2:
+    image: renameme:test
     environment:
-       - node.name=elasticsearch-default-2
-       - cluster.initial_master_nodes=elasticsearch-default-2
-       - cluster.name=elasticsearch-default-2
+       - node.name=renameme-default-2
+       - cluster.initial_master_nodes=renameme-default-2
+       - cluster.name=renameme-default-2
        - bootstrap.memory_lock=true
        - network.publish_host=127.0.0.1
        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -55,8 +55,8 @@ services:
        - node.store.allow_mmap=false
     volumes:
        - ./build/repo:/tmp/es-repo
-       - ./build/certs/testnode.jks:/usr/share/elasticsearch/config/testnode.jks
-       - ./build/logs/default-2:/usr/share/elasticsearch/logs
+       - ./build/certs/testnode.jks:/usr/share/renameme/config/testnode.jks
+       - ./build/logs/default-2:/usr/share/renameme/logs
        - ./docker-test-entrypoint.sh:/docker-test-entrypoint.sh
     ports:
       - "9200"

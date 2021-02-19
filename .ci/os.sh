@@ -47,15 +47,15 @@ else
     cat /etc/issue || true
 fi
 
-sudo bash -c 'cat > /etc/sudoers.d/elasticsearch_vars'  << SUDOERS_VARS
+sudo bash -c 'cat > /etc/sudoers.d/renameme_vars'  << SUDOERS_VARS
     Defaults   env_keep += "JAVA_HOME"
     Defaults   env_keep += "SYSTEM_JAVA_HOME"
 SUDOERS_VARS
-sudo chmod 0440 /etc/sudoers.d/elasticsearch_vars
+sudo chmod 0440 /etc/sudoers.d/renameme_vars
 
 # Bats tests still use this locationa
-sudo rm -Rf /elasticsearch
-sudo mkdir -p /elasticsearch/qa/ && sudo chown jenkins /elasticsearch/qa/ && ln -s $PWD/qa/vagrant /elasticsearch/qa/
+sudo rm -Rf /renameme
+sudo mkdir -p /renameme/qa/ && sudo chown jenkins /renameme/qa/ && ln -s $PWD/qa/vagrant /renameme/qa/
 
 # sudo sets it's own PATH thus we use env to override that and call sudo annother time so we keep the secure root PATH
 # run with --continue to run both bats and java tests even if one fails

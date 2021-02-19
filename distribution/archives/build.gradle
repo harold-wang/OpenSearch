@@ -20,11 +20,11 @@
 import java.nio.file.Files
 import java.nio.file.Path
 
-apply plugin: 'elasticsearch.internal-distribution-archive-setup'
+apply plugin: 'renameme.internal-distribution-archive-setup'
 
 CopySpec archiveFiles(CopySpec modulesFiles, String distributionType, String platform, String architecture, boolean oss, boolean jdk) {
   return copySpec {
-    into("elasticsearch-${version}") {
+    into("renameme-${version}") {
       into('lib') {
         with libFiles(oss)
       }
@@ -132,7 +132,7 @@ distribution_archives {
 
 subprojects {
   apply plugin: 'distribution'
-  apply plugin: 'elasticsearch.internal-distribution-archive-check'
+  apply plugin: 'renameme.internal-distribution-archive-check'
 
-  group = "org.elasticsearch.distribution.${name.startsWith("oss-") ? "oss" : "default"}"
+  group = "org.renameme.distribution.${name.startsWith("oss-") ? "oss" : "default"}"
 }

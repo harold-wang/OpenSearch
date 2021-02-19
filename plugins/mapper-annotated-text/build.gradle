@@ -16,12 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-apply plugin: 'elasticsearch.yaml-rest-test'
-apply plugin: 'elasticsearch.internal-cluster-test'
+apply plugin: 'renameme.yaml-rest-test'
+apply plugin: 'renameme.internal-cluster-test'
 
 esplugin {
   description 'The Mapper Annotated_text plugin adds support for text fields with markup used to inject annotation tokens into the index.'
-  classname 'org.elasticsearch.plugin.mapper.AnnotatedTextPlugin'
+  classname 'org.renameme.plugin.mapper.AnnotatedTextPlugin'
 }
 
 restResources {

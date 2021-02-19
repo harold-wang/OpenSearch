@@ -27,24 +27,24 @@ case "$1" in
     # Debian ####################################################
     install|upgrade)
 
-        # Create elasticsearch group if not existing
-        if ! getent group elasticsearch > /dev/null 2>&1 ; then
-            echo -n "Creating elasticsearch group..."
-            addgroup --quiet --system elasticsearch
+        # Create renameme group if not existing
+        if ! getent group renameme > /dev/null 2>&1 ; then
+            echo -n "Creating renameme group..."
+            addgroup --quiet --system renameme
             echo " OK"
         fi
 
-        # Create elasticsearch user if not existing
-        if ! id elasticsearch > /dev/null 2>&1 ; then
-            echo -n "Creating elasticsearch user..."
+        # Create renameme user if not existing
+        if ! id renameme > /dev/null 2>&1 ; then
+            echo -n "Creating renameme user..."
             adduser --quiet \
                     --system \
                     --no-create-home \
                     --home /nonexistent \
-                    --ingroup elasticsearch \
+                    --ingroup renameme \
                     --disabled-password \
                     --shell /bin/false \
-                    elasticsearch
+                    renameme
             echo " OK"
         fi
     ;;
@@ -54,23 +54,23 @@ case "$1" in
     # RedHat ####################################################
     1|2)
 
-        # Create elasticsearch group if not existing
-        if ! getent group elasticsearch > /dev/null 2>&1 ; then
-            echo -n "Creating elasticsearch group..."
-            groupadd -r elasticsearch
+        # Create renameme group if not existing
+        if ! getent group renameme > /dev/null 2>&1 ; then
+            echo -n "Creating renameme group..."
+            groupadd -r renameme
             echo " OK"
         fi
 
-        # Create elasticsearch user if not existing
-        if ! id elasticsearch > /dev/null 2>&1 ; then
-            echo -n "Creating elasticsearch user..."
+        # Create renameme user if not existing
+        if ! id renameme > /dev/null 2>&1 ; then
+            echo -n "Creating renameme user..."
             useradd --system \
                     --no-create-home \
                     --home-dir /nonexistent \
-                    --gid elasticsearch \
+                    --gid renameme \
                     --shell /sbin/nologin \
-                    --comment "elasticsearch user" \
-                    elasticsearch
+                    --comment "renameme user" \
+                    renameme
             echo " OK"
         fi
     ;;

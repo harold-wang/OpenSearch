@@ -18,12 +18,12 @@
  */
 
 description = """\
-Launches versions of Elasticsearch prior to 5.0 for testing.
+Launches versions of Renameme prior to 5.0 for testing.
 These need special handling because they do not support writing
-a "ports" file with the port on which Elasticsearch is running.
+a "ports" file with the port on which Renameme is running.
 """
 
-apply plugin: 'elasticsearch.java'
+apply plugin: 'renameme.java'
 test.enabled = false
 
 dependencies {

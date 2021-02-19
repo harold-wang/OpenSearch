@@ -1,6 +1,6 @@
-import org.elasticsearch.gradle.info.BuildParams
 import org.jetbrains.gradle.ext.Remote
 import org.jetbrains.gradle.ext.JUnit
+import org.renameme.gradle.info.BuildParams
 
 buildscript {
   repositories {

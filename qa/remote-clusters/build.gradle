@@ -17,13 +17,13 @@
  * under the License.
  */
 
-import org.elasticsearch.gradle.Architecture
-import org.elasticsearch.gradle.VersionProperties
-import org.elasticsearch.gradle.testfixtures.TestFixturesPlugin
+import org.renameme.gradle.Architecture
+import org.renameme.gradle.VersionProperties
+import org.renameme.gradle.testfixtures.TestFixturesPlugin
 
-apply plugin: 'elasticsearch.standalone-rest-test'
-apply plugin: 'elasticsearch.test.fixtures'
-apply plugin: 'elasticsearch.internal-distribution-download'
+apply plugin: 'renameme.standalone-rest-test'
+apply plugin: 'renameme.test.fixtures'
+apply plugin: 'renameme.internal-distribution-download'
 
 testFixtures.useFixture()
 
@@ -31,18 +31,18 @@ dependencies {
   testImplementation project(':client:rest-high-level')
 }
 
-elasticsearch_distributions {
+renameme_distributions {
   docker {
     type = 'docker'
     architecture = Architecture.current()
     flavor = System.getProperty('tests.distribution', 'oss')
-    version = VersionProperties.getElasticsearch()
+    version = VersionProperties.getRenameme()
     failIfUnavailable = false // This ensures we skip this testing if Docker is unavailable
   }
 }
 
 preProcessFixture {
-  dependsOn elasticsearch_distributions.docker
+  dependsOn renameme_distributions.docker
   doLast {
     // tests expect to have an empty repo
     project.delete(

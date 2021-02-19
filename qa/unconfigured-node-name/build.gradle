@@ -1,4 +1,4 @@
-import org.elasticsearch.gradle.OS
+import org.renameme.gradle.OS
 
 /*
  * Licensed to Elasticsearch under one or more contributor
@@ -19,9 +19,9 @@ import org.elasticsearch.gradle.OS
  * under the License.
  */
 
-apply plugin: 'elasticsearch.testclusters'
-apply plugin: 'elasticsearch.standalone-rest-test'
-apply plugin: 'elasticsearch.rest-test'
+apply plugin: 'renameme.testclusters'
+apply plugin: 'renameme.standalone-rest-test'
+apply plugin: 'renameme.rest-test'
 
 testClusters.integTest {
   nameCustomization = { null }

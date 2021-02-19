@@ -1,0 +1,26 @@
+import org.renamame.gradle.ExportRenamemeBuildResourcesTask
+
+plugins {
+  id 'base'
+  id 'renameme.global-build-info'
+}
+
+File buildResourcesDir = new File(project.getBuildDir(), 'build-tools-exported')
+TaskProvider buildResourcesTask = tasks.register('buildResources', ExportRenamemeBuildResourcesTask) {
+  outputDir = buildResourcesDir
+  copy 'checkstyle_suppressions.xml'
+  copy 'checkstyle.xml'
+}
+
+tasks.register("sampleCopy", Sync) {
+  /** Note: no explicit dependency. This works with tasks that use the Provider API a.k.a "Lazy Configuration" **/
+  from buildResourcesTask
+  into "$buildDir/sampleCopy"
+}
+
+tasks.register("noConfigAfterExecution") {
+  dependsOn buildResourcesTask
+  doLast {
+    buildResourcesTask.get().copy('foo')
+  }
+}
