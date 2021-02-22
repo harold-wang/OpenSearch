@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 /**
  * Tracks the blob uuids of blobs containing {@link IndexMetadata} for snapshots as well an identifier for each of these blobs.
  * Before writing a new {@link IndexMetadata} blob during snapshot finalization in
- * {@link org.elasticsearch.repositories.blobstore.BlobStoreRepository#finalizeSnapshot} the identifier for an instance of
+ * {@link org.renameme.repositories.blobstore.BlobStoreRepository#finalizeSnapshot} the identifier for an instance of
  * {@link IndexMetadata} should be computed and then used to check if it already exists in the repository via
  * {@link #getIndexMetaBlobId(String)}.
  */
@@ -65,7 +65,7 @@ public final class IndexMetaDataGenerations {
     }
 
     /**
-     * Gets the blob id by the identifier of {@link org.elasticsearch.cluster.metadata.IndexMetadata}
+     * Gets the blob id by the identifier of {@link org.renameme.cluster.metadata.IndexMetadata}
      * (computed via {@link #buildUniqueIdentifier}) or {@code null} if none is tracked for the identifier.
      *
      * @param metaIdentifier identifier for {@link IndexMetadata}
@@ -79,7 +79,7 @@ public final class IndexMetaDataGenerations {
     /**
      * Get the blob id by {@link SnapshotId} and {@link IndexId} and fall back to the value of {@link SnapshotId#getUUID()} if none is
      * known to enable backwards compatibility with versions older than
-     * {@link org.elasticsearch.snapshots.SnapshotsService#SHARD_GEN_IN_REPO_DATA_VERSION} which used the snapshot uuid as index metadata
+     * {@link org.renameme.snapshots.SnapshotsService#SHARD_GEN_IN_REPO_DATA_VERSION} which used the snapshot uuid as index metadata
      * blob uuid.
      *
      * @param snapshotId Snapshot Id

@@ -351,7 +351,7 @@ public class IndicesClusterStateService extends AbstractLifecycleComponent imple
     /**
      * Removes indices that have no shards allocated to this node or indices whose state has changed. This does not delete the shard data
      * as we wait for enough shard copies to exist in the cluster before deleting shard data (triggered by
-     * {@link org.elasticsearch.indices.store.IndicesStore}).
+     * {@link org.renameme.indices.store.IndicesStore}).
      *
      * @param event the cluster changed event
      */

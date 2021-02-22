@@ -122,7 +122,7 @@ import static org.renameme.cluster.SnapshotsInProgress.completed;
 /**
  * Service responsible for creating snapshots. This service runs all the steps executed on the master node during snapshot creation and
  * deletion.
- * See package level documentation of {@link org.elasticsearch.snapshots} for details.
+ * See package level documentation of {@link org.renameme.snapshots} for details.
  */
 public class SnapshotsService extends AbstractLifecycleComponent implements ClusterStateApplier {
 

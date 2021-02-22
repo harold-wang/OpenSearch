@@ -55,7 +55,7 @@ public interface ValuesSourceType {
 
     /**
      * Returns the type-specific sub class for a script data source.  {@link ValuesSource}s that do not support scripts should throw
-     * {@link org.elasticsearch.search.aggregations.AggregationExecutionException}.  Note that this method is called when a script is
+     * {@link org.renameme.search.aggregations.AggregationExecutionException}.  Note that this method is called when a script is
      * operating without an underlying field.  Scripts operating over fields are handled by the script argument to getField below.
      *
      * @param script - The script being wrapped
@@ -75,7 +75,7 @@ public interface ValuesSourceType {
 
     /**
      * Apply the given missing value to an already-constructed {@link ValuesSource}.  Types which do not support missing values should throw
-     * {@link org.elasticsearch.search.aggregations.AggregationExecutionException}
+     * {@link org.renameme.search.aggregations.AggregationExecutionException}
      *
      * @param valuesSource - The original {@link ValuesSource}
      * @param rawMissing - The missing value we got from the parser, typically a string or number
@@ -88,7 +88,7 @@ public interface ValuesSourceType {
 
     /**
      * This method provides a hook for specifying a type-specific formatter.  When {@link ValuesSourceConfig} can resolve a
-     * {@link org.elasticsearch.index.mapper.MappedFieldType}, it prefers to get the formatter from there.  Only when a field can't be
+     * {@link org.renameme.index.mapper.MappedFieldType}, it prefers to get the formatter from there.  Only when a field can't be
      * resolved (which is to say script cases and unmapped field cases), it will fall back to calling this method on whatever
      * {@link ValuesSourceType} it was able to resolve to.
      *

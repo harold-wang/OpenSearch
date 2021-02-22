@@ -32,7 +32,7 @@ import com.google.api.client.http.HttpUnsuccessfulResponseHandler;
 import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.client.util.Sleeper;
 import org.renameme.cloud.gce.util.Access;
-import org.elasticsearch.common.unit.TimeValue;
+import org.renameme.common.unit.TimeValue;
 
 import java.io.IOException;
 import java.util.Objects;

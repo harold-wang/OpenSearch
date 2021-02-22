@@ -18,8 +18,8 @@
  */
 
 /**
- * {@link org.elasticsearch.rest.RestHandler}s for managing dangling indices.
+ * {@link org.renameme.rest.RestHandler}s for managing dangling indices.
  *
- * @see org.elasticsearch.action.admin.indices.dangling
+ * @see org.renameme.action.admin.indices.dangling
  */
 package org.renameme.rest.action.admin.cluster.dangling;

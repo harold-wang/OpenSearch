@@ -49,11 +49,11 @@ public final class ShardUtils {
      */
     @Nullable
     public static ShardId extractShardId(DirectoryReader reader) {
-        final RenamemeDirectoryReader esReader = RenamemeDirectoryReader.getrenamemeDirectoryReader(reader);
+        final RenamemeDirectoryReader esReader = RenamemeDirectoryReader.getRenamemeDirectoryReader(reader);
         if (esReader != null) {
             return esReader.shardId();
         }
-        throw new IllegalArgumentException("can't extract shard ID, can't unwrap ElasticsearchDirectoryReader");
+        throw new IllegalArgumentException("can't extract shard ID, can't unwrap RenamemeDirectoryReader");
     }
 
 

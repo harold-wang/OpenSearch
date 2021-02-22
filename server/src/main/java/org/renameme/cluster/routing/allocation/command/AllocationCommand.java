@@ -43,7 +43,7 @@ public interface AllocationCommand extends NamedWriteable, ToXContentObject {
     /**
      * Executes the command on a {@link RoutingAllocation} setup
      * @param allocation {@link RoutingAllocation} to modify
-     * @throws org.elasticsearch.RenamemeException if something happens during reconfiguration
+     * @throws org.renameme.RenamemeException if something happens during reconfiguration
      */
     RerouteExplanation execute(RoutingAllocation allocation, boolean explain);
 

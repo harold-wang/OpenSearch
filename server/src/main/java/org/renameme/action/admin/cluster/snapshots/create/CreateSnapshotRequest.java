@@ -60,7 +60,7 @@ import static org.renameme.snapshots.SnapshotInfo.METADATA_FIELD_INTRODUCED;
  * <li>must not contain hash sign ('#')</li>
  * <li>must not start with underscore ('-')</li>
  * <li>must be lowercase</li>
- * <li>must not contain invalid file name characters {@link org.elasticsearch.common.Strings#INVALID_FILENAME_CHARS} </li>
+ * <li>must not contain invalid file name characters {@link org.renameme.common.Strings#INVALID_FILENAME_CHARS} </li>
  * </ul>
  */
 public class CreateSnapshotRequest extends MasterNodeRequest<CreateSnapshotRequest>

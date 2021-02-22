@@ -18,6 +18,6 @@
  */
 
 /**
- * {@link org.elasticsearch.rest.RestHandler}s for search actions like search, scroll, and suggest.
+ * {@link org.renameme.rest.RestHandler}s for search actions like search, scroll, and suggest.
  */
 package org.renameme.rest.action.search;

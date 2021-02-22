@@ -7,7 +7,7 @@
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -56,7 +56,7 @@ import static org.hamcrest.Matchers.notNullValue;
  * <p>See also <code>DanglingIndicesRestIT</code> in the <code>qa:smoke-test-http</code>
  * project.
  *
- * @see org.elasticsearch.action.admin.indices.dangling
+ * @see org.renameme.action.admin.indices.dangling
  */
 @ClusterScope(numDataNodes = 0, scope = ESIntegTestCase.Scope.TEST)
 public class DanglingIndicesIT extends ESIntegTestCase {

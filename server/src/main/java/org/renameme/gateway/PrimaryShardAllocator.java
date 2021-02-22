@@ -58,7 +58,7 @@ import java.util.stream.Stream;
  * executes the allocation deciders to chose a copy to assign the primary shard to.
  *
  * Note that the PrimaryShardAllocator does *not* allocate primaries on index creation
- * (see {@link org.elasticsearch.cluster.routing.allocation.allocator.BalancedShardsAllocator}),
+ * (see {@link org.renameme.cluster.routing.allocation.allocator.BalancedShardsAllocator}),
  * nor does it allocate primaries when a primary shard failed and there is a valid replica
  * copy that can immediately be promoted to primary, as this takes place in {@link RoutingNodes#failShard}.
  */

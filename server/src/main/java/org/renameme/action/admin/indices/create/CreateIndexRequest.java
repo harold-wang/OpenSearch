@@ -61,12 +61,12 @@ import static org.renameme.common.settings.Settings.readSettingsFromStream;
 import static org.renameme.common.settings.Settings.writeSettingsToStream;
 
 /**
- * A request to create an index. Best created with {@link org.elasticsearch.client.Requests#createIndexRequest(String)}.
+ * A request to create an index. Best created with {@link org.renameme.client.Requests#createIndexRequest(String)}.
  * <p>
- * The index created can optionally be created with {@link #settings(org.elasticsearch.common.settings.Settings)}.
+ * The index created can optionally be created with {@link #settings(org.renameme.common.settings.Settings)}.
  *
- * @see org.elasticsearch.client.IndicesAdminClient#create(CreateIndexRequest)
- * @see org.elasticsearch.client.Requests#createIndexRequest(String)
+ * @see org.renameme.client.IndicesAdminClient#create(CreateIndexRequest)
+ * @see org.renameme.client.Requests#createIndexRequest(String)
  * @see CreateIndexResponse
  */
 public class CreateIndexRequest extends AcknowledgedRequest<CreateIndexRequest> implements IndicesRequest, ToXContentObject {

@@ -23,7 +23,7 @@ package org.renameme.client;
  * Administrative actions/operations against the cluster or the indices.
  *
  *
- * @see org.elasticsearch.client.Client#admin()
+ * @see org.renameme.client.Client#admin()
  */
 public interface AdminClient {
 

@@ -102,15 +102,7 @@ public class DistributionDownloadPluginTests extends GradleUnitTestCase {
     }
 
     public void testPlatformDefault() {
-        RenamemeDistribution distro = checkDistro(
-            createProject(null, false),
-            "testdistro",
-            "5.0.0",
-            Type.ARCHIVE,
-            null,
-            Flavor.OSS,
-            true
-        );
+        RenamemeDistribution distro = checkDistro(createProject(null, false), "testdistro", "5.0.0", Type.ARCHIVE, null, Flavor.OSS, true);
         assertEquals(distro.getPlatform(), RenamemeDistribution.CURRENT_PLATFORM);
     }
 

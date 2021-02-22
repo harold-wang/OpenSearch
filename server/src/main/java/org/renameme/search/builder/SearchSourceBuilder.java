@@ -74,9 +74,9 @@ import static org.renameme.search.internal.SearchContext.TRACK_TOTAL_HITS_DISABL
 /**
  * A search source builder allowing to easily build search source. Simple
  * construction using
- * {@link org.elasticsearch.search.builder.SearchSourceBuilder#searchSource()}.
+ * {@link org.renameme.search.builder.SearchSourceBuilder#searchSource()}.
  *
- * @see org.elasticsearch.action.search.SearchRequest#source(SearchSourceBuilder)
+ * @see org.renameme.action.search.SearchRequest#source(SearchSourceBuilder)
  */
 public final class SearchSourceBuilder implements Writeable, ToXContentObject, Rewriteable<SearchSourceBuilder> {
     private static final DeprecationLogger deprecationLogger = DeprecationLogger.getLogger(SearchSourceBuilder.class);
@@ -355,7 +355,7 @@ public final class SearchSourceBuilder implements Writeable, ToXContentObject, R
     /**
      * Sets the search query for this request.
      *
-     * @see org.elasticsearch.index.query.QueryBuilders
+     * @see org.renameme.index.query.QueryBuilders
      */
     public SearchSourceBuilder query(QueryBuilder query) {
         this.queryBuilder = query;
@@ -438,7 +438,7 @@ public final class SearchSourceBuilder implements Writeable, ToXContentObject, R
     }
 
     /**
-     * Should each {@link org.elasticsearch.search.SearchHit} be returned with
+     * Should each {@link org.renameme.search.SearchHit} be returned with
      * an explanation of the hit (ranking).
      */
     public SearchSourceBuilder explain(Boolean explain) {
@@ -455,7 +455,7 @@ public final class SearchSourceBuilder implements Writeable, ToXContentObject, R
     }
 
     /**
-     * Should each {@link org.elasticsearch.search.SearchHit} be returned with a
+     * Should each {@link org.renameme.search.SearchHit} be returned with a
      * version associated with it.
      */
     public SearchSourceBuilder version(Boolean version) {
@@ -472,7 +472,7 @@ public final class SearchSourceBuilder implements Writeable, ToXContentObject, R
     }
 
     /**
-     * Should each {@link org.elasticsearch.search.SearchHit} be returned with the
+     * Should each {@link org.renameme.search.SearchHit} be returned with the
      * sequence number and primary term of the last modification of the document.
      */
     public SearchSourceBuilder seqNoAndPrimaryTerm(Boolean seqNoAndPrimaryTerm) {
@@ -481,7 +481,7 @@ public final class SearchSourceBuilder implements Writeable, ToXContentObject, R
     }
 
     /**
-     * Indicates whether {@link org.elasticsearch.search.SearchHit}s should be returned with the
+     * Indicates whether {@link org.renameme.search.SearchHit}s should be returned with the
      * sequence number and primary term of the last modification of the document.
      */
     public Boolean seqNoAndPrimaryTerm() {

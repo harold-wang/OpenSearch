@@ -22,7 +22,7 @@ import org.renameme.common.inject.matcher.Matcher;
 
 /**
  * Binds types (picked using a Matcher) to an type listener. Registrations are created explicitly in
- * a module using {@link org.elasticsearch.common.inject.Binder#bindListener(Matcher, TypeListener)} statements:
+ * a module using {@link org.renameme.common.inject.Binder#bindListener(Matcher, TypeListener)} statements:
  * <pre>
  *     register(only(new TypeLiteral&lt;PaymentService&lt;CreditCard&gt;&gt;() {}), listener);</pre>
  *

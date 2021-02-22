@@ -27,7 +27,7 @@ import org.renameme.common.network.NetworkService;
 import org.renameme.common.settings.MockSecureSettings;
 import org.renameme.common.settings.Settings;
 import org.renameme.core.internal.io.IOUtils;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.transport.MockTransportService;
 import org.renameme.threadpool.TestThreadPool;

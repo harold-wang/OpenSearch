@@ -18,6 +18,6 @@
  */
 
 /**
- * {@link org.elasticsearch.rest.RestHandler}s that manage ingest pipelines.
+ * {@link org.renameme.rest.RestHandler}s that manage ingest pipelines.
  */
 package org.renameme.rest.action.ingest;

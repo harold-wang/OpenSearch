@@ -22,7 +22,10 @@ package org.renameme.action.bulk;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.SparseFixedBitSet;
-import org.renameme.*;
+import org.renameme.Assertions;
+import org.renameme.ExceptionsHelper;
+import org.renameme.ResourceAlreadyExistsException;
+import org.renameme.Version;
 import org.renameme.RenamemeParseException;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionRunnable;
@@ -147,7 +150,7 @@ public class TransportBulkAction extends HandledTransportAction<BulkRequest, Bul
 
     /**
      * Retrieves the {@link IndexRequest} from the provided {@link DocWriteRequest} for index or upsert actions.  Upserts are
-     * modeled as {@link IndexRequest} inside the {@link UpdateRequest}. Ignores {@link org.elasticsearch.action.delete.DeleteRequest}'s
+     * modeled as {@link IndexRequest} inside the {@link UpdateRequest}. Ignores {@link org.renameme.action.delete.DeleteRequest}'s
      *
      * @param docWriteRequest The request to find the {@link IndexRequest}
      * @return the found {@link IndexRequest} or {@code null} if one can not be found.

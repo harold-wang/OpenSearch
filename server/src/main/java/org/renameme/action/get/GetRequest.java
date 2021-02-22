@@ -39,14 +39,14 @@ import static org.renameme.action.ValidateActions.addValidationError;
 
 /**
  * A request to get a document (its source) from an index based on its id. Best created using
- * {@link org.elasticsearch.client.Requests#getRequest(String)}.
+ * {@link org.renameme.client.Requests#getRequest(String)}.
  * <p>
  * The operation requires the {@link #index()}, {@link #type(String)} and {@link #id(String)}
  * to be set.
  *
- * @see org.elasticsearch.action.get.GetResponse
- * @see org.elasticsearch.client.Requests#getRequest(String)
- * @see org.elasticsearch.client.Client#get(GetRequest)
+ * @see org.renameme.action.get.GetResponse
+ * @see org.renameme.client.Requests#getRequest(String)
+ * @see org.renameme.client.Client#get(GetRequest)
  */
 public class GetRequest extends SingleShardRequest<GetRequest> implements RealtimeRequest {
 
@@ -266,7 +266,7 @@ public class GetRequest extends SingleShardRequest<GetRequest> implements Realti
     }
 
     /**
-     * Sets the versioning type. Defaults to {@link org.elasticsearch.index.VersionType#INTERNAL}.
+     * Sets the versioning type. Defaults to {@link org.renameme.index.VersionType#INTERNAL}.
      */
     public GetRequest versionType(VersionType versionType) {
         this.versionType = versionType;

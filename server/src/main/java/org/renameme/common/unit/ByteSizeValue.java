@@ -39,7 +39,7 @@ public class ByteSizeValue implements Writeable, Comparable<ByteSizeValue>, ToXC
     /**
      * We have to lazy initialize the deprecation logger as otherwise a static logger here would be constructed before logging is configured
      * leading to a runtime failure (see {@link LogConfigurator#checkErrorListener()} ). The premature construction would come from any
-     * {@link ByteSizeValue} object constructed in, for example, settings in {@link org.elasticsearch.common.network.NetworkService}.
+     * {@link ByteSizeValue} object constructed in, for example, settings in {@link org.renameme.common.network.NetworkService}.
      */
     static class DeprecationLoggerHolder {
         static DeprecationLogger deprecationLogger = DeprecationLogger.getLogger(ByteSizeValue.class);

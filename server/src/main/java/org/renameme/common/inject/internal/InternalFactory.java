@@ -53,7 +53,7 @@ public interface InternalFactory<T> {
      *
      * @param context of this injection
      * @return instance to be injected
-     * @throws org.elasticsearch.common.inject.internal.ErrorsException
+     * @throws org.renameme.common.inject.internal.ErrorsException
      *          if a value cannot be provided
      */
     T get(Errors errors, InternalContext context, Dependency<?> dependency)

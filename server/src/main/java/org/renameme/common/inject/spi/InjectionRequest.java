@@ -25,7 +25,7 @@ import java.util.Set;
 
 /**
  * A request to inject the instance fields and methods of an instance. Requests are created
- * explicitly in a module using {@link org.elasticsearch.common.inject.Binder#requestInjection(Object)
+ * explicitly in a module using {@link org.renameme.common.inject.Binder#requestInjection(Object)
  * requestInjection()} statements:
  * <pre>
  *     requestInjection(serviceInstance);</pre>

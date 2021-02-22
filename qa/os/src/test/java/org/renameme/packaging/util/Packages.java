@@ -34,8 +34,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import static java.util.Collections.singletonList;
-import static org.renameme.packaging.util.FileMatcher.file;
-import static org.renameme.packaging.util.ServerUtils.waitForRenameme;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
@@ -166,47 +164,89 @@ public class Packages {
         final Path homeDir = Paths.get(passwdResult.stdout.trim().split(":")[5]);
         assertThat("renameme user home directory must not exist", homeDir, FileExistenceMatchers.fileDoesNotExist());
 
-        Stream.of(es.home, es.plugins, es.modules).forEach(dir -> MatcherAssert.assertThat(dir, FileMatcher.file(FileMatcher.Fileness.Directory, "root", "root", FileMatcher.p755)));
+        Stream.of(es.home, es.plugins, es.modules)
+            .forEach(
+                dir -> MatcherAssert.assertThat(dir, FileMatcher.file(FileMatcher.Fileness.Directory, "root", "root", FileMatcher.p755))
+            );
 
-        Stream.of(es.data, es.logs).forEach(dir -> MatcherAssert.assertThat(dir, FileMatcher.file(FileMatcher.Fileness.Directory, "renameme", "renameme", FileMatcher.p750)));
+        Stream.of(es.data, es.logs)
+            .forEach(
+                dir -> MatcherAssert.assertThat(
+                    dir,
+                    FileMatcher.file(FileMatcher.Fileness.Directory, "renameme", "renameme", FileMatcher.p750)
+                )
+            );
 
         // we shell out here because java's posix file permission view doesn't support special modes
         MatcherAssert.assertThat(es.config, FileMatcher.file(FileMatcher.Fileness.Directory, "root", "renameme", FileMatcher.p750));
         assertThat(sh.run("find \"" + es.config + "\" -maxdepth 0 -printf \"%m\"").stdout, containsString("2750"));
 
         final Path jvmOptionsDirectory = es.config.resolve("jvm.options.d");
-        MatcherAssert.assertThat(jvmOptionsDirectory, FileMatcher.file(FileMatcher.Fileness.Directory, "root", "renameme", FileMatcher.p750));
+        MatcherAssert.assertThat(
+            jvmOptionsDirectory,
+            FileMatcher.file(FileMatcher.Fileness.Directory, "root", "renameme", FileMatcher.p750)
+        );
         assertThat(sh.run("find \"" + jvmOptionsDirectory + "\" -maxdepth 0 -printf \"%m\"").stdout, containsString("2750"));
 
         Stream.of("renameme.keystore", "renameme.yml", "jvm.options", "log4j2.properties")
-            .forEach(configFile -> MatcherAssert.assertThat(es.config(configFile), FileMatcher.file(FileMatcher.Fileness.File, "root", "renameme", FileMatcher.p660)));
-        MatcherAssert.assertThat(es.config(".renameme.keystore.initial_md5sum"), FileMatcher.file(FileMatcher.Fileness.File, "root", "renameme", FileMatcher.p644));
+            .forEach(
+                configFile -> MatcherAssert.assertThat(
+                    es.config(configFile),
+                    FileMatcher.file(FileMatcher.Fileness.File, "root", "renameme", FileMatcher.p660)
+                )
+            );
+        MatcherAssert.assertThat(
+            es.config(".renameme.keystore.initial_md5sum"),
+            FileMatcher.file(FileMatcher.Fileness.File, "root", "renameme", FileMatcher.p644)
+        );
 
         assertThat(sh.run("sudo -u renameme " + es.bin("renameme-keystore") + " list").stdout, containsString("keystore.seed"));
 
-        Stream.of(es.bin, es.lib).forEach(dir -> MatcherAssert.assertThat(dir, FileMatcher.file(FileMatcher.Fileness.Directory, "root", "root", FileMatcher.p755)));
+        Stream.of(es.bin, es.lib)
+            .forEach(
+                dir -> MatcherAssert.assertThat(dir, FileMatcher.file(FileMatcher.Fileness.Directory, "root", "root", FileMatcher.p755))
+            );
 
         Stream.of("renameme", "renameme-plugin", "renameme-keystore", "renameme-shard", "renameme-node")
-            .forEach(executable -> MatcherAssert.assertThat(es.bin(executable), FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p755)));
+            .forEach(
+                executable -> MatcherAssert.assertThat(
+                    es.bin(executable),
+                    FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p755)
+                )
+            );
 
-        Stream.of("NOTICE.txt", "README.asciidoc").forEach(doc -> MatcherAssert.assertThat(es.home.resolve(doc), FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644)));
+        Stream.of("NOTICE.txt", "README.asciidoc")
+            .forEach(
+                doc -> MatcherAssert.assertThat(
+                    es.home.resolve(doc),
+                    FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644)
+                )
+            );
 
         MatcherAssert.assertThat(es.envFile, FileMatcher.file(FileMatcher.Fileness.File, "root", "renameme", FileMatcher.p660));
 
         if (distribution.packaging == Distribution.Packaging.RPM) {
-            MatcherAssert.assertThat(es.home.resolve("LICENSE.txt"), FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644));
+            MatcherAssert.assertThat(
+                es.home.resolve("LICENSE.txt"),
+                FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644)
+            );
         } else {
             Path copyrightDir = Paths.get(sh.run("readlink -f /usr/share/doc/" + distribution.flavor.name).stdout.trim());
             MatcherAssert.assertThat(copyrightDir, FileMatcher.file(FileMatcher.Fileness.Directory, "root", "root", FileMatcher.p755));
-            MatcherAssert.assertThat(copyrightDir.resolve("copyright"), FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644));
+            MatcherAssert.assertThat(
+                copyrightDir.resolve("copyright"),
+                FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644)
+            );
         }
 
         if (Platforms.isSystemd()) {
-            Stream.of(
-                SYSTEMD_SERVICE,
-                Paths.get("/usr/lib/tmpfiles.d/renameme.conf"),
-                Paths.get("/usr/lib/sysctl.d/renameme.conf")
-            ).forEach(confFile -> MatcherAssert.assertThat(confFile, FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644)));
+            Stream.of(SYSTEMD_SERVICE, Paths.get("/usr/lib/tmpfiles.d/renameme.conf"), Paths.get("/usr/lib/sysctl.d/renameme.conf"))
+                .forEach(
+                    confFile -> MatcherAssert.assertThat(
+                        confFile,
+                        FileMatcher.file(FileMatcher.Fileness.File, "root", "root", FileMatcher.p644)
+                    )
+                );
 
             final String sysctlExecutable = (distribution.packaging == Distribution.Packaging.RPM) ? "/usr/sbin/sysctl" : "/sbin/sysctl";
             assertThat(sh.run(sysctlExecutable + " vm.max_map_count").stdout, containsString("vm.max_map_count = 262144"));

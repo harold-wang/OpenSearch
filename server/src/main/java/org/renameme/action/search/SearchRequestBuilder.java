@@ -71,7 +71,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
     }
 
     /**
-     * The search type to execute, defaults to {@link org.elasticsearch.action.search.SearchType#DEFAULT}.
+     * The search type to execute, defaults to {@link org.renameme.action.search.SearchType#DEFAULT}.
      */
     public SearchRequestBuilder setSearchType(SearchType searchType) {
         request.searchType(searchType);
@@ -168,7 +168,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
     /**
      * Constructs a new search source builder with a search query.
      *
-     * @see org.elasticsearch.index.query.QueryBuilders
+     * @see org.renameme.index.query.QueryBuilders
      */
     public SearchRequestBuilder setQuery(QueryBuilder queryBuilder) {
         sourceBuilder().query(queryBuilder);
@@ -209,7 +209,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
     }
 
     /**
-     * Should each {@link org.elasticsearch.search.SearchHit} be returned with an
+     * Should each {@link org.renameme.search.SearchHit} be returned with an
      * explanation of the hit (ranking).
      */
     public SearchRequestBuilder setExplain(boolean explain) {
@@ -218,7 +218,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
     }
 
     /**
-     * Should each {@link org.elasticsearch.search.SearchHit} be returned with its
+     * Should each {@link org.renameme.search.SearchHit} be returned with its
      * version.
      */
     public SearchRequestBuilder setVersion(boolean version) {
@@ -227,7 +227,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
     }
 
     /**
-     * Should each {@link org.elasticsearch.search.SearchHit} be returned with the
+     * Should each {@link org.renameme.search.SearchHit} be returned with the
      * sequence number and primary term of the last modification of the document.
      */
     public SearchRequestBuilder seqNoAndPrimaryTerm(boolean seqNoAndPrimaryTerm) {
@@ -370,7 +370,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
     /**
      * Adds a generic sort builder.
      *
-     * @see org.elasticsearch.search.sort.SortBuilders
+     * @see org.renameme.search.sort.SortBuilders
      */
     public SearchRequestBuilder addSort(SortBuilder<?> sort) {
         sourceBuilder().sort(sort);
@@ -457,7 +457,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
 
     /**
      * Clears all rescorers on the builder and sets the first one.  To use multiple rescore windows use
-     * {@link #addRescorer(org.elasticsearch.search.rescore.RescorerBuilder, int)}.
+     * {@link #addRescorer(org.renameme.search.rescore.RescorerBuilder, int)}.
      *
      * @param rescorer rescorer configuration
      * @return this for chaining
@@ -469,7 +469,7 @@ public class SearchRequestBuilder extends ActionRequestBuilder<SearchRequest, Se
 
     /**
      * Clears all rescorers on the builder and sets the first one.  To use multiple rescore windows use
-     * {@link #addRescorer(org.elasticsearch.search.rescore.RescorerBuilder, int)}.
+     * {@link #addRescorer(org.renameme.search.rescore.RescorerBuilder, int)}.
      *
      * @param rescorer rescorer configuration
      * @param window   rescore window

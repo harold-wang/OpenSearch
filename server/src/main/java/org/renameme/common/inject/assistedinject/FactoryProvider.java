@@ -65,7 +65,7 @@ import static java.util.Collections.unmodifiableSet;
  * }</pre>
  * Any parameter that permits a null value should also be annotated {@code @Nullable}.
  * <h3>Configuring factories</h3>
- * In your {@link org.elasticsearch.common.inject.Module module}, bind the factory interface to the returned
+ * In your {@link org.renameme.common.inject.Module module}, bind the factory interface to the returned
  * factory:
  * <pre>bind(PaymentFactory.class).toProvider(
  *     FactoryProvider.newFactory(PaymentFactory.class, RealPayment.class));</pre>

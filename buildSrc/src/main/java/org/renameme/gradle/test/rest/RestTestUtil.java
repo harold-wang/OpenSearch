@@ -41,8 +41,7 @@ public class RestTestUtil {
     static RenamemeCluster createTestCluster(Project project, SourceSet sourceSet) {
         // eagerly create the testCluster container so it is easily available for configuration
         @SuppressWarnings("unchecked")
-        NamedDomainObjectContainer<RenamemeCluster> testClusters = (NamedDomainObjectContainer<RenamemeCluster>) project
-            .getExtensions()
+        NamedDomainObjectContainer<RenamemeCluster> testClusters = (NamedDomainObjectContainer<RenamemeCluster>) project.getExtensions()
             .getByName(TestClustersPlugin.EXTENSION_NAME);
         return testClusters.create(sourceSet.getName());
     }
@@ -81,10 +80,7 @@ public class RestTestUtil {
             project.getDependencies().add(sourceSet.getImplementationConfigurationName(), project.project(":test:framework"));
         } else {
             project.getDependencies()
-                .add(
-                    sourceSet.getImplementationConfigurationName(),
-                    "org.renameme.test:framework:" + VersionProperties.getRenameme()
-                );
+                .add(sourceSet.getImplementationConfigurationName(), "org.renameme.test:framework:" + VersionProperties.getRenameme());
         }
 
     }

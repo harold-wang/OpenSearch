@@ -22,7 +22,7 @@ package org.renameme.cluster;
 import org.renameme.cluster.metadata.Metadata;
 
 /**
- * Interface to allow merging {@link org.elasticsearch.cluster.metadata.Metadata.Custom}.
+ * Interface to allow merging {@link org.renameme.cluster.metadata.Metadata.Custom}.
  * When multiple Mergable Custom metadata of the same type are found (from underlying clusters), the
  * Custom metadata can be merged using {@link #merge(Metadata.Custom)}.
  *

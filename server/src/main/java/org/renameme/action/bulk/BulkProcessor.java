@@ -137,7 +137,7 @@ public class BulkProcessor implements Closeable {
         /**
          * Sets a flush interval flushing *any* bulk actions pending if the interval passes. Defaults to not set.
          * <p>
-         * Note, both {@link #setBulkActions(int)} and {@link #setBulkSize(org.elasticsearch.common.unit.ByteSizeValue)}
+         * Note, both {@link #setBulkActions(int)} and {@link #setBulkSize(org.renameme.common.unit.ByteSizeValue)}
          * can be set to {@code -1} with the flush interval set allowing for complete async processing of bulk actions.
          */
         public Builder setFlushInterval(TimeValue flushInterval) {
@@ -171,7 +171,7 @@ public class BulkProcessor implements Closeable {
          *
          * The default is to back off exponentially.
          *
-         * @see org.elasticsearch.action.bulk.BackoffPolicy#exponentialBackoff()
+         * @see org.renameme.action.bulk.BackoffPolicy#exponentialBackoff()
          */
         public Builder setBackoffPolicy(BackoffPolicy backoffPolicy) {
             if (backoffPolicy == null) {
@@ -215,10 +215,10 @@ public class BulkProcessor implements Closeable {
      * @param client The client that executes the bulk operations
      * @param listener The BulkProcessor listener that gets called on bulk events
      * @return the builder for BulkProcessor
-     * @deprecated Use {@link #builder(java.util.function.BiConsumer, org.elasticsearch.action.bulk.BulkProcessor.Listener)}
-     * with client::bulk as the first argument, or {@link #builder(org.elasticsearch.client.Client,
-     * org.elasticsearch.action.bulk.BulkProcessor.Listener, org.elasticsearch.threadpool.Scheduler,
-     * org.elasticsearch.threadpool.Scheduler, java.lang.Runnable)} and manage the flush and retry schedulers explicitly
+     * @deprecated Use {@link #builder(java.util.function.BiConsumer, org.renameme.action.bulk.BulkProcessor.Listener)}
+     * with client::bulk as the first argument, or {@link #builder(org.renameme.client.Client,
+     * org.renameme.action.bulk.BulkProcessor.Listener, org.renameme.threadpool.Scheduler,
+     * org.renameme.threadpool.Scheduler, java.lang.Runnable)} and manage the flush and retry schedulers explicitly
      */
     @Deprecated
     public static Builder builder(Client client, Listener listener) {

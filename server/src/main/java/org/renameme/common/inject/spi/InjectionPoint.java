@@ -151,7 +151,7 @@ public final class InjectionPoint {
     /**
      * Returns true if this injection point shall be skipped if the injector cannot resolve bindings
      * for all required dependencies. Both explicit bindings (as specified in a module), and implicit
-     * bindings ({@literal @}{@link org.elasticsearch.common.inject.ImplementedBy ImplementedBy}, default
+     * bindings ({@literal @}{@link org.renameme.common.inject.ImplementedBy ImplementedBy}, default
      * constructors etc.) may be used to satisfy optional injection points.
      */
     public boolean isOptional() {

@@ -62,7 +62,7 @@ public interface Repository extends LifecycleComponent {
 
     /**
      * An factory interface for constructing repositories.
-     * See {@link org.elasticsearch.plugins.RepositoryPlugin}.
+     * See {@link org.renameme.plugins.RepositoryPlugin}.
      */
     interface Factory {
         /**
@@ -122,7 +122,7 @@ public interface Repository extends LifecycleComponent {
      * @param metadata   cluster metadata
      *
      * @deprecated this method is only used when taking snapshots in a mixed version cluster where a master node older than
-     *             {@link org.elasticsearch.snapshots.SnapshotsService#NO_REPO_INITIALIZE_VERSION} is present.
+     *             {@link org.renameme.snapshots.SnapshotsService#NO_REPO_INITIALIZE_VERSION} is present.
      */
     @Deprecated
     void initializeSnapshot(SnapshotId snapshotId, List<IndexId> indices, Metadata metadata);
@@ -193,7 +193,7 @@ public interface Repository extends LifecycleComponent {
 
     /**
      * Verifies repository settings on data node.
-     * @param verificationToken value returned by {@link org.elasticsearch.repositories.Repository#startVerification()}
+     * @param verificationToken value returned by {@link org.renameme.repositories.Repository#startVerification()}
      * @param localNode         the local node information, for inclusion in verification errors
      */
     void verify(String verificationToken, DiscoveryNode localNode);
@@ -207,7 +207,7 @@ public interface Repository extends LifecycleComponent {
     /**
      * Creates a snapshot of the shard based on the index commit point.
      * <p>
-     * The index commit point can be obtained by using {@link org.elasticsearch.index.engine.Engine#acquireLastIndexCommit} method.
+     * The index commit point can be obtained by using {@link org.renameme.index.engine.Engine#acquireLastIndexCommit} method.
      * Repository implementations shouldn't release the snapshot index commit point. It is done by the method caller.
      * <p>
      * As snapshot process progresses, implementation of this method should update {@link IndexShardSnapshotStatus} object and check
@@ -254,7 +254,7 @@ public interface Repository extends LifecycleComponent {
 
     /**
      * Update the repository with the incoming cluster state. This method is invoked from {@link RepositoriesService#applyClusterState} and
-     * thus the same semantics as with {@link org.elasticsearch.cluster.ClusterStateApplier#applyClusterState} apply for the
+     * thus the same semantics as with {@link org.renameme.cluster.ClusterStateApplier#applyClusterState} apply for the
      * {@link ClusterState} that is passed here.
      *
      * @param state new cluster state

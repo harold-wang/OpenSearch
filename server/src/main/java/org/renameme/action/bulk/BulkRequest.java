@@ -57,7 +57,7 @@ import static org.renameme.action.ValidateActions.addValidationError;
  * and allows to executes it in a single batch.
  *
  * Note that we only support refresh on the bulk request not per item.
- * @see org.elasticsearch.client.Client#bulk(BulkRequest)
+ * @see org.renameme.client.Client#bulk(BulkRequest)
  */
 public class BulkRequest extends ActionRequest implements CompositeIndicesRequest, WriteRequest<BulkRequest>, Accountable {
 

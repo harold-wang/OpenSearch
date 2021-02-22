@@ -94,7 +94,7 @@ public class RecoveryTranslogOperationsRequest extends RecoveryTransportRequest 
     /**
      * Returns the mapping version which is at least as up to date as the mapping version that the primary used to index
      * the translog operations in this request. If the mapping version on the replica is not older this version, we should not
-     * retry on {@link org.elasticsearch.index.mapper.MapperException}; otherwise we should wait for a new mapping then retry.
+     * retry on {@link org.renameme.index.mapper.MapperException}; otherwise we should wait for a new mapping then retry.
      */
     long mappingVersionOnPrimary() {
         return mappingVersionOnPrimary;

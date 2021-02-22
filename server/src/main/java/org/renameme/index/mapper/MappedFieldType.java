@@ -94,7 +94,7 @@ public abstract class MappedFieldType {
      * @param searchLookup a {@link SearchLookup} supplier to allow for accessing other fields values in the context of runtime fields
      * @throws IllegalArgumentException if the fielddata is not supported on this type.
      * An IllegalArgumentException is needed in order to return an http error 400
-     * when this error occurs in a request. see: {@link org.elasticsearch.ExceptionsHelper#status}
+     * when this error occurs in a request. see: {@link org.renameme.ExceptionsHelper#status}
      */
     public IndexFieldData.Builder fielddataBuilder(String fullyQualifiedIndexName, Supplier<SearchLookup> searchLookup) {
         throw new IllegalArgumentException("Fielddata is not supported on field [" + name() + "] of type [" + typeName() + "]");
@@ -334,7 +334,7 @@ public abstract class MappedFieldType {
 
     /** @throws IllegalArgumentException if the fielddata is not supported on this type.
      *  An IllegalArgumentException is needed in order to return an http error 400
-     *  when this error occurs in a request. see: {@link org.elasticsearch.ExceptionsHelper#status}
+     *  when this error occurs in a request. see: {@link org.renameme.ExceptionsHelper#status}
      **/
     protected final void failIfNoDocValues() {
         if (hasDocValues() == false) {

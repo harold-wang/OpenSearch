@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Since {@link org.elasticsearch.search.internal.SearchContext} no longer hold the states of search, the top K results
+ * Since {@link org.renameme.search.internal.SearchContext} no longer hold the states of search, the top K results
  * (i.e., documents that will be rescored by query rescorers) need to be serialized/ deserialized between search phases.
  * A {@link RescoreDocIds} encapsulates the top K results for each rescorer by its ordinal index.
  */

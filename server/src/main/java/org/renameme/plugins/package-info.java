@@ -19,6 +19,6 @@
 
 /**
  * Support for extending Elasticsearch by providing java code that is loaded by a child classloader. See
- * {@link org.elasticsearch.plugins.Plugin}.
+ * {@link org.renameme.plugins.Plugin}.
  */
 package org.renameme.plugins;

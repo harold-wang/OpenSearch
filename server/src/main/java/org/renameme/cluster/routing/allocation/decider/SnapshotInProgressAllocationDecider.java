@@ -27,7 +27,7 @@ import org.renameme.cluster.routing.ShardRouting;
 import org.renameme.cluster.routing.allocation.RoutingAllocation;
 
 /**
- * This {@link org.elasticsearch.cluster.routing.allocation.decider.AllocationDecider} prevents shards that
+ * This {@link org.renameme.cluster.routing.allocation.decider.AllocationDecider} prevents shards that
  * are currently been snapshotted to be moved to other nodes.
  */
 public class SnapshotInProgressAllocationDecider extends AllocationDecider {

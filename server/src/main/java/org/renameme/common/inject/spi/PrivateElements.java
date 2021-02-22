@@ -24,7 +24,7 @@ import java.util.Set;
 
 /**
  * A private collection of elements that are hidden from the enclosing injector or module by
- * default. See {@link org.elasticsearch.common.inject.PrivateModule PrivateModule} for details.
+ * default. See {@link org.renameme.common.inject.PrivateModule PrivateModule} for details.
  *
  * @author jessewilson@google.com (Jesse Wilson)
  * @since 2.0

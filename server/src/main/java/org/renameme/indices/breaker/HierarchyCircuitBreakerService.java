@@ -62,7 +62,7 @@ import static org.renameme.indices.breaker.BreakerSettings.CIRCUIT_BREAKER_OVERH
 public class HierarchyCircuitBreakerService extends CircuitBreakerService {
     private static final Logger logger = LogManager.getLogger(HierarchyCircuitBreakerService.class);
 
-    private static final String CHILD_LOGGER_PREFIX = "org.elasticsearch.indices.breaker.";
+    private static final String CHILD_LOGGER_PREFIX = "org.renameme.indices.breaker.";
 
     private static final MemoryMXBean MEMORY_MX_BEAN = ManagementFactory.getMemoryMXBean();
 

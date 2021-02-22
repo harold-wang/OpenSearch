@@ -167,7 +167,7 @@ public class TermVectorsRequestBuilder extends ActionRequestBuilder<TermVectorsR
     }
 
     /*
-     * Sets the versioning type. Defaults to {@link org.elasticsearch.index.VersionType#INTERNAL}.
+     * Sets the versioning type. Defaults to {@link org.renameme.index.VersionType#INTERNAL}.
      */
     public TermVectorsRequestBuilder setVersionType(VersionType versionType) {
         request.versionType(versionType);

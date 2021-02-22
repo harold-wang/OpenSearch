@@ -48,7 +48,7 @@ public class ActionType<Response extends ActionResponse> {
     }
 
     /**
-     * Get a reader that can create a new instance of the class from a {@link org.elasticsearch.common.io.stream.StreamInput}
+     * Get a reader that can create a new instance of the class from a {@link org.renameme.common.io.stream.StreamInput}
      */
     public Writeable.Reader<Response> getResponseReader() {
         return responseReader;

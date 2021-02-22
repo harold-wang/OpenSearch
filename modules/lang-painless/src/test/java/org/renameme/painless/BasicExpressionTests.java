@@ -254,8 +254,8 @@ public class BasicExpressionTests extends ScriptTestCase {
                   + "return a.missing_length", true));
 
         // Writes, all unsupported at this point
-//        assertEquals(null, exec("org.elasticsearch.painless.FeatureTestObject a = null; return a?.x"));            // Read field
-//        assertEquals(null, exec("org.elasticsearch.painless.FeatureTestObject a = null; a?.x = 7; return a?.x"));  // Write field
+//        assertEquals(null, exec("org.renameme.painless.FeatureTestObject a = null; return a?.x"));            // Read field
+//        assertEquals(null, exec("org.renameme.painless.FeatureTestObject a = null; a?.x = 7; return a?.x"));  // Write field
 //        assertEquals(null, exec("Map a = null; a?.other = 'wow'; return a?.other")); // Write shortcut
 //        assertEquals(null, exec("def a = null; a?.other = 'cat'; return a?.other")); // Write shortcut
 //        assertEquals(null, exec("Map a = ['thing': 'bar']; a.other?.cat = 'no'; return a.other?.cat"));

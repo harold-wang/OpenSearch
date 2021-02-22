@@ -36,7 +36,7 @@ import static org.renameme.common.xcontent.ConstructingObjectParser.constructorA
 import static org.renameme.common.xcontent.ConstructingObjectParser.optionalConstructorArg;
 
 /**
- * This response is specific to the REST client. {@link org.elasticsearch.action.admin.cluster.state.ClusterStateResponse}
+ * This response is specific to the REST client. {@link org.renameme.action.admin.cluster.state.ClusterStateResponse}
  * is used on the transport layer.
  */
 public class ClusterGetSettingsResponse extends ActionResponse implements ToXContentObject {

@@ -175,8 +175,8 @@ public final class RetentionLease implements ToXContentObject, Writeable {
     }
 
     /**
-     * Parses a retention lease from {@link org.elasticsearch.common.xcontent.XContent}. This method assumes that the retention lease was
-     * converted to {@link org.elasticsearch.common.xcontent.XContent} via {@link #toXContent(XContentBuilder, Params)}.
+     * Parses a retention lease from {@link org.renameme.common.xcontent.XContent}. This method assumes that the retention lease was
+     * converted to {@link org.renameme.common.xcontent.XContent} via {@link #toXContent(XContentBuilder, Params)}.
      *
      * @param parser the parser
      * @return a retention lease

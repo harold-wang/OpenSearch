@@ -19,11 +19,10 @@
 
 package org.renameme.common.settings;
 
+import org.elasticsearch.mock.orig.Mockito;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.ClusterStateUpdateTask;
 import org.renameme.cluster.service.ClusterService;
-import org.renameme.mock.orig.Mockito;
-import org.renameme.common.settings.MockSecureSettings;
 import org.renameme.test.ESTestCase;
 import org.junit.Before;
 import org.mockito.stubbing.Answer;

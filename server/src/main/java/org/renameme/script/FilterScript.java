@@ -28,7 +28,7 @@ import org.renameme.search.lookup.SearchLookup;
 
 /**
  * A script implementation of a query filter.
- * See {@link org.elasticsearch.index.query.ScriptQueryBuilder}.
+ * See {@link org.renameme.index.query.ScriptQueryBuilder}.
  */
 public abstract class FilterScript {
 

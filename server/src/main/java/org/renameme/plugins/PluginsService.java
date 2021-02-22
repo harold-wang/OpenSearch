@@ -347,9 +347,9 @@ public class PluginsService implements ReportingService<PluginsAndModules> {
      * Verify the given plugin is compatible with the current Elasticsearch installation.
      */
     static void verifyCompatibility(PluginInfo info) {
-        if (info.getrenamemeVersion().equals(Version.CURRENT) == false) {
+        if (info.getRenamemeVersion().equals(Version.CURRENT) == false) {
             throw new IllegalArgumentException("Plugin [" + info.getName() + "] was built for Elasticsearch version "
-                + info.getrenamemeVersion() + " but version " + Version.CURRENT + " is running");
+                + info.getRenamemeVersion() + " but version " + Version.CURRENT + " is running");
         }
         JarHell.checkJavaVersion(info.getName(), info.getJavaVersion());
     }
@@ -728,8 +728,8 @@ public class PluginsService implements ReportingService<PluginsAndModules> {
                 Locale.ROOT,
                 "no public constructor of correct signature for [%s]; must be [%s], [%s], or [%s]",
                 clazz.getName(),
-                "(org.elasticsearch.common.settings.Settings,java.nio.file.Path)",
-                "(org.elasticsearch.common.settings.Settings)",
+                "(org.renameme.common.settings.Settings,java.nio.file.Path)",
+                "(org.renameme.common.settings.Settings)",
                 "()");
     }
 

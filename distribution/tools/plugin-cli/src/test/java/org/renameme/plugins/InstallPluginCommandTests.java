@@ -1020,10 +1020,7 @@ public class InstallPluginCommandTests extends ESTestCase {
             () -> assertInstallPluginFromUrl("analysis-icu", "analysis-icu", url, null, true)
         );
         assertThat(e.exitCode, equalTo(ExitCodes.CONFIG));
-        assertThat(
-            e,
-            hasToString(containsString("attempted to install release build of official plugin on snapshot build of Renameme"))
-        );
+        assertThat(e, hasToString(containsString("attempted to install release build of official plugin on snapshot build of Renameme")));
     }
 
     public void testOfficialPluginStaging() throws Exception {

@@ -35,7 +35,7 @@ import org.apache.lucene.util.BytesRef;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.collect.Tuple;
-import org.renameme.common.lucene.index.ElasticsearchDirectoryReader;
+import org.renameme.common.lucene.index.RenamemeDirectoryReader;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.Index;
 import org.renameme.index.mapper.ContentPath;
@@ -109,7 +109,7 @@ public class ChildrenToParentAggregatorTests extends AggregatorTestCase {
         final Map<String, Tuple<Integer, Integer>> expectedParentChildRelations = setupIndex(indexWriter);
         indexWriter.close();
 
-        IndexReader indexReader = ElasticsearchDirectoryReader.wrap(DirectoryReader.open(directory),
+        IndexReader indexReader = RenamemeDirectoryReader.wrap(DirectoryReader.open(directory),
                 new ShardId(new Index("foo", "_na_"), 1));
         // TODO set "maybeWrap" to true for IndexSearcher once #23338 is resolved
         IndexSearcher indexSearcher = newSearcher(indexReader, false, true);
@@ -172,7 +172,7 @@ public class ChildrenToParentAggregatorTests extends AggregatorTestCase {
             return o1.getKey().compareTo(o2.getKey());
         });
 
-        IndexReader indexReader = ElasticsearchDirectoryReader.wrap(DirectoryReader.open(directory),
+        IndexReader indexReader = RenamemeDirectoryReader.wrap(DirectoryReader.open(directory),
             new ShardId(new Index("foo", "_na_"), 1));
         // TODO set "maybeWrap" to true for IndexSearcher once #23338 is resolved
         IndexSearcher indexSearcher = newSearcher(indexReader, false, true);
@@ -214,7 +214,7 @@ public class ChildrenToParentAggregatorTests extends AggregatorTestCase {
             sortedValues.put(value.v2(), l+1);
         }
 
-        IndexReader indexReader = ElasticsearchDirectoryReader.wrap(DirectoryReader.open(directory),
+        IndexReader indexReader = RenamemeDirectoryReader.wrap(DirectoryReader.open(directory),
             new ShardId(new Index("foo", "_na_"), 1));
         // TODO set "maybeWrap" to true for IndexSearcher once #23338 is resolved
         IndexSearcher indexSearcher = newSearcher(indexReader, false, true);

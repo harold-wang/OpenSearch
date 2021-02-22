@@ -21,7 +21,6 @@ package org.renameme.kibana;
 
 import org.renameme.common.settings.Settings;
 import org.renameme.indices.SystemIndexDescriptor;
-import org.renameme.kibana.KibanaPlugin;
 import org.renameme.test.ESTestCase;
 
 import java.util.Arrays;

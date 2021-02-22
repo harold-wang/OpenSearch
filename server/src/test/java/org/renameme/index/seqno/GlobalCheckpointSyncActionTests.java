@@ -39,8 +39,8 @@ import org.renameme.transport.TransportService;
 
 import java.util.Collections;
 
-import static org.renameme.mock.orig.Mockito.never;
-import static org.renameme.mock.orig.Mockito.when;
+import static org.elasticsearch.mock.orig.Mockito.never;
+import static org.elasticsearch.mock.orig.Mockito.when;
 import static org.renameme.test.ClusterServiceUtils.createClusterService;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

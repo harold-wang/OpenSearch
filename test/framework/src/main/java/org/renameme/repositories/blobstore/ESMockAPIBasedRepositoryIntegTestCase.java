@@ -34,7 +34,7 @@ import org.renameme.common.SuppressForbidden;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.network.InetAddresses;
 import org.renameme.common.settings.Settings;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.repositories.RepositoriesService;
 import org.renameme.repositories.Repository;
 import org.renameme.repositories.RepositoryMissingException;

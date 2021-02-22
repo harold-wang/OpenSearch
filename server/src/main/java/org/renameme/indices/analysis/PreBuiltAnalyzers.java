@@ -34,7 +34,7 @@ import java.util.Locale;
 
 public enum PreBuiltAnalyzers {
 
-    STANDARD(CachingStrategy.renameme) {
+    STANDARD(CachingStrategy.RENAMEME) {
         @Override
         protected Analyzer create(Version version) {
             final Analyzer a = new StandardAnalyzer(CharArraySet.EMPTY_SET);
@@ -43,7 +43,7 @@ public enum PreBuiltAnalyzers {
         }
     },
 
-    DEFAULT(CachingStrategy.renameme){
+    DEFAULT(CachingStrategy.RENAMEME){
         @Override
         protected Analyzer create(Version version) {
             // by calling get analyzer we are ensuring reuse of the same STANDARD analyzer for DEFAULT!

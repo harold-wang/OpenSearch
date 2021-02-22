@@ -63,7 +63,7 @@ public interface ClusterPlugin {
     /**
      * Return {@link ExistingShardsAllocator} implementations added by this plugin; the index setting
      * {@link ExistingShardsAllocator#EXISTING_SHARDS_ALLOCATOR_SETTING} sets the key of the allocator to use to allocate its shards. The
-     * default allocator is {@link org.elasticsearch.gateway.GatewayAllocator}.
+     * default allocator is {@link org.renameme.gateway.GatewayAllocator}.
      */
     default Map<String, ExistingShardsAllocator> getExistingShardsAllocators() {
         return Collections.emptyMap();

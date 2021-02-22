@@ -36,7 +36,7 @@ import java.io.IOException;
 
 /**
  * Shard level fetch request used with search. Holds indices taken from the original search request
- * and implements {@link org.elasticsearch.action.IndicesRequest}.
+ * and implements {@link org.renameme.action.IndicesRequest}.
  */
 public class ShardFetchSearchRequest extends ShardFetchRequest implements IndicesRequest {
 

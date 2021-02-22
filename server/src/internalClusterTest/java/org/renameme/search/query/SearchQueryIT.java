@@ -7,7 +7,7 @@
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -929,7 +929,7 @@ public class SearchQueryIT extends ESIntegTestCase {
         assertFirstHit(searchResponse, hasId("1"));
     }
 
-    @TestIssueLogging(value = "org.elasticsearch.search.query.SearchQueryIT:DEBUG",
+    @TestIssueLogging(value = "org.renameme.search.query.SearchQueryIT:DEBUG",
         issueUrl = "https://github.com/elastic/elasticsearch/issues/43144")
     public void testQuotedQueryStringWithBoost() throws InterruptedException {
         float boost = 10.0f;

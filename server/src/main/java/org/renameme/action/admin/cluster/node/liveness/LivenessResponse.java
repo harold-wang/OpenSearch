@@ -29,7 +29,7 @@ import java.io.IOException;
 
 /**
  * Transport level private response for the transport handler registered under
- * {@value org.elasticsearch.action.admin.cluster.node.liveness.TransportLivenessAction#NAME}
+ * {@value org.renameme.action.admin.cluster.node.liveness.TransportLivenessAction#NAME}
  */
 public final class LivenessResponse extends ActionResponse {
 

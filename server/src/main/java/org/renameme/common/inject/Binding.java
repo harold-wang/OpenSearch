@@ -68,7 +68,7 @@ public interface Binding<T> extends Element {
      * binding.
      *
      * @throws UnsupportedOperationException when invoked on a {@link Binding}
-     *                                       created via {@link org.elasticsearch.common.inject.spi.Elements#getElements}. This
+     *                                       created via {@link org.renameme.common.inject.spi.Elements#getElements}. This
      *                                       method is only supported on {@link Binding}s returned from an injector.
      */
     Provider<T> getProvider();

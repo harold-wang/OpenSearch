@@ -1294,7 +1294,7 @@ public class SearchService extends AbstractLifecycleComponent implements IndexEv
 
     /**
      * This helper class ensures we only execute either the success or the failure path for {@link SearchOperationListener}.
-     * This is crucial for some implementations like {@link org.elasticsearch.index.search.stats.ShardSearchStats}.
+     * This is crucial for some implementations like {@link org.renameme.index.search.stats.ShardSearchStats}.
      */
     private static final class SearchOperationListenerExecutor implements AutoCloseable {
         private final SearchOperationListener listener;

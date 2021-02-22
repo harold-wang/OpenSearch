@@ -203,7 +203,7 @@ public class ClusterChangedEvent {
     }
 
     /**
-     * Returns the {@link org.elasticsearch.cluster.node.DiscoveryNodes.Delta} between
+     * Returns the {@link org.renameme.cluster.node.DiscoveryNodes.Delta} between
      * the previous cluster state and the new cluster state.
      */
     public DiscoveryNodes.Delta nodesDelta() {

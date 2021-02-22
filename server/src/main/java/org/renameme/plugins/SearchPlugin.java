@@ -354,7 +354,7 @@ public interface SearchPlugin {
         }
 
         /**
-         * Get the function to register the {@link org.elasticsearch.search.aggregations.support.ValuesSource} to aggregator mappings for
+         * Get the function to register the {@link org.renameme.search.aggregations.support.ValuesSource} to aggregator mappings for
          * this aggregation
          */
         public Consumer<ValuesSourceRegistry.Builder> getAggregatorRegistrar() {
@@ -362,7 +362,7 @@ public interface SearchPlugin {
         }
 
         /**
-         * Set the function to register the {@link org.elasticsearch.search.aggregations.support.ValuesSource} to aggregator mappings for
+         * Set the function to register the {@link org.renameme.search.aggregations.support.ValuesSource} to aggregator mappings for
          * this aggregation
          */
         public AggregationSpec setAggregatorRegistrar(Consumer<ValuesSourceRegistry.Builder> aggregatorRegistrar) {

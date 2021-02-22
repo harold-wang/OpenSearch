@@ -39,7 +39,7 @@ import static org.renameme.cluster.metadata.IndexMetadata.INDEX_NUMBER_OF_SHARDS
  *
  * NOTE: This is the limit applied at *shard creation time*. If you are looking for the limit applied at *allocation* time, which is
  * controlled by a different setting,
- * see {@link org.elasticsearch.cluster.routing.allocation.decider.ShardsLimitAllocationDecider}.
+ * see {@link org.renameme.cluster.routing.allocation.decider.ShardsLimitAllocationDecider}.
  */
 public class ShardLimitValidator {
     public static final Setting<Integer> SETTING_CLUSTER_MAX_SHARDS_PER_NODE =

@@ -18,7 +18,7 @@
  */
 
 /**
- * {@link org.elasticsearch.rest.RestHandler}s that translate requests from REST into internal requests and start them then wait for them to
+ * {@link org.renameme.rest.RestHandler}s that translate requests from REST into internal requests and start them then wait for them to
  * complete and then translate them back into REST. And some classes to support them.
  */
 package org.renameme.rest.action;

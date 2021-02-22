@@ -152,7 +152,7 @@ import static org.renameme.index.snapshots.blobstore.BlobStoreIndexShardSnapshot
  * {@link #createBlobStore()}.
  * </p>
  * For in depth documentation on how exactly implementations of this class interact with the snapshot functionality please refer to the
- * documentation of the package {@link org.elasticsearch.repositories.blobstore}.
+ * documentation of the package {@link org.renameme.repositories.blobstore}.
  */
 public abstract class BlobStoreRepository extends AbstractLifecycleComponent implements Repository {
     private static final Logger logger = LogManager.getLogger(BlobStoreRepository.class);

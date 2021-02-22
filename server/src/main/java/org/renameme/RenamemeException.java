@@ -993,7 +993,7 @@ public class RenamemeException extends RuntimeException implements ToXContentFra
             UNKNOWN_VERSION_ADDED),
         NOT_MASTER_EXCEPTION(org.renameme.cluster.NotMasterException.class, org.renameme.cluster.NotMasterException::new, 144,
             UNKNOWN_VERSION_ADDED),
-        STATUS_EXCEPTION(org.renameme.renamemeStatusException.class, org.renameme.RenamemeStatusException::new, 145,
+        STATUS_EXCEPTION(org.renameme.RenamemeStatusException.class, org.renameme.RenamemeStatusException::new, 145,
             UNKNOWN_VERSION_ADDED),
         TASK_CANCELLED_EXCEPTION(org.renameme.tasks.TaskCancelledException.class,
             org.renameme.tasks.TaskCancelledException::new, 146, UNKNOWN_VERSION_ADDED),

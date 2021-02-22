@@ -104,7 +104,7 @@ public class RepositoryMetadata implements Writeable {
     /**
      * Returns the safe repository generation. {@link RepositoryData} for this generation is assumed to exist in the repository.
      * All operations on the repository must be based on the {@link RepositoryData} at this generation.
-     * See package level documentation for the blob store based repositories {@link org.elasticsearch.repositories.blobstore} for details
+     * See package level documentation for the blob store based repositories {@link org.renameme.repositories.blobstore} for details
      * on how this value is used during snapshots.
      * @return safe repository generation
      */
@@ -116,7 +116,7 @@ public class RepositoryMetadata implements Writeable {
      * Returns the pending repository generation. {@link RepositoryData} for this generation and all generations down to the safe
      * generation {@link #generation} may exist in the repository and should not be reused for writing new {@link RepositoryData} to the
      * repository.
-     * See package level documentation for the blob store based repositories {@link org.elasticsearch.repositories.blobstore} for details
+     * See package level documentation for the blob store based repositories {@link org.renameme.repositories.blobstore} for details
      * on how this value is used during snapshots.
      *
      * @return highest pending repository generation

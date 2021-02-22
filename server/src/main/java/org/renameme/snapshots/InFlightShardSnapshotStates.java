@@ -38,7 +38,7 @@ import java.util.Set;
  * Holds information about currently in-flight shard level snapshot or clone operations on a per-shard level.
  * Concretely, this means information on which shards are actively being written to in the repository currently
  * as well as the latest written shard generation per shard in case there is a shard generation for a shard that has
- * been cleanly written out to the repository but not yet made part of the current {@link org.elasticsearch.repositories.RepositoryData}
+ * been cleanly written out to the repository but not yet made part of the current {@link org.renameme.repositories.RepositoryData}
  * through a snapshot finalization.
  */
 public final class InFlightShardSnapshotStates {

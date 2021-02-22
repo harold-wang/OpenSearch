@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  * required for versions of Elasticsearch before 5.0 because they do not support
  * writing a "ports" file.
  */
-public class OldElasticsearch {
+public class OldRenameme {
     public static void main(String[] args) throws IOException {
         Path baseDir = Paths.get(args[0]);
         Path unzipDir = Paths.get(args[1]);

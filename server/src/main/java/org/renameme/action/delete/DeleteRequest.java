@@ -42,14 +42,14 @@ import static org.renameme.index.seqno.SequenceNumbers.UNASSIGNED_SEQ_NO;
 
 /**
  * A request to delete a document from an index based on its type and id. Best created using
- * {@link org.elasticsearch.client.Requests#deleteRequest(String)}.
+ * {@link org.renameme.client.Requests#deleteRequest(String)}.
  * <p>
  * The operation requires the {@link #index()}, {@link #type(String)} and {@link #id(String)} to
  * be set.
  *
  * @see DeleteResponse
- * @see org.elasticsearch.client.Client#delete(DeleteRequest)
- * @see org.elasticsearch.client.Requests#deleteRequest(String)
+ * @see org.renameme.client.Client#delete(DeleteRequest)
+ * @see org.renameme.client.Requests#deleteRequest(String)
  */
 public class DeleteRequest extends ReplicatedWriteRequest<DeleteRequest>
         implements DocWriteRequest<DeleteRequest>, CompositeIndicesRequest {
@@ -249,7 +249,7 @@ public class DeleteRequest extends ReplicatedWriteRequest<DeleteRequest>
     /**
      * If set, only perform this delete request if the document was last modification was assigned this sequence number.
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public long ifSeqNo() {
         return ifSeqNo;
@@ -259,7 +259,7 @@ public class DeleteRequest extends ReplicatedWriteRequest<DeleteRequest>
      * If set, only perform this delete request if the document was last modification was assigned this primary term.
      *
      * If the document last modification was assigned a different term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public long ifPrimaryTerm() {
         return ifPrimaryTerm;
@@ -270,7 +270,7 @@ public class DeleteRequest extends ReplicatedWriteRequest<DeleteRequest>
      * sequence number. Must be used in combination with {@link #setIfPrimaryTerm(long)}
      *
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public DeleteRequest setIfSeqNo(long seqNo) {
         if (seqNo < 0 && seqNo != UNASSIGNED_SEQ_NO) {
@@ -285,7 +285,7 @@ public class DeleteRequest extends ReplicatedWriteRequest<DeleteRequest>
      * primary term. Must be used in combination with {@link #setIfSeqNo(long)}
      *
      * If the document last modification was assigned a different primary term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public DeleteRequest setIfPrimaryTerm(long term) {
         if (term < 0) {

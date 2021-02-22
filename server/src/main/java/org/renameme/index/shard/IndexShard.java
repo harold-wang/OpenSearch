@@ -430,7 +430,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
      * Returns the primary term the index shard is supposed to be on. In case of primary promotion or when a replica learns about
      * a new term due to a new primary, the term that's exposed here will not be the term that the shard internally uses to assign
      * to operations. The shard will auto-correct its internal operation term, but this might take time.
-     * See {@link org.elasticsearch.cluster.metadata.IndexMetadata#primaryTerm(int)}
+     * See {@link org.renameme.cluster.metadata.IndexMetadata#primaryTerm(int)}
      */
     public long getPendingPrimaryTerm() {
         return this.pendingPrimaryTerm;
@@ -1107,7 +1107,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
 
     /**
      * checks and removes translog files that no longer need to be retained. See
-     * {@link org.elasticsearch.index.translog.TranslogDeletionPolicy} for details
+     * {@link org.renameme.index.translog.TranslogDeletionPolicy} for details
      */
     public void trimTranslog() {
         verifyNotClosed();
@@ -1274,7 +1274,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
 
     private Engine.Searcher wrapSearcher(Engine.Searcher searcher) {
         assert RenamemeDirectoryReader.unwrap(searcher.getDirectoryReader())
-            != null : "DirectoryReader must be an instance or ElasticsearchDirectoryReader";
+            != null : "DirectoryReader must be an instance or RenamemeDirectoryReader";
         boolean success = false;
         try {
             final Engine.Searcher newSearcher = readerWrapper == null ? searcher : wrapSearcher(searcher, readerWrapper);
@@ -1294,7 +1294,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
                                         CheckedFunction<DirectoryReader, DirectoryReader, IOException> readerWrapper) throws IOException {
         assert readerWrapper != null;
         final RenamemeDirectoryReader renamemeDirectoryReader =
-            renamemeDirectoryReader.getrenamemeDirectoryReader(engineSearcher.getDirectoryReader());
+            RenamemeDirectoryReader.getRenamemeDirectoryReader(engineSearcher.getDirectoryReader());
         if (renamemeDirectoryReader == null) {
             throw new IllegalStateException("Can't wrap non elasticsearch directory reader");
         }
@@ -1306,9 +1306,9 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
                     " wrappers must override this method and delegate to the original readers core cache key. Wrapped readers can't be " +
                     "used as cache keys since their are used only per request which would lead to subtle bugs");
             }
-            if (renamemeDirectoryReader.getrenamemeDirectoryReader(reader) != renamemeDirectoryReader) {
+            if (RenamemeDirectoryReader.getRenamemeDirectoryReader(reader) != renamemeDirectoryReader) {
                 // prevent that somebody wraps with a non-filter reader
-                throw new IllegalStateException("wrapped directory reader hides actual ElasticsearchDirectoryReader but shouldn't");
+                throw new IllegalStateException("wrapped directory reader hides actual RenamemeDirectoryReader but shouldn't");
             }
         }
 

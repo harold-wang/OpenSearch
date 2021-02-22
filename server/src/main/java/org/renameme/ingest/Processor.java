@@ -100,7 +100,7 @@ public interface Processor {
 
     /**
      * Infrastructure class that holds services that can be used by processor factories to create processor instances
-     * and that gets passed around to all {@link org.elasticsearch.plugins.IngestPlugin}s.
+     * and that gets passed around to all {@link org.renameme.plugins.IngestPlugin}s.
      */
     class Parameters {
 
@@ -120,7 +120,7 @@ public interface Processor {
         public final AnalysisRegistry analysisRegistry;
 
         /**
-         * Allows processors to read headers set by {@link org.elasticsearch.action.support.ActionFilter}
+         * Allows processors to read headers set by {@link org.renameme.action.support.ActionFilter}
          * instances that have run prior to in ingest.
          */
         public final ThreadContext threadContext;

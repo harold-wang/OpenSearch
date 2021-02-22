@@ -7,7 +7,7 @@
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -1111,7 +1111,7 @@ public class IndexStatsIT extends ESIntegTestCase {
      * Test that we can safely concurrently index and get stats. This test was inspired by a serialization issue that arose due to a race
      * getting doc stats during heavy indexing. The race could lead to deleted docs being negative which would then be serialized as a
      * variable-length long. Since serialization of negative longs using a variable-length format was unsupported
-     * ({@link org.elasticsearch.common.io.stream.StreamOutput#writeVLong(long)}), the stream would become corrupted. Here, we want to test
+     * ({@link org.renameme.common.io.stream.StreamOutput#writeVLong(long)}), the stream would become corrupted. Here, we want to test
      * that we can continue to get stats while indexing.
      */
     public void testConcurrentIndexingAndStatsRequests() throws BrokenBarrierException, InterruptedException, ExecutionException {

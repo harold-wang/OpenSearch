@@ -303,7 +303,7 @@ public class RoutingAllocation {
          */
         ON,
         /**
-         * debug mode is on, but YES decisions from a {@link org.elasticsearch.cluster.routing.allocation.decider.Decision.Multi}
+         * debug mode is on, but YES decisions from a {@link org.renameme.cluster.routing.allocation.decider.Decision.Multi}
          * are not included.
          */
         EXCLUDE_YES_DECISIONS

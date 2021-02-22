@@ -18,7 +18,7 @@
  */
 
 /**
- * {@link org.elasticsearch.rest.RestHandler}s for administrative actions that can be taken on indexes like creation, deletion, setting up
+ * {@link org.renameme.rest.RestHandler}s for administrative actions that can be taken on indexes like creation, deletion, setting up
  * aliases, and changing mapping.
  */
 package org.renameme.rest.action.admin.indices;

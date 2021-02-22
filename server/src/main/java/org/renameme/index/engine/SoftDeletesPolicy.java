@@ -63,7 +63,7 @@ final class SoftDeletesPolicy {
 
     /**
      * Updates the number of soft-deleted documents prior to the global checkpoint to be retained
-     * See {@link org.elasticsearch.index.IndexSettings#INDEX_SOFT_DELETES_RETENTION_OPERATIONS_SETTING}
+     * See {@link org.renameme.index.IndexSettings#INDEX_SOFT_DELETES_RETENTION_OPERATIONS_SETTING}
      */
     synchronized void setRetentionOperations(long retentionOperations) {
         this.retentionOperations = retentionOperations;

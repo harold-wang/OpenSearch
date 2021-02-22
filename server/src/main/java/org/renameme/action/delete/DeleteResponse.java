@@ -32,8 +32,8 @@ import static org.renameme.common.xcontent.XContentParserUtils.ensureExpectedTok
 /**
  * The response of the delete action.
  *
- * @see org.elasticsearch.action.delete.DeleteRequest
- * @see org.elasticsearch.client.Client#delete(DeleteRequest)
+ * @see org.renameme.action.delete.DeleteRequest
+ * @see org.renameme.client.Client#delete(DeleteRequest)
  */
 public class DeleteResponse extends DocWriteResponse {
 

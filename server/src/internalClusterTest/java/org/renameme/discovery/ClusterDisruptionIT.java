@@ -7,7 +7,7 @@
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -102,10 +102,10 @@ public class ClusterDisruptionIT extends AbstractDisruptionTestCase {
      * <p>
      * This test is a superset of tests run in the Jepsen test suite, with the exception of versioned updates
      */
-    @TestIssueLogging(value = "_root:DEBUG,org.elasticsearch.action.bulk:TRACE,org.elasticsearch.action.get:TRACE," +
-        "org.elasticsearch.discovery:TRACE,org.elasticsearch.action.support.replication:TRACE," +
-        "org.elasticsearch.cluster.service:TRACE,org.elasticsearch.indices.recovery:TRACE," +
-        "org.elasticsearch.indices.cluster:TRACE,org.elasticsearch.index.shard:TRACE",
+    @TestIssueLogging(value = "_root:DEBUG,org.renameme.action.bulk:TRACE,org.renameme.action.get:TRACE," +
+        "org.renameme.discovery:TRACE,org.renameme.action.support.replication:TRACE," +
+        "org.renameme.cluster.service:TRACE,org.renameme.indices.recovery:TRACE," +
+        "org.renameme.indices.cluster:TRACE,org.renameme.index.shard:TRACE",
         issueUrl = "https://github.com/elastic/elasticsearch/issues/41068")
     public void testAckedIndexing() throws Exception {
 

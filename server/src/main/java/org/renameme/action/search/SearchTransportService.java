@@ -63,7 +63,7 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
- * An encapsulation of {@link org.elasticsearch.search.SearchService} operations exposed through
+ * An encapsulation of {@link org.renameme.search.SearchService} operations exposed through
  * transport.
  */
 public class SearchTransportService {

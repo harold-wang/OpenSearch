@@ -505,15 +505,8 @@ public class Docker {
 
         Stream.of(es.bin, es.lib).forEach(dir -> assertPermissionsAndOwnership(dir, p755));
 
-        Stream.of(
-            "renameme",
-            "renameme-cli",
-            "renameme-env",
-            "renameme-keystore",
-            "renameme-node",
-            "renameme-plugin",
-            "renameme-shard"
-        ).forEach(executable -> assertPermissionsAndOwnership(es.bin(executable), p755));
+        Stream.of("renameme", "renameme-cli", "renameme-env", "renameme-keystore", "renameme-node", "renameme-plugin", "renameme-shard")
+            .forEach(executable -> assertPermissionsAndOwnership(es.bin(executable), p755));
 
         Stream.of("LICENSE.txt", "NOTICE.txt", "README.asciidoc").forEach(doc -> assertPermissionsAndOwnership(es.home.resolve(doc), p644));
 

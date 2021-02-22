@@ -174,8 +174,8 @@ public class BytesStreamOutput extends BytesStream {
     }
 
     /**
-     * Returns the number of bytes used by the underlying {@link org.elasticsearch.common.util.ByteArray}
-     * @see org.elasticsearch.common.util.ByteArray#ramBytesUsed()
+     * Returns the number of bytes used by the underlying {@link org.renameme.common.util.ByteArray}
+     * @see org.renameme.common.util.ByteArray#ramBytesUsed()
      */
     public long ramBytesUsed() {
         return bytes.ramBytesUsed();

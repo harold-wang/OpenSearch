@@ -30,7 +30,7 @@ import org.renameme.common.SuppressForbidden;
 import org.renameme.common.lucene.index.RenamemeDirectoryReader;
 
 /**
- * Utility class to safely share {@link ElasticsearchDirectoryReader} instances across
+ * Utility class to safely share {@link RenamemeDirectoryReader} instances across
  * multiple threads, while periodically reopening. This class ensures each
  * reader is closed only once all threads have finished using it.
  *
@@ -43,7 +43,7 @@ class RenamemeReaderManager extends ReferenceManager<RenamemeDirectoryReader> {
 
     /**
      * Creates and returns a new ElasticsearchReaderManager from the given
-     * already-opened {@link ElasticsearchDirectoryReader}, stealing
+     * already-opened {@link RenamemeDirectoryReader}, stealing
      * the incoming reference.
      *
      * @param reader            the directoryReader to use for future reopens

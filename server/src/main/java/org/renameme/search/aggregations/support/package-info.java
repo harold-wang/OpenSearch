@@ -26,38 +26,38 @@ package org.renameme.search.aggregations.support;
  *
  * <h2> Key Classes </h2>
  *
- * <h3> {@link org.elasticsearch.search.aggregations.support.ValuesSource} and its subclasses </h3>
+ * <h3> {@link org.renameme.search.aggregations.support.ValuesSource} and its subclasses </h3>
  * <p>
  * These are thin wrappers which provide a unified interface to different ways of getting input data (e.g. DocValues from Lucene, or script
  * output). A class hierarchy defines the type of values returned by the source.  The top level sub-classes define type-specific behavior,
- * such as {@link org.elasticsearch.search.aggregations.support.ValuesSource.Numeric#isFloatingPoint()}.  Second level subclasses are
+ * such as {@link org.renameme.search.aggregations.support.ValuesSource.Numeric#isFloatingPoint()}.  Second level subclasses are
  * then specialized based on where they read values from, e.g. script or field cases.  There are also adapter classes like
- * {@link org.elasticsearch.search.aggregations.bucket.geogrid.CellIdSource} which do run-time conversion from one type to another, often
+ * {@link org.renameme.search.aggregations.bucket.geogrid.CellIdSource} which do run-time conversion from one type to another, often
  * dependent on a user specified parameter (precision in that case).
  * </p>
  *
- * <h3> {@link org.elasticsearch.search.aggregations.support.ValuesSourceRegistry} </h3>
+ * <h3> {@link org.renameme.search.aggregations.support.ValuesSourceRegistry} </h3>
  * <p>
  * ValuesSourceRegistry stores the mappings for what types are supported by what aggregations.  It is configured at startup, when
- * {@link org.elasticsearch.search.SearchModule} is configuring aggregations.  It shouldn't be necessary to access the registry in most
- * cases, but you can get a read copy from {@link org.elasticsearch.index.query.QueryShardContext#getValuesSourceRegistry()} if necessary.
+ * {@link org.renameme.search.SearchModule} is configuring aggregations.  It shouldn't be necessary to access the registry in most
+ * cases, but you can get a read copy from {@link org.renameme.index.query.QueryShardContext#getValuesSourceRegistry()} if necessary.
  * </p>
  *
- * <h3> {@link org.elasticsearch.search.aggregations.support.ValuesSourceType} </h3>
+ * <h3> {@link org.renameme.search.aggregations.support.ValuesSourceType} </h3>
  * <p>
  * ValuesSourceTypes are the quantum of support in the aggregations framework, and provide a common language between fields and
- * aggregations.  Fields which support aggregation set a ValuesSourceType on their {@link org.elasticsearch.index.fielddata.IndexFieldData}
+ * aggregations.  Fields which support aggregation set a ValuesSourceType on their {@link org.renameme.index.fielddata.IndexFieldData}
  * implementations, and aggregations register what types they support via one of the
- * {@link org.elasticsearch.search.aggregations.support.ValuesSourceRegistry.Builder#register} methods.  The VaulesSourceType itself holds
+ * {@link org.renameme.search.aggregations.support.ValuesSourceRegistry.Builder#register} methods.  The VaulesSourceType itself holds
  * information on how to with values of that type, including methods for creating
- * {@link org.elasticsearch.search.aggregations.support.ValuesSource} instances and {@link org.elasticsearch.search.DocValueFormat}
+ * {@link org.renameme.search.aggregations.support.ValuesSource} instances and {@link org.renameme.search.DocValueFormat}
  * instances.
  * </p>
  *
- * <h3> {@link org.elasticsearch.search.aggregations.support.ValuesSourceConfig} </h3>
+ * <h3> {@link org.renameme.search.aggregations.support.ValuesSourceConfig} </h3>
  * <p>
  * There are two things going on in ValuesSourceConfig.  First, there is a collection of static factory methods to build valid configs for
- * different situations.  {@link org.elasticsearch.search.aggregations.support.ValuesSourceAggregationBuilder#resolveConfig} has a good
+ * different situations.  {@link org.renameme.search.aggregations.support.ValuesSourceAggregationBuilder#resolveConfig} has a good
  * default for what to call here and generally aggregations shouldn't need to deviate from that.
  * </p>
  *
@@ -68,7 +68,7 @@ package org.renameme.search.aggregations.support;
  * </p>
  *
  * <h2> Classes we are trying to phase out </h2>
- * <h3> {@link org.elasticsearch.search.aggregations.support.ValueType} </h3>
+ * <h3> {@link org.renameme.search.aggregations.support.ValueType} </h3>
  * <p>
  * This class is primarily used for parsing user type hints, and is deprecated for new use.  Work is ongoing to remove it from existing
  * code.

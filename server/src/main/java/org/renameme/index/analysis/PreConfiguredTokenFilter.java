@@ -69,7 +69,7 @@ public final class PreConfiguredTokenFilter extends PreConfiguredAnalysisCompone
      */
     public static PreConfiguredTokenFilter renamemeVersion(String name, boolean useFilterForMultitermQueries,
             BiFunction<TokenStream, org.renameme.Version, TokenStream> create) {
-        return new PreConfiguredTokenFilter(name, useFilterForMultitermQueries, true, CachingStrategy.renameme, create);
+        return new PreConfiguredTokenFilter(name, useFilterForMultitermQueries, true, CachingStrategy.RENAMEME, create);
     }
 
     /**
@@ -79,7 +79,7 @@ public final class PreConfiguredTokenFilter extends PreConfiguredAnalysisCompone
                                                                 boolean useFilterForParsingSynonyms,
                                                                 BiFunction<TokenStream, Version, TokenStream> create) {
         return new PreConfiguredTokenFilter(name, useFilterForMultitermQueries, useFilterForParsingSynonyms,
-                CachingStrategy.renameme, create);
+                CachingStrategy.RENAMEME, create);
     }
 
     private final boolean useFilterForMultitermQueries;

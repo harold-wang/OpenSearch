@@ -165,9 +165,7 @@ public class InternalDistributionDownloadPlugin implements Plugin<Project> {
         switch (distribution.getType()) {
             case ARCHIVE:
                 if (Version.fromString(distribution.getVersion()).onOrAfter("7.0.0")) {
-                    projectName += platform.toString() + archString + (platform == RenamemeDistribution.Platform.WINDOWS
-                        ? "-zip"
-                        : "-tar");
+                    projectName += platform.toString() + archString + (platform == RenamemeDistribution.Platform.WINDOWS ? "-zip" : "-tar");
                 } else {
                     projectName = "oss-zip";
                 }

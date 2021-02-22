@@ -24,7 +24,7 @@ import java.util.Set;
 
 /**
  * A request to inject the static fields and methods of a type. Requests are created
- * explicitly in a module using {@link org.elasticsearch.common.inject.Binder#requestStaticInjection(Class[])
+ * explicitly in a module using {@link org.renameme.common.inject.Binder#requestStaticInjection(Class[])
  * requestStaticInjection()} statements:
  * <pre>
  *     requestStaticInjection(MyLegacyService.class);</pre>

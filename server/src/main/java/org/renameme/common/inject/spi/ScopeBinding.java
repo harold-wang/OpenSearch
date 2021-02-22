@@ -24,7 +24,7 @@ import java.util.Objects;
 
 /**
  * Registration of a scope annotation with the scope that implements it. Instances are created
- * explicitly in a module using {@link org.elasticsearch.common.inject.Binder#bindScope(Class, Scope) bindScope()}
+ * explicitly in a module using {@link org.renameme.common.inject.Binder#bindScope(Class, Scope) bindScope()}
  * statements:
  * <pre>
  *     Scope recordScope = new RecordScope();

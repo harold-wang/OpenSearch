@@ -35,7 +35,7 @@ import org.renameme.common.ssl.PemKeyConfig;
 import org.renameme.common.ssl.PemTrustConfig;
 import org.renameme.env.Environment;
 import org.renameme.env.TestEnvironment;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.test.ESTestCase;
 import org.renameme.watcher.ResourceWatcherService;
 import org.hamcrest.Matchers;

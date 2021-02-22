@@ -18,6 +18,6 @@
  */
 
 /**
- * {@link org.elasticsearch.rest.RestHandler}s for actions that spit out tables of results.
+ * {@link org.renameme.rest.RestHandler}s for actions that spit out tables of results.
  */
 package org.renameme.rest.action.cat;

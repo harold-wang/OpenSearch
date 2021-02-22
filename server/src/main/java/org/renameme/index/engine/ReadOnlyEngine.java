@@ -171,7 +171,8 @@ public class ReadOnlyEngine extends Engine {
     }
 
     protected final RenamemeDirectoryReader wrapReader(DirectoryReader reader,
-                                                       Function<DirectoryReader, DirectoryReader> readerWrapperFunction) throws IOException {
+                                                       Function<DirectoryReader,
+                                                       DirectoryReader> readerWrapperFunction) throws IOException {
         if (engineConfig.getIndexSettings().isSoftDeleteEnabled()) {
             reader = new SoftDeletesDirectoryReaderWrapper(reader, Lucene.SOFT_DELETES_FIELD);
         }

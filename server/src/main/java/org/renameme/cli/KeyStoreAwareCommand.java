@@ -29,7 +29,7 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 
 /**
- * An {@link org.elasticsearch.cli.EnvironmentAwareCommand} that needs to access the elasticsearch keystore, possibly
+ * An {@link org.renameme.cli.EnvironmentAwareCommand} that needs to access the elasticsearch keystore, possibly
  * decrypting it if it is password protected.
  */
 public abstract class KeyStoreAwareCommand extends EnvironmentAwareCommand {

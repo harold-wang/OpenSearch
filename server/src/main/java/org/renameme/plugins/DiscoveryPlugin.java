@@ -68,11 +68,11 @@ public interface DiscoveryPlugin {
      * Returns providers of seed hosts for discovery.
      *
      * The key of the returned map is the name of the host provider
-     * (see {@link org.elasticsearch.discovery.DiscoveryModule#DISCOVERY_SEED_PROVIDERS_SETTING}), and
+     * (see {@link org.renameme.discovery.DiscoveryModule#DISCOVERY_SEED_PROVIDERS_SETTING}), and
      * the value is a supplier to construct the host provider when it is selected for use.
      *
-     * @param transportService Use to form the {@link org.elasticsearch.common.transport.TransportAddress} portion
-     *                         of a {@link org.elasticsearch.cluster.node.DiscoveryNode}
+     * @param transportService Use to form the {@link org.renameme.common.transport.TransportAddress} portion
+     *                         of a {@link org.renameme.cluster.node.DiscoveryNode}
      * @param networkService Use to find the publish host address of the current node
      */
     default Map<String, Supplier<SeedHostsProvider>> getSeedHostProviders(TransportService transportService,

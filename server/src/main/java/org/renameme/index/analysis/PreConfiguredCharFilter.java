@@ -63,7 +63,7 @@ public class PreConfiguredCharFilter extends PreConfiguredAnalysisComponent<Char
      */
     public static PreConfiguredCharFilter renamemeVersion(String name, boolean useFilterForMultitermQueries,
             BiFunction<Reader, org.renameme.Version, Reader> create) {
-        return new PreConfiguredCharFilter(name, CachingStrategy.renameme, useFilterForMultitermQueries, create);
+        return new PreConfiguredCharFilter(name, CachingStrategy.RENAMEME, useFilterForMultitermQueries, create);
     }
 
     private final boolean useFilterForMultitermQueries;

@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-/** A cli command which requires an {@link org.elasticsearch.env.Environment} to use current paths and settings. */
+/** A cli command which requires an {@link org.renameme.env.Environment} to use current paths and settings. */
 public abstract class EnvironmentAwareCommand extends Command {
 
     private final OptionSpec<KeyValuePair> settingOption;

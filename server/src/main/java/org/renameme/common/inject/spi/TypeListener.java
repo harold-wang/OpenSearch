@@ -25,7 +25,7 @@ import org.renameme.common.inject.TypeLiteral;
  * <p>
  * Useful for extra type checking, {@linkplain TypeEncounter#register(InjectionListener)
  * registering injection listeners}, and {@code TypeEncounter#bindInterceptor(
- *org.elasticsearch.common.inject.matcher.Matcher, org.aopalliance.intercept.MethodInterceptor[])
+ *org.renameme.common.inject.matcher.Matcher, org.aopalliance.intercept.MethodInterceptor[])
  * binding method interceptors}.
  *
  * @since 2.0

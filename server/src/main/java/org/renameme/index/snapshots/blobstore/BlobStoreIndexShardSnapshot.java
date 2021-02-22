@@ -179,7 +179,7 @@ public class BlobStoreIndexShardSnapshot implements ToXContentFragment {
         }
 
         /**
-         * Returns file md5 checksum provided by {@link org.elasticsearch.index.store.Store}
+         * Returns file md5 checksum provided by {@link org.renameme.index.store.Store}
          *
          * @return file checksum
          */

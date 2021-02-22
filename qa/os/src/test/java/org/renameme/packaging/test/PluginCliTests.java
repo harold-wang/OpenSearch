@@ -30,7 +30,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.renameme.packaging.util.ServerUtils.makeRequest;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assume.assumeFalse;
@@ -81,7 +80,8 @@ public class PluginCliTests extends PackagingTestCase {
         Files.createSymbolicLink(pluginsDir, linkedPlugins);
         assertWithExamplePlugin(installResult -> {
             assertWhileRunning(() -> {
-                final String pluginsResponse = ServerUtils.makeRequest(Request.Get("http://localhost:9200/_cat/plugins?h=component")).trim();
+                final String pluginsResponse = ServerUtils.makeRequest(Request.Get("http://localhost:9200/_cat/plugins?h=component"))
+                    .trim();
                 assertThat(pluginsResponse, equalTo(EXAMPLE_PLUGIN_NAME));
 
                 String settingsPath = "_cluster/settings?include_defaults&filter_path=defaults.custom.simple";

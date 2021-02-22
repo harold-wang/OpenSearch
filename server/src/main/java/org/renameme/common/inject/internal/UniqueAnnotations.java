@@ -35,7 +35,7 @@ public class UniqueAnnotations {
 
     /**
      * Returns an annotation instance that is not equal to any other annotation
-     * instances, for use in creating distinct {@link org.elasticsearch.common.inject.Key}s.
+     * instances, for use in creating distinct {@link org.renameme.common.inject.Key}s.
      */
     public static Annotation create() {
         return create(nextUniqueValue.getAndIncrement());

@@ -69,7 +69,7 @@ import java.util.concurrent.Executor;
  * <p>
  * Use this cache with care, only components that require that a filter is to be materialized as a {@link BitDocIdSet}
  * and require that it should always be around should use this cache, otherwise the
- * {@link org.elasticsearch.index.cache.query.QueryCache} should be used instead.
+ * {@link org.renameme.index.cache.query.QueryCache} should be used instead.
  */
 public final class BitsetFilterCache extends AbstractIndexComponent
         implements IndexReader.ClosedListener, RemovalListener<IndexReader.CacheKey, Cache<Query, BitsetFilterCache.Value>>, Closeable {

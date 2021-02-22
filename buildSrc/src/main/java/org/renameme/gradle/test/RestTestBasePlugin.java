@@ -38,8 +38,7 @@ public class RestTestBasePlugin implements Plugin<Project> {
         project.getPluginManager().apply(RenamemeTestBasePlugin.class);
         project.getTasks().withType(RestIntegTestTask.class).configureEach(restIntegTestTask -> {
             @SuppressWarnings("unchecked")
-            NamedDomainObjectContainer<RenamemeCluster> testClusters = (NamedDomainObjectContainer<RenamemeCluster>) project
-                .getExtensions()
+            NamedDomainObjectContainer<RenamemeCluster> testClusters = (NamedDomainObjectContainer<RenamemeCluster>) project.getExtensions()
                 .getByName(TestClustersPlugin.EXTENSION_NAME);
             RenamemeCluster cluster = testClusters.maybeCreate(restIntegTestTask.getName());
             restIntegTestTask.useCluster(cluster);

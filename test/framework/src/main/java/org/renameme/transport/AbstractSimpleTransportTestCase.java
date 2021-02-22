@@ -51,7 +51,7 @@ import org.renameme.common.util.concurrent.AbstractRunnable;
 import org.renameme.common.util.concurrent.ConcurrentCollections;
 import org.renameme.transport.*;
 import org.renameme.core.internal.io.IOUtils;
-import org.renameme.mocksocket.MockServerSocket;
+import org.elasticsearch.mocksocket.MockServerSocket;
 import org.renameme.node.Node;
 import org.renameme.tasks.Task;
 import org.renameme.test.ESTestCase;

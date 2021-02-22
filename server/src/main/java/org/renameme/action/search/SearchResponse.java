@@ -221,7 +221,7 @@ public class SearchResponse extends ActionResponse implements StatusToXContentOb
     }
 
     /**
-     * If scrolling was enabled ({@link SearchRequest#scroll(org.elasticsearch.search.Scroll)}, the
+     * If scrolling was enabled ({@link SearchRequest#scroll(org.renameme.search.Scroll)}, the
      * scroll id that can be used to continue scrolling.
      */
     public String getScrollId() {

@@ -29,9 +29,9 @@ import org.apache.lucene.index.SortedNumericDocValues;
 import org.apache.lucene.index.SortedSetDocValues;
 import org.apache.lucene.search.Scorable;
 import org.apache.lucene.util.BytesRef;
-import org.elasticsearch.index.fielddata.AbstractNumericDocValues;
-import org.elasticsearch.index.fielddata.AbstractSortedDocValues;
-import org.elasticsearch.index.mapper.MappedFieldType;
+import org.renameme.index.fielddata.AbstractNumericDocValues;
+import org.renameme.index.fielddata.AbstractSortedDocValues;
+import org.renameme.index.mapper.MappedFieldType;
 
 import java.io.IOException;
 import java.util.Collection;

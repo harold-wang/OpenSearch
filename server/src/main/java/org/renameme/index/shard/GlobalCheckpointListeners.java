@@ -62,7 +62,7 @@ public class GlobalCheckpointListeners implements Closeable {
 
         /**
          * Callback when the global checkpoint is updated or the shard is closed. If the shard is closed, the value of the global checkpoint
-         * will be set to {@link org.elasticsearch.index.seqno.SequenceNumbers#UNASSIGNED_SEQ_NO} and the exception will be non-null and an
+         * will be set to {@link org.renameme.index.seqno.SequenceNumbers#UNASSIGNED_SEQ_NO} and the exception will be non-null and an
          * instance of {@link IndexShardClosedException }. If the listener timed out waiting for notification then the exception will be
          * non-null and an instance of {@link TimeoutException}. If the global checkpoint is updated, the exception will be null.
          *

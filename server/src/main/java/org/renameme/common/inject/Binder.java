@@ -162,7 +162,7 @@ import java.lang.annotation.Annotation;
  *         .to(BlueService.class);</pre>
  *
  * Differentiating by names is a common enough use case that we provided a
- * standard annotation, {@link org.elasticsearch.common.inject.name.Named @Named}.  Because of
+ * standard annotation, {@link org.renameme.common.inject.name.Named @Named}.  Because of
  * Guice's library support, binding by name is quite easier than in the
  * arbitrary binding annotation case we just saw.  However, remember that these
  * names will live in a single flat namespace with all the other names used in

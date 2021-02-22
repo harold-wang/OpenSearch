@@ -228,8 +228,8 @@ public abstract class AbstractModule implements Module {
     }
 
     /**
-     * @see Binder#bindListener(org.elasticsearch.common.inject.matcher.Matcher,
-     *      org.elasticsearch.common.inject.spi.TypeListener)
+     * @see Binder#bindListener(org.renameme.common.inject.matcher.Matcher,
+     *      org.renameme.common.inject.spi.TypeListener)
      * @since 2.0
      */
     protected void bindListener(Matcher<? super TypeLiteral<?>> typeMatcher,

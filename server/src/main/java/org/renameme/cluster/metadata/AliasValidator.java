@@ -45,7 +45,7 @@ import static org.renameme.index.query.AbstractQueryBuilder.parseInnerQueryBuild
  */
 public class AliasValidator {
     /**
-     * Allows to validate an {@link org.elasticsearch.action.admin.indices.alias.Alias} and make sure
+     * Allows to validate an {@link org.renameme.action.admin.indices.alias.Alias} and make sure
      * it's valid before it gets added to the index metadata. Doesn't validate the alias filter.
      * @throws IllegalArgumentException if the alias is not valid
      */
@@ -54,7 +54,7 @@ public class AliasValidator {
     }
 
     /**
-     * Allows to validate an {@link org.elasticsearch.cluster.metadata.AliasMetadata} and make sure
+     * Allows to validate an {@link org.renameme.cluster.metadata.AliasMetadata} and make sure
      * it's valid before it gets added to the index metadata. Doesn't validate the alias filter.
      * @throws IllegalArgumentException if the alias is not valid
      */
@@ -65,7 +65,7 @@ public class AliasValidator {
     /**
      * Allows to partially validate an alias, without knowing which index it'll get applied to.
      * Useful with index templates containing aliases. Checks also that it is possible to parse
-     * the alias filter via {@link org.elasticsearch.common.xcontent.XContentParser},
+     * the alias filter via {@link org.renameme.common.xcontent.XContentParser},
      * without validating it as a filter though.
      * @throws IllegalArgumentException if the alias is not valid
      */
@@ -108,7 +108,7 @@ public class AliasValidator {
 
     /**
      * Validates an alias filter by parsing it using the
-     * provided {@link org.elasticsearch.index.query.QueryShardContext}
+     * provided {@link org.renameme.index.query.QueryShardContext}
      * @throws IllegalArgumentException if the filter is not valid
      */
     public void validateAliasFilter(String alias, String filter, QueryShardContext queryShardContext,
@@ -124,7 +124,7 @@ public class AliasValidator {
 
     /**
      * Validates an alias filter by parsing it using the
-     * provided {@link org.elasticsearch.index.query.QueryShardContext}
+     * provided {@link org.renameme.index.query.QueryShardContext}
      * @throws IllegalArgumentException if the filter is not valid
      */
     public void validateAliasFilter(String alias, BytesReference filter, QueryShardContext queryShardContext,

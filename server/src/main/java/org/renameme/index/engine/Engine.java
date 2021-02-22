@@ -1076,7 +1076,7 @@ public abstract class Engine implements Closeable {
 
     /**
      * checks and removes translog files that no longer need to be retained. See
-     * {@link org.elasticsearch.index.translog.TranslogDeletionPolicy} for details
+     * {@link org.renameme.index.translog.TranslogDeletionPolicy} for details
      */
     public abstract void trimUnreferencedTranslogFiles() throws EngineException;
 

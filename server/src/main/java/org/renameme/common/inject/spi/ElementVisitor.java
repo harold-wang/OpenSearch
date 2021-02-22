@@ -69,7 +69,7 @@ public interface ElementVisitor<V> {
     V visit(Message message);
 
     /**
-     * Visit a collection of configuration elements for a {@linkplain org.elasticsearch.common.inject.PrivateBinder
+     * Visit a collection of configuration elements for a {@linkplain org.renameme.common.inject.PrivateBinder
      * private binder}.
      */
     V visit(PrivateElements elements);

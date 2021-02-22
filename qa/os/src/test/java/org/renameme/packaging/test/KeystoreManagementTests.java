@@ -42,10 +42,6 @@ import java.util.Map;
 
 import static com.carrotsearch.randomizedtesting.RandomizedTest.randomBoolean;
 import static java.util.Collections.singletonList;
-import static org.renameme.packaging.util.Archives.installArchive;
-import static org.renameme.packaging.util.Docker.runContainer;
-import static org.renameme.packaging.util.Docker.waitForRenameme;
-import static org.renameme.packaging.util.FileMatcher.file;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -472,7 +468,10 @@ public class KeystoreManagementTests extends PackagingTestCase {
         switch (distribution.packaging) {
             case Distribution.Packaging.TAR:
             case Distribution.Packaging.ZIP:
-                assertThat(keystore, FileMatcher.file(FileMatcher.Fileness.File, Archives.ARCHIVE_OWNER, Archives.ARCHIVE_OWNER, FileMatcher.p660));
+                assertThat(
+                    keystore,
+                    FileMatcher.file(FileMatcher.Fileness.File, Archives.ARCHIVE_OWNER, Archives.ARCHIVE_OWNER, FileMatcher.p660)
+                );
                 break;
             case Distribution.Packaging.DEB:
             case Distribution.Packaging.RPM:

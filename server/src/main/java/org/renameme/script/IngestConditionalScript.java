@@ -24,7 +24,7 @@ import org.renameme.common.unit.TimeValue;
 import java.util.Map;
 
 /**
- * A script used by {@link org.elasticsearch.ingest.ConditionalProcessor}.
+ * A script used by {@link org.renameme.ingest.ConditionalProcessor}.
  */
 public abstract class IngestConditionalScript {
 

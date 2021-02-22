@@ -101,10 +101,9 @@ public class RoundingBenchmark {
         return timeIntervalRoundingJoda.round(timestamp);
     }
 
-    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcDayOfMonthJoda = org.renameme.common.rounding.Rounding
-        .builder(DateTimeUnit.DAY_OF_MONTH)
-        .timeZone(DateTimeZone.UTC)
-        .build();
+    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcDayOfMonthJoda = org.renameme.common.rounding.Rounding.builder(
+        DateTimeUnit.DAY_OF_MONTH
+    ).timeZone(DateTimeZone.UTC).build();
     private final Rounding timeUnitRoundingUtcDayOfMonthJava = Rounding.builder(DAY_OF_MONTH).timeZone(ZoneOffset.UTC).build();
 
     @Benchmark
@@ -117,8 +116,10 @@ public class RoundingBenchmark {
         return timeUnitRoundingUtcDayOfMonthJoda.round(timestamp);
     }
 
-    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcQuarterOfYearJoda =
-        org.renameme.common.rounding.Rounding.builder(DateTimeUnit.QUARTER).timeZone(DateTimeZone.UTC).build();
+    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcQuarterOfYearJoda = org.renameme.common.rounding.Rounding
+        .builder(DateTimeUnit.QUARTER)
+        .timeZone(DateTimeZone.UTC)
+        .build();
     private final Rounding timeUnitRoundingUtcQuarterOfYearJava = Rounding.builder(QUARTER_OF_YEAR).timeZone(ZoneOffset.UTC).build();
 
     @Benchmark
@@ -131,10 +132,9 @@ public class RoundingBenchmark {
         return timeUnitRoundingUtcQuarterOfYearJoda.round(timestamp);
     }
 
-    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcMonthOfYearJoda = org.renameme.common.rounding.Rounding
-        .builder(DateTimeUnit.MONTH_OF_YEAR)
-        .timeZone(DateTimeZone.UTC)
-        .build();
+    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcMonthOfYearJoda = org.renameme.common.rounding.Rounding.builder(
+        DateTimeUnit.MONTH_OF_YEAR
+    ).timeZone(DateTimeZone.UTC).build();
     private final Rounding timeUnitRoundingUtcMonthOfYearJava = Rounding.builder(MONTH_OF_YEAR).timeZone(ZoneOffset.UTC).build();
 
     @Benchmark
@@ -147,8 +147,10 @@ public class RoundingBenchmark {
         return timeUnitRoundingUtcMonthOfYearJoda.round(timestamp);
     }
 
-    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcYearOfCenturyJoda =
-        org.renameme.common.rounding.Rounding.builder(DateTimeUnit.YEAR_OF_CENTURY).timeZone(DateTimeZone.UTC).build();
+    private final org.renameme.common.rounding.Rounding timeUnitRoundingUtcYearOfCenturyJoda = org.renameme.common.rounding.Rounding
+        .builder(DateTimeUnit.YEAR_OF_CENTURY)
+        .timeZone(DateTimeZone.UTC)
+        .build();
     private final Rounding timeUnitRoundingUtcYearOfCenturyJava = Rounding.builder(YEAR_OF_CENTURY).timeZone(ZoneOffset.UTC).build();
 
     @Benchmark

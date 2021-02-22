@@ -54,7 +54,7 @@ import org.renameme.common.breaker.CircuitBreaker;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.lease.Releasable;
 import org.renameme.common.lease.Releasables;
-import org.renameme.common.lucene.index.ElasticsearchDirectoryReader;
+import org.renameme.common.lucene.index.RenamemeDirectoryReader;
 import org.renameme.common.network.NetworkAddress;
 import org.renameme.common.settings.Settings;
 import org.renameme.common.util.BigArrays;
@@ -557,7 +557,7 @@ public abstract class AggregatorTestCase extends ESTestCase {
     }
 
     protected static DirectoryReader wrapInMockESDirectoryReader(DirectoryReader directoryReader) throws IOException {
-        return ElasticsearchDirectoryReader.wrap(directoryReader, new ShardId(new Index("_index", "_na_"), 0));
+        return RenamemeDirectoryReader.wrap(directoryReader, new ShardId(new Index("_index", "_na_"), 0));
     }
 
     /**

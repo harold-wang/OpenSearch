@@ -128,7 +128,7 @@ public final class EngineConfig {
     private final TranslogConfig translogConfig;
 
     /**
-     * Creates a new {@link org.elasticsearch.index.engine.EngineConfig}
+     * Creates a new {@link org.renameme.index.engine.EngineConfig}
      */
     public EngineConfig(ShardId shardId, ThreadPool threadPool,
                         IndexSettings indexSettings, Engine.Warmer warmer, Store store,
@@ -224,22 +224,22 @@ public final class EngineConfig {
 
     /**
      * Returns a thread-pool mainly used to get estimated time stamps from
-     * {@link org.elasticsearch.threadpool.ThreadPool#relativeTimeInMillis()} and to schedule
-     * async force merge calls on the {@link org.elasticsearch.threadpool.ThreadPool.Names#FORCE_MERGE} thread-pool
+     * {@link org.renameme.threadpool.ThreadPool#relativeTimeInMillis()} and to schedule
+     * async force merge calls on the {@link org.renameme.threadpool.ThreadPool.Names#FORCE_MERGE} thread-pool
      */
     public ThreadPool getThreadPool() {
         return threadPool;
     }
 
     /**
-     * Returns an {@link org.elasticsearch.index.engine.Engine.Warmer} used to warm new searchers before they are used for searching.
+     * Returns an {@link org.renameme.index.engine.Engine.Warmer} used to warm new searchers before they are used for searching.
      */
     public Engine.Warmer getWarmer() {
         return warmer;
     }
 
     /**
-     * Returns the {@link org.elasticsearch.index.store.Store} instance that provides access to the
+     * Returns the {@link org.renameme.index.store.Store} instance that provides access to the
      * {@link org.apache.lucene.store.Directory} used for the engines {@link org.apache.lucene.index.IndexWriter} to write it's index files
      * to.
      * <p>

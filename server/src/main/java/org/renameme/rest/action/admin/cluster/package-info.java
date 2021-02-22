@@ -18,7 +18,7 @@
  */
 
 /**
- * {@link org.elasticsearch.rest.RestHandler}s for administrative actions that can be taken on the cluster as a whole like getting the
+ * {@link org.renameme.rest.RestHandler}s for administrative actions that can be taken on the cluster as a whole like getting the
  * listing tasks, adding repositories, and getting stats.
  */
 package org.renameme.rest.action.admin.cluster;

@@ -33,7 +33,7 @@ public interface IngestPlugin {
      * Returns additional ingest processor types added by this plugin.
      *
      * The key of the returned {@link Map} is the unique name for the processor which is specified
-     * in pipeline configurations, and the value is a {@link org.elasticsearch.ingest.Processor.Factory}
+     * in pipeline configurations, and the value is a {@link org.renameme.ingest.Processor.Factory}
      * to create the processor from a given pipeline configuration.
      */
     default Map<String, Processor.Factory> getProcessors(Processor.Parameters parameters) {

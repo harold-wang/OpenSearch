@@ -21,7 +21,7 @@ package org.renameme.repositories.azure;
 
 import com.microsoft.azure.storage.StorageException;
 import org.apache.logging.log4j.core.util.Throwables;
-import org.elasticsearch.SpecialPermission;
+import org.renameme.SpecialPermission;
 
 import java.io.IOException;
 import java.net.SocketPermission;

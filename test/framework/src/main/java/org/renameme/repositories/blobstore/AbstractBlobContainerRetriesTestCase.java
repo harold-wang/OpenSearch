@@ -32,7 +32,7 @@ import org.renameme.common.io.Streams;
 import org.renameme.common.unit.ByteSizeValue;
 import org.renameme.common.unit.TimeValue;
 import org.renameme.common.util.concurrent.CountDown;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.test.ESTestCase;
 import org.junit.After;
 import org.junit.Before;

@@ -260,10 +260,7 @@ public class RenamemeJavaPlugin implements Plugin<Project> {
             manifestPlugin.add("Change", toStringable(BuildParams::getGitRevision));
             manifestPlugin.add("X-Compile-Renameme-Version", toStringable(VersionProperties::getRenameme));
             manifestPlugin.add("X-Compile-Lucene-Version", toStringable(VersionProperties::getLucene));
-            manifestPlugin.add(
-                "X-Compile-Renameme-Snapshot",
-                toStringable(() -> Boolean.toString(VersionProperties.isRenamemeSnapshot()))
-            );
+            manifestPlugin.add("X-Compile-Renameme-Snapshot", toStringable(() -> Boolean.toString(VersionProperties.isRenamemeSnapshot())));
         });
 
         project.getPluginManager().apply("nebula.info-broker");

@@ -19,20 +19,20 @@ package org.renameme.common.inject.binder;
 import java.lang.annotation.Annotation;
 
 /**
- * See the EDSL examples at {@link org.elasticsearch.common.inject.Binder}.
+ * See the EDSL examples at {@link org.renameme.common.inject.Binder}.
  *
  * @author crazybob@google.com (Bob Lee)
  */
 public interface AnnotatedConstantBindingBuilder {
 
     /**
-     * See the EDSL examples at {@link org.elasticsearch.common.inject.Binder}.
+     * See the EDSL examples at {@link org.renameme.common.inject.Binder}.
      */
     ConstantBindingBuilder annotatedWith(
             Class<? extends Annotation> annotationType);
 
     /**
-     * See the EDSL examples at {@link org.elasticsearch.common.inject.Binder}.
+     * See the EDSL examples at {@link org.renameme.common.inject.Binder}.
      */
     ConstantBindingBuilder annotatedWith(Annotation annotation);
 }

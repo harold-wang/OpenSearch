@@ -279,7 +279,7 @@ public class MoreLikeThisQuery extends Query {
      * Number of terms that must match the generated query expressed in the
      * common syntax for minimum should match.
      *
-     * @see    org.elasticsearch.common.lucene.search.Queries#calculateMinShouldMatch(int, String)
+     * @see    org.renameme.common.lucene.search.Queries#calculateMinShouldMatch(int, String)
      */
     public String getMinimumShouldMatch() {
         return minimumShouldMatch;
@@ -289,7 +289,7 @@ public class MoreLikeThisQuery extends Query {
      * Number of terms that must match the generated query expressed in the
      * common syntax for minimum should match. Defaults to {@code 30%}.
      *
-     * @see    org.elasticsearch.common.lucene.search.Queries#calculateMinShouldMatch(int, String)
+     * @see    org.renameme.common.lucene.search.Queries#calculateMinShouldMatch(int, String)
      */
     public void setMinimumShouldMatch(String minimumShouldMatch) {
         this.minimumShouldMatch = minimumShouldMatch;

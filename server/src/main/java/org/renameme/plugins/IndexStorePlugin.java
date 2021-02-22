@@ -53,7 +53,7 @@ public interface IndexStorePlugin {
 
     /**
      * The {@link DirectoryFactory} mappings for this plugin. When an index is created the store type setting
-     * {@link org.elasticsearch.index.IndexModule#INDEX_STORE_TYPE_SETTING} on the index will be examined and either use the default or a
+     * {@link org.renameme.index.IndexModule#INDEX_STORE_TYPE_SETTING} on the index will be examined and either use the default or a
      * built-in type, or looked up among all the directory factories from {@link IndexStorePlugin} plugins.
      *
      * @return a map from store type to an directory factory
@@ -74,7 +74,7 @@ public interface IndexStorePlugin {
 
     /**
      * The {@link RecoveryStateFactory} mappings for this plugin. When an index is created the recovery type setting
-     * {@link org.elasticsearch.index.IndexModule#INDEX_RECOVERY_TYPE_SETTING} on the index will be examined and either use the default
+     * {@link org.renameme.index.IndexModule#INDEX_RECOVERY_TYPE_SETTING} on the index will be examined and either use the default
      * or looked up among all the recovery state factories from {@link IndexStorePlugin} plugins.
      *
      * @return a map from recovery type to an recovery state factory

@@ -15,7 +15,7 @@
  */
 
 /**
- * Interfaces which make up {@link org.elasticsearch.common.inject.Binder}'s
+ * Interfaces which make up {@link org.renameme.common.inject.Binder}'s
  * expression language.
  */
 package org.renameme.common.inject.binder;

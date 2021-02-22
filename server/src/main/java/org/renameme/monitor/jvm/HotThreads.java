@@ -112,11 +112,11 @@ public class HotThreads {
                 methodName.equals("select")) {
                 return true;
             }
-            if (className.equals("org.elasticsearch.threadpool.ThreadPool$CachedTimeThread") &&
+            if (className.equals("org.renameme.threadpool.ThreadPool$CachedTimeThread") &&
                 methodName.equals("run")) {
                 return true;
             }
-            if (className.equals("org.elasticsearch.indices.ttl.IndicesTTLService$Notifier") &&
+            if (className.equals("org.renameme.indices.ttl.IndicesTTLService$Notifier") &&
                 methodName.equals("await")) {
                 return true;
             }

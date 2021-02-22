@@ -33,7 +33,7 @@ import org.renameme.common.settings.Setting;
 import org.renameme.common.settings.Settings;
 import org.renameme.discovery.DiscoveryModule;
 import org.renameme.env.Environment;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.node.Node;
 import org.renameme.plugin.discovery.azure.classic.AzureDiscoveryPlugin;
 import org.renameme.plugins.Plugin;

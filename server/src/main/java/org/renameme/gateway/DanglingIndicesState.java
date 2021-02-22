@@ -60,7 +60,7 @@ public class DanglingIndicesState implements ClusterStateListener {
      * state upon discovery. This setting is deprecated - use the <code>_dangling</code> API instead.
      * If disabled, dangling indices will not be automatically detected.
      *
-     * @see org.elasticsearch.action.admin.indices.dangling
+     * @see org.renameme.action.admin.indices.dangling
      */
     public static final Setting<Boolean> AUTO_IMPORT_DANGLING_INDICES_SETTING = Setting.boolSetting(
         "gateway.auto_import_dangling_indices",

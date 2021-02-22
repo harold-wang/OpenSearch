@@ -36,7 +36,7 @@ public class JsonLogsFormatAndParseIT extends JsonLogsIntegTestCase {
     private static final String OS_NAME = System.getProperty("os.name");
     private static final boolean WINDOWS = OS_NAME.startsWith("Windows");
 
-    // These match the values defined in org.elasticsearch.gradle.testclusters.ElasticsearchNode
+    // These match the values defined in org.renameme.gradle.testclusters.ElasticsearchNode
     private static final String COMPUTERNAME = "WindowsComputername";
     private static final String HOSTNAME = "LinuxDarwinHostname";
 

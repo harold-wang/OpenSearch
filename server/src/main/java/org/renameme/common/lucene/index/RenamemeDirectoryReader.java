@@ -62,8 +62,8 @@ public final class RenamemeDirectoryReader extends FilterDirectoryReader {
     }
 
     /**
-     * Wraps the given reader in a {@link ElasticsearchDirectoryReader} as
-     * well as all it's sub-readers in {@link ElasticsearchLeafReader} to
+     * Wraps the given reader in a {@link RenamemeDirectoryReader} as
+     * well as all it's sub-readers in {@link RenamemeLeafReader} to
      * expose the given shard Id.
      *
      * @param reader the reader to wrap
@@ -86,18 +86,18 @@ public final class RenamemeDirectoryReader extends FilterDirectoryReader {
 
     /**
      * Adds the given listener to the provided directory reader. The reader
-     * must contain an {@link ElasticsearchDirectoryReader} in it's hierarchy
+     * must contain an {@link RenamemeDirectoryReader} in it's hierarchy
      * otherwise we can't safely install the listener.
      *
      * @throws IllegalArgumentException if the reader doesn't contain an
-     *     {@link ElasticsearchDirectoryReader} in it's hierarchy
+     *     {@link RenamemeDirectoryReader} in it's hierarchy
      */
     @SuppressForbidden(reason = "This is the only sane way to add a ReaderClosedListener")
     public static void addReaderCloseListener(DirectoryReader reader, IndexReader.ClosedListener listener) {
-        RenamemeDirectoryReader renamemeDirectoryReader = getrenamemeDirectoryReader(reader);
+        RenamemeDirectoryReader renamemeDirectoryReader = getRenamemeDirectoryReader(reader);
         if (renamemeDirectoryReader == null) {
             throw new IllegalArgumentException(
-                    "Can't install close listener reader is not an ElasticsearchDirectoryReader/ElasticsearchLeafReader");
+                    "Can't install close listener reader is not an RenamemeDirectoryReader/RenamemeLeafReader");
         }
         IndexReader.CacheHelper cacheHelper = renamemeDirectoryReader.getReaderCacheHelper();
         if (cacheHelper == null) {
@@ -109,10 +109,10 @@ public final class RenamemeDirectoryReader extends FilterDirectoryReader {
 
     /**
      * Tries to unwrap the given reader until the first
-     * {@link ElasticsearchDirectoryReader} instance is found or {@code null}
+     * {@link RenamemeDirectoryReader} instance is found or {@code null}
      * if no instance is found.
      */
-    public static RenamemeDirectoryReader getrenamemeDirectoryReader(DirectoryReader reader) {
+    public static RenamemeDirectoryReader getRenamemeDirectoryReader(DirectoryReader reader) {
         if (reader instanceof FilterDirectoryReader) {
             if (reader instanceof RenamemeDirectoryReader) {
                 return (RenamemeDirectoryReader) reader;
@@ -121,7 +121,7 @@ public final class RenamemeDirectoryReader extends FilterDirectoryReader {
                 // If there are multiple levels of filtered leaf readers then with the unwrap() method it immediately
                 // returns the most inner leaf reader and thus skipping of over any other filtered leaf reader that
                 // may be instance of ElasticsearchLeafReader. This can cause us to miss the shardId.
-                return getrenamemeDirectoryReader(((FilterDirectoryReader) reader).getDelegate());
+                return getRenamemeDirectoryReader(((FilterDirectoryReader) reader).getDelegate());
             }
         }
         return null;

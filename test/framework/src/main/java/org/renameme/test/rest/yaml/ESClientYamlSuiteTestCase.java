@@ -32,7 +32,7 @@ import org.renameme.client.Response;
 import org.renameme.client.RestClient;
 import org.renameme.client.RestClientBuilder;
 import org.renameme.client.WarningsHandler;
-import org.renameme.client.sniff.ElasticsearchNodesSniffer;
+import org.renameme.client.sniff.RenamemeNodesSniffer;
 import org.renameme.common.Strings;
 import org.renameme.common.collect.Tuple;
 import org.renameme.common.io.PathUtils;
@@ -433,10 +433,10 @@ public abstract class ESClientYamlSuiteTestCase extends ESRestTestCase {
      * {@link RestClientBuilder} for a client with that metadata.
      */
     protected final RestClientBuilder getClientBuilderWithSniffedHosts() throws IOException {
-        ElasticsearchNodesSniffer.Scheme scheme =
-            ElasticsearchNodesSniffer.Scheme.valueOf(getProtocol().toUpperCase(Locale.ROOT));
-        ElasticsearchNodesSniffer sniffer = new ElasticsearchNodesSniffer(
-                adminClient(), ElasticsearchNodesSniffer.DEFAULT_SNIFF_REQUEST_TIMEOUT, scheme);
+        RenamemeNodesSniffer.Scheme scheme =
+            RenamemeNodesSniffer.Scheme.valueOf(getProtocol().toUpperCase(Locale.ROOT));
+        RenamemeNodesSniffer sniffer = new RenamemeNodesSniffer(
+                adminClient(), RenamemeNodesSniffer.DEFAULT_SNIFF_REQUEST_TIMEOUT, scheme);
         RestClientBuilder builder = RestClient.builder(sniffer.sniff().toArray(new Node[0]));
         configureClient(builder, restClientSettings());
         return builder;

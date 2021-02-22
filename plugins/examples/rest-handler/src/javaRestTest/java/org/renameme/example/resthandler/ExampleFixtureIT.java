@@ -19,7 +19,7 @@
 
 package org.renameme.example.resthandler;
 
-import org.renameme.mocksocket.MockSocket;
+import org.elasticsearch.mocksocket.MockSocket;
 import org.renameme.test.ESTestCase;
 
 import java.io.BufferedReader;

@@ -33,8 +33,8 @@ import static org.renameme.common.xcontent.XContentParserUtils.ensureExpectedTok
 /**
  * A response of an index operation,
  *
- * @see org.elasticsearch.action.index.IndexRequest
- * @see org.elasticsearch.client.Client#index(IndexRequest)
+ * @see org.renameme.action.index.IndexRequest
+ * @see org.renameme.client.Client#index(IndexRequest)
  */
 public class IndexResponse extends DocWriteResponse {
 

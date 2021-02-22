@@ -1097,7 +1097,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
     /**
      * A class representing the diff between a recovery source and recovery target
      *
-     * @see MetadataSnapshot#recoveryDiff(org.elasticsearch.index.store.Store.MetadataSnapshot)
+     * @see MetadataSnapshot#recoveryDiff(org.renameme.index.store.Store.MetadataSnapshot)
      */
     public static final class RecoveryDiff {
         /**
@@ -1400,7 +1400,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
     public interface OnClose extends Consumer<ShardLock> {
         OnClose EMPTY = new OnClose() {
             /**
-             * This method is called while the provided {@link org.elasticsearch.env.ShardLock} is held.
+             * This method is called while the provided {@link org.renameme.env.ShardLock} is held.
              * This method is only called once after all resources for a store are released.
              */
             @Override
@@ -1578,7 +1578,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
     }
 
     /**
-     * Returns a {@link org.elasticsearch.index.seqno.SequenceNumbers.CommitInfo} of the safe commit if exists.
+     * Returns a {@link org.renameme.index.seqno.SequenceNumbers.CommitInfo} of the safe commit if exists.
      */
     public Optional<SequenceNumbers.CommitInfo> findSafeIndexCommit(long globalCheckpoint) throws IOException {
         final List<IndexCommit> commits = DirectoryReader.listCommits(directory);

@@ -240,7 +240,7 @@ class InjectorImpl implements Injector, Lookups {
      * Converts a constant string binding to the required type.
      *
      * @return the binding if it could be resolved, or null if the binding doesn't exist
-     * @throws org.elasticsearch.common.inject.internal.ErrorsException
+     * @throws org.renameme.common.inject.internal.ErrorsException
      *          if there was an error resolving the binding
      */
     private <T> BindingImpl<T> convertConstantStringBinding(Key<T> key, Errors errors)
@@ -572,7 +572,7 @@ class InjectorImpl implements Injector, Lookups {
      * <li>The constructor of the raw type. Only for unannotated keys.
      * </ol>
      *
-     * @throws org.elasticsearch.common.inject.internal.ErrorsException
+     * @throws org.renameme.common.inject.internal.ErrorsException
      *          if the binding cannot be created.
      */
     <T> BindingImpl<T> createJustInTimeBinding(Key<T> key, Errors errors) throws ErrorsException {

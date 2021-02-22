@@ -24,7 +24,7 @@ import org.renameme.common.xcontent.XContentParser;
 import java.io.IOException;
 
 /**
- * Defines a query parser that is able to parse {@link QueryBuilder}s from {@link org.elasticsearch.common.xcontent.XContent}.
+ * Defines a query parser that is able to parse {@link QueryBuilder}s from {@link org.renameme.common.xcontent.XContent}.
  */
 @FunctionalInterface
 public interface QueryParser<QB extends QueryBuilder> {

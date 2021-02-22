@@ -24,7 +24,7 @@ import java.util.Objects;
 
 /**
  * Registration of type converters for matching target types. Instances are created
- * explicitly in a module using {@link org.elasticsearch.common.inject.Binder#convertToTypes(Matcher,
+ * explicitly in a module using {@link org.renameme.common.inject.Binder#convertToTypes(Matcher,
  * TypeConverter) convertToTypes()} statements:
  * <pre>
  *     convertToTypes(Matchers.only(DateTime.class), new DateTimeConverter());</pre>

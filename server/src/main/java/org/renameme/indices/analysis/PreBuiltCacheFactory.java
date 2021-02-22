@@ -36,7 +36,7 @@ public class PreBuiltCacheFactory {
      * ELASTICSEARCH     Exactly one version per elasticsearch version is stored. Useful if you change an analyzer between elasticsearch
      *                   releases, when the lucene version does not change
      */
-    public enum CachingStrategy { ONE, LUCENE, renameme }
+    public enum CachingStrategy { ONE, LUCENE, RENAMEME}
 
     public interface PreBuiltCache<T> {
 
@@ -55,7 +55,7 @@ public class PreBuiltCacheFactory {
                 return new PreBuiltCacheStrategyOne<>();
             case LUCENE:
                 return new PreBuiltCacheStrategyLucene<>();
-            case renameme:
+            case RENAMEME:
                 return new PreBuiltCacheStrategyrenameme<>();
             default:
                 throw new RenamemeException("No action configured for caching strategy[" + cachingStrategy + "]");

@@ -35,7 +35,7 @@ import org.renameme.client.Response;
 import org.renameme.client.ResponseException;
 import org.renameme.client.RestClient;
 import org.renameme.client.RestClientTestCase;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.junit.After;
 import org.junit.Before;
 

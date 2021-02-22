@@ -92,7 +92,7 @@ public abstract class AbstractGeometryFieldMapper<Parsed, Processed> extends Fie
          * Given a parsed value and a format string, formats the value into a plain Java object.
          *
          * Supported formats include 'geojson' and 'wkt'. The different formats are defined
-         * as subclasses of {@link org.elasticsearch.common.geo.GeometryFormat}.
+         * as subclasses of {@link org.renameme.common.geo.GeometryFormat}.
          */
         public abstract Object format(Parsed value, String format);
 

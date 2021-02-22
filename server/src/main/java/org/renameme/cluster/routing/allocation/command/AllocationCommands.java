@@ -76,7 +76,7 @@ public class AllocationCommands implements ToXContentFragment {
     /**
      * Executes all wrapped commands on a given {@link RoutingAllocation}
      * @param allocation {@link RoutingAllocation} to apply this command to
-     * @throws org.elasticsearch.RenamemeException if something happens during execution
+     * @throws org.renameme.RenamemeException if something happens during execution
      */
     public RoutingExplanations execute(RoutingAllocation allocation, boolean explain) {
         RoutingExplanations explanations = new RoutingExplanations();

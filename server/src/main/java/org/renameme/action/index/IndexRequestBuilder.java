@@ -102,7 +102,7 @@ public class IndexRequestBuilder extends ReplicationRequestBuilder<IndexRequest,
     /**
      * Sets the document source to index.
      * <p>
-     * Note, its preferable to either set it using {@link #setSource(org.elasticsearch.common.xcontent.XContentBuilder)}
+     * Note, its preferable to either set it using {@link #setSource(org.renameme.common.xcontent.XContentBuilder)}
      * or using the {@link #setSource(byte[], XContentType)}.
      */
     public IndexRequestBuilder setSource(String source, XContentType xContentType) {
@@ -175,7 +175,7 @@ public class IndexRequestBuilder extends ReplicationRequestBuilder<IndexRequest,
     }
 
     /**
-     * Set to {@code true} to force this index to use {@link org.elasticsearch.action.index.IndexRequest.OpType#CREATE}.
+     * Set to {@code true} to force this index to use {@link org.renameme.action.index.IndexRequest.OpType#CREATE}.
      */
     public IndexRequestBuilder setCreate(boolean create) {
         request.create(create);
@@ -204,7 +204,7 @@ public class IndexRequestBuilder extends ReplicationRequestBuilder<IndexRequest,
      * sequence number. Must be used in combination with {@link #setIfPrimaryTerm(long)}
      *
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public IndexRequestBuilder setIfSeqNo(long seqNo) {
         request.setIfSeqNo(seqNo);
@@ -216,7 +216,7 @@ public class IndexRequestBuilder extends ReplicationRequestBuilder<IndexRequest,
      * primary term. Must be used in combination with {@link #setIfSeqNo(long)}
      *
      * If the document last modification was assigned a different term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public IndexRequestBuilder setIfPrimaryTerm(long term) {
         request.setIfPrimaryTerm(term);

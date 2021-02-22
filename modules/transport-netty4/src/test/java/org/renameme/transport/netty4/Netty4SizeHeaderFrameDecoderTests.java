@@ -27,7 +27,7 @@ import org.renameme.common.transport.TransportAddress;
 import org.renameme.common.util.MockPageCacheRecycler;
 import org.renameme.common.util.PageCacheRecycler;
 import org.renameme.indices.breaker.NoneCircuitBreakerService;
-import org.renameme.mocksocket.MockSocket;
+import org.elasticsearch.mocksocket.MockSocket;
 import org.renameme.test.ESTestCase;
 import org.renameme.threadpool.ThreadPool;
 import org.renameme.transport.SharedGroupFactory;

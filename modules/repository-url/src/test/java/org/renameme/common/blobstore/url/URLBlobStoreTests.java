@@ -24,7 +24,7 @@ import org.renameme.common.SuppressForbidden;
 import org.renameme.common.blobstore.BlobContainer;
 import org.renameme.common.blobstore.BlobPath;
 import org.renameme.common.settings.Settings;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.common.blobstore.url.URLBlobStore;
 import org.renameme.test.ESTestCase;
 import org.junit.AfterClass;

@@ -68,7 +68,7 @@ public interface RecoveryTargetHandler {
      * @param mappingVersionOnPrimary             the mapping version which is at least as up to date as the mapping version that the
      *                                            primary used to index translog {@code operations} in this request.
      *                                            If the mapping version on the replica is not older this version, we should not retry on
-     *                                            {@link org.elasticsearch.index.mapper.MapperException}; otherwise we should wait for a
+     *                                            {@link org.renameme.index.mapper.MapperException}; otherwise we should wait for a
      *                                            new mapping then retry.
      * @param listener                            a listener which will be notified with the local checkpoint on the target
      *                                            after these operations are successfully indexed on the target.

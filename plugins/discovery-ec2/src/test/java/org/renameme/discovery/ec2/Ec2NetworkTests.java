@@ -24,7 +24,7 @@ import org.renameme.common.Strings;
 import org.renameme.common.SuppressForbidden;
 import org.renameme.common.network.NetworkService;
 import org.renameme.common.settings.Settings;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.rest.RestStatus;
 import org.renameme.discovery.ec2.Ec2NameResolver;
 import org.renameme.test.ESTestCase;

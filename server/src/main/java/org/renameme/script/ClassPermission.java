@@ -34,13 +34,13 @@ import java.util.Set;
  * Examples:
  * <p>
  * Allow permission to {@code java.util.List}
- * <pre>permission org.elasticsearch.script.ClassPermission "java.util.List";</pre>
+ * <pre>permission org.renameme.script.ClassPermission "java.util.List";</pre>
  * Allow permission to classes underneath {@code java.util} (and its subpackages such as {@code java.util.zip})
- * <pre>permission org.elasticsearch.script.ClassPermission "java.util.*";</pre>
+ * <pre>permission org.renameme.script.ClassPermission "java.util.*";</pre>
  * Allow permission to standard predefined list of basic classes (see list below)
- * <pre>permission org.elasticsearch.script.ClassPermission "&lt;&lt;STANDARD&gt;&gt;";</pre>
+ * <pre>permission org.renameme.script.ClassPermission "&lt;&lt;STANDARD&gt;&gt;";</pre>
  * Allow permission to all classes
- * <pre>permission org.elasticsearch.script.ClassPermission "*";</pre>
+ * <pre>permission org.renameme.script.ClassPermission "*";</pre>
  * <p>
  * Set of classes (allowed by special value <code>&lt;&lt;STANDARD&gt;&gt;</code>):
  * <ul>

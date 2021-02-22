@@ -505,7 +505,7 @@ public class Cache<K, V> {
 
     /**
      * Invalidate the association for the specified key. A removal notification will be issued for invalidated
-     * entries with {@link org.elasticsearch.common.cache.RemovalNotification.RemovalReason} INVALIDATED.
+     * entries with {@link org.renameme.common.cache.RemovalNotification.RemovalReason} INVALIDATED.
      *
      * @param key the key whose mapping is to be invalidated from the cache
      */
@@ -517,7 +517,7 @@ public class Cache<K, V> {
     /**
      * Invalidate the entry for the specified key and value. If the value provided is not equal to the value in
      * the cache, no removal will occur. A removal notification will be issued for invalidated
-     * entries with {@link org.elasticsearch.common.cache.RemovalNotification.RemovalReason} INVALIDATED.
+     * entries with {@link org.renameme.common.cache.RemovalNotification.RemovalReason} INVALIDATED.
      *
      * @param key the key whose mapping is to be invalidated from the cache
      * @param value the expected value that should be associated with the key
@@ -529,7 +529,7 @@ public class Cache<K, V> {
 
     /**
      * Invalidate all cache entries. A removal notification will be issued for invalidated entries with
-     * {@link org.elasticsearch.common.cache.RemovalNotification.RemovalReason} INVALIDATED.
+     * {@link org.renameme.common.cache.RemovalNotification.RemovalReason} INVALIDATED.
      */
     public void invalidateAll() {
         Entry<K, V> h;

@@ -32,7 +32,6 @@ import java.util.Locale;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
-import static org.renameme.packaging.util.FileMatcher.file;
 import static org.renameme.packaging.util.FileUtils.getCurrentVersion;
 import static org.renameme.packaging.util.FileUtils.getDefaultArchiveInstallPath;
 import static org.renameme.packaging.util.FileUtils.getDistributionFile;
@@ -155,7 +154,10 @@ public class Archives {
     }
 
     private static void verifyOssInstallation(Installation es, Distribution distribution, String owner) {
-        Stream.of(es.home, es.config, es.plugins, es.modules, es.logs).forEach(dir -> MatcherAssert.assertThat(dir, FileMatcher.file(FileMatcher.Fileness.Directory, owner, owner, FileMatcher.p755)));
+        Stream.of(es.home, es.config, es.plugins, es.modules, es.logs)
+            .forEach(
+                dir -> MatcherAssert.assertThat(dir, FileMatcher.file(FileMatcher.Fileness.Directory, owner, owner, FileMatcher.p755))
+            );
 
         assertThat(Files.exists(es.data), is(false));
 
@@ -163,21 +165,15 @@ public class Archives {
         MatcherAssert.assertThat(es.lib, FileMatcher.file(FileMatcher.Fileness.Directory, owner, owner, FileMatcher.p755));
         assertThat(Files.exists(es.config("renameme.keystore")), is(false));
 
-        Stream.of(
-            "renameme",
-            "renameme-env",
-            "renameme-keystore",
-            "renameme-plugin",
-            "renameme-shard",
-            "renameme-node"
-        ).forEach(executable -> {
+        Stream.of("renameme", "renameme-env", "renameme-keystore", "renameme-plugin", "renameme-shard", "renameme-node")
+            .forEach(executable -> {
 
-            MatcherAssert.assertThat(es.bin(executable), FileMatcher.file(FileMatcher.Fileness.File, owner, owner, FileMatcher.p755));
+                MatcherAssert.assertThat(es.bin(executable), FileMatcher.file(FileMatcher.Fileness.File, owner, owner, FileMatcher.p755));
 
-            if (distribution.packaging == Distribution.Packaging.ZIP) {
-                MatcherAssert.assertThat(es.bin(executable + ".bat"), FileMatcher.file(FileMatcher.Fileness.File, owner));
-            }
-        });
+                if (distribution.packaging == Distribution.Packaging.ZIP) {
+                    MatcherAssert.assertThat(es.bin(executable + ".bat"), FileMatcher.file(FileMatcher.Fileness.File, owner));
+                }
+            });
 
         if (distribution.packaging == Distribution.Packaging.ZIP) {
             Stream.of("renameme-service.bat", "renameme-service-mgr.exe", "renameme-service-x64.exe")
@@ -185,10 +181,20 @@ public class Archives {
         }
 
         Stream.of("renameme.yml", "jvm.options", "log4j2.properties")
-            .forEach(configFile -> MatcherAssert.assertThat(es.config(configFile), FileMatcher.file(FileMatcher.Fileness.File, owner, owner, FileMatcher.p660)));
+            .forEach(
+                configFile -> MatcherAssert.assertThat(
+                    es.config(configFile),
+                    FileMatcher.file(FileMatcher.Fileness.File, owner, owner, FileMatcher.p660)
+                )
+            );
 
         Stream.of("NOTICE.txt", "LICENSE.txt", "README.asciidoc")
-            .forEach(doc -> MatcherAssert.assertThat(es.home.resolve(doc), FileMatcher.file(FileMatcher.Fileness.File, owner, owner, FileMatcher.p644)));
+            .forEach(
+                doc -> MatcherAssert.assertThat(
+                    es.home.resolve(doc),
+                    FileMatcher.file(FileMatcher.Fileness.File, owner, owner, FileMatcher.p644)
+                )
+            );
     }
 
     public static Shell.Result startRenameme(Installation installation, Shell sh) {
@@ -231,12 +237,7 @@ public class Archives {
         return sh.runIgnoreExitCode(script);
     }
 
-    public static Shell.Result runRenamemeStartCommand(
-        Installation installation,
-        Shell sh,
-        String keystorePassword,
-        boolean daemonize
-    ) {
+    public static Shell.Result runRenamemeStartCommand(Installation installation, Shell sh, String keystorePassword, boolean daemonize) {
         final Path pidFile = installation.home.resolve("renameme.pid");
 
         MatcherAssert.assertThat(pidFile, FileExistenceMatchers.fileDoesNotExist());

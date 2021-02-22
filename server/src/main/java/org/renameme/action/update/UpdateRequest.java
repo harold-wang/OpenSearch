@@ -592,7 +592,7 @@ public class UpdateRequest extends InstanceShardOperationRequest<UpdateRequest>
      * sequence number. Must be used in combination with {@link #setIfPrimaryTerm(long)}
      *
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public UpdateRequest setIfSeqNo(long seqNo) {
         if (seqNo < 0 && seqNo != UNASSIGNED_SEQ_NO) {
@@ -607,7 +607,7 @@ public class UpdateRequest extends InstanceShardOperationRequest<UpdateRequest>
      * primary term. Must be used in combination with {@link #setIfSeqNo(long)}
      *
      * If the document last modification was assigned a different term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public UpdateRequest setIfPrimaryTerm(long term) {
         if (term < 0) {
@@ -620,7 +620,7 @@ public class UpdateRequest extends InstanceShardOperationRequest<UpdateRequest>
     /**
      * If set, only perform this update request if the document was last modification was assigned this sequence number.
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public long ifSeqNo() {
         return ifSeqNo;
@@ -630,7 +630,7 @@ public class UpdateRequest extends InstanceShardOperationRequest<UpdateRequest>
      * If set, only perform this update request if the document was last modification was assigned this primary term.
      *
      * If the document last modification was assigned a different term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public long ifPrimaryTerm() {
         return ifPrimaryTerm;
@@ -761,7 +761,7 @@ public class UpdateRequest extends InstanceShardOperationRequest<UpdateRequest>
 
     /**
      * Sets the index request to be used if the document does not exists. Otherwise, a
-     * {@link org.elasticsearch.index.engine.DocumentMissingException} is thrown.
+     * {@link org.renameme.index.engine.DocumentMissingException} is thrown.
      */
     public UpdateRequest upsert(IndexRequest upsertRequest) {
         this.upsertRequest = upsertRequest;

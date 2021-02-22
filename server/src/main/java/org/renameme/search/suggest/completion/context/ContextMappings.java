@@ -94,7 +94,7 @@ public class ContextMappings implements ToXContent, Iterable<ContextMapping<?>> 
 
     /**
      * Adds a context-enabled field for all the defined mappings to <code>document</code>
-     * see {@link org.elasticsearch.search.suggest.completion.context.ContextMappings.TypedContextField}
+     * see {@link org.renameme.search.suggest.completion.context.ContextMappings.TypedContextField}
      */
     public void addField(ParseContext.Document document, String name, String input, int weight, Map<String, Set<String>> contexts) {
         document.add(new TypedContextField(name, input, weight, contexts, document));
@@ -196,7 +196,7 @@ public class ContextMappings implements ToXContent, Iterable<ContextMapping<?>> 
     /**
      * Maps an output context list to a map of context mapping names and their values
      *
-     * see {@link org.elasticsearch.search.suggest.completion.context.ContextMappings.TypedContextField}
+     * see {@link org.renameme.search.suggest.completion.context.ContextMappings.TypedContextField}
      * @return a map of context names and their values
      *
      */

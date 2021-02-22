@@ -39,7 +39,7 @@ import java.util.Map;
 /**
  * An immutable map implementation based on open hash map.
  * <p>
- * Can be constructed using a {@link #builder()}, or using {@link #builder(org.elasticsearch.common.collect.ImmutableOpenIntMap)}
+ * Can be constructed using a {@link #builder()}, or using {@link #builder(org.renameme.common.collect.ImmutableOpenIntMap)}
  * (which is an optimized option to copy over existing content and modify it).
  */
 public final class ImmutableOpenIntMap<VType> implements Iterable<IntObjectCursor<VType>> {

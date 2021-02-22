@@ -24,7 +24,7 @@ import java.util.Objects;
 
 /**
  * A lookup of the provider for a type. Lookups are created explicitly in a module using
- * {@link org.elasticsearch.common.inject.Binder#getProvider(Class) getProvider()} statements:
+ * {@link org.renameme.common.inject.Binder#getProvider(Class) getProvider()} statements:
  * <pre>
  *     Provider&lt;PaymentService&gt; paymentServiceProvider
  *         = getProvider(PaymentService.class);</pre>

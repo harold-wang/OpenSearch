@@ -42,7 +42,7 @@ import org.renameme.common.settings.Settings;
 import org.renameme.common.unit.ByteSizeUnit;
 import org.renameme.common.unit.TimeValue;
 import org.renameme.common.util.concurrent.CountDown;
-import org.renameme.mocksocket.MockHttpServer;
+import org.elasticsearch.mocksocket.MockHttpServer;
 import org.renameme.rest.RestStatus;
 import org.renameme.rest.RestUtils;
 import org.renameme.repositories.azure.*;

@@ -84,7 +84,7 @@ public abstract class AggregatorFactory {
     /**
      * Returns the aggregation subtype for nodes usage stats.
      * <p>
-     * It should match the types registered by calling {@linkplain org.elasticsearch.search.aggregations.support.AggregationUsageService}.
+     * It should match the types registered by calling {@linkplain org.renameme.search.aggregations.support.AggregationUsageService}.
      * In other words, it should be ValueSourcesType for the VST aggregations OTHER_SUBTYPE for all other aggregations.
      */
     public String getStatsSubtype() {

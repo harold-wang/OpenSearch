@@ -18,7 +18,7 @@
  */
 
 /**
- * Support for viewing and modifying in flight actions ({@link org.elasticsearch.tasks.Task}s) and saving their results to an index. This
+ * Support for viewing and modifying in flight actions ({@link org.renameme.tasks.Task}s) and saving their results to an index. This
  * includes getting detailed descriptions and canceling tasks that support it.
  */
 package org.renameme.tasks;

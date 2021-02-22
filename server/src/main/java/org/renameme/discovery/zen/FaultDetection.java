@@ -92,7 +92,7 @@ public abstract class FaultDetection implements Closeable {
     }
 
     /**
-     * This method will be called when the {@link org.elasticsearch.transport.TransportService} raised a node disconnected event
+     * This method will be called when the {@link org.renameme.transport.TransportService} raised a node disconnected event
      */
     abstract void handleTransportDisconnect(DiscoveryNode node);
 

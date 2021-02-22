@@ -73,7 +73,7 @@ import java.util.function.Function;
  *     strict_affix_parsing: false
  * </code></pre>
  *
- * @see org.elasticsearch.index.analysis.HunspellTokenFilterFactory
+ * @see org.renameme.index.analysis.HunspellTokenFilterFactory
  */
 public class HunspellService {
 

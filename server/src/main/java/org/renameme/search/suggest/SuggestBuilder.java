@@ -81,7 +81,7 @@ public class SuggestBuilder implements Writeable, ToXContentObject {
 
     /**
      * Sets the text to provide suggestions for. The suggest text is a required option that needs
-     * to be set either via this setter or via the {@link org.elasticsearch.search.suggest.SuggestionBuilder#text(String)} method.
+     * to be set either via this setter or via the {@link org.renameme.search.suggest.SuggestionBuilder#text(String)} method.
      * <p>
      * The suggest text gets analyzed by the suggest analyzer or the suggest field search analyzer.
      * For each analyzed token, suggested terms are suggested if possible.
@@ -100,7 +100,7 @@ public class SuggestBuilder implements Writeable, ToXContentObject {
     }
 
     /**
-     * Adds an {@link org.elasticsearch.search.suggest.SuggestionBuilder} instance under a user defined name.
+     * Adds an {@link org.renameme.search.suggest.SuggestionBuilder} instance under a user defined name.
      * The order in which the <code>Suggestions</code> are added, is the same as in the response.
      * @throws IllegalArgumentException if two suggestions added have the same name
      */

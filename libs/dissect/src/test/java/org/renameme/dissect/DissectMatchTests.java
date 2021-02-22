@@ -19,7 +19,7 @@
 
 package org.renameme.dissect;
 
-import org.elasticsearch.common.collect.MapBuilder;
+import org.renameme.common.collect.MapBuilder;
 import org.renameme.test.ESTestCase;
 import org.renameme.dissect.DissectKey;
 import org.renameme.dissect.DissectMatch;

@@ -105,7 +105,7 @@ public class CircleBuilder extends ShapeBuilder<Circle, org.renameme.geometry.Ci
 
     /**
      * Set the radius of the circle
-     * @param radius radius of the circle (see {@link org.elasticsearch.common.unit.DistanceUnit.Distance})
+     * @param radius radius of the circle (see {@link org.renameme.common.unit.DistanceUnit.Distance})
      * @return this
      */
     public CircleBuilder radius(Distance radius) {

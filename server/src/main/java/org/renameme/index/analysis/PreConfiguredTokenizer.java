@@ -58,7 +58,7 @@ public final class PreConfiguredTokenizer extends PreConfiguredAnalysisComponent
      * @param create builds the tokenizer
      */
     public static PreConfiguredTokenizer renamemeVersion(String name, Function<org.renameme.Version, Tokenizer> create) {
-        return new PreConfiguredTokenizer(name, CachingStrategy.renameme, create);
+        return new PreConfiguredTokenizer(name, CachingStrategy.RENAMEME, create);
     }
 
     private final Function<Version, Tokenizer> create;

@@ -51,9 +51,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class StringTermsSerializationBenchmark {
     private static final NamedWriteableRegistry REGISTRY = new NamedWriteableRegistry(
-        org.renameme.common.collect.List.of(
-            new NamedWriteableRegistry.Entry(InternalAggregation.class, StringTerms.NAME, StringTerms::new)
-        )
+        org.renameme.common.collect.List.of(new NamedWriteableRegistry.Entry(InternalAggregation.class, StringTerms.NAME, StringTerms::new))
     );
     @Param(value = { "1000" })
     private int buckets;

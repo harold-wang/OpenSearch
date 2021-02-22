@@ -39,7 +39,7 @@ import static org.renameme.index.seqno.SequenceNumbers.UNASSIGNED_SEQ_NO;
 
 /**
  * Generic interface to group ActionRequest, which perform writes to a single document
- * Action requests implementing this can be part of {@link org.elasticsearch.action.bulk.BulkRequest}
+ * Action requests implementing this can be part of {@link org.renameme.action.bulk.BulkRequest}
  */
 public interface DocWriteRequest<T> extends IndicesRequest, Accountable {
 
@@ -132,7 +132,7 @@ public interface DocWriteRequest<T> extends IndicesRequest, Accountable {
      * sequence number. Must be used in combination with {@link #setIfPrimaryTerm(long)}
      *
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     T setIfSeqNo(long seqNo);
 
@@ -141,14 +141,14 @@ public interface DocWriteRequest<T> extends IndicesRequest, Accountable {
      * primary term. Must be used in combination with {@link #setIfSeqNo(long)}
      *
      * If the document last modification was assigned a different term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     T setIfPrimaryTerm(long term);
 
     /**
      * If set, only perform this request if the document was last modification was assigned this sequence number.
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
      long ifSeqNo();
 
@@ -156,7 +156,7 @@ public interface DocWriteRequest<T> extends IndicesRequest, Accountable {
      * If set, only perform this request if the document was last modification was assigned this primary term.
      *
      * If the document last modification was assigned a different term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     long ifPrimaryTerm();
 
@@ -230,9 +230,9 @@ public interface DocWriteRequest<T> extends IndicesRequest, Accountable {
     /**
      * Read a document write (index/delete/update) request
      *
-     * @param shardId shard id of the request. {@code null} when reading as part of a {@link org.elasticsearch.action.bulk.BulkRequest}
+     * @param shardId shard id of the request. {@code null} when reading as part of a {@link org.renameme.action.bulk.BulkRequest}
      *                that does not have a unique shard id or when reading from a stream of version older than
-     *                {@link org.elasticsearch.action.bulk.BulkShardRequest#COMPACT_SHARD_ID_VERSION}
+     *                {@link org.renameme.action.bulk.BulkShardRequest#COMPACT_SHARD_ID_VERSION}
      */
     static DocWriteRequest<?> readDocumentRequest(@Nullable ShardId shardId, StreamInput in) throws IOException {
         byte type = in.readByte();

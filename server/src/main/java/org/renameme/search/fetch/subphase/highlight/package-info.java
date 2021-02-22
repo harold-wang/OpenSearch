@@ -19,7 +19,7 @@
 
 /**
  * Fetch sub phase that extracts significant portions of string fields, marking the matches. Pluggable by implementing
- * {@link org.elasticsearch.search.fetch.subphase.highlight.Highlighter} and
- * {@link org.elasticsearch.plugins.SearchPlugin#getHighlighters()}.
+ * {@link org.renameme.search.fetch.subphase.highlight.Highlighter} and
+ * {@link org.renameme.plugins.SearchPlugin#getHighlighters()}.
  */
 package org.renameme.search.fetch.subphase.highlight;

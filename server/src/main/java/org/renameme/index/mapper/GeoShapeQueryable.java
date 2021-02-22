@@ -26,7 +26,7 @@ import org.renameme.geometry.Geometry;
 import org.renameme.index.query.QueryShardContext;
 
 /**
- * Implemented by {@link org.elasticsearch.index.mapper.MappedFieldType} that support
+ * Implemented by {@link org.renameme.index.mapper.MappedFieldType} that support
  * GeoShape queries.
  */
 public interface GeoShapeQueryable {

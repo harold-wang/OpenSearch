@@ -40,7 +40,7 @@ public final class ShardGenerations {
 
     /**
      * Special generation that signifies that a shard is new and the repository does not yet contain a valid
-     * {@link org.elasticsearch.index.snapshots.blobstore.BlobStoreIndexShardSnapshots} blob for it.
+     * {@link org.renameme.index.snapshots.blobstore.BlobStoreIndexShardSnapshots} blob for it.
      */
     public static final String NEW_SHARD_GEN = "_new";
 
@@ -120,21 +120,21 @@ public final class ShardGenerations {
     }
 
     /**
-     * Get the generation of the {@link org.elasticsearch.index.snapshots.blobstore.BlobStoreIndexShardSnapshots} blob for a given index
+     * Get the generation of the {@link org.renameme.index.snapshots.blobstore.BlobStoreIndexShardSnapshots} blob for a given index
      * and shard.
      * There are three special kinds of generations that can be returned here.
      * <ul>
      *     <li>{@link #DELETED_SHARD_GEN} a deleted shard that isn't referenced by any snapshot in the repository any longer</li>
      *     <li>{@link #NEW_SHARD_GEN} a new shard that we know doesn't hold any valid data yet in the repository</li>
      *     <li>{@code null} unknown state. The shard either does not exist at all or it was created by a node older than
-     *     {@link org.elasticsearch.snapshots.SnapshotsService#SHARD_GEN_IN_REPO_DATA_VERSION}. If a caller expects a shard to exist in the
+     *     {@link org.renameme.snapshots.SnapshotsService#SHARD_GEN_IN_REPO_DATA_VERSION}. If a caller expects a shard to exist in the
      *     repository but sees a {@code null} return, it should try to recover the generation by falling back to listing the contents
      *     of the respective shard directory.</li>
      * </ul>
      *
      * @param indexId IndexId
      * @param shardId Shard Id
-     * @return generation of the {@link org.elasticsearch.index.snapshots.blobstore.BlobStoreIndexShardSnapshots} blob
+     * @return generation of the {@link org.renameme.index.snapshots.blobstore.BlobStoreIndexShardSnapshots} blob
      */
     @Nullable
     public String getShardGen(IndexId indexId, int shardId) {

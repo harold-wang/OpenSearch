@@ -613,7 +613,7 @@ public class AllocationService {
 
     /**
      * this class is used to describe results of applying a set of
-     * {@link org.elasticsearch.cluster.routing.allocation.command.AllocationCommand}
+     * {@link org.renameme.cluster.routing.allocation.command.AllocationCommand}
      */
     public static class CommandsResult {
 

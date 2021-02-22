@@ -24,7 +24,7 @@ import org.renameme.common.util.concurrent.ThreadContext;
 import java.util.function.Supplier;
 
 /**
- * Restores the given {@link org.elasticsearch.common.util.concurrent.ThreadContext.StoredContext}
+ * Restores the given {@link org.renameme.common.util.concurrent.ThreadContext.StoredContext}
  * once the listener is invoked
  */
 public final class ContextPreservingActionListener<R> implements ActionListener<R> {

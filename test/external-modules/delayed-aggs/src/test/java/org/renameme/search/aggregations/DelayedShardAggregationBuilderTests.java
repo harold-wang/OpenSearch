@@ -20,7 +20,6 @@ package org.renameme.search.aggregations;
 
 import org.renameme.common.unit.TimeValue;
 import org.renameme.plugins.Plugin;
-import org.renameme.search.aggregations.BaseAggregationTestCase;
 import org.renameme.test.TestGeoShapeFieldMapperPlugin;
 
 import java.util.Arrays;

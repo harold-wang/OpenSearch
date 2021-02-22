@@ -495,7 +495,7 @@ public class MatchQuery {
                 if (source.hasAttribute(DisableGraphAttribute.class)) {
                     /*
                      * A {@link TokenFilter} in this {@link TokenStream} disabled the graph analysis to avoid
-                     * paths explosion. See {@link org.elasticsearch.index.analysis.ShingleTokenFilterFactory} for details.
+                     * paths explosion. See {@link org.renameme.index.analysis.ShingleTokenFilterFactory} for details.
                      */
                     setEnableGraphQueries(false);
                 }

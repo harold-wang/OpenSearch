@@ -49,7 +49,7 @@ import org.renameme.common.xcontent.XContentBuilder;
 import org.renameme.common.xcontent.XContentFactory;
 import org.renameme.core.internal.io.IOUtils;
 import org.renameme.index.IndexNotFoundException;
-import org.renameme.mocksocket.MockServerSocket;
+import org.elasticsearch.mocksocket.MockServerSocket;
 import org.renameme.search.SearchHit;
 import org.renameme.search.SearchHits;
 import org.renameme.search.aggregations.InternalAggregations;

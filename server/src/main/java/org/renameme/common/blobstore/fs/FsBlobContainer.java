@@ -54,10 +54,10 @@ import java.util.concurrent.atomic.AtomicLong;
 import static java.util.Collections.unmodifiableMap;
 
 /**
- * A file system based implementation of {@link org.elasticsearch.common.blobstore.BlobContainer}.
+ * A file system based implementation of {@link org.renameme.common.blobstore.BlobContainer}.
  * All blobs in the container are stored on a file system, the location of which is specified by the {@link BlobPath}.
  *
- * Note that the methods in this implementation of {@link org.elasticsearch.common.blobstore.BlobContainer} may
+ * Note that the methods in this implementation of {@link org.renameme.common.blobstore.BlobContainer} may
  * additionally throw a {@link java.lang.SecurityException} if the configured {@link java.lang.SecurityManager}
  * does not permit read and/or write access to the underlying files.
  */

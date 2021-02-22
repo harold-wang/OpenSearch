@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A connection profile describes how many connection are established to specific node for each of the available request types.
- * ({@link org.elasticsearch.transport.TransportRequestOptions.Type}). This allows to tailor a connection towards a specific usage.
+ * ({@link org.renameme.transport.TransportRequestOptions.Type}). This allows to tailor a connection towards a specific usage.
  */
 public final class ConnectionProfile {
 
@@ -231,7 +231,7 @@ public final class ConnectionProfile {
 
         /**
          * Creates a new {@link ConnectionProfile} based on the added connections.
-         * @throws IllegalStateException if any of the {@link org.elasticsearch.transport.TransportRequestOptions.Type} enum is missing
+         * @throws IllegalStateException if any of the {@link org.renameme.transport.TransportRequestOptions.Type} enum is missing
          */
         public ConnectionProfile build() {
             EnumSet<TransportRequestOptions.Type> types = EnumSet.allOf(TransportRequestOptions.Type.class);
@@ -284,8 +284,8 @@ public final class ConnectionProfile {
     /**
      * Returns the number of connections per type for this profile. This might return a count that is shared with other types such
      * that the sum of all connections per type might be higher than {@link #getNumConnections()}. For instance if
-     * {@link org.elasticsearch.transport.TransportRequestOptions.Type#BULK} shares connections with
-     * {@link org.elasticsearch.transport.TransportRequestOptions.Type#REG} they will return both the same number of connections from
+     * {@link org.renameme.transport.TransportRequestOptions.Type#BULK} shares connections with
+     * {@link org.renameme.transport.TransportRequestOptions.Type#REG} they will return both the same number of connections from
      * this method but the connections are not distinct.
      */
     public int getNumConnectionsPerType(TransportRequestOptions.Type type) {

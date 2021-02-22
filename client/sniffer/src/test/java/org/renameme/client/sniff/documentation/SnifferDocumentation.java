@@ -22,7 +22,7 @@ package org.renameme.client.sniff.documentation;
 import org.apache.http.HttpHost;
 import org.renameme.client.Node;
 import org.renameme.client.RestClient;
-import org.renameme.client.sniff.renamemeNodesSniffer;
+import org.renameme.client.sniff.RenamemeNodesSniffer;
 import org.renameme.client.sniff.NodesSniffer;
 import org.renameme.client.sniff.SniffOnFailureListener;
 import org.renameme.client.sniff.Sniffer;

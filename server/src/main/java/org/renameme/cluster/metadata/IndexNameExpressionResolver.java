@@ -359,7 +359,7 @@ public class IndexNameExpressionResolver {
 
     /**
      * Utility method that allows to resolve an index expression to its corresponding single concrete index.
-     * Callers should make sure they provide proper {@link org.elasticsearch.action.support.IndicesOptions}
+     * Callers should make sure they provide proper {@link org.renameme.action.support.IndicesOptions}
      * that require a single index as a result. The indices resolution must in fact return a single index when
      * using this method, an {@link IllegalArgumentException} gets thrown otherwise.
      *

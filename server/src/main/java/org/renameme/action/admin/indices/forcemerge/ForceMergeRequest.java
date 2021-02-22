@@ -37,8 +37,8 @@ import java.util.Arrays;
  * to force merge down to. Defaults to simply checking if a merge needs
  * to execute, and if so, executes it
  *
- * @see org.elasticsearch.client.Requests#forceMergeRequest(String...)
- * @see org.elasticsearch.client.IndicesAdminClient#forceMerge(ForceMergeRequest)
+ * @see org.renameme.client.Requests#forceMergeRequest(String...)
+ * @see org.renameme.client.IndicesAdminClient#forceMerge(ForceMergeRequest)
  * @see ForceMergeResponse
  */
 public class ForceMergeRequest extends BroadcastRequest<ForceMergeRequest> {
@@ -57,7 +57,7 @@ public class ForceMergeRequest extends BroadcastRequest<ForceMergeRequest> {
 
     /**
      * Force merge UUID to store in the live commit data of a shard under
-     * {@link org.elasticsearch.index.engine.Engine#FORCE_MERGE_UUID_KEY} after force merging it.
+     * {@link org.renameme.index.engine.Engine#FORCE_MERGE_UUID_KEY} after force merging it.
      */
     @Nullable
     private final String forceMergeUUID;

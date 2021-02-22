@@ -23,7 +23,7 @@ import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.support.master.MasterNodeReadRequest;
 
 /**
- * This request is specific to the REST client. {@link org.elasticsearch.action.admin.cluster.state.ClusterStateRequest}
+ * This request is specific to the REST client. {@link org.renameme.action.admin.cluster.state.ClusterStateRequest}
  * is used on the transport layer.
  */
 public class ClusterGetSettingsRequest extends MasterNodeReadRequest<ClusterGetSettingsRequest> {

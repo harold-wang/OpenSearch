@@ -139,7 +139,7 @@ public class IndexFieldDataService extends AbstractIndexComponent implements Clo
     }
 
     /**
-     * Sets a {@link org.elasticsearch.index.fielddata.IndexFieldDataCache.Listener} passed to each {@link IndexFieldData}
+     * Sets a {@link org.renameme.index.fielddata.IndexFieldDataCache.Listener} passed to each {@link IndexFieldData}
      * creation to capture onCache and onRemoval events. Setting a listener on this method will override any previously
      * set listeners.
      * @throws IllegalStateException if the listener is set more than once

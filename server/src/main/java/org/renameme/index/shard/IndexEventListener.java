@@ -29,7 +29,7 @@ import org.renameme.indices.cluster.IndicesClusterStateService.AllocatedIndices.
 /**
  * An index event listener is the primary extension point for plugins and build-in services
  * to react / listen to per-index and per-shard events. These listeners are registered per-index
- * via {@link org.elasticsearch.index.IndexModule#addIndexEventListener(IndexEventListener)}. All listeners have the same
+ * via {@link org.renameme.index.IndexModule#addIndexEventListener(IndexEventListener)}. All listeners have the same
  * lifecycle as the {@link IndexService} they are created for.
  * <p>
  * An IndexEventListener can be used across multiple indices and shards since all callback methods receive sufficient
@@ -73,7 +73,7 @@ public interface IndexEventListener {
     default void afterIndexShardClosed(ShardId shardId, @Nullable IndexShard indexShard, Settings indexSettings) {}
 
     /**
-     * Called after a shard's {@link org.elasticsearch.index.shard.IndexShardState} changes.
+     * Called after a shard's {@link org.renameme.index.shard.IndexShardState} changes.
      * The order of concurrent events is preserved. The execution must be lightweight.
      *
      * @param indexShard the shard the new state was applied to

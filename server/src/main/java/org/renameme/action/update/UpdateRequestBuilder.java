@@ -143,7 +143,7 @@ public class UpdateRequestBuilder extends InstanceShardOperationRequestBuilder<U
     }
 
     /**
-     * Sets the versioning type. Defaults to {@link org.elasticsearch.index.VersionType#INTERNAL}.
+     * Sets the versioning type. Defaults to {@link org.renameme.index.VersionType#INTERNAL}.
      */
     public UpdateRequestBuilder setVersionType(VersionType versionType) {
         request.versionType(versionType);
@@ -155,7 +155,7 @@ public class UpdateRequestBuilder extends InstanceShardOperationRequestBuilder<U
      * sequence number. Must be used in combination with {@link #setIfPrimaryTerm(long)}
      *
      * If the document last modification was assigned a different sequence number a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public UpdateRequestBuilder setIfSeqNo(long seqNo) {
         request.setIfSeqNo(seqNo);
@@ -167,7 +167,7 @@ public class UpdateRequestBuilder extends InstanceShardOperationRequestBuilder<U
      * primary term. Must be used in combination with {@link #setIfSeqNo(long)}
      *
      * If the document last modification was assigned a different term a
-     * {@link org.elasticsearch.index.engine.VersionConflictEngineException} will be thrown.
+     * {@link org.renameme.index.engine.VersionConflictEngineException} will be thrown.
      */
     public UpdateRequestBuilder setIfPrimaryTerm(long term) {
         request.setIfPrimaryTerm(term);
@@ -268,7 +268,7 @@ public class UpdateRequestBuilder extends InstanceShardOperationRequestBuilder<U
 
     /**
      * Sets the index request to be used if the document does not exists. Otherwise, a
-     * {@link org.elasticsearch.index.engine.DocumentMissingException} is thrown.
+     * {@link org.renameme.index.engine.DocumentMissingException} is thrown.
      */
     public UpdateRequestBuilder setUpsert(IndexRequest indexRequest) {
         request.upsert(indexRequest);

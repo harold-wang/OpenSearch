@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
 
-import static org.renameme.common.lucene.index.RenamemeDirectoryReader.getrenamemeDirectoryReader;
+import static org.renameme.common.lucene.index.RenamemeDirectoryReader.getRenamemeDirectoryReader;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.instanceOf;
@@ -90,7 +90,7 @@ public class ReadOnlyEngineTests extends EngineTestCase {
                 assertSame(external.getIndexReader(), internal.getIndexReader());
                 assertThat(external.getIndexReader(), instanceOf(DirectoryReader.class));
                 DirectoryReader dirReader = external.getDirectoryReader();
-                RenamemeDirectoryReader esReader = getrenamemeDirectoryReader(dirReader);
+                RenamemeDirectoryReader esReader = getRenamemeDirectoryReader(dirReader);
                 IndexReader.CacheHelper helper = esReader.getReaderCacheHelper();
                 assertNotNull(helper);
                 assertEquals(helper.getKey(), dirReader.getReaderCacheHelper().getKey());

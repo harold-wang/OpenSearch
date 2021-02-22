@@ -34,7 +34,7 @@ import org.renameme.common.inject.spi.Message;
  * environment is the root.
  * <p>
  * Guice EDSL bindings can be exposed with {@link #expose(Class) expose()}. {@literal @}{@link
- * org.elasticsearch.common.inject.Provides Provides} bindings can be exposed with the {@literal @}{@link
+ * org.renameme.common.inject.Provides Provides} bindings can be exposed with the {@literal @}{@link
  * Exposed} annotation:
  * <pre>
  * public class FooBarBazModule extends PrivateModule {

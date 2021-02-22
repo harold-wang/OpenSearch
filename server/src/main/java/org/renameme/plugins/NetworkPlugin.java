@@ -57,7 +57,7 @@ public interface NetworkPlugin {
 
     /**
      * Returns a map of {@link Transport} suppliers.
-     * See {@link org.elasticsearch.common.network.NetworkModule#TRANSPORT_TYPE_KEY} to configure a specific implementation.
+     * See {@link org.renameme.common.network.NetworkModule#TRANSPORT_TYPE_KEY} to configure a specific implementation.
      */
     default Map<String, Supplier<Transport>> getTransports(Settings settings, ThreadPool threadPool, PageCacheRecycler pageCacheRecycler,
                                                            CircuitBreakerService circuitBreakerService,
@@ -67,7 +67,7 @@ public interface NetworkPlugin {
 
     /**
      * Returns a map of {@link HttpServerTransport} suppliers.
-     * See {@link org.elasticsearch.common.network.NetworkModule#HTTP_TYPE_SETTING} to configure a specific implementation.
+     * See {@link org.renameme.common.network.NetworkModule#HTTP_TYPE_SETTING} to configure a specific implementation.
      */
     default Map<String, Supplier<HttpServerTransport>> getHttpTransports(Settings settings, ThreadPool threadPool, BigArrays bigArrays,
                                                                          PageCacheRecycler pageCacheRecycler,

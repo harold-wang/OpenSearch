@@ -44,8 +44,6 @@ import java.util.stream.Collectors;
 import static java.nio.file.attribute.PosixFilePermissions.fromString;
 import static java.util.Collections.singletonMap;
 import static org.renameme.packaging.util.Docker.existsInContainer;
-import static org.renameme.packaging.util.Docker.runContainer;
-import static org.renameme.packaging.util.Docker.waitForRenameme;
 import static org.renameme.packaging.util.FileUtils.append;
 import static org.renameme.packaging.util.FileUtils.rm;
 import static org.hamcrest.Matchers.arrayContaining;
