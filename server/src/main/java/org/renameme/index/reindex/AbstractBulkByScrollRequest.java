@@ -19,7 +19,7 @@
 
 package org.renameme.index.reindex;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionRequest;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.search.SearchRequest;
@@ -471,8 +471,8 @@ public abstract class AbstractBulkByScrollRequest<Self extends AbstractBulkByScr
         out.writeTimeValue(retryBackoffInitialTime);
         out.writeVInt(maxRetries);
         out.writeFloat(requestsPerSecond);
-        if (out.getVersion().before(Version.V_6_1_0) && slices == AUTO_SLICES) {
-            throw new IllegalArgumentException("Slices set as \"auto\" are not supported before version [" + Version.V_6_1_0 + "]. " +
+        if (out.getVersion().before(LegacyESVersion.V_6_1_0) && slices == AUTO_SLICES) {
+            throw new IllegalArgumentException("Slices set as \"auto\" are not supported before version [" + LegacyESVersion.V_6_1_0 + "]. " +
                 "Found version [" + out.getVersion() + "]");
         } else {
             out.writeVInt(slices);

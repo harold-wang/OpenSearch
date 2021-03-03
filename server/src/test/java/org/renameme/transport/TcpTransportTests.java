@@ -21,8 +21,8 @@ package org.renameme.transport;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.support.PlainActionFuture;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.component.Lifecycle;
@@ -41,7 +41,6 @@ import org.renameme.test.junit.annotations.TestLogging;
 import org.renameme.threadpool.TestThreadPool;
 import org.renameme.threadpool.ThreadPool;
 import org.hamcrest.Matcher;
-import org.renameme.transport.FakeTcpChannel;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;

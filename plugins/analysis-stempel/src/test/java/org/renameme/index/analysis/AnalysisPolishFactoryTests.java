@@ -28,7 +28,6 @@ import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.UUIDs;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
-import org.renameme.index.analysis.TokenFilterFactory;
 import org.renameme.env.TestEnvironment;
 import org.renameme.index.IndexSettings;
 import org.renameme.index.analysis.pl.PolishStemTokenFilterFactory;

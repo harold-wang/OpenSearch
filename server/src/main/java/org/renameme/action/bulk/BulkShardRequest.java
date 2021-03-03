@@ -21,6 +21,7 @@ package org.renameme.action.bulk;
 
 import org.apache.lucene.util.Accountable;
 import org.apache.lucene.util.RamUsageEstimator;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.support.replication.ReplicatedWriteRequest;
 import org.renameme.action.support.replication.ReplicationRequest;
@@ -35,7 +36,7 @@ import java.util.stream.Stream;
 
 public class BulkShardRequest extends ReplicatedWriteRequest<BulkShardRequest> implements Accountable {
 
-    public static final Version COMPACT_SHARD_ID_VERSION = Version.V_7_9_0;
+    public static final Version COMPACT_SHARD_ID_VERSION = LegacyESVersion.V_7_9_0;
     private static final long SHALLOW_SIZE = RamUsageEstimator.shallowSizeOfInstance(BulkShardRequest.class);
 
     private final BulkItemRequest[] items;

@@ -77,6 +77,7 @@ import org.apache.lucene.search.spans.SpanTermQuery;
 import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.BytesRef;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.CheckedFunction;
@@ -97,9 +98,6 @@ import org.renameme.index.mapper.NumberFieldMapper;
 import org.renameme.index.mapper.ParseContext;
 import org.renameme.index.query.QueryShardContext;
 import org.renameme.plugins.Plugin;
-import org.renameme.percolator.PercolateQuery;
-import org.renameme.percolator.PercolatorFieldMapper;
-import org.renameme.percolator.PercolatorPlugin;
 import org.renameme.test.ESSingleNodeTestCase;
 import org.junit.After;
 import org.junit.Before;
@@ -602,7 +600,7 @@ public class CandidateQueryTests extends ESSingleNodeTestCase {
         IndexSearcher shardSearcher = newSearcher(directoryReader);
         shardSearcher.setQueryCache(null);
 
-        Version v = Version.V_6_1_0;
+        Version v = LegacyESVersion.V_6_1_0;
         MemoryIndex memoryIndex = MemoryIndex.fromDocument(Collections.singleton(new IntPoint("int_field", 3)), new WhitespaceAnalyzer());
         IndexSearcher percolateSearcher = memoryIndex.createSearcher();
         Query query = fieldType.percolateQuery("_name", queryStore, Collections.singletonList(new BytesArray("{}")),

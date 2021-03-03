@@ -19,8 +19,8 @@
 
 package org.renameme.action.termvectors;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeParseException;
-import org.renameme.Version;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.RealtimeRequest;
 import org.renameme.action.ValidateActions;
@@ -169,7 +169,7 @@ public class TermVectorsRequest extends SingleShardRequest<TermVectorsRequest> i
         }
         routing = in.readOptionalString();
 
-        if (in.getVersion().before(Version.V_7_0_0)) {
+        if (in.getVersion().before(LegacyESVersion.V_7_0_0)) {
             in.readOptionalString(); // _parent
         }
         preference = in.readOptionalString();
@@ -540,7 +540,7 @@ public class TermVectorsRequest extends SingleShardRequest<TermVectorsRequest> i
             out.writeEnum(xContentType);
         }
         out.writeOptionalString(routing);
-        if (out.getVersion().before(Version.V_7_0_0)) {
+        if (out.getVersion().before(LegacyESVersion.V_7_0_0)) {
             out.writeOptionalString(null); // _parent
         }
         out.writeOptionalString(preference);

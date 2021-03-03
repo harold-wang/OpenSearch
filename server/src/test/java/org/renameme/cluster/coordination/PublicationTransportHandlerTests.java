@@ -18,8 +18,8 @@
  */
 package org.renameme.cluster.coordination;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.cluster.ClusterChangedEvent;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.Diff;
@@ -30,7 +30,6 @@ import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.settings.ClusterSettings;
 import org.renameme.common.settings.Settings;
 import org.renameme.node.Node;
-import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.transport.CapturingTransport;
 import org.renameme.transport.TransportService;

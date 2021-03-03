@@ -19,6 +19,7 @@
 
 package org.renameme.index.replication;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.support.PlainActionFuture;
@@ -29,7 +30,6 @@ import org.renameme.common.settings.Settings;
 import org.renameme.index.IndexSettings;
 import org.renameme.index.seqno.RetentionLease;
 import org.renameme.index.seqno.RetentionLeaseSyncAction;
-import org.renameme.index.replication.ESIndexLevelReplicationTestCase;
 import org.renameme.index.seqno.RetentionLeaseUtils;
 import org.renameme.index.seqno.RetentionLeases;
 import org.renameme.index.shard.IndexShard;
@@ -154,7 +154,7 @@ public class RetentionLeasesReplicationTests extends ESIndexLevelReplicationTest
         final Settings.Builder settings = Settings.builder().put(IndexSettings.INDEX_SOFT_DELETES_SETTING.getKey(), true);
         if (randomBoolean()) {
             settings.put(IndexMetadata.SETTING_VERSION_CREATED,
-                VersionUtils.randomVersionBetween(random(), Version.V_6_5_0, Version.CURRENT));
+                VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_5_0, Version.CURRENT));
         }
         try (ReplicationGroup group = createGroup(between(1, 2), settings.build())) {
             group.startAll();

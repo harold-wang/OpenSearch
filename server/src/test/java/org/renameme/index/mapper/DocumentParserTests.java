@@ -32,8 +32,6 @@ import org.renameme.common.xcontent.XContentType;
 import org.renameme.index.IndexSettings;
 import org.renameme.index.mapper.ParseContext.Document;
 import org.renameme.plugins.Plugin;
-import org.renameme.index.mapper.MapperServiceTestCase;
-import org.renameme.index.mapper.MockFieldMapper;
 
 import java.io.IOException;
 import java.math.BigDecimal;

@@ -36,9 +36,6 @@ import org.renameme.common.util.PageCacheRecycler;
 import org.renameme.common.util.concurrent.ThreadContext;
 import org.renameme.core.internal.io.Streams;
 import org.renameme.test.ESTestCase;
-import org.renameme.transport.FakeTcpChannel;
-import org.renameme.transport.TestRequest;
-import org.renameme.transport.TestResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;

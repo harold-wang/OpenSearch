@@ -33,7 +33,6 @@ import org.renameme.action.support.PlainActionFuture;
 import org.renameme.action.support.replication.ReplicationOperation.ReplicaResponse;
 import org.renameme.client.transport.NoNodeAvailableException;
 import org.renameme.cluster.ClusterState;
-import org.renameme.action.support.replication.ClusterStateCreationUtils;
 import org.renameme.cluster.ESAllocationTestCase;
 import org.renameme.cluster.action.shard.ShardStateAction;
 import org.renameme.cluster.block.ClusterBlock;

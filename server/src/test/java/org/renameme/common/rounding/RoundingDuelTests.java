@@ -19,7 +19,7 @@
 
 package org.renameme.common.rounding;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.BytesStreamOutput;
 import org.renameme.common.unit.TimeValue;
 import org.renameme.test.ESTestCase;
@@ -48,7 +48,7 @@ public class RoundingDuelTests extends ESTestCase  {
             oldNextRoundingValueWorks = false;
         }
         BytesStreamOutput output = new BytesStreamOutput();
-        output.setVersion(VersionUtils.getPreviousVersion(Version.V_7_0_0));
+        output.setVersion(VersionUtils.getPreviousVersion(LegacyESVersion.V_7_0_0));
         rounding.writeTo(output);
 
         Rounding roundingJoda = Rounding.Streams.read(output.bytes().streamInput());

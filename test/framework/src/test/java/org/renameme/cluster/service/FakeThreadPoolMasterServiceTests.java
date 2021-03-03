@@ -29,7 +29,6 @@ import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.cluster.node.DiscoveryNodeRole;
 import org.renameme.common.settings.Settings;
 import org.renameme.common.util.concurrent.ThreadContext;
-import org.renameme.cluster.service.FakeThreadPoolMasterService;
 import org.renameme.test.ESTestCase;
 import org.renameme.threadpool.ThreadPool;
 

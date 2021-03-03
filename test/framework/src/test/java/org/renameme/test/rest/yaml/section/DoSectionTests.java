@@ -31,8 +31,6 @@ import org.renameme.common.xcontent.yaml.YamlXContent;
 import org.renameme.test.rest.yaml.ClientYamlTestExecutionContext;
 import org.renameme.test.rest.yaml.ClientYamlTestResponse;
 import org.hamcrest.MatcherAssert;
-import org.renameme.test.rest.yaml.section.ApiCallSection;
-import org.renameme.test.rest.yaml.section.DoSection;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -28,7 +28,6 @@ import org.renameme.index.engine.VersionConflictEngineException;
 import org.renameme.index.get.GetResult;
 import org.renameme.index.mapper.RoutingFieldMapper;
 import org.renameme.search.fetch.subphase.FetchSourceContext;
-import org.renameme.index.shard.IndexShardTestCase;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

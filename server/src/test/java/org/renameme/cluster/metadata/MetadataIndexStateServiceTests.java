@@ -19,6 +19,7 @@
 
 package org.renameme.cluster.metadata;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.admin.indices.close.CloseIndexClusterStateUpdateRequest;
 import org.renameme.action.admin.indices.close.CloseIndexResponse;
@@ -195,9 +196,9 @@ public class MetadataIndexStateServiceTests extends ESTestCase {
         state = ClusterState.builder(state)
             .nodes(DiscoveryNodes.builder(state.nodes())
                 .add(new DiscoveryNode("old_node", buildNewFakeTransportAddress(), emptyMap(),
-                    new HashSet<>(DiscoveryNodeRole.BUILT_IN_ROLES), Version.V_7_0_0))
+                    new HashSet<>(DiscoveryNodeRole.BUILT_IN_ROLES), LegacyESVersion.V_7_0_0))
                 .add(new DiscoveryNode("new_node", buildNewFakeTransportAddress(), emptyMap(),
-                    new HashSet<>(DiscoveryNodeRole.BUILT_IN_ROLES), Version.V_7_2_0)))
+                    new HashSet<>(DiscoveryNodeRole.BUILT_IN_ROLES), LegacyESVersion.V_7_2_0)))
             .build();
 
         state = MetadataIndexStateService.closeRoutingTable(state, blockedIndices, results).v1();

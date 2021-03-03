@@ -21,8 +21,8 @@ package org.renameme.transport.nio;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.ActionListener;
 import org.renameme.action.support.PlainActionFuture;
 import org.renameme.cluster.node.DiscoveryNode;

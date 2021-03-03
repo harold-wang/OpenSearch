@@ -29,6 +29,7 @@ import org.apache.lucene.analysis.reverse.ReverseStringFilter;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
@@ -177,7 +178,7 @@ public class AnalysisRegistryTests extends ESTestCase {
 
 
     public void testOverrideDefaultIndexAnalyzerIsUnsupported() {
-        Version version = VersionUtils.randomVersionBetween(random(), Version.V_6_0_0_alpha1, Version.CURRENT);
+        Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0_alpha1, Version.CURRENT);
         Settings settings = Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, version).build();
         AnalyzerProvider<?> defaultIndex = new PreBuiltAnalyzerProvider("default_index", AnalyzerScope.INDEX, new EnglishAnalyzer());
         IllegalArgumentException e = expectThrows(IllegalArgumentException.class,

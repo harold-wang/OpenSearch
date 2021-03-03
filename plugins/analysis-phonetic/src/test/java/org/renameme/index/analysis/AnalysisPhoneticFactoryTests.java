@@ -19,12 +19,11 @@
 
 package org.renameme.index.analysis;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.IndexSettings;
-import org.renameme.index.analysis.TokenFilterFactory;
-import org.renameme.index.analysis.PhoneticTokenFilterFactory;
 import org.renameme.indices.analysis.AnalysisFactoryTestCase;
 import org.renameme.plugin.analysis.AnalysisPhoneticPlugin;
 import org.renameme.test.IndexSettingsModule;
@@ -53,7 +52,7 @@ public class AnalysisPhoneticFactoryTests extends AnalysisFactoryTestCase {
         AnalysisPhoneticPlugin plugin = new AnalysisPhoneticPlugin();
 
         Settings settings = Settings.builder()
-            .put(IndexMetadata.SETTING_VERSION_CREATED, VersionUtils.randomVersionBetween(random(), Version.V_7_0_0, Version.CURRENT))
+            .put(IndexMetadata.SETTING_VERSION_CREATED, VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_0_0, Version.CURRENT))
             .put("path.home", createTempDir().toString())
             .build();
         IndexSettings idxSettings = IndexSettingsModule.newIndexSettings("index", settings);
@@ -65,7 +64,7 @@ public class AnalysisPhoneticFactoryTests extends AnalysisFactoryTestCase {
 
         settings = Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED, VersionUtils.randomVersionBetween(random(),
-                Version.V_6_0_0, VersionUtils.getPreviousVersion(Version.V_7_0_0)))
+                LegacyESVersion.V_6_0_0, VersionUtils.getPreviousVersion(LegacyESVersion.V_7_0_0)))
             .put("path.home", createTempDir().toString())
             .build();
         idxSettings = IndexSettingsModule.newIndexSettings("index", settings);

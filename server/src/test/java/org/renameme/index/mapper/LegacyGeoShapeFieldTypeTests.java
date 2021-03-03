@@ -23,7 +23,6 @@ import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.geo.SpatialStrategy;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.mapper.LegacyGeoShapeFieldMapper.GeoShapeFieldType;
-import org.renameme.index.mapper.FieldTypeTestCase;
 
 import java.io.IOException;
 import java.util.Arrays;

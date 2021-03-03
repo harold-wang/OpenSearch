@@ -24,11 +24,9 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.core.WhitespaceTokenizer;
 import org.apache.lucene.search.suggest.analyzing.SuggestStopFilter;
-import org.apache.lucene.util.Version;
 import org.renameme.common.settings.Settings.Builder;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
-import org.renameme.index.analysis.AnalysisTestsHelper;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.ESTokenStreamTestCase;
 
@@ -59,7 +57,7 @@ public class StopTokenFilterTests extends ESTokenStreamTestCase {
     public void testCorrectPositionIncrementSetting() throws IOException {
         Builder builder = Settings.builder().put("index.analysis.filter.my_stop.type", "stop");
         if (random().nextBoolean()) {
-            builder.put("index.analysis.filter.my_stop.version", Version.LATEST);
+            builder.put("index.analysis.filter.my_stop.version", org.apache.lucene.util.Version.LATEST);
         } else {
             // don't specify
         }

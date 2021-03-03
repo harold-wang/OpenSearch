@@ -22,11 +22,8 @@ package org.renameme.action.bulk;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.SparseFixedBitSet;
-import org.renameme.Assertions;
-import org.renameme.ExceptionsHelper;
-import org.renameme.ResourceAlreadyExistsException;
+import org.renameme.*;
 import org.renameme.Version;
-import org.renameme.RenamemeParseException;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionRunnable;
 import org.renameme.action.DocWriteRequest;
@@ -401,7 +398,7 @@ public class TransportBulkAction extends HandledTransportAction<BulkRequest, Bul
         createIndexRequest.index(index);
         createIndexRequest.cause("auto(bulk api)");
         createIndexRequest.masterNodeTimeout(timeout);
-        if (minNodeVersion.onOrAfter(Version.V_7_8_0)) {
+        if (minNodeVersion.onOrAfter(LegacyESVersion.V_7_8_0)) {
             client.execute(AutoCreateAction.INSTANCE, createIndexRequest, listener);
         } else {
             client.admin().indices().create(createIndexRequest, listener);

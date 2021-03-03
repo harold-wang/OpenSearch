@@ -33,8 +33,8 @@ import org.apache.lucene.store.BaseDirectoryWrapper;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.IOContext;
 import org.apache.lucene.util.SetOnce;
-import org.renameme.ExceptionsHelper;
 import org.renameme.Version;
+import org.renameme.ExceptionsHelper;
 import org.renameme.action.ActionListener;
 import org.renameme.action.LatchedActionListener;
 import org.renameme.action.StepListener;
@@ -78,7 +78,6 @@ import org.renameme.index.shard.ShardId;
 import org.renameme.index.store.Store;
 import org.renameme.index.store.StoreFileMetadata;
 import org.renameme.index.translog.Translog;
-import org.renameme.indices.recovery.AsyncRecoveryTarget;
 import org.renameme.test.CorruptionUtils;
 import org.renameme.test.DummyShardLock;
 import org.renameme.test.ESTestCase;
@@ -131,7 +130,7 @@ import static org.mockito.Mockito.when;
 
 public class RecoverySourceHandlerTests extends ESTestCase {
     private static final IndexSettings INDEX_SETTINGS = IndexSettingsModule.newIndexSettings("index",
-        Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, org.renameme.Version.CURRENT).build());
+        Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, Version.CURRENT).build());
     private final ShardId shardId = new ShardId(INDEX_SETTINGS.getIndex(), 1);
     private final ClusterSettings service = new ClusterSettings(Settings.EMPTY, ClusterSettings.BUILT_IN_CLUSTER_SETTINGS);
 

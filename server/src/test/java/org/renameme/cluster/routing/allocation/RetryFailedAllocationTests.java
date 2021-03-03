@@ -19,8 +19,8 @@
 
 package org.renameme.cluster.routing.allocation;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.cluster.ClusterName;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.ESAllocationTestCase;

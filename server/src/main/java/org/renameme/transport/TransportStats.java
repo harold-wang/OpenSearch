@@ -19,12 +19,11 @@
 
 package org.renameme.transport;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.io.stream.Writeable;
 import org.renameme.common.unit.ByteSizeValue;
-import org.renameme.common.xcontent.ToXContent.Params;
 import org.renameme.common.xcontent.ToXContentFragment;
 import org.renameme.common.xcontent.XContentBuilder;
 
@@ -50,7 +49,7 @@ public class TransportStats implements Writeable, ToXContentFragment {
 
     public TransportStats(StreamInput in) throws IOException {
         serverOpen = in.readVLong();
-        if (in.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             totalOutboundConnections = in.readVLong();
         } else {
             totalOutboundConnections = 0L;
@@ -64,7 +63,7 @@ public class TransportStats implements Writeable, ToXContentFragment {
     @Override
     public void writeTo(StreamOutput out) throws IOException {
         out.writeVLong(serverOpen);
-        if (out.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             out.writeVLong(totalOutboundConnections);
         }
         out.writeVLong(rxCount);

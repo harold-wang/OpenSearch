@@ -19,8 +19,8 @@
 
 package org.renameme.index.get;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeParseException;
-import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.compress.CompressorFactory;
@@ -77,7 +77,7 @@ public class GetResult implements Writeable, Iterable<DocumentField>, ToXContent
         index = in.readString();
         type = in.readOptionalString();
         id = in.readString();
-        if (in.getVersion().onOrAfter(Version.V_6_6_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
             seqNo = in.readZLong();
             primaryTerm = in.readVLong();
         } else {
@@ -91,7 +91,7 @@ public class GetResult implements Writeable, Iterable<DocumentField>, ToXContent
             if (source.length() == 0) {
                 source = null;
             }
-            if (in.getVersion().onOrAfter(Version.V_7_3_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
                 documentFields = readFields(in);
                 metaFields = readFields(in);
             } else {
@@ -422,7 +422,7 @@ public class GetResult implements Writeable, Iterable<DocumentField>, ToXContent
         out.writeString(index);
         out.writeOptionalString(type);
         out.writeString(id);
-        if (out.getVersion().onOrAfter(Version.V_6_6_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
             out.writeZLong(seqNo);
             out.writeVLong(primaryTerm);
         }
@@ -430,7 +430,7 @@ public class GetResult implements Writeable, Iterable<DocumentField>, ToXContent
         out.writeBoolean(exists);
         if (exists) {
             out.writeBytesReference(source);
-            if (out.getVersion().onOrAfter(Version.V_7_3_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
                 writeFields(out, documentFields);
                 writeFields(out, metaFields);
             } else {

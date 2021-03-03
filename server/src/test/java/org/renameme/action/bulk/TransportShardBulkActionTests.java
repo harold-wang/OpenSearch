@@ -19,9 +19,9 @@
 
 package org.renameme.action.bulk;
 
+import org.renameme.Version;
 import org.renameme.RenamemeException;
 import org.renameme.RenamemeStatusException;
-import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.DocWriteRequest;
 import org.renameme.action.DocWriteResponse;

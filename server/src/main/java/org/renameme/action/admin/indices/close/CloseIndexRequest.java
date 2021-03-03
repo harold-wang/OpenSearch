@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.indices.close;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.IndicesRequest;
 import org.renameme.action.support.ActiveShardCount;
@@ -46,7 +46,7 @@ public class CloseIndexRequest extends AcknowledgedRequest<CloseIndexRequest> im
         super(in);
         indices = in.readStringArray();
         indicesOptions = IndicesOptions.readIndicesOptions(in);
-        if (in.getVersion().onOrAfter(Version.V_7_2_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
             waitForActiveShards = ActiveShardCount.readFrom(in);
         } else {
             waitForActiveShards = ActiveShardCount.NONE;
@@ -129,7 +129,7 @@ public class CloseIndexRequest extends AcknowledgedRequest<CloseIndexRequest> im
         super.writeTo(out);
         out.writeStringArray(indices);
         indicesOptions.writeIndicesOptions(out);
-        if (out.getVersion().onOrAfter(Version.V_7_2_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
             waitForActiveShards.writeTo(out);
         }
     }

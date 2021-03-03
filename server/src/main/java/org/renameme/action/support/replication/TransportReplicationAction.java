@@ -21,10 +21,7 @@ package org.renameme.action.support.replication;
 
 import org.apache.logging.log4j.message.ParameterizedMessage;
 import org.apache.lucene.store.AlreadyClosedException;
-import org.renameme.Assertions;
-import org.renameme.RenamemeException;
-import org.renameme.ExceptionsHelper;
-import org.renameme.Version;
+import org.renameme.*;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionListenerResponseHandler;
 import org.renameme.action.ActionResponse;
@@ -1218,12 +1215,12 @@ public abstract class TransportReplicationAction<
 
         public ConcreteReplicaRequest(Writeable.Reader<R> requestReader, StreamInput in) throws IOException {
             super(requestReader, in);
-            if (in.getVersion().onOrAfter(Version.V_6_0_0_alpha1)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_alpha1)) {
                 globalCheckpoint = in.readZLong();
             } else {
                 globalCheckpoint = SequenceNumbers.UNASSIGNED_SEQ_NO;
             }
-            if (in.getVersion().onOrAfter(Version.V_6_5_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_6_5_0)) {
                 maxSeqNoOfUpdatesOrDeletes = in.readZLong();
             } else {
                 // UNASSIGNED_SEQ_NO (-2) means uninitialized, and replicas will disable
@@ -1242,10 +1239,10 @@ public abstract class TransportReplicationAction<
         @Override
         public void writeTo(StreamOutput out) throws IOException {
             super.writeTo(out);
-            if (out.getVersion().onOrAfter(Version.V_6_0_0_alpha1)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_alpha1)) {
                 out.writeZLong(globalCheckpoint);
             }
-            if (out.getVersion().onOrAfter(Version.V_6_5_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_6_5_0)) {
                 out.writeZLong(maxSeqNoOfUpdatesOrDeletes);
             }
         }

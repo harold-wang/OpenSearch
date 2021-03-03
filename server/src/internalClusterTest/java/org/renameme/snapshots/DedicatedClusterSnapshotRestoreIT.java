@@ -75,7 +75,6 @@ import org.renameme.rest.RestResponse;
 import org.renameme.rest.RestStatus;
 import org.renameme.rest.action.admin.cluster.RestClusterStateAction;
 import org.renameme.rest.action.admin.cluster.RestGetRepositoriesAction;
-import org.renameme.snapshots.AbstractSnapshotIntegTestCase;
 import org.renameme.snapshots.mockstore.MockRepository;
 import org.renameme.test.ESIntegTestCase.ClusterScope;
 import org.renameme.test.ESIntegTestCase.Scope;

@@ -19,8 +19,8 @@
 
 package org.renameme.common.unit;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeParseException;
-import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -51,7 +51,7 @@ public class ByteSizeValue implements Writeable, Comparable<ByteSizeValue>, ToXC
     private final ByteSizeUnit unit;
 
     public ByteSizeValue(StreamInput in) throws IOException {
-        if (in.getVersion().before(Version.V_6_2_0)) {
+        if (in.getVersion().before(LegacyESVersion.V_6_2_0)) {
             size = in.readVLong();
             unit = ByteSizeUnit.BYTES;
         } else {
@@ -62,7 +62,7 @@ public class ByteSizeValue implements Writeable, Comparable<ByteSizeValue>, ToXC
 
     @Override
     public void writeTo(StreamOutput out) throws IOException {
-        if (out.getVersion().before(Version.V_6_2_0)) {
+        if (out.getVersion().before(LegacyESVersion.V_6_2_0)) {
             out.writeVLong(getBytes());
         } else {
             out.writeZLong(size);

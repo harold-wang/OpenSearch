@@ -18,8 +18,8 @@
  */
 package org.renameme.common.breaker;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeException;
-import org.renameme.Version;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.xcontent.XContentBuilder;
@@ -40,7 +40,7 @@ public class CircuitBreakingException extends RenamemeException {
         super(in);
         byteLimit = in.readLong();
         bytesWanted = in.readLong();
-        if (in.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             durability = in.readEnum(CircuitBreaker.Durability.class);
         } else {
             durability = CircuitBreaker.Durability.PERMANENT;
@@ -63,7 +63,7 @@ public class CircuitBreakingException extends RenamemeException {
         super.writeTo(out);
         out.writeLong(byteLimit);
         out.writeLong(bytesWanted);
-        if (out.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             out.writeEnum(durability);
         }
     }

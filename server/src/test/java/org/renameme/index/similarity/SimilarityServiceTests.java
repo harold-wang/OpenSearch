@@ -24,7 +24,7 @@ import org.apache.lucene.search.TermStatistics;
 import org.apache.lucene.search.similarities.BooleanSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.search.similarity.LegacyBM25Similarity;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.IndexSettings;
 import org.renameme.test.ESTestCase;
@@ -84,7 +84,7 @@ public class SimilarityServiceTests extends ESTestCase {
             }
         };
         IllegalArgumentException e = expectThrows(IllegalArgumentException.class,
-                () -> SimilarityService.validateSimilarity(Version.V_7_0_0, negativeScoresSim));
+                () -> SimilarityService.validateSimilarity(LegacyESVersion.V_7_0_0, negativeScoresSim));
         assertThat(e.getMessage(), Matchers.containsString("Similarities should not return negative scores"));
 
         Similarity decreasingScoresWithFreqSim = new Similarity() {
@@ -107,7 +107,7 @@ public class SimilarityServiceTests extends ESTestCase {
             }
         };
         e = expectThrows(IllegalArgumentException.class,
-                () -> SimilarityService.validateSimilarity(Version.V_7_0_0, decreasingScoresWithFreqSim));
+                () -> SimilarityService.validateSimilarity(LegacyESVersion.V_7_0_0, decreasingScoresWithFreqSim));
         assertThat(e.getMessage(), Matchers.containsString("Similarity scores should not decrease when term frequency increases"));
 
         Similarity increasingScoresWithNormSim = new Similarity() {
@@ -130,7 +130,7 @@ public class SimilarityServiceTests extends ESTestCase {
             }
         };
         e = expectThrows(IllegalArgumentException.class,
-                () -> SimilarityService.validateSimilarity(Version.V_7_0_0, increasingScoresWithNormSim));
+                () -> SimilarityService.validateSimilarity(LegacyESVersion.V_7_0_0, increasingScoresWithNormSim));
         assertThat(e.getMessage(), Matchers.containsString("Similarity scores should not increase when norm increases"));
     }
 

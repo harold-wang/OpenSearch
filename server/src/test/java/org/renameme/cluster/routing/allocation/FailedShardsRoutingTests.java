@@ -22,6 +22,7 @@ package org.renameme.cluster.routing.allocation;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.ESAllocationTestCase;
@@ -620,8 +621,8 @@ public class FailedShardsRoutingTests extends ESAllocationTestCase {
 
         clusterState = ClusterState.builder(clusterState).nodes(
                 DiscoveryNodes.builder(clusterState.nodes())
-                .add(newNode("node3-6.x", VersionUtils.randomVersionBetween(random(), Version.V_6_0_0_alpha1, null)))
-                .add(newNode("node4-6.x", VersionUtils.randomVersionBetween(random(), Version.V_6_0_0_alpha1, null))))
+                .add(newNode("node3-6.x", VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0_alpha1, null)))
+                .add(newNode("node4-6.x", VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0_alpha1, null))))
                 .build();
 
         // start all the replicas

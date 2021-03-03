@@ -19,7 +19,7 @@
 
 package org.renameme.search.fetch.subphase;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Nullable;
 import org.renameme.common.ParseField;
 import org.renameme.common.io.stream.StreamInput;
@@ -77,7 +77,7 @@ public final class FieldAndFormat implements Writeable, ToXContentObject {
     /** Serialization constructor. */
     public FieldAndFormat(StreamInput in) throws IOException {
         this.field = in.readString();
-        if (in.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             format = in.readOptionalString();
         } else {
             format = null;
@@ -87,7 +87,7 @@ public final class FieldAndFormat implements Writeable, ToXContentObject {
     @Override
     public void writeTo(StreamOutput out) throws IOException {
         out.writeString(field);
-        if (out.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             out.writeOptionalString(format);
         }
     }

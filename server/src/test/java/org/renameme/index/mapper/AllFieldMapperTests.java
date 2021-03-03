@@ -19,6 +19,7 @@
 
 package org.renameme.index.mapper;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.Strings;
@@ -42,7 +43,7 @@ public class AllFieldMapperTests extends ESSingleNodeTestCase {
     public void testAllDisabled() throws Exception {
         {
             final Version version = VersionUtils.randomVersionBetween(random(),
-                Version.V_6_0_0, Version.V_7_0_0.minimumCompatibilityVersion());
+                LegacyESVersion.V_6_0_0, LegacyESVersion.V_7_0_0.minimumCompatibilityVersion());
             IndexService indexService = createIndex("test_6x",
                 Settings.builder()
                     .put(IndexMetadata.SETTING_VERSION_CREATED, version)

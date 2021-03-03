@@ -20,8 +20,8 @@
 package org.renameme.index.reindex;
 
 import org.apache.lucene.util.LuceneTestCase;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.common.Randomness;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.BytesStreamOutput;

@@ -19,6 +19,7 @@
 
 package org.renameme.search.functionscore;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionFuture;
 import org.renameme.action.index.IndexRequestBuilder;
@@ -610,7 +611,7 @@ public class DecayFunctionScoreIT extends ESIntegTestCase {
     }
 
     public void testManyDocsLin() throws Exception {
-        Version version = VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.CURRENT);
+        Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, Version.CURRENT);
         Settings settings = Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, version).build();
         XContentBuilder xContentBuilder = jsonBuilder().startObject().startObject("type").startObject("properties")
                 .startObject("test").field("type", "text").endObject().startObject("date").field("type", "date")

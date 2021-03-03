@@ -19,7 +19,7 @@
 
 package org.renameme.monitor.os;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.unit.TimeValue;
@@ -60,7 +60,7 @@ public class OsInfo implements ReportingService.Info {
         this.availableProcessors = in.readInt();
         this.allocatedProcessors = in.readInt();
         this.name = in.readOptionalString();
-        if (in.getVersion().onOrAfter(Version.V_6_6_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
             this.prettyName = in.readOptionalString();
         } else {
             this.prettyName = null;
@@ -75,7 +75,7 @@ public class OsInfo implements ReportingService.Info {
         out.writeInt(availableProcessors);
         out.writeInt(allocatedProcessors);
         out.writeOptionalString(name);
-        if (out.getVersion().onOrAfter(Version.V_6_6_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
             out.writeOptionalString(prettyName);
         }
         out.writeOptionalString(arch);

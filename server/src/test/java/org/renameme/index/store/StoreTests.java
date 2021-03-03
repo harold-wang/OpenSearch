@@ -50,7 +50,7 @@ import org.apache.lucene.store.IndexOutput;
 import org.apache.lucene.store.NIOFSDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.TestUtil;
-import org.apache.lucene.util.Version;
+import org.renameme.Version;
 import org.renameme.ExceptionsHelper;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.UUIDs;
@@ -106,8 +106,8 @@ import static org.hamcrest.Matchers.notNullValue;
 public class StoreTests extends ESTestCase {
 
     private static final IndexSettings INDEX_SETTINGS = IndexSettingsModule.newIndexSettings("index",
-        Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, org.renameme.Version.CURRENT).build());
-    private static final Version MIN_SUPPORTED_LUCENE_VERSION = org.renameme.Version.CURRENT
+        Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, Version.CURRENT).build());
+    private static final org.apache.lucene.util.Version MIN_SUPPORTED_LUCENE_VERSION = Version.CURRENT
         .minimumIndexCompatibilityVersion().luceneVersion;
 
     public void testRefCount() {
@@ -345,7 +345,7 @@ public class StoreTests extends ESTestCase {
             try (IndexInput input = store.directory().openInput(meta.name(), IOContext.DEFAULT)) {
                 String checksum = Store.digestToString(CodecUtil.retrieveChecksum(input));
                 assertThat("File: " + meta.name() + " has a different checksum", meta.checksum(), equalTo(checksum));
-                assertThat(meta.writtenBy(), equalTo(Version.LATEST));
+                assertThat(meta.writtenBy(), equalTo(org.apache.lucene.util.Version.LATEST));
                 if (meta.name().endsWith(".si") || meta.name().startsWith("segments_")) {
                     assertThat(meta.hash().length, greaterThan(0));
                 }
@@ -739,7 +739,7 @@ public class StoreTests extends ESTestCase {
     public void testStoreStats() throws IOException {
         final ShardId shardId = new ShardId("index", "_na_", 1);
         Settings settings = Settings.builder()
-                .put(IndexMetadata.SETTING_VERSION_CREATED, org.renameme.Version.CURRENT)
+                .put(IndexMetadata.SETTING_VERSION_CREATED, Version.CURRENT)
                 .put(Store.INDEX_STORE_STATS_REFRESH_INTERVAL_SETTING.getKey(), TimeValue.timeValueMinutes(0)).build();
         Store store = new Store(shardId, IndexSettingsModule.newIndexSettings("index", settings), StoreTests.newDirectory(random()),
             new DummyShardLock(shardId));
@@ -810,7 +810,7 @@ public class StoreTests extends ESTestCase {
 
     public void testMetadataSnapshotStreaming() throws Exception {
         Store.MetadataSnapshot outMetadataSnapshot = createMetadataSnapshot();
-        org.renameme.Version targetNodeVersion = randomVersion(random());
+        Version targetNodeVersion = randomVersion(random());
 
         ByteArrayOutputStream outBuffer = new ByteArrayOutputStream();
         OutputStreamStreamOutput out = new OutputStreamStreamOutput(outBuffer);
@@ -883,7 +883,7 @@ public class StoreTests extends ESTestCase {
                 metadataSnapshot, peerRecoveryRetentionLeases);
         ByteArrayOutputStream outBuffer = new ByteArrayOutputStream();
         OutputStreamStreamOutput out = new OutputStreamStreamOutput(outBuffer);
-        org.renameme.Version targetNodeVersion = randomVersion(random());
+        Version targetNodeVersion = randomVersion(random());
         out.setVersion(targetNodeVersion);
         outStoreFileMetadata.writeTo(out);
         ByteArrayInputStream inBuffer = new ByteArrayInputStream(outBuffer.toByteArray());
@@ -1010,7 +1010,7 @@ public class StoreTests extends ESTestCase {
         final ShardId shardId = new ShardId("index", "_na_", 1);
         try (Store store = new Store(shardId, INDEX_SETTINGS, StoreTests.newDirectory(random()), new DummyShardLock(shardId))) {
 
-            store.createEmpty(Version.LATEST);
+            store.createEmpty(org.apache.lucene.util.Version.LATEST);
 
             // remove the history uuid
             IndexWriterConfig iwc = new IndexWriterConfig(null)
@@ -1042,7 +1042,7 @@ public class StoreTests extends ESTestCase {
         final ShardId shardId = new ShardId("index", "_na_", 1);
         try (Store store = new Store(shardId, INDEX_SETTINGS, StoreTests.newDirectory(random()), new DummyShardLock(shardId))) {
 
-            store.createEmpty(Version.LATEST);
+            store.createEmpty(org.apache.lucene.util.Version.LATEST);
 
             SegmentInfos segmentInfos = Lucene.readSegmentInfos(store.directory());
             assertThat(segmentInfos.getUserData(), hasKey(Engine.HISTORY_UUID_KEY));

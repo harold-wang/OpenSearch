@@ -21,6 +21,7 @@ package org.renameme.action.search;
 
 import org.apache.lucene.store.ByteArrayDataInput;
 import org.apache.lucene.store.RAMOutputStream;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.util.concurrent.AtomicArray;
 import org.renameme.search.SearchPhaseResult;
@@ -42,7 +43,7 @@ final class TransportSearchHelper {
     }
 
     static String buildScrollId(AtomicArray<? extends SearchPhaseResult> searchPhaseResults, Version version) {
-        boolean includeContextUUID = version.onOrAfter(Version.V_7_7_0);
+        boolean includeContextUUID = version.onOrAfter(LegacyESVersion.V_7_7_0);
         try (RAMOutputStream out = new RAMOutputStream()) {
             if (includeContextUUID) {
                 out.writeString(INCLUDE_CONTEXT_UUID);

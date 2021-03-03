@@ -30,7 +30,6 @@ import org.renameme.cluster.metadata.Metadata;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.cluster.node.DiscoveryNodeRole;
 import org.renameme.cluster.node.DiscoveryNodes;
-import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.cluster.service.FakeThreadPoolMasterService;
 import org.renameme.cluster.service.MasterService;
 import org.renameme.cluster.service.MasterServiceTests;

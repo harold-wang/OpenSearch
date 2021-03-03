@@ -81,7 +81,7 @@ import org.apache.lucene.store.IndexInput;
 import org.apache.lucene.store.Lock;
 import org.apache.lucene.util.Bits;
 import org.apache.lucene.util.BytesRef;
-import org.apache.lucene.util.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.ExceptionsHelper;
 import org.renameme.common.Nullable;
 import org.renameme.common.Strings;
@@ -121,12 +121,12 @@ public class Lucene {
     private Lucene() {
     }
 
-    public static Version parseVersion(@Nullable String version, Version defaultVersion, Logger logger) {
+    public static org.apache.lucene.util.Version parseVersion(@Nullable String version, org.apache.lucene.util.Version defaultVersion, Logger logger) {
         if (version == null) {
             return defaultVersion;
         }
         try {
-            return Version.parse(version);
+            return org.apache.lucene.util.Version.parse(version);
         } catch (ParseException e) {
             logger.warn(() -> new ParameterizedMessage("no version match {}, default to {}", version, defaultVersion), e);
             return defaultVersion;
@@ -295,7 +295,7 @@ public class Lucene {
     public static TotalHits readTotalHits(StreamInput in) throws IOException {
         long totalHits = in.readVLong();
         TotalHits.Relation totalHitsRelation = TotalHits.Relation.EQUAL_TO;
-        if (in.getVersion().onOrAfter(org.renameme.Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             totalHitsRelation = in.readEnum(TotalHits.Relation.class);
         }
         return new TotalHits(totalHits, totalHitsRelation);
@@ -416,7 +416,7 @@ public class Lucene {
 
     public static void writeTotalHits(StreamOutput out, TotalHits totalHits) throws IOException {
         out.writeVLong(totalHits.value);
-        if (out.getVersion().onOrAfter(org.renameme.Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             out.writeEnum(totalHits.relation);
         } else if (totalHits.value > 0 && totalHits.relation != TotalHits.Relation.EQUAL_TO) {
             throw new IllegalArgumentException("Cannot serialize approximate total hit counts to nodes that are on a version < 7.0.0");
@@ -618,7 +618,7 @@ public class Lucene {
     }
 
     private static Number readExplanationValue(StreamInput in) throws IOException {
-        if (in.getVersion().onOrAfter(org.renameme.Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             final int numberType = in.readByte();
             switch (numberType) {
             case 0:
@@ -650,7 +650,7 @@ public class Lucene {
     }
 
     private static void writeExplanationValue(StreamOutput out, Number value) throws IOException {
-        if (out.getVersion().onOrAfter(org.renameme.Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             if (value instanceof Float) {
                 out.writeByte((byte) 0);
                 out.writeFloat(value.floatValue());
@@ -724,7 +724,7 @@ public class Lucene {
     /**
      * Parses the version string lenient and returns the default value if the given string is null or empty
      */
-    public static Version parseVersionLenient(String toParse, Version defaultValue) {
+    public static org.apache.lucene.util.Version parseVersionLenient(String toParse, org.apache.lucene.util.Version defaultValue) {
         return LenientParser.parse(toParse, defaultValue);
     }
 
@@ -748,10 +748,10 @@ public class Lucene {
 
     @SuppressForbidden(reason = "Version#parseLeniently() used in a central place")
     private static final class LenientParser {
-        public static Version parse(String toParse, Version defaultValue) {
+        public static org.apache.lucene.util.Version parse(String toParse, org.apache.lucene.util.Version defaultValue) {
             if (Strings.hasLength(toParse)) {
                 try {
-                    return Version.parseLeniently(toParse);
+                    return org.apache.lucene.util.Version.parseLeniently(toParse);
                 } catch (ParseException e) {
                     // pass to default
                 }
@@ -1069,7 +1069,7 @@ public class Lucene {
             }
 
             public LeafMetaData getMetaData() {
-                return new LeafMetaData(Version.LATEST.major, Version.LATEST, null);
+                return new LeafMetaData(org.apache.lucene.util.Version.LATEST.major, org.apache.lucene.util.Version.LATEST, null);
             }
 
             public CacheHelper getCoreCacheHelper() {

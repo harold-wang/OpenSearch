@@ -53,7 +53,6 @@ import org.renameme.index.analysis.TokenFilterFactory;
 import org.renameme.index.analysis.TokenizerFactory;
 import org.renameme.index.mapper.KeywordFieldMapper.KeywordFieldType;
 import org.renameme.index.mapper.MappedFieldType.Relation;
-import org.renameme.index.mapper.FieldTypeTestCase;
 
 import java.io.IOException;
 import java.util.ArrayList;

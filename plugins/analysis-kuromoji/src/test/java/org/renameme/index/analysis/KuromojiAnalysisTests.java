@@ -30,7 +30,6 @@ import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
 import org.renameme.index.Index;
-import org.renameme.index.analysis.*;
 import org.renameme.plugin.analysis.kuromoji.AnalysisKuromojiPlugin;
 import org.renameme.test.ESTestCase;
 

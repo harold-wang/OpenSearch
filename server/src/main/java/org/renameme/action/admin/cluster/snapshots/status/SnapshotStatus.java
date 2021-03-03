@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.cluster.snapshots.status;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.cluster.SnapshotsInProgress;
 import org.renameme.cluster.SnapshotsInProgress.State;
 import org.renameme.common.Nullable;
@@ -79,7 +79,7 @@ public class SnapshotStatus implements ToXContentObject, Writeable {
         includeGlobalState = in.readOptionalBoolean();
         final long startTime;
         final long time;
-        if (in.getVersion().onOrAfter(Version.V_7_4_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_4_0)) {
             startTime = in.readLong();
             time = in.readLong();
         } else {
@@ -180,7 +180,7 @@ public class SnapshotStatus implements ToXContentObject, Writeable {
         out.writeByte(state.value());
         out.writeList(shards);
         out.writeOptionalBoolean(includeGlobalState);
-        if (out.getVersion().onOrAfter(Version.V_7_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_4_0)) {
             out.writeLong(stats.getStartTime());
             out.writeLong(stats.getTime());
         }

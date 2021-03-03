@@ -19,8 +19,8 @@
 package org.renameme.env;
 
 import joptsimple.OptionSet;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.cli.MockTerminal;
 import org.renameme.cli.Terminal;
 import org.renameme.cluster.ClusterName;
@@ -36,7 +36,6 @@ import org.renameme.common.settings.Settings;
 import org.renameme.common.util.BigArrays;
 import org.renameme.gateway.PersistedClusterStateService;
 import org.renameme.index.Index;
-import org.renameme.env.TestEnvironment;
 import org.renameme.test.ESTestCase;
 import org.hamcrest.Matcher;
 import org.junit.Before;

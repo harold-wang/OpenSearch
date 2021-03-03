@@ -41,9 +41,6 @@ import org.renameme.transport.TcpChannel;
 import org.renameme.transport.TcpTransport;
 import org.renameme.transport.TestProfiles;
 import org.renameme.transport.Transport;
-import org.renameme.transport.nio.NioGroupFactory;
-import org.renameme.transport.nio.NioTcpChannel;
-import org.renameme.transport.nio.NioTransport;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -82,7 +79,7 @@ public class SimpleNioTransportTests extends AbstractSimpleTransportTestCase {
     public void testConnectException() throws UnknownHostException {
         try {
             serviceA.connectToNode(new DiscoveryNode("C", new TransportAddress(InetAddress.getByName("localhost"), 9876),
-                emptyMap(), emptySet(),Version.CURRENT));
+                emptyMap(), emptySet(), Version.CURRENT));
             fail("Expected ConnectTransportException");
         } catch (ConnectTransportException e) {
             assertThat(e.getMessage(), containsString("connect_exception"));

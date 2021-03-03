@@ -19,13 +19,13 @@
 
 package org.renameme.analysis.common;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
 import org.renameme.index.IndexSettings;
 import org.renameme.index.analysis.CharFilterFactory;
-import org.renameme.analysis.common.CommonAnalysisPlugin;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.IndexSettingsModule;
 import org.renameme.test.VersionUtils;
@@ -42,7 +42,7 @@ public class HtmlStripCharFilterFactoryTests extends ESTestCase {
      */
     public void testDeprecationWarning() throws IOException {
         Settings settings = Settings.builder().put(Environment.PATH_HOME_SETTING.getKey(), createTempDir())
-                .put(IndexMetadata.SETTING_VERSION_CREATED, VersionUtils.randomVersionBetween(random(), Version.V_6_3_0, Version.CURRENT))
+                .put(IndexMetadata.SETTING_VERSION_CREATED, VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_3_0, Version.CURRENT))
                 .build();
 
         IndexSettings idxSettings = IndexSettingsModule.newIndexSettings("index", settings);
@@ -61,7 +61,7 @@ public class HtmlStripCharFilterFactoryTests extends ESTestCase {
     public void testNoDeprecationWarningPre6_3() throws IOException {
         Settings settings = Settings.builder().put(Environment.PATH_HOME_SETTING.getKey(), createTempDir())
                 .put(IndexMetadata.SETTING_VERSION_CREATED,
-                        VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.V_6_2_4))
+                        VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, LegacyESVersion.V_6_2_4))
                 .build();
 
         IndexSettings idxSettings = IndexSettingsModule.newIndexSettings("index", settings);

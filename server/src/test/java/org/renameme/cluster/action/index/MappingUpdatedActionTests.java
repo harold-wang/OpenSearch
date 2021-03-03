@@ -18,6 +18,7 @@
  */
 package org.renameme.cluster.action.index;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.indices.mapping.put.AutoPutMappingAction;
@@ -140,7 +141,7 @@ public class MappingUpdatedActionTests extends ESTestCase {
 
     public void testSendUpdateMappingUsingPutMappingAction() {
         DiscoveryNodes nodes = DiscoveryNodes.builder()
-            .add(new DiscoveryNode("first", buildNewFakeTransportAddress(), Version.V_7_8_0))
+            .add(new DiscoveryNode("first", buildNewFakeTransportAddress(), LegacyESVersion.V_7_8_0))
             .build();
         ClusterState clusterState = ClusterState.builder(new ClusterName("_name")).nodes(nodes).build();
         ClusterService clusterService = mock(ClusterService.class);
@@ -159,7 +160,7 @@ public class MappingUpdatedActionTests extends ESTestCase {
         Settings indexSettings = Settings.builder().put(SETTING_VERSION_CREATED, Version.CURRENT).build();
         final Mapper.BuilderContext context = new Mapper.BuilderContext(indexSettings, new ContentPath());
         RootObjectMapper rootObjectMapper = new RootObjectMapper.Builder("name").build(context);
-        Mapping update = new Mapping(Version.V_7_8_0, rootObjectMapper, new MetadataFieldMapper[0], Map.of());
+        Mapping update = new Mapping(LegacyESVersion.V_7_8_0, rootObjectMapper, new MetadataFieldMapper[0], Map.of());
 
         mua.sendUpdateMapping(new Index("name", "uuid"), "type", update, ActionListener.wrap(() -> {}));
         verify(indicesAdminClient).putMapping(any(), any());
@@ -167,7 +168,7 @@ public class MappingUpdatedActionTests extends ESTestCase {
 
     public void testSendUpdateMappingUsingAutoPutMappingAction() {
         DiscoveryNodes nodes = DiscoveryNodes.builder()
-            .add(new DiscoveryNode("first", buildNewFakeTransportAddress(), Version.V_7_9_0))
+            .add(new DiscoveryNode("first", buildNewFakeTransportAddress(), LegacyESVersion.V_7_9_0))
             .build();
         ClusterState clusterState = ClusterState.builder(new ClusterName("_name")).nodes(nodes).build();
         ClusterService clusterService = mock(ClusterService.class);
@@ -186,7 +187,7 @@ public class MappingUpdatedActionTests extends ESTestCase {
         Settings indexSettings = Settings.builder().put(SETTING_VERSION_CREATED, Version.CURRENT).build();
         final Mapper.BuilderContext context = new Mapper.BuilderContext(indexSettings, new ContentPath());
         RootObjectMapper rootObjectMapper = new RootObjectMapper.Builder("name").build(context);
-        Mapping update = new Mapping(Version.V_7_9_0, rootObjectMapper, new MetadataFieldMapper[0], Map.of());
+        Mapping update = new Mapping(LegacyESVersion.V_7_9_0, rootObjectMapper, new MetadataFieldMapper[0], Map.of());
 
         mua.sendUpdateMapping(new Index("name", "uuid"), "type", update, ActionListener.wrap(() -> {}));
         verify(indicesAdminClient).execute(eq(AutoPutMappingAction.INSTANCE), any(), any());

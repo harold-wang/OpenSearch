@@ -19,7 +19,7 @@
 
 package org.renameme.action.fieldcaps;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.StreamInput;
@@ -106,7 +106,7 @@ public class FieldCapabilities implements Writeable, ToXContentObject {
         this.indices = in.readOptionalStringArray();
         this.nonSearchableIndices = in.readOptionalStringArray();
         this.nonAggregatableIndices = in.readOptionalStringArray();
-        if (in.getVersion().onOrAfter(Version.V_7_6_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
             meta = in.readMap(StreamInput::readString, i -> i.readSet(StreamInput::readString));
         } else {
             meta = Collections.emptyMap();
@@ -122,7 +122,7 @@ public class FieldCapabilities implements Writeable, ToXContentObject {
         out.writeOptionalStringArray(indices);
         out.writeOptionalStringArray(nonSearchableIndices);
         out.writeOptionalStringArray(nonAggregatableIndices);
-        if (out.getVersion().onOrAfter(Version.V_7_6_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
             out.writeMap(meta, StreamOutput::writeString, (o, set) -> o.writeCollection(set, StreamOutput::writeString));
         }
     }

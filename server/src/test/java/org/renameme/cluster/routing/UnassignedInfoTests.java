@@ -21,6 +21,7 @@ package org.renameme.cluster.routing;
 
 import com.carrotsearch.hppc.IntHashSet;
 import com.carrotsearch.randomizedtesting.generators.RandomPicks;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.ClusterName;
 import org.renameme.cluster.ClusterState;
@@ -42,7 +43,6 @@ import org.renameme.index.Index;
 import org.renameme.repositories.IndexId;
 import org.renameme.snapshots.Snapshot;
 import org.renameme.snapshots.SnapshotId;
-import org.renameme.cluster.routing.TestShardRouting;
 import org.renameme.test.VersionUtils;
 
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class UnassignedInfoTests extends ESAllocationTestCase {
     public void testBwcSerialization() throws Exception {
         final UnassignedInfo unassignedInfo = new UnassignedInfo(UnassignedInfo.Reason.INDEX_CLOSED, "message");
         BytesStreamOutput out = new BytesStreamOutput();
-        Version version = VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.CURRENT);
+        Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, Version.CURRENT);
         out.setVersion(version);
         unassignedInfo.writeTo(out);
         out.close();
@@ -118,7 +118,7 @@ public class UnassignedInfoTests extends ESAllocationTestCase {
         StreamInput in = out.bytes().streamInput();
         in.setVersion(version);
         UnassignedInfo read = new UnassignedInfo(in);
-        if (version.before(Version.V_7_0_0)) {
+        if (version.before(LegacyESVersion.V_7_0_0)) {
             assertThat(read.getReason(), equalTo(UnassignedInfo.Reason.REINITIALIZED));
         } else {
             assertThat(read.getReason(), equalTo(UnassignedInfo.Reason.INDEX_CLOSED));

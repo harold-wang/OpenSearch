@@ -20,8 +20,8 @@
 package org.renameme.persistent;
 
 import com.carrotsearch.hppc.cursors.ObjectCursor;
-import org.renameme.ResourceNotFoundException;
 import org.renameme.Version;
+import org.renameme.ResourceNotFoundException;
 import org.renameme.action.ActionListener;
 import org.renameme.cluster.ClusterChangedEvent;
 import org.renameme.cluster.ClusterName;

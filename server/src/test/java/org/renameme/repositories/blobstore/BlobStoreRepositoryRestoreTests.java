@@ -53,7 +53,6 @@ import org.renameme.repositories.fs.FsRepository;
 import org.renameme.snapshots.Snapshot;
 import org.renameme.snapshots.SnapshotId;
 import org.renameme.snapshots.SnapshotInfo;
-import org.renameme.repositories.blobstore.BlobStoreTestUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -20,6 +20,7 @@ package org.renameme.transport;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.compress.CompressorFactory;
@@ -106,7 +107,7 @@ public final class TransportLogger {
                 ThreadContext.readHeadersFromStream(streamInput);
 
                 if (isRequest) {
-                    if (streamInput.getVersion().onOrAfter(Version.V_6_3_0)) {
+                    if (streamInput.getVersion().onOrAfter(LegacyESVersion.V_6_3_0)) {
                         // discard features
                         streamInput.readStringArray();
                     }

@@ -47,7 +47,6 @@ import org.renameme.test.rest.yaml.section.ExecutableSection;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.renameme.test.rest.ESRestTestCase;
 
 import java.io.IOException;
 import java.nio.file.Files;

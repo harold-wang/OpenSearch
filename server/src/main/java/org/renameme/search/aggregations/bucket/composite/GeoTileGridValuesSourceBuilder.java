@@ -20,7 +20,7 @@
 package org.renameme.search.aggregations.bucket.composite;
 
 import org.apache.lucene.index.IndexReader;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.geo.GeoBoundingBox;
 import org.renameme.common.geo.GeoPoint;
@@ -140,7 +140,7 @@ public class GeoTileGridValuesSourceBuilder extends CompositeValuesSourceBuilder
     GeoTileGridValuesSourceBuilder(StreamInput in) throws IOException {
         super(in);
         this.precision = in.readInt();
-        if (in.getVersion().onOrAfter(Version.V_7_6_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
             this.geoBoundingBox = new GeoBoundingBox(in);
         }
     }
@@ -163,7 +163,7 @@ public class GeoTileGridValuesSourceBuilder extends CompositeValuesSourceBuilder
     @Override
     protected void innerWriteTo(StreamOutput out) throws IOException {
         out.writeInt(precision);
-        if (out.getVersion().onOrAfter(Version.V_7_6_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
             geoBoundingBox.writeTo(out);
         }
     }

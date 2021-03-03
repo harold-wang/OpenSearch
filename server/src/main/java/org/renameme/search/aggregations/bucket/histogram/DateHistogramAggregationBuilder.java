@@ -19,7 +19,7 @@
 
 package org.renameme.search.aggregations.bucket.histogram;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Rounding;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -154,7 +154,7 @@ public class DateHistogramAggregationBuilder extends ValuesSourceAggregationBuil
         dateHistogramInterval = new DateIntervalWrapper(in);
         offset = in.readLong();
         extendedBounds = in.readOptionalWriteable(LongBounds::new);
-        if (in.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             hardBounds = in.readOptionalWriteable(LongBounds::new);
         }
     }
@@ -173,7 +173,7 @@ public class DateHistogramAggregationBuilder extends ValuesSourceAggregationBuil
         dateHistogramInterval.writeTo(out);
         out.writeLong(offset);
         out.writeOptionalWriteable(extendedBounds);
-        if (out.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             out.writeOptionalWriteable(hardBounds);
         }
     }

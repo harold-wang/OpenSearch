@@ -21,8 +21,8 @@ package org.renameme.index.reindex.remote;
 
 import org.apache.http.entity.ContentType;
 import org.apache.http.nio.entity.NStringEntity;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.search.SearchRequest;
 import org.renameme.client.Request;
 import org.renameme.common.Strings;

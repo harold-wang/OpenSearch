@@ -19,6 +19,7 @@
 
 package org.renameme.cluster.node;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.io.stream.BytesStreamOutput;
 import org.renameme.common.io.stream.StreamInput;
@@ -128,11 +129,11 @@ public class DiscoveryNodeTests extends ESTestCase {
 
         {
             BytesStreamOutput streamOutput = new BytesStreamOutput();
-            streamOutput.setVersion(Version.V_7_9_0);
+            streamOutput.setVersion(LegacyESVersion.V_7_9_0);
             node.writeTo(streamOutput);
 
             StreamInput in = StreamInput.wrap(streamOutput.bytes().toBytesRef().bytes);
-            in.setVersion(Version.V_7_9_0);
+            in.setVersion(LegacyESVersion.V_7_9_0);
             DiscoveryNode serialized = new DiscoveryNode(in);
             assertThat(serialized.getRoles().stream().map(DiscoveryNodeRole::roleName).collect(Collectors.joining()),
                 equalTo("data"));

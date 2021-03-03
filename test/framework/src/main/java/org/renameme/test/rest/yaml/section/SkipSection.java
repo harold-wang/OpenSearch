@@ -24,8 +24,6 @@ import org.renameme.common.Strings;
 import org.renameme.common.xcontent.XContentParser;
 import org.renameme.test.VersionUtils;
 import org.renameme.test.rest.yaml.Features;
-import org.renameme.test.VersionUtils;
-import org.renameme.test.rest.yaml.Features;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -32,16 +32,10 @@ import org.apache.lucene.store.Directory;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
-import org.renameme.index.mapper.ContentPath;
-import org.renameme.index.mapper.MappedFieldType;
-import org.renameme.index.mapper.Mapper;
-import org.renameme.index.mapper.NumberFieldMapper;
 import org.renameme.core.internal.io.IOUtils;
 import org.renameme.index.fielddata.IndexNumericFieldData;
 import org.renameme.index.fielddata.LeafNumericFieldData;
 import org.renameme.index.fielddata.SortedNumericDoubleValues;
-import org.renameme.index.mapper.FieldTypeTestCase;
-import org.renameme.index.mapper.ScaledFloatFieldMapper;
 
 import java.io.IOException;
 import java.util.Arrays;

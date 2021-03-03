@@ -19,7 +19,7 @@
 
 package org.renameme.index.reindex;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Nullable;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.io.stream.StreamInput;
@@ -107,7 +107,7 @@ public class RemoteInfo implements Writeable, ToXContentObject {
         this.headers = unmodifiableMap(headers);
         socketTimeout = in.readTimeValue();
         connectTimeout = in.readTimeValue();
-        if (in.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             pathPrefix = in.readOptionalString();
         } else {
             pathPrefix = null;
@@ -129,7 +129,7 @@ public class RemoteInfo implements Writeable, ToXContentObject {
         }
         out.writeTimeValue(socketTimeout);
         out.writeTimeValue(connectTimeout);
-        if (out.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             out.writeOptionalString(pathPrefix);
         }
     }

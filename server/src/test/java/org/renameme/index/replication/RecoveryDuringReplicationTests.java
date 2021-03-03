@@ -53,7 +53,6 @@ import org.renameme.index.seqno.RetentionLease;
 import org.renameme.index.seqno.RetentionLeases;
 import org.renameme.index.seqno.SequenceNumbers;
 import org.renameme.index.shard.IndexShard;
-import org.renameme.index.replication.ESIndexLevelReplicationTestCase;
 import org.renameme.index.shard.IndexShardTestCase;
 import org.renameme.index.shard.PrimaryReplicaSyncer;
 import org.renameme.index.store.Store;

@@ -36,7 +36,6 @@ import org.renameme.indices.breaker.CircuitBreakerService;
 import org.renameme.plugins.NetworkPlugin;
 import org.renameme.plugins.Plugin;
 import org.renameme.threadpool.ThreadPool;
-import org.renameme.transport.Transport;
 import org.renameme.transport.netty4.Netty4Transport;
 
 import java.util.Arrays;

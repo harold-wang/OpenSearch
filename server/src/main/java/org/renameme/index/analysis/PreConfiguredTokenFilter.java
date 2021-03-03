@@ -21,6 +21,7 @@ package org.renameme.index.analysis;
 
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.logging.DeprecationLogger;
 import org.renameme.indices.analysis.PreBuiltCacheFactory;
@@ -68,7 +69,7 @@ public final class PreConfiguredTokenFilter extends PreConfiguredAnalysisCompone
      * Create a pre-configured token filter that may vary based on the Elasticsearch version.
      */
     public static PreConfiguredTokenFilter renamemeVersion(String name, boolean useFilterForMultitermQueries,
-            BiFunction<TokenStream, org.renameme.Version, TokenStream> create) {
+            BiFunction<TokenStream, Version, TokenStream> create) {
         return new PreConfiguredTokenFilter(name, useFilterForMultitermQueries, true, CachingStrategy.RENAMEME, create);
     }
 
@@ -126,7 +127,7 @@ public final class PreConfiguredTokenFilter extends PreConfiguredAnalysisCompone
                     if (allowForSynonymParsing) {
                         return this;
                     }
-                    if (version.onOrAfter(Version.V_7_0_0)) {
+                    if (version.onOrAfter(LegacyESVersion.V_7_0_0)) {
                         throw new IllegalArgumentException("Token filter [" + name() + "] cannot be used to parse synonyms");
                     }
                     else {
@@ -153,7 +154,7 @@ public final class PreConfiguredTokenFilter extends PreConfiguredAnalysisCompone
                 if (allowForSynonymParsing) {
                     return this;
                 }
-                if (version.onOrAfter(Version.V_7_0_0)) {
+                if (version.onOrAfter(LegacyESVersion.V_7_0_0)) {
                     throw new IllegalArgumentException("Token filter [" + name() + "] cannot be used to parse synonyms");
                 }
                 else {

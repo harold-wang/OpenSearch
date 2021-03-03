@@ -19,7 +19,7 @@
 
 package org.renameme.action.get;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.RealtimeRequest;
 import org.renameme.action.ValidateActions;
@@ -75,7 +75,7 @@ public class GetRequest extends SingleShardRequest<GetRequest> implements Realti
         type = in.readString();
         id = in.readString();
         routing = in.readOptionalString();
-        if (in.getVersion().before(Version.V_7_0_0)) {
+        if (in.getVersion().before(LegacyESVersion.V_7_0_0)) {
             in.readOptionalString();
         }
         preference = in.readOptionalString();
@@ -283,7 +283,7 @@ public class GetRequest extends SingleShardRequest<GetRequest> implements Realti
         out.writeString(type);
         out.writeString(id);
         out.writeOptionalString(routing);
-        if (out.getVersion().before(Version.V_7_0_0)) {
+        if (out.getVersion().before(LegacyESVersion.V_7_0_0)) {
             out.writeOptionalString(null);
         }
         out.writeOptionalString(preference);

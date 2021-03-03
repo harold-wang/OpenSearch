@@ -20,9 +20,9 @@
 package org.renameme.snapshots;
 
 import org.apache.lucene.util.BytesRef;
+import org.renameme.Version;
 import org.renameme.RenamemeException;
 import org.renameme.ExceptionsHelper;
-import org.renameme.Version;
 import org.renameme.action.ActionFuture;
 import org.renameme.action.admin.cluster.snapshots.create.CreateSnapshotResponse;
 import org.renameme.action.admin.cluster.snapshots.get.GetSnapshotsResponse;
@@ -67,7 +67,6 @@ import org.renameme.repositories.RepositoriesService;
 import org.renameme.repositories.RepositoryData;
 import org.renameme.repositories.RepositoryException;
 import org.renameme.repositories.blobstore.BlobStoreRepository;
-import org.renameme.snapshots.AbstractSnapshotIntegTestCase;
 import org.renameme.snapshots.mockstore.MockRepository;
 import org.renameme.threadpool.ThreadPool;
 

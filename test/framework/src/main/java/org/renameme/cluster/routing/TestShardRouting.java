@@ -21,7 +21,6 @@ package org.renameme.cluster.routing;
 
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
-import org.renameme.cluster.routing.*;
 import org.renameme.common.UUIDs;
 import org.renameme.index.shard.ShardId;
 import org.renameme.repositories.IndexId;

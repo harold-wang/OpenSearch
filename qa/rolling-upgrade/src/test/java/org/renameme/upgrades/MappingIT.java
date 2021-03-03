@@ -18,7 +18,7 @@
  */
 package org.renameme.upgrades;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.client.Request;
 import org.renameme.client.Response;
 import org.renameme.common.xcontent.support.XContentMapValues;
@@ -29,7 +29,7 @@ public class MappingIT extends AbstractRollingTestCase {
      * and check that it can be upgraded to 7x.
      */
     public void testAllFieldDisable6x() throws Exception {
-        assumeTrue("_all", UPGRADE_FROM_VERSION.before(Version.V_7_0_0));
+        assumeTrue("_all", UPGRADE_FROM_VERSION.before(LegacyESVersion.V_7_0_0));
         switch (CLUSTER_TYPE) {
             case OLD:
                 Request createTestIndex = new Request("PUT", "all-index");

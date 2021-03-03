@@ -25,7 +25,6 @@ import org.renameme.common.compress.CompressedXContent;
 import org.renameme.common.settings.Settings;
 import org.renameme.common.xcontent.NamedXContentRegistry;
 import org.renameme.env.Environment;
-import org.renameme.index.IndexSettings;
 import org.renameme.index.analysis.IndexAnalyzers;
 import org.renameme.index.mapper.DocumentMapper;
 import org.renameme.index.mapper.DocumentMapperParser;
@@ -36,7 +35,6 @@ import org.renameme.indices.IndicesModule;
 import org.renameme.indices.mapper.MapperRegistry;
 import org.renameme.test.IndexSettingsModule;
 import org.renameme.test.ESTestCase;
-import org.renameme.test.IndexSettingsModule;
 
 import java.io.IOException;
 import java.nio.file.Path;

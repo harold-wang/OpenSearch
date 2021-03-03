@@ -19,7 +19,6 @@
 
 package org.renameme.indices.recovery;
 
-import org.apache.lucene.util.Version;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -49,7 +48,7 @@ public final class RecoveryFileChunkRequest extends RecoveryTransportRequest {
         long length = in.readVLong();
         String checksum = in.readString();
         content = in.readBytesReference();
-        Version writtenBy = Lucene.parseVersionLenient(in.readString(), null);
+        org.apache.lucene.util.Version writtenBy = Lucene.parseVersionLenient(in.readString(), null);
         assert writtenBy != null;
         metadata = new StoreFileMetadata(name, length, checksum, writtenBy);
         lastChunk = in.readBoolean();

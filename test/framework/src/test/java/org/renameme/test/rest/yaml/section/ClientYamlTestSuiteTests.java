@@ -19,12 +19,12 @@
 
 package org.renameme.test.rest.yaml.section;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.client.NodeSelector;
 import org.renameme.common.ParsingException;
 import org.renameme.common.xcontent.XContentLocation;
 import org.renameme.common.xcontent.yaml.YamlXContent;
-import org.renameme.test.rest.yaml.section.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -149,7 +149,7 @@ public class ClientYamlTestSuiteTests extends AbstractClientYamlTestFragmentPars
         assertThat(restTestSuite.getTestSections().get(1).getSkipSection().getReason(),
                 equalTo("for newer versions the index name is always returned"));
         assertThat(restTestSuite.getTestSections().get(1).getSkipSection().getLowerVersion(),
-                equalTo(Version.V_6_0_0));
+                equalTo(LegacyESVersion.V_6_0_0));
         assertThat(restTestSuite.getTestSections().get(1).getSkipSection().getUpperVersion(), equalTo(Version.CURRENT));
         assertThat(restTestSuite.getTestSections().get(1).getExecutableSections().size(), equalTo(3));
         assertThat(restTestSuite.getTestSections().get(1).getExecutableSections().get(0), instanceOf(DoSection.class));

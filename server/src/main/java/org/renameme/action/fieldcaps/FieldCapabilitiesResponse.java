@@ -19,7 +19,7 @@
 
 package org.renameme.action.fieldcaps;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionResponse;
 import org.renameme.common.ParseField;
 import org.renameme.common.Strings;
@@ -69,7 +69,7 @@ public class FieldCapabilitiesResponse extends ActionResponse implements ToXCont
 
     public FieldCapabilitiesResponse(StreamInput in) throws IOException {
         super(in);
-        if (in.getVersion().onOrAfter(Version.V_7_2_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
             indices = in.readStringArray();
         } else {
             indices = Strings.EMPTY_ARRAY;
@@ -122,7 +122,7 @@ public class FieldCapabilitiesResponse extends ActionResponse implements ToXCont
 
     @Override
     public void writeTo(StreamOutput out) throws IOException {
-        if (out.getVersion().onOrAfter(Version.V_7_2_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
             out.writeStringArray(indices);
         }
         out.writeMap(responseMap, StreamOutput::writeString, FieldCapabilitiesResponse::writeField);

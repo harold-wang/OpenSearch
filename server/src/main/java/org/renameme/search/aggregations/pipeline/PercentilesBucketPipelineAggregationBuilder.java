@@ -21,7 +21,7 @@ package org.renameme.search.aggregations.pipeline;
 
 import com.carrotsearch.hppc.DoubleArrayList;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -54,7 +54,7 @@ public class PercentilesBucketPipelineAggregationBuilder
         super(in, NAME);
         percents = in.readDoubleArray();
 
-        if (in.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             keyed = in.readBoolean();
         }
     }
@@ -63,7 +63,7 @@ public class PercentilesBucketPipelineAggregationBuilder
     protected void innerWriteTo(StreamOutput out) throws IOException {
         out.writeDoubleArray(percents);
 
-        if (out.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             out.writeBoolean(keyed);
         }
     }

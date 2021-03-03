@@ -20,8 +20,8 @@
 
 package org.renameme.action.bulk;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.admin.indices.alias.Alias;
 import org.renameme.action.admin.indices.mapping.get.GetMappingsResponse;

@@ -19,6 +19,7 @@
 
 package org.renameme.transport;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.io.stream.StreamOutput;
 
@@ -26,7 +27,7 @@ import java.io.IOException;
 
 public class TcpHeader {
 
-    public static final Version VERSION_WITH_HEADER_SIZE = Version.V_7_6_0;
+    public static final Version VERSION_WITH_HEADER_SIZE = LegacyESVersion.V_7_6_0;
 
     public static final int MARKER_BYTES_SIZE = 2;
 

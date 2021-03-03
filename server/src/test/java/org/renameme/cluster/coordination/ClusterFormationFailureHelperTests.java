@@ -31,7 +31,6 @@ import org.renameme.common.settings.Settings;
 import org.renameme.common.transport.TransportAddress;
 import org.renameme.gateway.GatewayMetaState;
 import org.renameme.monitor.StatusInfo;
-import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.test.ESTestCase;
 
 import java.util.Arrays;

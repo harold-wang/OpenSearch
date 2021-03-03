@@ -25,7 +25,6 @@ import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.IndexSettings;
-import org.renameme.index.analysis.IcuAnalyzerProvider;
 import org.renameme.plugin.analysis.icu.AnalysisICUPlugin;
 import org.renameme.test.IndexSettingsModule;
 

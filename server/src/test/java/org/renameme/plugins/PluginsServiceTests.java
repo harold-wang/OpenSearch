@@ -22,6 +22,7 @@ package org.renameme.plugins;
 import org.apache.logging.log4j.Level;
 import org.apache.lucene.util.Constants;
 import org.apache.lucene.util.LuceneTestCase;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.bootstrap.JarHell;
 import org.renameme.common.collect.Tuple;
@@ -30,7 +31,6 @@ import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
 import org.renameme.env.TestEnvironment;
 import org.renameme.index.IndexModule;
-import org.renameme.plugins.PluginTestUtil;
 import org.renameme.test.ESTestCase;
 import org.hamcrest.Matchers;
 
@@ -380,7 +380,7 @@ public class PluginsServiceTests extends ESTestCase {
     public void testSortBundlesCommonDep() throws Exception {
         Path pluginDir = createTempDir();
         Set<PluginsService.Bundle> bundles = new LinkedHashSet<>(); // control iteration order
-        PluginInfo info1 = new PluginInfo("grandparent", "desc", "1.0",Version.CURRENT, "1.8",
+        PluginInfo info1 = new PluginInfo("grandparent", "desc", "1.0", Version.CURRENT, "1.8",
             "MyPlugin", Collections.emptyList(), false);
         PluginsService.Bundle bundle1 = new PluginsService.Bundle(info1, pluginDir);
         bundles.add(bundle1);
@@ -616,7 +616,7 @@ public class PluginsServiceTests extends ESTestCase {
     }
 
     public void testIncompatiblerenamemeVersion() throws Exception {
-        PluginInfo info = new PluginInfo("my_plugin", "desc", "1.0", Version.V_6_0_0,
+        PluginInfo info = new PluginInfo("my_plugin", "desc", "1.0", LegacyESVersion.V_6_0_0,
             "1.8", "FakePlugin", Collections.emptyList(), false);
         IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> PluginsService.verifyCompatibility(info));
         assertThat(e.getMessage(), containsString("was built for Elasticsearch version 6.0.0"));

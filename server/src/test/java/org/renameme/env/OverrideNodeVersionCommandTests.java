@@ -20,8 +20,8 @@ package org.renameme.env;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.cli.MockTerminal;
 import org.renameme.cluster.ClusterName;
 import org.renameme.cluster.ClusterState;
@@ -30,7 +30,6 @@ import org.renameme.common.settings.ClusterSettings;
 import org.renameme.common.settings.Settings;
 import org.renameme.common.util.BigArrays;
 import org.renameme.gateway.PersistedClusterStateService;
-import org.renameme.env.TestEnvironment;
 import org.renameme.test.ESTestCase;
 import org.junit.After;
 import org.junit.Before;

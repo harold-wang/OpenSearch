@@ -19,8 +19,8 @@
 
 package org.renameme.action.support.broadcast.node;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.IndicesRequest;
 import org.renameme.action.support.ActionFilters;
 import org.renameme.action.support.DefaultShardOperationFailedException;

@@ -19,6 +19,7 @@
 
 package org.renameme.index.reindex;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.bytes.BytesArray;
 import org.renameme.common.bytes.BytesReference;
@@ -27,7 +28,6 @@ import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.Writeable;
 import org.renameme.common.lucene.uid.Versions;
 import org.renameme.common.unit.TimeValue;
-import org.renameme.index.reindex.*;
 import org.renameme.script.Script;
 import org.renameme.script.ScriptType;
 import org.renameme.tasks.TaskId;
@@ -71,13 +71,13 @@ public class RoundTripTests extends ESTestCase {
 
         // Try slices=auto with a version that doesn't support it, which should fail
         reindex.setSlices(AbstractBulkByScrollRequest.AUTO_SLICES);
-        Exception e = expectThrows(IllegalArgumentException.class, () -> toInputByteStream(Version.V_6_0_0_alpha1, reindex));
+        Exception e = expectThrows(IllegalArgumentException.class, () -> toInputByteStream(LegacyESVersion.V_6_0_0_alpha1, reindex));
         assertEquals("Slices set as \"auto\" are not supported before version [6.1.0]. Found version [6.0.0-alpha1]", e.getMessage());
 
         // Try regular slices with a version that doesn't support slices=auto, which should succeed
         reindex.setSlices(between(1, Integer.MAX_VALUE));
         tripped = new ReindexRequest(toInputByteStream(reindex));
-        assertRequestEquals(Version.V_6_0_0_alpha1, reindex, tripped);
+        assertRequestEquals(LegacyESVersion.V_6_0_0_alpha1, reindex, tripped);
     }
 
     public void testUpdateByQueryRequest() throws IOException {
@@ -92,7 +92,7 @@ public class RoundTripTests extends ESTestCase {
 
         // Try slices=auto with a version that doesn't support it, which should fail
         update.setSlices(AbstractBulkByScrollRequest.AUTO_SLICES);
-        Exception e = expectThrows(IllegalArgumentException.class, () -> toInputByteStream(Version.V_6_0_0_alpha1, update));
+        Exception e = expectThrows(IllegalArgumentException.class, () -> toInputByteStream(LegacyESVersion.V_6_0_0_alpha1, update));
         assertEquals("Slices set as \"auto\" are not supported before version [6.1.0]. Found version [6.0.0-alpha1]", e.getMessage());
 
         // Try regular slices with a version that doesn't support slices=auto, which should succeed
@@ -110,7 +110,7 @@ public class RoundTripTests extends ESTestCase {
 
         // Try slices=auto with a version that doesn't support it, which should fail
         delete.setSlices(AbstractBulkByScrollRequest.AUTO_SLICES);
-        Exception e = expectThrows(IllegalArgumentException.class, () -> toInputByteStream(Version.V_6_0_0_alpha1, delete));
+        Exception e = expectThrows(IllegalArgumentException.class, () -> toInputByteStream(LegacyESVersion.V_6_0_0_alpha1, delete));
         assertEquals("Slices set as \"auto\" are not supported before version [6.1.0]. Found version [6.0.0-alpha1]", e.getMessage());
 
         // Try regular slices with a version that doesn't support slices=auto, which should succeed

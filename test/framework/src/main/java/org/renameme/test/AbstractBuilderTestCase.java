@@ -24,6 +24,7 @@ import com.carrotsearch.randomizedtesting.SeedUtils;
 
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.util.Accountable;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.indices.mapping.put.PutMappingRequest;
@@ -80,9 +81,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.renameme.env.TestEnvironment;
-import org.renameme.script.MockScriptEngine;
-import org.renameme.script.MockScriptService;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -191,7 +189,7 @@ public abstract class AbstractBuilderTestCase extends ESTestCase {
     protected Settings createTestIndexSettings() {
         // we have to prefer CURRENT since with the range of versions we support it's rather unlikely to get the current actually.
         Version indexVersionCreated = randomBoolean() ? Version.CURRENT
-                : VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.CURRENT);
+                : VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, Version.CURRENT);
         return Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED, indexVersionCreated)
             .build();

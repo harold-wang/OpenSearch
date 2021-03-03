@@ -19,7 +19,7 @@
 
 package org.renameme.index.shard;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.io.stream.Writeable;
@@ -42,7 +42,7 @@ public class DocsStats implements Writeable, ToXContentFragment {
     public DocsStats(StreamInput in) throws IOException {
         count = in.readVLong();
         deleted = in.readVLong();
-        if (in.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             totalSizeInBytes = in.readVLong();
         } else {
             totalSizeInBytes = -1;
@@ -96,7 +96,7 @@ public class DocsStats implements Writeable, ToXContentFragment {
     public void writeTo(StreamOutput out) throws IOException {
         out.writeVLong(count);
         out.writeVLong(deleted);
-        if (out.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             out.writeVLong(totalSizeInBytes);
         }
     }

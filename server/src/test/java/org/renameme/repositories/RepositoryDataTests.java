@@ -19,8 +19,8 @@
 
 package org.renameme.repositories;
 
-import org.renameme.RenamemeParseException;
 import org.renameme.Version;
+import org.renameme.RenamemeParseException;
 import org.renameme.common.UUIDs;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.xcontent.XContent;

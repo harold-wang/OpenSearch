@@ -19,7 +19,7 @@
 
 package org.renameme.index.mapper;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Explicit;
 import org.renameme.common.Nullable;
 import org.renameme.common.Strings;
@@ -403,7 +403,7 @@ public class RootObjectMapper extends ObjectMapper {
             }
         }
 
-        final boolean shouldEmitDeprecationWarning = parserContext.indexVersionCreated().onOrAfter(Version.V_7_7_0);
+        final boolean shouldEmitDeprecationWarning = parserContext.indexVersionCreated().onOrAfter(LegacyESVersion.V_7_7_0);
         if (dynamicTemplateInvalid && shouldEmitDeprecationWarning) {
             String message = String.format(Locale.ROOT, "dynamic template [%s] has invalid content [%s]",
                 dynamicTemplate.getName(), Strings.toString(dynamicTemplate));

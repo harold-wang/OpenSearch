@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.indices.rollover;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.Writeable;
 import org.renameme.common.unit.ByteSizeValue;
 import org.renameme.common.unit.TimeValue;
@@ -134,6 +134,6 @@ public class RolloverResponseTests extends AbstractSerializingTestCase<RolloverR
 
     public void testOldSerialisation() throws IOException {
         RolloverResponse original = createTestInstance();
-        assertSerialization(original, VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.V_6_4_0));
+        assertSerialization(original, VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, LegacyESVersion.V_6_4_0));
     }
 }

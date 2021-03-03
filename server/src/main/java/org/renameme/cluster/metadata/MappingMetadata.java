@@ -19,8 +19,8 @@
 
 package org.renameme.cluster.metadata;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeParseException;
-import org.renameme.Version;
 import org.renameme.cluster.AbstractDiffable;
 import org.renameme.cluster.Diff;
 import org.renameme.common.compress.CompressedXContent;
@@ -170,14 +170,14 @@ public class MappingMetadata extends AbstractDiffable<MappingMetadata> {
         source().writeTo(out);
         // routing
         out.writeBoolean(routing().required());
-        if (out.getVersion().before(Version.V_6_0_0_alpha1)) {
+        if (out.getVersion().before(LegacyESVersion.V_6_0_0_alpha1)) {
             // timestamp
             out.writeBoolean(false); // enabled
             out.writeString(DateFieldMapper.DEFAULT_DATE_TIME_FORMATTER.pattern());
             out.writeOptionalString("now"); // 5.x default
             out.writeOptionalBoolean(null);
         }
-        if (out.getVersion().before(Version.V_7_0_0)) {
+        if (out.getVersion().before(LegacyESVersion.V_7_0_0)) {
             out.writeBoolean(false); // hasParentField
         }
     }
@@ -209,7 +209,7 @@ public class MappingMetadata extends AbstractDiffable<MappingMetadata> {
         source = CompressedXContent.readCompressedString(in);
         // routing
         routing = new Routing(in.readBoolean());
-        if (in.getVersion().before(Version.V_6_0_0_alpha1)) {
+        if (in.getVersion().before(LegacyESVersion.V_6_0_0_alpha1)) {
             // timestamp
             boolean enabled = in.readBoolean();
             if (enabled) {
@@ -219,7 +219,7 @@ public class MappingMetadata extends AbstractDiffable<MappingMetadata> {
             in.readOptionalString(); // defaultTimestamp
             in.readOptionalBoolean(); // ignoreMissing
         }
-        if (in.getVersion().before(Version.V_7_0_0)) {
+        if (in.getVersion().before(LegacyESVersion.V_7_0_0)) {
             in.readBoolean(); // hasParentField
         }
     }

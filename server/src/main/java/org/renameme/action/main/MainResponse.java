@@ -20,6 +20,7 @@
 package org.renameme.action.main;
 
 import org.renameme.Build;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionResponse;
 import org.renameme.cluster.ClusterName;
@@ -51,7 +52,7 @@ public class MainResponse extends ActionResponse implements ToXContentObject {
         clusterName = new ClusterName(in);
         clusterUuid = in.readString();
         build = Build.readBuild(in);
-        if (in.getVersion().before(Version.V_7_0_0)) {
+        if (in.getVersion().before(LegacyESVersion.V_7_0_0)) {
             in.readBoolean();
         }
     }
@@ -92,7 +93,7 @@ public class MainResponse extends ActionResponse implements ToXContentObject {
         clusterName.writeTo(out);
         out.writeString(clusterUuid);
         Build.writeBuild(build, out);
-        if (out.getVersion().before(Version.V_7_0_0)) {
+        if (out.getVersion().before(LegacyESVersion.V_7_0_0)) {
             out.writeBoolean(true);
         }
     }

@@ -27,8 +27,6 @@ import org.renameme.repositories.IndexId;
 import org.renameme.snapshots.SnapshotId;
 import org.renameme.common.io.stream.BytesStreamOutput;
 import org.renameme.snapshots.Snapshot;
-import org.renameme.cluster.routing.ShardRoutingHelper;
-import org.renameme.cluster.routing.TestShardRouting;
 import org.renameme.test.ESTestCase;
 
 import java.io.IOException;

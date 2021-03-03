@@ -54,7 +54,6 @@ import org.renameme.join.ParentJoinPlugin;
 import org.renameme.plugins.Plugin;
 import org.renameme.search.sort.FieldSortBuilder;
 import org.renameme.search.sort.SortOrder;
-import org.renameme.join.query.HasChildQueryBuilder;
 import org.renameme.test.AbstractQueryTestCase;
 import org.renameme.test.TestGeoShapeFieldMapperPlugin;
 import org.renameme.test.VersionUtils;

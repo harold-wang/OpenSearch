@@ -20,7 +20,7 @@
 package org.renameme.monitor.jvm;
 
 import org.apache.lucene.util.Constants;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Booleans;
 import org.renameme.common.SuppressForbidden;
 import org.renameme.common.io.PathUtils;
@@ -253,7 +253,7 @@ public class JvmInfo implements ReportingService.Info {
         vmName = in.readString();
         vmVersion = in.readString();
         vmVendor = in.readString();
-        if (in.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             bundledJdk = in.readBoolean();
             usingBundledJdk = in.readOptionalBoolean();
         } else {
@@ -289,7 +289,7 @@ public class JvmInfo implements ReportingService.Info {
         out.writeString(vmName);
         out.writeString(vmVersion);
         out.writeString(vmVendor);
-        if (out.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             out.writeBoolean(bundledJdk);
             out.writeOptionalBoolean(usingBundledJdk);
         }

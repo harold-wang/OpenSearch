@@ -18,8 +18,9 @@
  */
 package org.renameme.indices;
 
-import org.renameme.RenamemeException;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.admin.cluster.state.ClusterStateResponse;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.metadata.IndexMetadata;
@@ -212,7 +213,7 @@ public class IndicesLifecycleListenerIT extends ESIntegTestCase {
         assertThat(stateChangeListenerNode1.afterCloseSettings.getAsInt(SETTING_NUMBER_OF_SHARDS, -1), equalTo(6));
         assertThat(stateChangeListenerNode1.afterCloseSettings.getAsInt(SETTING_NUMBER_OF_REPLICAS, -1), equalTo(1));
 
-        if (Version.CURRENT.onOrAfter(Version.V_7_2_0)) {
+        if (Version.CURRENT.onOrAfter(LegacyESVersion.V_7_2_0)) {
             assertShardStatesMatch(stateChangeListenerNode1, 6, CLOSED, CREATED, RECOVERING, POST_RECOVERY, STARTED);
             assertShardStatesMatch(stateChangeListenerNode2, 6, CLOSED, CREATED, RECOVERING, POST_RECOVERY, STARTED);
         } else {

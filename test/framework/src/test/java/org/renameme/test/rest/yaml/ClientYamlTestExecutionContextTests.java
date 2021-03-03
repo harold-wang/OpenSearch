@@ -24,8 +24,6 @@ import org.renameme.Version;
 import org.renameme.client.NodeSelector;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.VersionUtils;
-import org.renameme.test.rest.yaml.ClientYamlTestExecutionContext;
-import org.renameme.test.rest.yaml.ClientYamlTestResponse;
 
 import java.io.IOException;
 import java.util.Collections;

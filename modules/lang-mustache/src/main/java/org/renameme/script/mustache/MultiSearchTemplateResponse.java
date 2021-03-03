@@ -19,8 +19,8 @@
 
 package org.renameme.script.mustache;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeException;
-import org.renameme.Version;
 import org.renameme.action.ActionResponse;
 import org.renameme.action.search.MultiSearchResponse;
 import org.renameme.common.Nullable;
@@ -112,7 +112,7 @@ public class MultiSearchTemplateResponse extends ActionResponse implements Itera
     MultiSearchTemplateResponse(StreamInput in) throws IOException {
         super(in);
         items = in.readArray(Item::new, Item[]::new);
-        if (in.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             tookInMillis = in.readVLong();
         } else {
             tookInMillis = -1L;
@@ -146,7 +146,7 @@ public class MultiSearchTemplateResponse extends ActionResponse implements Itera
     @Override
     public void writeTo(StreamOutput out) throws IOException {
         out.writeArray(items);
-        if (out.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             out.writeVLong(tookInMillis);
         }
     }

@@ -23,10 +23,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexFormatTooNewException;
 import org.apache.lucene.index.IndexFormatTooOldException;
-import org.renameme.Assertions;
-import org.renameme.RenamemeException;
-import org.renameme.ExceptionsHelper;
-import org.renameme.Version;
+import org.renameme.*;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.indices.flush.FlushRequest;
 import org.renameme.cluster.node.DiscoveryNode;
@@ -424,7 +421,7 @@ public class RecoveryTarget extends AbstractRefCounted implements RecoveryTarget
             store.incRef();
             try {
                 store.cleanupAndVerify("recovery CleanFilesRequestHandler", sourceMetadata);
-                if (indexShard.indexSettings().getIndexVersionCreated().before(Version.V_6_0_0_rc1)) {
+                if (indexShard.indexSettings().getIndexVersionCreated().before(LegacyESVersion.V_6_0_0_rc1)) {
                     store.ensureIndexHasHistoryUUID();
                 }
                 final String translogUUID = Translog.createEmptyTranslog(

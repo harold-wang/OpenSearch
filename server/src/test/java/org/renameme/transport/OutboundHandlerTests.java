@@ -19,8 +19,8 @@
 
 package org.renameme.transport;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.ActionListener;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.breaker.CircuitBreaker;
@@ -41,9 +41,6 @@ import org.renameme.threadpool.TestThreadPool;
 import org.renameme.threadpool.ThreadPool;
 import org.junit.After;
 import org.junit.Before;
-import org.renameme.transport.FakeTcpChannel;
-import org.renameme.transport.TestRequest;
-import org.renameme.transport.TestResponse;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

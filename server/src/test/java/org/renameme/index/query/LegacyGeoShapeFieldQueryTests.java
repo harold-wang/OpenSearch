@@ -19,6 +19,7 @@
 
 package org.renameme.index.query;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.geo.ShapeRelation;
@@ -41,7 +42,7 @@ public class LegacyGeoShapeFieldQueryTests extends GeoShapeQueryBuilderTests {
     @Override
     protected Settings createTestIndexSettings() {
         // force the legacy shape impl
-        Version version = VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.V_6_5_0);
+        Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, LegacyESVersion.V_6_5_0);
         return Settings.builder()
                 .put(super.createTestIndexSettings())
                 .put(IndexMetadata.SETTING_VERSION_CREATED, version)

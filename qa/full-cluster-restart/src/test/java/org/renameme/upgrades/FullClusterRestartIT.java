@@ -20,6 +20,7 @@
 package org.renameme.upgrades;
 
 import org.apache.http.util.EntityUtils;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.client.Request;
 import org.renameme.client.Response;
@@ -41,13 +42,11 @@ import org.renameme.rest.action.document.RestGetAction;
 import org.renameme.rest.action.document.RestIndexAction;
 import org.renameme.rest.action.document.RestUpdateAction;
 import org.renameme.rest.action.search.RestExplainAction;
-import org.renameme.upgrades.AbstractFullClusterRestartTestCase;
 import org.renameme.test.NotEqualMessageBuilder;
 import org.renameme.test.XContentTestUtils;
 import org.renameme.test.rest.ESRestTestCase;
 import org.renameme.test.rest.yaml.ObjectPath;
 import org.junit.Before;
-import org.renameme.upgrades.AbstractFullClusterRestartTestCase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -88,7 +87,7 @@ import static org.hamcrest.Matchers.startsWith;
  * with {@code tests.is_old_cluster} set to {@code false}.
  */
 public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
-    private final boolean supportsLenientBooleans = getOldClusterVersion().before(Version.V_6_0_0_alpha1);
+    private final boolean supportsLenientBooleans = getOldClusterVersion().before(LegacyESVersion.V_6_0_0_alpha1);
 
     private String index;
     private String type;
@@ -100,7 +99,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
 
     @Before
     public void setType() {
-        type = getOldClusterVersion().before(Version.V_6_7_0) ? "doc" : "_doc";
+        type = getOldClusterVersion().before(LegacyESVersion.V_6_7_0) ? "doc" : "_doc";
     }
 
     public void testSearch() throws Exception {
@@ -341,7 +340,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
             client().performRequest(updateSettingsRequest);
 
             Request shrinkIndexRequest = new Request("PUT", "/" + index + "/_shrink/" + shrunkenIndex);
-            if (getOldClusterVersion().onOrAfter(Version.V_6_4_0) && getOldClusterVersion().before(Version.V_7_0_0)) {
+            if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_4_0) && getOldClusterVersion().before(LegacyESVersion.V_7_0_0)) {
                 shrinkIndexRequest.addParameter("copy_settings", "true");
             }
             shrinkIndexRequest.setJsonEntity("{\"settings\": {\"index.number_of_shards\": 1}}");
@@ -624,7 +623,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
         client().performRequest(updateRequest);
 
         Request getRequest = new Request("GET", "/" + index + "/" + typeName + "/" + docId);
-        if (getOldClusterVersion().before(Version.V_6_7_0)) {
+        if (getOldClusterVersion().before(LegacyESVersion.V_6_7_0)) {
             getRequest.setOptions(expectWarnings(RestGetAction.TYPES_DEPRECATION_MESSAGE));
         }
         Map<String, Object> getRsp = entityAsMap(client().performRequest(getRequest));
@@ -673,7 +672,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
 
 
         Request request = new Request("GET", docLocation);
-        if (getOldClusterVersion().before(Version.V_6_7_0)) {
+        if (getOldClusterVersion().before(LegacyESVersion.V_6_7_0)) {
             request.setOptions(expectWarnings(RestGetAction.TYPES_DEPRECATION_MESSAGE));
         }
         assertThat(toStr(client().performRequest(request)), containsString(doc));
@@ -695,7 +694,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
                 // before timing out
                 .put(INDEX_DELAYED_NODE_LEFT_TIMEOUT_SETTING.getKey(), "100ms")
                 .put(SETTING_ALLOCATION_MAX_RETRY.getKey(), "0"); // fail faster
-            if (getOldClusterVersion().onOrAfter(Version.V_6_5_0)) {
+            if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_5_0)) {
                 settings.put(IndexSettings.INDEX_SOFT_DELETES_SETTING.getKey(), randomBoolean());
             }
             if (randomBoolean()) {
@@ -967,7 +966,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
                 mappingsAndSettings.startObject("settings");
                 mappingsAndSettings.field("number_of_shards", 1);
                 mappingsAndSettings.field("number_of_replicas", 1);
-                if (getOldClusterVersion().onOrAfter(Version.V_6_5_0) && randomBoolean()) {
+                if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_5_0) && randomBoolean()) {
                     mappingsAndSettings.field("soft_deletes.enabled", true);
                 }
                 mappingsAndSettings.endObject();
@@ -1040,7 +1039,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
             closeIndex(index);
         }
 
-        if (getOldClusterVersion().onOrAfter(Version.V_7_2_0)) {
+        if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
             ensureGreenLongWait(index);
             assertClosedIndex(index, true);
         } else {
@@ -1120,7 +1119,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
              * we will hit a warning exception because we put some deprecated settings in that test.
              */
             if (isRunningAgainstOldCluster() == false
-                && getOldClusterVersion().onOrAfter(Version.V_6_1_0) && getOldClusterVersion().before(Version.V_6_5_0)) {
+                && getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_1_0) && getOldClusterVersion().before(LegacyESVersion.V_6_5_0)) {
                 for (String warning : e.getResponse().getWarnings()) {
                     assertThat(warning, containsString(
                         "setting was deprecated in Renameme and will be removed in a future release! "
@@ -1188,7 +1187,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
 
         Map<String, Object> getTemplateResponse = entityAsMap(client().performRequest(getTemplateRequest));
         Map<String, Object> expectedTemplate = new HashMap<>();
-        if (isRunningAgainstOldCluster() && getOldClusterVersion().before(Version.V_6_0_0_beta1)) {
+        if (isRunningAgainstOldCluster() && getOldClusterVersion().before(LegacyESVersion.V_6_0_0_beta1)) {
             expectedTemplate.put("template", "evil_*");
         } else {
             expectedTemplate.put("index_patterns", singletonList("evil_*"));
@@ -1280,7 +1279,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
     private String loadInfoDocument(String type) throws IOException {
         Request request = new Request("GET", "/info/" + this.type + "/" + index + "_" + type);
         request.addParameter("filter_path", "_source");
-        if (getOldClusterVersion().before(Version.V_6_7_0)) {
+        if (getOldClusterVersion().before(LegacyESVersion.V_6_7_0)) {
             request.setOptions(expectWarnings(RestGetAction.TYPES_DEPRECATION_MESSAGE));
         }
         String doc = toStr(client().performRequest(request));
@@ -1329,7 +1328,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
     }
 
     public void testPeerRecoveryRetentionLeases() throws Exception {
-        assumeTrue(getOldClusterVersion() + " does not support soft deletes", getOldClusterVersion().onOrAfter(Version.V_6_5_0));
+        assumeTrue(getOldClusterVersion() + " does not support soft deletes", getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_5_0));
         if (isRunningAgainstOldCluster()) {
             XContentBuilder settings = jsonBuilder();
             settings.startObject();
@@ -1337,7 +1336,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
                 settings.startObject("settings");
                 settings.field("number_of_shards", between(1, 5));
                 settings.field("number_of_replicas", between(0, 1));
-                if (randomBoolean() || getOldClusterVersion().before(Version.V_7_0_0)) {
+                if (randomBoolean() || getOldClusterVersion().before(LegacyESVersion.V_7_0_0)) {
                     // this is the default after v7.0.0, but is required before that
                     settings.field("soft_deletes.enabled", true);
                 }
@@ -1364,7 +1363,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
             final Settings.Builder settings = Settings.builder()
                 .put(IndexMetadata.SETTING_NUMBER_OF_SHARDS, 1)
                 .put(IndexMetadata.SETTING_NUMBER_OF_REPLICAS, 1);
-            if (getOldClusterVersion().onOrAfter(Version.V_6_7_0)) {
+            if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_7_0)) {
                 settings.put(IndexSettings.INDEX_SOFT_DELETES_SETTING.getKey(), randomBoolean());
             }
             createIndex(index, settings.build());
@@ -1395,7 +1394,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
      * Verifies that once all shard copies on the new version, we should turn off the translog retention for indices with soft-deletes.
      */
     public void testTurnOffTranslogRetentionAfterUpgraded() throws Exception {
-        assumeTrue("requires soft-deletes and retention leases", getOldClusterVersion().onOrAfter(Version.V_6_7_0));
+        assumeTrue("requires soft-deletes and retention leases", getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_7_0));
         if (isRunningAgainstOldCluster()) {
             createIndex(index, Settings.builder()
                 .put(IndexMetadata.INDEX_NUMBER_OF_SHARDS_SETTING.getKey(), 1)
@@ -1422,7 +1421,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
             final Settings.Builder settings = Settings.builder()
                 .put(IndexMetadata.SETTING_NUMBER_OF_SHARDS, 1)
                 .put(IndexMetadata.SETTING_NUMBER_OF_REPLICAS, 1);
-            if (getOldClusterVersion().onOrAfter(Version.V_6_5_0)) {
+            if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_5_0)) {
                 settings.put(IndexSettings.INDEX_SOFT_DELETES_SETTING.getKey(), randomBoolean());
             }
             if (randomBoolean()) {
@@ -1498,7 +1497,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
             // make sure .tasks index exists
             Request getTasksIndex = new Request("GET", "/.tasks");
             getTasksIndex.addParameter("allow_no_indices", "false");
-            if (getOldClusterVersion().onOrAfter(Version.V_6_7_0) && getOldClusterVersion().before(Version.V_7_0_0)) {
+            if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_7_0) && getOldClusterVersion().before(LegacyESVersion.V_7_0_0)) {
                 getTasksIndex.addParameter("include_type_name", "false");
             }
 
@@ -1566,7 +1565,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
             final Settings.Builder settings = Settings.builder()
                 .put(IndexMetadata.SETTING_NUMBER_OF_SHARDS, 1)
                 .put(IndexMetadata.SETTING_NUMBER_OF_REPLICAS, 1);
-            if (getOldClusterVersion().onOrAfter(Version.V_6_5_0)) {
+            if (getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_5_0)) {
                 settings.put(IndexSettings.INDEX_SOFT_DELETES_SETTING.getKey(), randomBoolean());
             }
             createIndex(index, settings.build());
@@ -1617,7 +1616,7 @@ public class FullClusterRestartIT extends AbstractFullClusterRestartTestCase {
     }
 
     public void testForbidDisableSoftDeletesOnRestore() throws Exception {
-        assumeTrue("soft deletes is introduced in 6.5", getOldClusterVersion().onOrAfter(Version.V_6_5_0));
+        assumeTrue("soft deletes is introduced in 6.5", getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_5_0));
         final String snapshot = "snapshot-" + index;
         if (isRunningAgainstOldCluster()) {
             final Settings.Builder settings = Settings.builder()

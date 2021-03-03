@@ -25,7 +25,6 @@ import org.apache.lucene.search.SortedNumericSortField;
 import org.apache.lucene.search.SortedSetSortField;
 import org.apache.lucene.search.SortedSetSelector;
 import org.apache.lucene.search.SortField;
-import org.apache.lucene.util.Version;
 import org.renameme.common.io.stream.BytesStreamOutput;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.test.ESTestCase;
@@ -77,7 +76,7 @@ public class SegmentTests extends ESTestCase {
         segment.sizeInBytes = randomNonNegativeLong();
         segment.docCount = randomIntBetween(1, Integer.MAX_VALUE);
         segment.delDocCount = randomIntBetween(0, segment.docCount);
-        segment.version = Version.LUCENE_7_0_0;
+        segment.version = org.apache.lucene.util.Version.LUCENE_7_0_0;
         segment.compound = randomBoolean();
         segment.mergeId = randomAlphaOfLengthBetween(1, 10);
         segment.memoryInBytes = randomNonNegativeLong();

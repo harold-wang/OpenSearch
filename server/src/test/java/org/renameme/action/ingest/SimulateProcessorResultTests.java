@@ -19,7 +19,7 @@
 
 package org.renameme.action.ingest;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.collect.Tuple;
 import org.renameme.common.io.stream.BytesStreamOutput;
 import org.renameme.common.io.stream.StreamInput;
@@ -79,10 +79,10 @@ public class SimulateProcessorResultTests extends AbstractXContentTestCase<Simul
         SimulateProcessorResult simulateProcessorResult = createTestInstance(isSuccessful, isIgnoredException, hasCondition);
 
         BytesStreamOutput out = new BytesStreamOutput();
-        out.setVersion(VersionUtils.getPreviousVersion(Version.V_7_9_0));
+        out.setVersion(VersionUtils.getPreviousVersion(LegacyESVersion.V_7_9_0));
         simulateProcessorResult.writeTo(out);
         StreamInput in = out.bytes().streamInput();
-        in.setVersion(VersionUtils.getPreviousVersion(Version.V_7_9_0));
+        in.setVersion(VersionUtils.getPreviousVersion(LegacyESVersion.V_7_9_0));
         SimulateProcessorResult otherSimulateProcessorResult = new SimulateProcessorResult(in);
         assertNull(otherSimulateProcessorResult.getDescription());
     }

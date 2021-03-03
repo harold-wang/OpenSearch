@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.cluster.node.usage;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.support.nodes.BaseNodeResponse;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.io.stream.StreamInput;
@@ -43,7 +43,7 @@ public class NodeUsage extends BaseNodeResponse implements ToXContentFragment {
         timestamp = in.readLong();
         sinceTime = in.readLong();
         restUsage = (Map<String, Long>) in.readGenericValue();
-        if (in.getVersion().onOrAfter(Version.V_7_8_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_8_0)) {
             aggregationUsage = (Map<String, Object>) in.readGenericValue();
         } else {
             aggregationUsage = null;
@@ -121,7 +121,7 @@ public class NodeUsage extends BaseNodeResponse implements ToXContentFragment {
         out.writeLong(timestamp);
         out.writeLong(sinceTime);
         out.writeGenericValue(restUsage);
-        if (out.getVersion().onOrAfter(Version.V_7_8_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_8_0)) {
             out.writeGenericValue(aggregationUsage);
         }
     }

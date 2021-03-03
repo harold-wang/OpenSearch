@@ -30,8 +30,9 @@ import org.apache.lucene.search.MatchNoDocsQuery;
 import org.apache.lucene.search.PrefixQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.BytesRef;
-import org.renameme.RenamemeException;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.common.Nullable;
 import org.renameme.index.mapper.SeqNoFieldMapper;
 import org.renameme.index.mapper.TypeFieldMapper;
@@ -75,7 +76,7 @@ public class Queries {
      * @param indexVersionCreated the index version created since newer indices can identify a parent field more efficiently
      */
     public static Query newNonNestedFilter(Version indexVersionCreated) {
-        if (indexVersionCreated.onOrAfter(Version.V_6_1_0)) {
+        if (indexVersionCreated.onOrAfter(LegacyESVersion.V_6_1_0)) {
             return new DocValuesFieldExistsQuery(SeqNoFieldMapper.PRIMARY_TERM_NAME);
         } else {
             return new BooleanQuery.Builder()

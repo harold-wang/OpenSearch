@@ -19,6 +19,7 @@
 
 package org.renameme.action;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.support.IndicesOptions;
 import org.renameme.common.io.stream.BytesStreamOutput;
@@ -53,7 +54,7 @@ public class OriginalIndicesTests extends ESTestCase {
             // indices options are not equivalent when sent to an older version and re-read due
             // to the addition of hidden indices as expand to hidden indices is always true when
             // read from a prior version
-            if (out.getVersion().onOrAfter(Version.V_7_7_0) || originalIndices.indicesOptions().expandWildcardsHidden()) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_7_0) || originalIndices.indicesOptions().expandWildcardsHidden()) {
                 assertThat(originalIndices2.indicesOptions(), equalTo(originalIndices.indicesOptions()));
             } else if (originalIndices.indicesOptions().expandWildcardsHidden()) {
                 assertThat(originalIndices2.indicesOptions(), equalTo(originalIndices.indicesOptions()));

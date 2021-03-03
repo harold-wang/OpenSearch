@@ -19,7 +19,7 @@
 
 package org.renameme.discovery;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.io.stream.Writeable;
@@ -43,7 +43,7 @@ public class DiscoveryStats implements Writeable, ToXContentFragment {
     public DiscoveryStats(StreamInput in) throws IOException {
         queueStats = in.readOptionalWriteable(PendingClusterStateStats::new);
 
-        if (in.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             publishStats = in.readOptionalWriteable(PublishClusterStateStats::new);
         } else {
             publishStats = null;
@@ -54,7 +54,7 @@ public class DiscoveryStats implements Writeable, ToXContentFragment {
     public void writeTo(StreamOutput out) throws IOException {
         out.writeOptionalWriteable(queueStats);
 
-        if (out.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             out.writeOptionalWriteable(publishStats);
         }
     }

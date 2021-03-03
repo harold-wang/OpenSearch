@@ -18,7 +18,7 @@
  */
 package org.renameme.action.admin.indices.alias.get;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.AliasesRequest;
 import org.renameme.action.support.IndicesOptions;
@@ -49,7 +49,7 @@ public class GetAliasesRequest extends MasterNodeReadRequest<GetAliasesRequest> 
         indices = in.readStringArray();
         aliases = in.readStringArray();
         indicesOptions = IndicesOptions.readIndicesOptions(in);
-        if (in.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             originalAliases = in.readStringArray();
         }
     }
@@ -60,7 +60,7 @@ public class GetAliasesRequest extends MasterNodeReadRequest<GetAliasesRequest> 
         out.writeStringArray(indices);
         out.writeStringArray(aliases);
         indicesOptions.writeIndicesOptions(out);
-        if (out.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             out.writeStringArray(originalAliases);
         }
     }

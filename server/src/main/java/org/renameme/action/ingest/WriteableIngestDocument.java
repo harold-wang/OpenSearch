@@ -19,7 +19,7 @@
 
 package org.renameme.action.ingest;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -112,7 +112,7 @@ final class WriteableIngestDocument implements Writeable, ToXContentFragment {
     WriteableIngestDocument(StreamInput in) throws IOException {
         Map<String, Object> sourceAndMetadata = in.readMap();
         Map<String, Object> ingestMetadata = in.readMap();
-        if (in.getVersion().before(Version.V_6_0_0_beta1)) {
+        if (in.getVersion().before(LegacyESVersion.V_6_0_0_beta1)) {
             ingestMetadata.computeIfPresent("timestamp", (k, o) -> {
                 Date date = (Date) o;
                 return date.toInstant().atZone(ZoneId.systemDefault());

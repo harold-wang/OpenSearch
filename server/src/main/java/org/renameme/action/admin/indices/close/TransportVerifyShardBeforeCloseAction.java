@@ -20,7 +20,7 @@ package org.renameme.action.admin.indices.close;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.indices.flush.FlushRequest;
 import org.renameme.action.support.ActionFilters;
@@ -153,7 +153,7 @@ public class TransportVerifyShardBeforeCloseAction extends TransportReplicationA
         ShardRequest(StreamInput in) throws IOException {
             super(in);
             clusterBlock = new ClusterBlock(in);
-            if (in.getVersion().onOrAfter(Version.V_7_3_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
                 phase1 = in.readBoolean();
             } else {
                 phase1 = false;
@@ -176,7 +176,7 @@ public class TransportVerifyShardBeforeCloseAction extends TransportReplicationA
         public void writeTo(final StreamOutput out) throws IOException {
             super.writeTo(out);
             clusterBlock.writeTo(out);
-            if (out.getVersion().onOrAfter(Version.V_7_3_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
                 out.writeBoolean(phase1);
             }
         }

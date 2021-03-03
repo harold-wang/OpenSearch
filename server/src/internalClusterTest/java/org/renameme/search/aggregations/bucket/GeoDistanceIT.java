@@ -18,6 +18,7 @@
  */
 package org.renameme.search.aggregations.bucket;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.index.IndexRequestBuilder;
 import org.renameme.action.search.SearchPhaseExecutionException;
@@ -64,7 +65,7 @@ public class GeoDistanceIT extends ESIntegTestCase {
         return false;
     }
 
-    private Version version = VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.CURRENT);
+    private Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, Version.CURRENT);
 
     private IndexRequestBuilder indexCity(String idx, String name, String... latLons) throws Exception {
         XContentBuilder source = jsonBuilder().startObject().field("city", name);

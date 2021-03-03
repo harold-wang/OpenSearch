@@ -1,7 +1,7 @@
 package org.renameme.script;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeException;
-import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -89,7 +89,7 @@ public class ScriptException extends RenamemeException {
         scriptStack = Arrays.asList(in.readStringArray());
         script = in.readString();
         lang = in.readString();
-        if (in.getVersion().onOrAfter(Version.V_7_7_0) && in.readBoolean()) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_7_0) && in.readBoolean()) {
             pos = new Position(in);
         } else {
             pos = null;
@@ -102,7 +102,7 @@ public class ScriptException extends RenamemeException {
         out.writeStringArray(scriptStack.toArray(new String[0]));
         out.writeString(script);
         out.writeString(lang);
-        if (out.getVersion().onOrAfter(Version.V_7_7_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
             if (pos == null) {
                 out.writeBoolean(false);
             } else {

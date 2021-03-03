@@ -40,10 +40,6 @@ import org.renameme.index.IndexSettings;
 import org.renameme.index.analysis.AnalyzerScope;
 import org.renameme.index.analysis.IndexAnalyzers;
 import org.renameme.index.analysis.NamedAnalyzer;
-import org.renameme.index.mapper.DocumentMapper;
-import org.renameme.index.mapper.MapperService;
-import org.renameme.index.mapper.Mapping;
-import org.renameme.index.mapper.SourceToParse;
 import org.renameme.index.query.QueryShardContext;
 import org.renameme.index.similarity.SimilarityService;
 import org.renameme.indices.IndicesModule;
@@ -54,7 +50,6 @@ import org.renameme.plugins.ScriptPlugin;
 import org.renameme.script.ScriptModule;
 import org.renameme.script.ScriptService;
 import org.renameme.search.lookup.SearchLookup;
-import org.renameme.test.ESTestCase;
 import org.renameme.test.ESTestCase;
 
 import java.io.IOException;

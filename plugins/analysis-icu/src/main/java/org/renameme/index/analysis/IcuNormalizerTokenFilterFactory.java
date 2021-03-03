@@ -23,13 +23,11 @@ import com.ibm.icu.text.FilteredNormalizer2;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import org.apache.lucene.analysis.TokenStream;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.logging.DeprecationLogger;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
 import org.renameme.index.IndexSettings;
-import org.renameme.index.analysis.AbstractTokenFilterFactory;
-import org.renameme.index.analysis.NormalizingTokenFilterFactory;
 
 
 /**
@@ -60,7 +58,7 @@ public class IcuNormalizerTokenFilterFactory extends AbstractTokenFilterFactory 
                                                 final Normalizer2 normalizer,
                                                 final Settings settings) {
         String unicodeSetFilter = settings.get("unicodeSetFilter");
-        if (indexSettings.getIndexVersionCreated().onOrAfter(Version.V_7_0_0)) {
+        if (indexSettings.getIndexVersionCreated().onOrAfter(LegacyESVersion.V_7_0_0)) {
             if (unicodeSetFilter != null) {
                 deprecationLogger.deprecate("icu_normalizer_unicode_set_filter",
                     "[unicodeSetFilter] has been deprecated in favor of [unicode_set_filter]");

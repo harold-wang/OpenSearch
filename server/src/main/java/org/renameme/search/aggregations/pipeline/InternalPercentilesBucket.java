@@ -19,7 +19,7 @@
 
 package org.renameme.search.aggregations.pipeline;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.xcontent.XContentBuilder;
@@ -72,7 +72,7 @@ public class InternalPercentilesBucket extends InternalNumericMetricsAggregation
         percentiles = in.readDoubleArray();
         percents = in.readDoubleArray();
 
-        if (in.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             keyed = in.readBoolean();
         }
 
@@ -85,7 +85,7 @@ public class InternalPercentilesBucket extends InternalNumericMetricsAggregation
         out.writeDoubleArray(percentiles);
         out.writeDoubleArray(percents);
 
-        if (out.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             out.writeBoolean(keyed);
         }
     }

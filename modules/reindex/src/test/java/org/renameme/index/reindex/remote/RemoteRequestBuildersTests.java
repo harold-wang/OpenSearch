@@ -29,7 +29,6 @@ import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.io.Streams;
 import org.renameme.common.unit.TimeValue;
 import org.renameme.search.builder.SearchSourceBuilder;
-import org.renameme.index.reindex.remote.RemoteRequestBuilders;
 import org.renameme.test.ESTestCase;
 
 import java.io.IOException;

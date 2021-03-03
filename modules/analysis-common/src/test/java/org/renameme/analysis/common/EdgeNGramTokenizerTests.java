@@ -20,12 +20,11 @@
 package org.renameme.analysis.common;
 
 import org.apache.lucene.analysis.Tokenizer;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
-import org.renameme.analysis.common.CommonAnalysisPlugin;
-import org.renameme.analysis.common.EdgeNGramTokenizerFactory;
 import org.renameme.env.TestEnvironment;
 import org.renameme.index.Index;
 import org.renameme.index.IndexSettings;
@@ -59,8 +58,8 @@ public class EdgeNGramTokenizerTests extends ESTokenStreamTestCase {
 
         // Before 7.3 we return ngrams of length 1 only
         {
-            Version version = VersionUtils.randomVersionBetween(random(), Version.V_7_0_0,
-                VersionUtils.getPreviousVersion(Version.V_7_3_0));
+            Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_0_0,
+                VersionUtils.getPreviousVersion(LegacyESVersion.V_7_3_0));
             try (IndexAnalyzers indexAnalyzers = buildAnalyzers(version, "edge_ngram")) {
                 NamedAnalyzer analyzer = indexAnalyzers.get("my_analyzer");
                 assertNotNull(analyzer);
@@ -70,8 +69,8 @@ public class EdgeNGramTokenizerTests extends ESTokenStreamTestCase {
 
         // Check deprecated name as well
         {
-            Version version = VersionUtils.randomVersionBetween(random(), Version.V_7_0_0,
-                VersionUtils.getPreviousVersion(Version.V_7_3_0));
+            Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_0_0,
+                VersionUtils.getPreviousVersion(LegacyESVersion.V_7_3_0));
             try (IndexAnalyzers indexAnalyzers = buildAnalyzers(version, "edgeNGram")) {
                 NamedAnalyzer analyzer = indexAnalyzers.get("my_analyzer");
                 assertNotNull(analyzer);
@@ -91,7 +90,7 @@ public class EdgeNGramTokenizerTests extends ESTokenStreamTestCase {
         // Check deprecated name as well, needs version before 8.0 because throws IAE after that
         {
             try (IndexAnalyzers indexAnalyzers = buildAnalyzers(
-                    VersionUtils.randomVersionBetween(random(), Version.V_7_3_0, Version.CURRENT),
+                    VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_3_0, Version.CURRENT),
                     "edgeNGram")) {
                 NamedAnalyzer analyzer = indexAnalyzers.get("my_analyzer");
                 assertNotNull(analyzer);

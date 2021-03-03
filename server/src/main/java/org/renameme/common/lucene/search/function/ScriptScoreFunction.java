@@ -22,10 +22,10 @@ package org.renameme.common.lucene.search.function;
 import org.apache.lucene.index.LeafReaderContext;
 import org.apache.lucene.search.Explanation;
 import org.apache.lucene.search.Scorable;
+import org.renameme.Version;
 import org.renameme.script.ExplainableScoreScript;
 import org.renameme.script.ScoreScript;
 import org.renameme.script.Script;
-import org.renameme.Version;
 
 import java.io.IOException;
 import java.util.Objects;

@@ -19,6 +19,7 @@
 
 package org.renameme.index.mapper;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.Strings;
@@ -471,7 +472,7 @@ public class RootObjectMapperTests extends ESSingleNodeTestCase {
             mapping.endObject();
         }
         mapping.endObject();
-        Version createdVersion = randomVersionBetween(random(), Version.V_7_0_0, Version.V_7_6_0);
+        Version createdVersion = randomVersionBetween(random(), LegacyESVersion.V_7_0_0, LegacyESVersion.V_7_6_0);
         Settings indexSettings = Settings.builder()
             .put(IndexMetadata.SETTING_INDEX_VERSION_CREATED.getKey(), createdVersion)
             .build();

@@ -23,7 +23,7 @@ import org.apache.lucene.search.MatchAllDocsQuery;
 import org.apache.lucene.search.MatchNoDocsQuery;
 import org.apache.lucene.search.MultiTermQuery;
 import org.apache.lucene.search.Query;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.ParsingException;
 import org.renameme.common.Strings;
@@ -84,7 +84,7 @@ public class PrefixQueryBuilder extends AbstractQueryBuilder<PrefixQueryBuilder>
         fieldName = in.readString();
         value = in.readString();
         rewrite = in.readOptionalString();
-        if (in.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             caseInsensitive = in.readBoolean();
         }
     }
@@ -94,7 +94,7 @@ public class PrefixQueryBuilder extends AbstractQueryBuilder<PrefixQueryBuilder>
         out.writeString(fieldName);
         out.writeString(value);
         out.writeOptionalString(rewrite);
-        if (out.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             out.writeBoolean(caseInsensitive);
         }
     }

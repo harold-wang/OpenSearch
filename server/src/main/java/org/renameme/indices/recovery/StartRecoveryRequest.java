@@ -19,7 +19,7 @@
 
 package org.renameme.indices.recovery;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -53,7 +53,7 @@ public class StartRecoveryRequest extends TransportRequest {
         targetNode = new DiscoveryNode(in);
         metadataSnapshot = new Store.MetadataSnapshot(in);
         primaryRelocation = in.readBoolean();
-        if (in.getVersion().onOrAfter(Version.V_6_0_0_alpha1)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_alpha1)) {
             startingSeqNo = in.readLong();
         } else {
             startingSeqNo = SequenceNumbers.UNASSIGNED_SEQ_NO;
@@ -134,7 +134,7 @@ public class StartRecoveryRequest extends TransportRequest {
         targetNode.writeTo(out);
         metadataSnapshot.writeTo(out);
         out.writeBoolean(primaryRelocation);
-        if (out.getVersion().onOrAfter(Version.V_6_0_0_alpha1)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_alpha1)) {
             out.writeLong(startingSeqNo);
         }
     }

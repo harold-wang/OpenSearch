@@ -19,8 +19,9 @@
 
 package org.renameme.common.settings;
 
-import org.renameme.RenamemeParseException;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
+import org.renameme.RenamemeParseException;
 import org.renameme.common.Strings;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.io.stream.BytesStreamOutput;
@@ -32,7 +33,6 @@ import org.renameme.common.xcontent.ToXContent;
 import org.renameme.common.xcontent.XContentBuilder;
 import org.renameme.common.xcontent.XContentParser;
 import org.renameme.common.xcontent.XContentType;
-import org.renameme.common.settings.MockSecureSettings;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.VersionUtils;
 
@@ -642,7 +642,7 @@ public class SettingsTests extends ESTestCase {
 
     public void testReadLegacyFromStream() throws IOException {
         BytesStreamOutput output = new BytesStreamOutput();
-        output.setVersion(VersionUtils.getPreviousVersion(Version.V_6_1_0));
+        output.setVersion(VersionUtils.getPreviousVersion(LegacyESVersion.V_6_1_0));
         output.writeVInt(5);
         output.writeString("foo.bar.1");
         output.writeOptionalString("1");
@@ -655,7 +655,7 @@ public class SettingsTests extends ESTestCase {
         output.writeString("foo.bar.baz");
         output.writeOptionalString("baz");
         StreamInput in = StreamInput.wrap(BytesReference.toBytes(output.bytes()));
-        in.setVersion(VersionUtils.getPreviousVersion(Version.V_6_1_0));
+        in.setVersion(VersionUtils.getPreviousVersion(LegacyESVersion.V_6_1_0));
         Settings settings = Settings.readSettingsFromStream(in);
         assertEquals(2, settings.size());
         assertEquals(Arrays.asList("0", "1", "2", "3"), settings.getAsList("foo.bar"));
@@ -664,7 +664,7 @@ public class SettingsTests extends ESTestCase {
 
     public void testWriteLegacyOutput() throws IOException {
         BytesStreamOutput output = new BytesStreamOutput();
-        output.setVersion(VersionUtils.getPreviousVersion(Version.V_6_1_0));
+        output.setVersion(VersionUtils.getPreviousVersion(LegacyESVersion.V_6_1_0));
         Settings settings = Settings.builder().putList("foo.bar", "0", "1", "2", "3")
             .put("foo.bar.baz", "baz").putNull("foo.null").build();
         Settings.writeSettingsToStream(settings, output);
@@ -694,7 +694,7 @@ public class SettingsTests extends ESTestCase {
 
     public void testReadWriteArray() throws IOException {
         BytesStreamOutput output = new BytesStreamOutput();
-        output.setVersion(randomFrom(Version.CURRENT, Version.V_6_1_0));
+        output.setVersion(randomFrom(Version.CURRENT, LegacyESVersion.V_6_1_0));
         Settings settings = Settings.builder().putList("foo.bar", "0", "1", "2", "3").put("foo.bar.baz", "baz").build();
         Settings.writeSettingsToStream(settings, output);
         StreamInput in = StreamInput.wrap(BytesReference.toBytes(output.bytes()));

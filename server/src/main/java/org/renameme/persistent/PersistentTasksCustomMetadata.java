@@ -18,9 +18,10 @@
  */
 package org.renameme.persistent;
 
+import org.renameme.LegacyESVersion;
+import org.renameme.Version;
 import org.renameme.ResourceAlreadyExistsException;
 import org.renameme.ResourceNotFoundException;
-import org.renameme.Version;
 import org.renameme.cluster.AbstractNamedDiffable;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.NamedDiff;
@@ -347,7 +348,7 @@ public final class PersistentTasksCustomMetadata extends AbstractNamedDiffable<M
             id = in.readString();
             allocationId = in.readLong();
             taskName = in.readString();
-            if (in.getVersion().onOrAfter(Version.V_6_3_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_6_3_0)) {
                 params = (P) in.readNamedWriteable(PersistentTaskParams.class);
             } else {
                 params = (P) in.readOptionalNamedWriteable(PersistentTaskParams.class);
@@ -362,7 +363,7 @@ public final class PersistentTasksCustomMetadata extends AbstractNamedDiffable<M
             out.writeString(id);
             out.writeLong(allocationId);
             out.writeString(taskName);
-            if (out.getVersion().onOrAfter(Version.V_6_3_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_6_3_0)) {
                 out.writeNamedWriteable(params);
             } else {
                 out.writeOptionalNamedWriteable(params);

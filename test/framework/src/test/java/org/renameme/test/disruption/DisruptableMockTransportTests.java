@@ -29,7 +29,6 @@ import org.renameme.common.settings.Settings;
 import org.renameme.common.transport.TransportAddress;
 import org.renameme.node.Node;
 import org.renameme.test.ESTestCase;
-import org.renameme.test.disruption.DisruptableMockTransport;
 import org.renameme.test.disruption.DisruptableMockTransport.ConnectionStatus;
 import org.renameme.threadpool.ThreadPool;
 import org.renameme.transport.ConnectTransportException;

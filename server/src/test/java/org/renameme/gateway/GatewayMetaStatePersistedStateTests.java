@@ -21,8 +21,8 @@ package org.renameme.gateway;
 
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.MockDirectoryWrapper;
-import org.renameme.ExceptionsHelper;
 import org.renameme.Version;
+import org.renameme.ExceptionsHelper;
 import org.renameme.cluster.ClusterName;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.coordination.CoordinationMetadata;
@@ -47,7 +47,6 @@ import org.renameme.env.NodeEnvironment;
 import org.renameme.env.TestEnvironment;
 import org.renameme.indices.breaker.NoneCircuitBreakerService;
 import org.renameme.node.Node;
-import org.renameme.gateway.MockGatewayMetaState;
 import org.renameme.test.ESTestCase;
 import org.renameme.threadpool.TestThreadPool;
 import org.renameme.threadpool.ThreadPool;

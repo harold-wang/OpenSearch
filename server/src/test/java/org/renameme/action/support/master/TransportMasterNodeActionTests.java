@@ -18,8 +18,8 @@
  */
 package org.renameme.action.support.master;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.ActionFuture;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionRequestValidationException;

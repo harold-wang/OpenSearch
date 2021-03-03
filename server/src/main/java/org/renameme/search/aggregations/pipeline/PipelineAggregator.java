@@ -20,7 +20,7 @@
 package org.renameme.search.aggregations.pipeline;
 
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.io.stream.NamedWriteable;
 import org.renameme.common.io.stream.StreamInput;
@@ -125,7 +125,7 @@ public abstract class PipelineAggregator implements NamedWriteable {
      */
     @Deprecated
     protected PipelineAggregator(StreamInput in) throws IOException {
-        if (in.getVersion().before(Version.V_7_8_0)) {
+        if (in.getVersion().before(LegacyESVersion.V_7_8_0)) {
             name = in.readString();
             bucketsPaths = in.readStringArray();
             metadata = in.readMap();
@@ -141,7 +141,7 @@ public abstract class PipelineAggregator implements NamedWriteable {
     @Override
     @Deprecated
     public final void writeTo(StreamOutput out) throws IOException {
-        if (out.getVersion().before(Version.V_7_8_0)) {
+        if (out.getVersion().before(LegacyESVersion.V_7_8_0)) {
             out.writeString(name);
             out.writeStringArray(bucketsPaths);
             out.writeMap(metadata);

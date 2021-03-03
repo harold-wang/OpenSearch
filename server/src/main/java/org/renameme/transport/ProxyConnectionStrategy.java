@@ -20,6 +20,7 @@
 package org.renameme.transport;
 
 import org.apache.logging.log4j.message.ParameterizedMessage;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.cluster.ClusterName;
@@ -268,7 +269,7 @@ public class ProxyConnectionStrategy extends RemoteConnectionStrategy {
 
         private ProxyModeInfo(StreamInput input) throws IOException {
             address = input.readString();
-            if (input.getVersion().onOrAfter(Version.V_7_7_0)) {
+            if (input.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
                 serverName = input.readString();
             } else {
                 serverName = null;
@@ -289,7 +290,7 @@ public class ProxyConnectionStrategy extends RemoteConnectionStrategy {
         @Override
         public void writeTo(StreamOutput out) throws IOException {
             out.writeString(address);
-            if (out.getVersion().onOrAfter(Version.V_7_7_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
                 out.writeString(serverName);
             }
             out.writeVInt(maxSocketConnections);

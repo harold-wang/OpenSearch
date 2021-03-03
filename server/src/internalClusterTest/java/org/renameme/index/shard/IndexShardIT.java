@@ -20,8 +20,8 @@ package org.renameme.index.shard;
 
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.store.LockObtainFailedException;
-import org.renameme.ExceptionsHelper;
 import org.renameme.Version;
+import org.renameme.ExceptionsHelper;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.cluster.node.stats.NodeStats;
 import org.renameme.action.admin.cluster.node.stats.NodesStatsResponse;
@@ -79,7 +79,6 @@ import org.renameme.indices.recovery.RecoveryState;
 import org.renameme.plugins.Plugin;
 import org.renameme.search.aggregations.AggregationBuilders;
 import org.renameme.search.builder.SearchSourceBuilder;
-import org.renameme.index.shard.IndexShardTestCase;
 import org.renameme.test.DummyShardLock;
 import org.renameme.test.ESSingleNodeTestCase;
 import org.renameme.test.IndexSettingsModule;

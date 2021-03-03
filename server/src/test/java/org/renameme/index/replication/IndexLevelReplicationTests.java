@@ -53,7 +53,6 @@ import org.renameme.index.store.Store;
 import org.renameme.index.translog.SnapshotMatchers;
 import org.renameme.index.translog.Translog;
 import org.renameme.indices.recovery.RecoveryTarget;
-import org.renameme.index.replication.ESIndexLevelReplicationTestCase;
 import org.renameme.threadpool.TestThreadPool;
 import org.renameme.threadpool.ThreadPool;
 import org.hamcrest.Matcher;

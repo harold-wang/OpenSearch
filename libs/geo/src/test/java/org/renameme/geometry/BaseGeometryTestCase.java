@@ -19,8 +19,8 @@
 
 package org.renameme.geometry;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.geometry.utils.GeographyValidator;
 import org.renameme.geometry.utils.WellKnownText;
 import org.renameme.test.AbstractWireTestCase;

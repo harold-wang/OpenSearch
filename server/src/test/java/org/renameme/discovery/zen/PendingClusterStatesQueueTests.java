@@ -26,7 +26,6 @@ import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.cluster.node.DiscoveryNodes;
 import org.renameme.common.settings.Settings;
-import org.renameme.discovery.zen.PendingClusterStatesQueue;
 import org.renameme.discovery.zen.PendingClusterStatesQueue.ClusterStateContext;
 import org.renameme.test.ESTestCase;
 
@@ -239,7 +238,7 @@ public class PendingClusterStatesQueueTests extends ESTestCase {
             if (state == null) {
                 state = ClusterState.builder(ClusterName.CLUSTER_NAME_SETTING.getDefault(Settings.EMPTY)).nodes(DiscoveryNodes.builder()
                                 .add(new DiscoveryNode(masters[masterIndex], buildNewFakeTransportAddress(),
-                                        emptyMap(), emptySet(),Version.CURRENT)).masterNodeId(masters[masterIndex]).build()
+                                        emptyMap(), emptySet(), Version.CURRENT)).masterNodeId(masters[masterIndex]).build()
                 ).build();
             } else {
                 state = ClusterState.builder(state).incrementVersion().build();

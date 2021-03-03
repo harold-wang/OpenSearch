@@ -19,6 +19,7 @@
 
 package org.renameme.common.joda;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.logging.DeprecationLogger;
@@ -362,7 +363,7 @@ public class Joda {
      * @return - true if pattern is joda style, otherwise false
      */
     public static boolean isJodaPattern(Version version, String pattern) {
-        return version.before(Version.V_7_0_0)
+        return version.before(LegacyESVersion.V_7_0_0)
             && pattern.startsWith("8") == false;
     }
 

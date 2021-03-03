@@ -28,7 +28,6 @@ import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.network.InetAddresses;
 import org.renameme.common.settings.Settings;
-import org.renameme.index.mapper.FieldTypeTestCase;
 
 import java.io.IOException;
 import java.net.InetAddress;

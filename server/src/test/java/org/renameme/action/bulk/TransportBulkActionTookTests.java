@@ -21,8 +21,8 @@
 package org.renameme.action.bulk;
 
 import org.apache.lucene.util.Constants;
-import org.renameme.action.ActionType;
 import org.renameme.Version;
+import org.renameme.action.ActionType;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionRequest;
 import org.renameme.action.ActionResponse;

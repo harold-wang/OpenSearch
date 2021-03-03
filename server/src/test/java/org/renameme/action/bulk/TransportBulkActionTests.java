@@ -19,8 +19,8 @@
 
 package org.renameme.action.bulk;
 
-import org.renameme.ResourceAlreadyExistsException;
 import org.renameme.Version;
+import org.renameme.ResourceAlreadyExistsException;
 import org.renameme.action.ActionListener;
 import org.renameme.action.DocWriteRequest;
 import org.renameme.action.admin.indices.create.CreateIndexResponse;

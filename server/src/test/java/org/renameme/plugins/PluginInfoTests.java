@@ -23,7 +23,6 @@ import org.renameme.Version;
 import org.renameme.action.admin.cluster.node.info.PluginsAndModules;
 import org.renameme.common.io.stream.ByteBufferStreamInput;
 import org.renameme.common.io.stream.BytesStreamOutput;
-import org.renameme.plugins.PluginTestUtil;
 import org.renameme.test.ESTestCase;
 
 import java.nio.ByteBuffer;

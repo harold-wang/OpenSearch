@@ -24,6 +24,7 @@ import org.apache.lucene.analysis.BaseTokenStreamTestCase;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.core.KeywordTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
@@ -33,9 +34,6 @@ import org.renameme.index.analysis.IndexAnalyzers;
 import org.renameme.index.analysis.PreConfiguredTokenFilter;
 import org.renameme.index.analysis.TokenFilterFactory;
 import org.renameme.index.analysis.TokenizerFactory;
-import org.renameme.analysis.common.CommonAnalysisPlugin;
-import org.renameme.analysis.common.KeywordTokenizerFactory;
-import org.renameme.analysis.common.SynonymTokenFilterFactory;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.IndexSettingsModule;
 import org.renameme.test.VersionUtils;
@@ -209,7 +207,7 @@ public class SynonymsAnalysisTests extends ESTestCase {
 
         Settings settings = Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED,
-                VersionUtils.randomVersionBetween(random(), Version.V_7_0_0, Version.CURRENT))
+                VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_0_0, Version.CURRENT))
             .put("path.home", createTempDir().toString())
             .put("index.analysis.filter.synonyms.type", "synonym")
             .putList("index.analysis.filter.synonyms.synonyms", "programmer, developer")
@@ -261,7 +259,7 @@ public class SynonymsAnalysisTests extends ESTestCase {
 
         Settings settings = Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED,
-                VersionUtils.randomVersionBetween(random(), Version.V_7_0_0, Version.CURRENT))
+                VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_0_0, Version.CURRENT))
             .put("path.home", createTempDir().toString())
             .build();
         IndexSettings idxSettings = IndexSettingsModule.newIndexSettings("index", settings);
@@ -285,7 +283,7 @@ public class SynonymsAnalysisTests extends ESTestCase {
 
         Settings settings2 = Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED,
-                VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, VersionUtils.getPreviousVersion(Version.V_7_0_0)))
+                VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, VersionUtils.getPreviousVersion(LegacyESVersion.V_7_0_0)))
             .put("path.home", createTempDir().toString())
             .putList("common_words", "a", "b")
             .put("output_unigrams", "true")
@@ -309,7 +307,7 @@ public class SynonymsAnalysisTests extends ESTestCase {
 
         Settings settings = Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED,
-                VersionUtils.randomVersionBetween(random(), Version.V_7_0_0, Version.CURRENT))
+                VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_0_0, Version.CURRENT))
             .put("path.home", createTempDir().toString())
             .putList("common_words", "a", "b")
             .put("output_unigrams", "true")
@@ -338,7 +336,7 @@ public class SynonymsAnalysisTests extends ESTestCase {
 
         settings = Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED,
-                VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, VersionUtils.getPreviousVersion(Version.V_7_0_0)))
+                VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, VersionUtils.getPreviousVersion(LegacyESVersion.V_7_0_0)))
             .put("path.home", createTempDir().toString())
             .putList("common_words", "a", "b")
             .put("output_unigrams", "true")
@@ -360,7 +358,7 @@ public class SynonymsAnalysisTests extends ESTestCase {
 
         settings = Settings.builder()
             .put(IndexMetadata.SETTING_VERSION_CREATED,
-                VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, VersionUtils.getPreviousVersion(Version.V_7_0_0)))
+                VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, VersionUtils.getPreviousVersion(LegacyESVersion.V_7_0_0)))
             .put("path.home", createTempDir().toString())
             .put("preserve_original", "false")
             .build();

@@ -51,7 +51,6 @@ import org.renameme.index.seqno.RetentionLeaseSyncer;
 import org.renameme.index.store.Store;
 import org.renameme.index.translog.TestTranslog;
 import org.renameme.index.translog.TranslogCorruptedException;
-import org.renameme.index.shard.IndexShardTestCase;
 import org.renameme.test.CorruptionUtils;
 import org.renameme.test.DummyShardLock;
 import org.junit.Before;

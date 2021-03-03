@@ -18,6 +18,7 @@
  */
 package org.renameme.cluster;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.StreamInput;
@@ -95,7 +96,7 @@ public final class RepositoryCleanupInProgress extends AbstractNamedDiffable<Clu
 
     @Override
     public Version getMinimalSupportedVersion() {
-        return Version.V_7_4_0;
+        return LegacyESVersion.V_7_4_0;
     }
 
     public static final class Entry implements Writeable, RepositoryOperation {

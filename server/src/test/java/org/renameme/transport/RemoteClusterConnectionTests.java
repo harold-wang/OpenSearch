@@ -20,6 +20,7 @@ package org.renameme.transport;
 
 import org.apache.lucene.search.TotalHits;
 import org.apache.lucene.store.AlreadyClosedException;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.cluster.shards.ClusterSearchShardsAction;
@@ -399,7 +400,7 @@ public class RemoteClusterConnectionTests extends ESTestCase {
 
     public void testRemoteConnectionInfoBwComp() throws IOException {
         final Version version = VersionUtils.randomVersionBetween(random(),
-            Version.V_6_1_0, VersionUtils.getPreviousVersion(Version.V_7_0_0));
+            LegacyESVersion.V_6_1_0, VersionUtils.getPreviousVersion(LegacyESVersion.V_7_0_0));
         SniffConnectionStrategy.SniffModeInfo modeInfo = new SniffConnectionStrategy.SniffModeInfo(Arrays.asList("0.0.0.0:1"), 4, 4);
         RemoteConnectionInfo expected =
                 new RemoteConnectionInfo("test_cluster", modeInfo, new TimeValue(30, TimeUnit.MINUTES), false);

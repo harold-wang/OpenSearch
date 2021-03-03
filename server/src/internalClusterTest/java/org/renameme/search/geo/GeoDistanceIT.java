@@ -19,6 +19,7 @@
 
 package org.renameme.search.geo;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.search.SearchRequestBuilder;
 import org.renameme.action.search.SearchResponse;
@@ -104,7 +105,7 @@ public class GeoDistanceIT extends ESIntegTestCase {
 
     @Before
     public void setupTestIndex() throws IOException {
-        Version version = VersionUtils.randomVersionBetween(random(), Version.V_6_0_0,
+        Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0,
                 Version.CURRENT);
         Settings settings = Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, version).build();
         XContentBuilder xContentBuilder = XContentFactory.jsonBuilder().startObject().startObject("type1")

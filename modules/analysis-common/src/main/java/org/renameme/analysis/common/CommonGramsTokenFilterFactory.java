@@ -23,7 +23,7 @@ import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.commongrams.CommonGramsFilter;
 import org.apache.lucene.analysis.commongrams.CommonGramsQueryFilter;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.logging.DeprecationLogger;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
@@ -66,7 +66,7 @@ public class CommonGramsTokenFilterFactory extends AbstractTokenFilterFactory {
 
     @Override
     public TokenFilterFactory getSynonymFilter() {
-        if (indexSettings.getIndexVersionCreated().onOrAfter(Version.V_7_0_0)) {
+        if (indexSettings.getIndexVersionCreated().onOrAfter(LegacyESVersion.V_7_0_0)) {
             throw new IllegalArgumentException("Token filter [" + name() + "] cannot be used to parse synonyms");
         } else {
             DEPRECATION_LOGGER.deprecate("synonym_tokenfilters", "Token filter [" + name()

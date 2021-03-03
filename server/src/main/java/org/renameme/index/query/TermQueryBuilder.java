@@ -22,14 +22,13 @@ package org.renameme.index.query;
 import org.apache.lucene.search.MatchAllDocsQuery;
 import org.apache.lucene.search.MatchNoDocsQuery;
 import org.apache.lucene.search.Query;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.ParsingException;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.xcontent.XContentBuilder;
 import org.renameme.common.xcontent.XContentParser;
-import org.renameme.common.xcontent.ToXContent.Params;
 import org.renameme.index.mapper.MappedFieldType;
 import org.renameme.index.mapper.ConstantFieldType;
 
@@ -101,14 +100,14 @@ public class TermQueryBuilder extends BaseTermQueryBuilder<TermQueryBuilder> {
      */
     public TermQueryBuilder(StreamInput in) throws IOException {
         super(in);
-        if (in.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             caseInsensitive = in.readBoolean();
         }
     }
     @Override
     protected void doWriteTo(StreamOutput out) throws IOException {
         super.doWriteTo(out);
-        if (out.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             out.writeBoolean(caseInsensitive);
         }
     }

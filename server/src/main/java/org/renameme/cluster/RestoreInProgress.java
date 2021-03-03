@@ -22,6 +22,7 @@ package org.renameme.cluster;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import com.carrotsearch.hppc.cursors.ObjectObjectCursor;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.ClusterState.Custom;
 import org.renameme.common.collect.ImmutableOpenMap;
@@ -437,7 +438,7 @@ public class RestoreInProgress extends AbstractNamedDiffable<Custom> implements 
         final ImmutableOpenMap.Builder<String, Entry> entriesBuilder = ImmutableOpenMap.builder(count);
         for (int i = 0; i < count; i++) {
             final String uuid;
-            if (in.getVersion().onOrAfter(Version.V_6_6_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
                 uuid = in.readString();
             } else {
                 uuid = BWC_UUID;
@@ -456,7 +457,7 @@ public class RestoreInProgress extends AbstractNamedDiffable<Custom> implements 
         out.writeVInt(entries.size());
         for (ObjectCursor<Entry> v : entries.values()) {
             Entry entry = v.value;
-            if (out.getVersion().onOrAfter(Version.V_6_6_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
                 out.writeString(entry.uuid);
             }
             entry.snapshot().writeTo(out);

@@ -22,6 +22,7 @@ package org.renameme.cluster.routing.allocation;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.admin.cluster.reroute.ClusterRerouteRequest;
 import org.renameme.action.admin.indices.create.CreateIndexRequest;
@@ -224,7 +225,7 @@ public class FailedNodeRoutingTests extends ESAllocationTestCase {
         Collections.addAll(roles, mustHaveRoles);
         final String id = String.format(Locale.ROOT, "node_%03d", nodeIdGenerator.incrementAndGet());
         return new DiscoveryNode(id, id, buildNewFakeTransportAddress(), Collections.emptyMap(), roles,
-            VersionUtils.randomVersionBetween(random(), Version.V_6_0_0_alpha1, null));
+            VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0_alpha1, null));
     }
 
 }

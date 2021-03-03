@@ -31,7 +31,6 @@ import org.renameme.cluster.node.DiscoveryNodes;
 import org.renameme.common.UUIDs;
 import org.renameme.common.settings.Settings;
 import org.renameme.common.transport.TransportAddress;
-import org.renameme.cluster.coordination.CoordinationStateTestCluster;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.EqualsHashCodeTestUtils;
 import org.junit.Before;

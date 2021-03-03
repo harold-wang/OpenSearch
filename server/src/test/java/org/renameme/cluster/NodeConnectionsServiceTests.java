@@ -21,8 +21,8 @@ package org.renameme.cluster;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
-import org.renameme.RenamemeTimeoutException;
 import org.renameme.Version;
+import org.renameme.RenamemeTimeoutException;
 import org.renameme.action.ActionListener;
 import org.renameme.action.support.PlainActionFuture;
 import org.renameme.cluster.coordination.DeterministicTaskQueue;

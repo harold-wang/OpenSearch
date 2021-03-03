@@ -18,6 +18,7 @@
  */
 package org.renameme.cluster.metadata;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.admin.cluster.reroute.ClusterRerouteRequest;
 import org.renameme.action.admin.indices.create.CreateIndexRequest;
@@ -214,7 +215,7 @@ public class AutoExpandReplicasTests extends ESTestCase {
 
         try {
             List<DiscoveryNode> allNodes = new ArrayList<>();
-            DiscoveryNode oldNode = createNode(VersionUtils.randomVersionBetween(random(), Version.V_7_0_0, Version.V_7_5_1),
+            DiscoveryNode oldNode = createNode(VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_7_0_0, LegacyESVersion.V_7_5_1),
                 DiscoveryNodeRole.MASTER_ROLE, DiscoveryNodeRole.DATA_ROLE); // local node is the master
             allNodes.add(oldNode);
             ClusterState state = ClusterStateCreationUtils.state(oldNode, oldNode, allNodes.toArray(new DiscoveryNode[0]));
@@ -233,7 +234,7 @@ public class AutoExpandReplicasTests extends ESTestCase {
                 state = cluster.reroute(state, new ClusterRerouteRequest());
             }
 
-            DiscoveryNode newNode = createNode(Version.V_7_6_0,
+            DiscoveryNode newNode = createNode(LegacyESVersion.V_7_6_0,
                 DiscoveryNodeRole.MASTER_ROLE, DiscoveryNodeRole.DATA_ROLE); // local node is the master
 
             state = cluster.addNodes(state, Collections.singletonList(newNode));

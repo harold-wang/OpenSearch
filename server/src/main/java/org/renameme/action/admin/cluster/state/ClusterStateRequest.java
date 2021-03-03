@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.cluster.state;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.IndicesRequest;
 import org.renameme.action.support.IndicesOptions;
@@ -57,7 +57,7 @@ public class ClusterStateRequest extends MasterNodeReadRequest<ClusterStateReque
         customs = in.readBoolean();
         indices = in.readStringArray();
         indicesOptions = IndicesOptions.readIndicesOptions(in);
-        if (in.getVersion().onOrAfter(Version.V_6_6_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
             waitForTimeout = in.readTimeValue();
             waitForMetadataVersion = in.readOptionalLong();
         }
@@ -73,7 +73,7 @@ public class ClusterStateRequest extends MasterNodeReadRequest<ClusterStateReque
         out.writeBoolean(customs);
         out.writeStringArray(indices);
         indicesOptions.writeIndicesOptions(out);
-        if (out.getVersion().onOrAfter(Version.V_6_6_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_6_0)) {
             out.writeTimeValue(waitForTimeout);
             out.writeOptionalLong(waitForMetadataVersion);
         }

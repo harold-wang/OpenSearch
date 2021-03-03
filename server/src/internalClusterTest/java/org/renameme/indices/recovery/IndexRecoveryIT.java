@@ -21,8 +21,8 @@ package org.renameme.indices.recovery;
 
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.util.SetOnce;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.admin.cluster.health.ClusterHealthResponse;
 import org.renameme.action.admin.cluster.node.stats.NodeStats;
 import org.renameme.action.admin.cluster.node.stats.NodesStatsResponse;

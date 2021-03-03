@@ -48,13 +48,11 @@ import org.renameme.repositories.IndexId;
 import org.renameme.repositories.RepositoriesService;
 import org.renameme.repositories.RepositoryData;
 import org.renameme.repositories.ShardGenerations;
-import org.renameme.repositories.blobstore.BlobStoreRepository;
 import org.renameme.snapshots.SnapshotId;
 import org.renameme.snapshots.SnapshotInfo;
 import org.renameme.test.InternalTestCluster;
 import org.renameme.threadpool.ThreadPool;
 import org.renameme.test.ESTestCase;
-import org.renameme.test.InternalTestCluster;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -76,8 +74,6 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-import static org.renameme.test.ESTestCase.buildNewFakeTransportAddress;
-import static org.renameme.test.ESTestCase.randomIntBetween;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasKey;

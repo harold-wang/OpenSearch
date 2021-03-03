@@ -30,7 +30,6 @@ import org.renameme.bootstrap.BootstrapForTesting;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.test.junit.listeners.ReproduceInfoPrinter;
-import org.renameme.test.junit.listeners.ReproduceInfoPrinter;
 
 @Listeners({
         ReproduceInfoPrinter.class

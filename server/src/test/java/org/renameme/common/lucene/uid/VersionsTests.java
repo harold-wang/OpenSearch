@@ -26,6 +26,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.lucene.Lucene;
 import org.renameme.common.lucene.index.RenamemeDirectoryReader;
@@ -206,16 +207,16 @@ public class VersionsTests extends ESTestCase {
 
         // should have the same Lucene version as the latest 6.x version
         Version version = Version.fromString("6.88.50");
-        assertEquals(allVersions.get(Collections.binarySearch(allVersions, Version.V_7_0_0) - 1).luceneVersion,
+        assertEquals(allVersions.get(Collections.binarySearch(allVersions, LegacyESVersion.V_7_0_0) - 1).luceneVersion,
                 version.luceneVersion);
 
         // between two known versions, should use the lucene version of the previous version
         version = Version.fromString("6.2.50");
-        assertEquals(VersionUtils.getPreviousVersion(Version.V_6_2_4).luceneVersion, version.luceneVersion);
+        assertEquals(VersionUtils.getPreviousVersion(LegacyESVersion.V_6_2_4).luceneVersion, version.luceneVersion);
 
         // too old version, major should be the oldest supported lucene version minus 1
         version = Version.fromString("5.2.1");
-        assertEquals(Version.V_6_0_0.luceneVersion.major - 1, version.luceneVersion.major);
+        assertEquals(LegacyESVersion.V_6_0_0.luceneVersion.major - 1, version.luceneVersion.major);
 
         // future version, should be the same version as today
         version = Version.fromString("8.77.1");

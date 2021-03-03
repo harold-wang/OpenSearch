@@ -35,13 +35,11 @@ import org.apache.lucene.analysis.phonetic.BeiderMorseFilter;
 import org.apache.lucene.analysis.phonetic.DaitchMokotoffSoundexFilter;
 import org.apache.lucene.analysis.phonetic.DoubleMetaphoneFilter;
 import org.apache.lucene.analysis.phonetic.PhoneticFilter;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.logging.DeprecationLogger;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
 import org.renameme.index.IndexSettings;
-import org.renameme.index.analysis.AbstractTokenFilterFactory;
-import org.renameme.index.analysis.TokenFilterFactory;
 import org.renameme.index.analysis.phonetic.HaasePhonetik;
 import org.renameme.index.analysis.phonetic.KoelnerPhonetik;
 import org.renameme.index.analysis.phonetic.Nysiis;
@@ -148,7 +146,7 @@ public class PhoneticTokenFilterFactory extends AbstractTokenFilterFactory {
 
     @Override
     public TokenFilterFactory getSynonymFilter() {
-        if (indexSettings.getIndexVersionCreated().onOrAfter(Version.V_7_0_0)) {
+        if (indexSettings.getIndexVersionCreated().onOrAfter(LegacyESVersion.V_7_0_0)) {
             throw new IllegalArgumentException("Token filter [" + name() + "] cannot be used to parse synonyms");
         }
         else {

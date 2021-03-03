@@ -18,7 +18,7 @@
  */
 package org.renameme.index.query.functionscore;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParsingException;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -55,7 +55,7 @@ public class RandomScoreFunctionBuilder extends ScoreFunctionBuilder<RandomScore
         if (in.readBoolean()) {
             seed = in.readInt();
         }
-        if (in.getVersion().onOrAfter(Version.V_6_0_0_beta1)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_beta1)) {
             field = in.readOptionalString();
         }
     }
@@ -68,7 +68,7 @@ public class RandomScoreFunctionBuilder extends ScoreFunctionBuilder<RandomScore
         } else {
             out.writeBoolean(false);
         }
-        if (out.getVersion().onOrAfter(Version.V_6_0_0_beta1)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_beta1)) {
             out.writeOptionalString(field);
         }
     }

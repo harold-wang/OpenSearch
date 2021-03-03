@@ -18,7 +18,7 @@
  */
 package org.renameme.action;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.support.WriteRequest;
 import org.renameme.action.support.WriteRequest.RefreshPolicy;
 import org.renameme.action.support.WriteResponse;
@@ -155,7 +155,7 @@ public abstract class DocWriteResponse extends ReplicationResponse implements Wr
         type = in.readString();
         id = in.readString();
         version = in.readZLong();
-        if (in.getVersion().onOrAfter(Version.V_6_0_0_alpha1)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_alpha1)) {
             seqNo = in.readZLong();
             primaryTerm = in.readVLong();
         } else {
@@ -304,7 +304,7 @@ public abstract class DocWriteResponse extends ReplicationResponse implements Wr
         out.writeString(type);
         out.writeString(id);
         out.writeZLong(version);
-        if (out.getVersion().onOrAfter(Version.V_6_0_0_alpha1)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_alpha1)) {
             out.writeZLong(seqNo);
             out.writeVLong(primaryTerm);
         }

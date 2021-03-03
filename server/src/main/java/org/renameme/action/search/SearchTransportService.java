@@ -19,6 +19,7 @@
 
 package org.renameme.action.search;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionListenerResponseHandler;
@@ -281,7 +282,7 @@ public class SearchTransportService {
     }
 
     static boolean keepStatesInContext(Version version) {
-        return version.before(Version.V_7_10_0);
+        return version.before(LegacyESVersion.V_7_10_0);
     }
 
     public static void registerRequestHandler(TransportService transportService, SearchService searchService) {

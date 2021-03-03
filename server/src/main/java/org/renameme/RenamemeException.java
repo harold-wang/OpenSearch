@@ -284,7 +284,7 @@ public class RenamemeException extends RuntimeException implements ToXContentFra
     public static RenamemeException readException(StreamInput input, int id) throws IOException {
         CheckedFunction<StreamInput, ? extends RenamemeException, IOException> renamemeException = ID_TO_SUPPLIER.get(id);
         if (renamemeException == null) {
-            if (id == 127 && input.getVersion().before(Version.V_7_5_0)) {
+            if (id == 127 && input.getVersion().before(LegacyESVersion.V_7_5_0)) {
                 // was SearchContextException
                 return new SearchException(input);
             }
@@ -1001,53 +1001,53 @@ public class RenamemeException extends RuntimeException implements ToXContentFra
                                            org.renameme.env.ShardLockObtainFailedException::new, 147, UNKNOWN_VERSION_ADDED),
         // 148 was UnknownNamedObjectException
         TOO_MANY_BUCKETS_EXCEPTION(MultiBucketConsumerService.TooManyBucketsException.class,
-            MultiBucketConsumerService.TooManyBucketsException::new, 149, Version.V_6_2_0),
+            MultiBucketConsumerService.TooManyBucketsException::new, 149, LegacyESVersion.V_6_2_0),
         COORDINATION_STATE_REJECTED_EXCEPTION(org.renameme.cluster.coordination.CoordinationStateRejectedException.class,
-            org.renameme.cluster.coordination.CoordinationStateRejectedException::new, 150, Version.V_7_0_0),
+            org.renameme.cluster.coordination.CoordinationStateRejectedException::new, 150, LegacyESVersion.V_7_0_0),
         SNAPSHOT_IN_PROGRESS_EXCEPTION(org.renameme.snapshots.SnapshotInProgressException.class,
-            org.renameme.snapshots.SnapshotInProgressException::new, 151, Version.V_6_7_0),
+            org.renameme.snapshots.SnapshotInProgressException::new, 151, LegacyESVersion.V_6_7_0),
         NO_SUCH_REMOTE_CLUSTER_EXCEPTION(org.renameme.transport.NoSuchRemoteClusterException.class,
-            org.renameme.transport.NoSuchRemoteClusterException::new, 152, Version.V_6_7_0),
+            org.renameme.transport.NoSuchRemoteClusterException::new, 152, LegacyESVersion.V_6_7_0),
         RETENTION_LEASE_ALREADY_EXISTS_EXCEPTION(
                 org.renameme.index.seqno.RetentionLeaseAlreadyExistsException.class,
                 org.renameme.index.seqno.RetentionLeaseAlreadyExistsException::new,
                 153,
-                Version.V_6_7_0),
+                LegacyESVersion.V_6_7_0),
         RETENTION_LEASE_NOT_FOUND_EXCEPTION(
                 org.renameme.index.seqno.RetentionLeaseNotFoundException.class,
                 org.renameme.index.seqno.RetentionLeaseNotFoundException::new,
                 154,
-                Version.V_6_7_0),
+                LegacyESVersion.V_6_7_0),
         SHARD_NOT_IN_PRIMARY_MODE_EXCEPTION(
                 org.renameme.index.shard.ShardNotInPrimaryModeException.class,
                 org.renameme.index.shard.ShardNotInPrimaryModeException::new,
                 155,
-                Version.V_6_8_1),
+                LegacyESVersion.V_6_8_1),
         RETENTION_LEASE_INVALID_RETAINING_SEQUENCE_NUMBER_EXCEPTION(
                 org.renameme.index.seqno.RetentionLeaseInvalidRetainingSeqNoException.class,
                 org.renameme.index.seqno.RetentionLeaseInvalidRetainingSeqNoException::new,
                 156,
-                Version.V_7_5_0),
+                LegacyESVersion.V_7_5_0),
         INGEST_PROCESSOR_EXCEPTION(
                 org.renameme.ingest.IngestProcessorException.class,
                 org.renameme.ingest.IngestProcessorException::new,
                 157,
-                Version.V_7_5_0),
+                LegacyESVersion.V_7_5_0),
         PEER_RECOVERY_NOT_FOUND_EXCEPTION(
                 org.renameme.indices.recovery.PeerRecoveryNotFound.class,
                 org.renameme.indices.recovery.PeerRecoveryNotFound::new,
                 158,
-                Version.V_7_9_0),
+                LegacyESVersion.V_7_9_0),
         NODE_HEALTH_CHECK_FAILURE_EXCEPTION(
                 org.renameme.cluster.coordination.NodeHealthCheckFailureException.class,
                 org.renameme.cluster.coordination.NodeHealthCheckFailureException::new,
                 159,
-                Version.V_7_9_0),
+                LegacyESVersion.V_7_9_0),
         NO_SEED_NODE_LEFT_EXCEPTION(
                 org.renameme.transport.NoSeedNodeLeftException.class,
                 org.renameme.transport.NoSeedNodeLeftException::new,
                 160,
-                Version.V_7_10_0);
+                LegacyESVersion.V_7_10_0);
 
         final Class<? extends RenamemeException> exceptionClass;
         final CheckedFunction<StreamInput, ? extends RenamemeException, IOException> constructor;

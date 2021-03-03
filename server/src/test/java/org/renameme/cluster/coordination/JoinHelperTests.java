@@ -30,7 +30,6 @@ import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.settings.Settings;
 import org.renameme.discovery.zen.MembershipAction;
 import org.renameme.monitor.StatusInfo;
-import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.transport.CapturingTransport;
 import org.renameme.test.transport.CapturingTransport.CapturedRequest;

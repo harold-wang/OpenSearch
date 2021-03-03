@@ -20,8 +20,8 @@
 package org.renameme.gateway;
 
 import org.apache.logging.log4j.message.ParameterizedMessage;
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeException;
-import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionType;
 import org.renameme.action.FailedNodeException;
@@ -178,7 +178,7 @@ public class TransportNodesListGatewayStartedShards extends
         public Request(StreamInput in) throws IOException {
             super(in);
             shardId = new ShardId(in);
-            if (in.getVersion().onOrAfter(Version.V_7_6_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
                 customDataPath = in.readString();
             } else {
                 customDataPath = null;
@@ -209,7 +209,7 @@ public class TransportNodesListGatewayStartedShards extends
         public void writeTo(StreamOutput out) throws IOException {
             super.writeTo(out);
             shardId.writeTo(out);
-            if (out.getVersion().onOrAfter(Version.V_7_6_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
                 out.writeString(customDataPath);
             }
         }
@@ -247,7 +247,7 @@ public class TransportNodesListGatewayStartedShards extends
         public NodeRequest(StreamInput in) throws IOException {
             super(in);
             shardId = new ShardId(in);
-            if (in.getVersion().onOrAfter(Version.V_7_6_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
                 customDataPath = in.readString();
             } else {
                 customDataPath = null;
@@ -263,7 +263,7 @@ public class TransportNodesListGatewayStartedShards extends
         public void writeTo(StreamOutput out) throws IOException {
             super.writeTo(out);
             shardId.writeTo(out);
-            if (out.getVersion().onOrAfter(Version.V_7_6_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
                 assert customDataPath != null;
                 out.writeString(customDataPath);
             }
@@ -292,7 +292,7 @@ public class TransportNodesListGatewayStartedShards extends
 
         public NodeGatewayStartedShards(StreamInput in) throws IOException {
             super(in);
-            if (in.getVersion().before(Version.V_6_0_0_alpha1)) {
+            if (in.getVersion().before(LegacyESVersion.V_6_0_0_alpha1)) {
                 // legacy version
                 in.readLong();
             }
@@ -331,7 +331,7 @@ public class TransportNodesListGatewayStartedShards extends
         @Override
         public void writeTo(StreamOutput out) throws IOException {
             super.writeTo(out);
-            if (out.getVersion().before(Version.V_6_0_0_alpha1)) {
+            if (out.getVersion().before(LegacyESVersion.V_6_0_0_alpha1)) {
                 // legacy version
                 out.writeLong(-1L);
             }

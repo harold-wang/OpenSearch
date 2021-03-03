@@ -19,8 +19,8 @@
 
 package org.renameme.action.admin.cluster.settings;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.Writeable;
-import org.renameme.Version;
 import org.renameme.common.settings.ClusterSettings;
 import org.renameme.common.settings.Setting;
 import org.renameme.common.settings.Settings;
@@ -103,6 +103,6 @@ public class ClusterUpdateSettingsResponseTests extends AbstractSerializingTestC
 
     public void testOldSerialisation() throws IOException {
         ClusterUpdateSettingsResponse original = createTestInstance();
-        assertSerialization(original, VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.V_6_4_0));
+        assertSerialization(original, VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, LegacyESVersion.V_6_4_0));
     }
 }

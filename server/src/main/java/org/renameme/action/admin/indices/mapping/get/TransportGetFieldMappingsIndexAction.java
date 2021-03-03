@@ -19,8 +19,8 @@
 
 package org.renameme.action.admin.indices.mapping.get;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.admin.indices.mapping.get.GetFieldMappingsResponse.FieldMappingMetadata;
 import org.renameme.action.support.ActionFilters;
 import org.renameme.action.support.single.shard.TransportSingleShardAction;

@@ -24,6 +24,7 @@ import org.apache.lucene.document.FieldType;
 import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexableField;
 import org.apache.lucene.search.Query;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.Explicit;
 import org.renameme.common.logging.DeprecationLogger;
@@ -166,7 +167,7 @@ public class FieldNamesFieldMapper extends MetadataFieldMapper {
 
     @Override
     public void postParse(ParseContext context) throws IOException {
-        if (context.indexSettings().getIndexVersionCreated().before(Version.V_6_1_0)) {
+        if (context.indexSettings().getIndexVersionCreated().before(LegacyESVersion.V_6_1_0)) {
             if (fieldType().isEnabled() == false) {
                 return;
             }

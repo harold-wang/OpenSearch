@@ -19,8 +19,8 @@
 
 package org.renameme.cluster.metadata;
 
-import org.renameme.RenamemeParseException;
 import org.renameme.Version;
+import org.renameme.RenamemeParseException;
 import org.renameme.cluster.AbstractNamedDiffable;
 import org.renameme.cluster.NamedDiff;
 import org.renameme.cluster.metadata.Metadata.Custom;

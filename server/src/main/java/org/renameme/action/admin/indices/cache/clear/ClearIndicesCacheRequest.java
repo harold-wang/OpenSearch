@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.indices.cache.clear;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.support.broadcast.BroadcastRequest;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.StreamInput;
@@ -38,7 +38,7 @@ public class ClearIndicesCacheRequest extends BroadcastRequest<ClearIndicesCache
         super(in);
         queryCache = in.readBoolean();
         fieldDataCache = in.readBoolean();
-        if (in.getVersion().before(Version.V_6_0_0_beta1)) {
+        if (in.getVersion().before(LegacyESVersion.V_6_0_0_beta1)) {
             in.readBoolean(); // recycler
         }
         fields = in.readStringArray();
@@ -90,7 +90,7 @@ public class ClearIndicesCacheRequest extends BroadcastRequest<ClearIndicesCache
         super.writeTo(out);
         out.writeBoolean(queryCache);
         out.writeBoolean(fieldDataCache);
-        if (out.getVersion().before(Version.V_6_0_0_beta1)) {
+        if (out.getVersion().before(LegacyESVersion.V_6_0_0_beta1)) {
             out.writeBoolean(false); // recycler
         }
         out.writeStringArrayNullable(fields);

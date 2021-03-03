@@ -29,7 +29,6 @@ import org.renameme.cluster.metadata.RepositoryMetadata;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.component.AbstractLifecycleComponent;
 import org.renameme.index.mapper.MapperService;
-import org.renameme.index.shard.ShardId;
 import org.renameme.index.snapshots.IndexShardSnapshotStatus;
 import org.renameme.index.store.Store;
 import org.renameme.repositories.IndexId;

@@ -18,8 +18,8 @@
  */
 package org.renameme.cluster.coordination;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.cluster.ClusterName;
 import org.renameme.cluster.coordination.Coordinator.Mode;
 import org.renameme.cluster.coordination.FollowersChecker.FollowerCheckRequest;
@@ -31,7 +31,6 @@ import org.renameme.common.settings.Settings;
 import org.renameme.common.settings.Settings.Builder;
 import org.renameme.monitor.NodeHealthService;
 import org.renameme.monitor.StatusInfo;
-import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.EqualsHashCodeTestUtils;
 import org.renameme.test.EqualsHashCodeTestUtils.CopyFunction;

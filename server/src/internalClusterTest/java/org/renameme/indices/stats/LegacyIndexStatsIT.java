@@ -19,7 +19,7 @@
 
 package org.renameme.indices.stats;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.admin.indices.stats.IndicesStatsRequestBuilder;
 import org.renameme.action.admin.indices.stats.IndicesStatsResponse;
 import org.renameme.cluster.metadata.IndexMetadata;
@@ -45,7 +45,7 @@ public class LegacyIndexStatsIT extends ESIntegTestCase {
                 .admin()
                 .indices()
                 .prepareCreate("test1")
-                .setSettings(Settings.builder().put(IndexMetadata.SETTING_INDEX_VERSION_CREATED.getKey(), Version.V_6_0_0))
+                .setSettings(Settings.builder().put(IndexMetadata.SETTING_INDEX_VERSION_CREATED.getKey(), LegacyESVersion.V_6_0_0))
                 .addMapping("_doc", "bar", "type=text,fielddata=true", "baz", "type=text,fielddata=true")
                 .get());
 

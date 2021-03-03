@@ -23,7 +23,6 @@ import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.Explicit;
 import org.renameme.common.lucene.Lucene;
 import org.renameme.common.settings.Settings;
-import org.renameme.index.mapper.MockFieldMapper;
 import org.renameme.test.ESTestCase;
 
 import java.util.Arrays;

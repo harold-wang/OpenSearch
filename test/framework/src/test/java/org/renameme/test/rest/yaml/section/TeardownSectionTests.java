@@ -19,10 +19,8 @@
 
 package org.renameme.test.rest.yaml.section;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.xcontent.yaml.YamlXContent;
-import org.renameme.test.rest.yaml.section.DoSection;
-import org.renameme.test.rest.yaml.section.TeardownSection;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
@@ -77,8 +75,8 @@ public class TeardownSectionTests extends AbstractClientYamlTestFragmentParserTe
         TeardownSection section = TeardownSection.parse(parser);
         assertThat(section, notNullValue());
         assertThat(section.getSkipSection().isEmpty(), equalTo(false));
-        assertThat(section.getSkipSection().getLowerVersion(), equalTo(Version.V_6_0_0));
-        assertThat(section.getSkipSection().getUpperVersion(), equalTo(Version.V_6_3_0));
+        assertThat(section.getSkipSection().getLowerVersion(), equalTo(LegacyESVersion.V_6_0_0));
+        assertThat(section.getSkipSection().getUpperVersion(), equalTo(LegacyESVersion.V_6_3_0));
         assertThat(section.getSkipSection().getReason(), equalTo("there is a reason"));
         assertThat(section.getDoSections().size(), equalTo(2));
         assertThat(((DoSection)section.getDoSections().get(0)).getApiCallSection().getApi(), equalTo("delete"));

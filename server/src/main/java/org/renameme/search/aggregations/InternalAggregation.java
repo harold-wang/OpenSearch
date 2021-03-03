@@ -18,7 +18,7 @@
  */
 package org.renameme.search.aggregations;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.NamedWriteable;
 import org.renameme.common.io.stream.StreamInput;
@@ -185,7 +185,7 @@ public abstract class InternalAggregation implements Aggregation, NamedWriteable
     protected InternalAggregation(StreamInput in) throws IOException {
         name = in.readString();
         metadata = in.readMap();
-        if (in.getVersion().before(Version.V_7_8_0)) {
+        if (in.getVersion().before(LegacyESVersion.V_7_8_0)) {
             in.readNamedWriteableList(PipelineAggregator.class);
         }
     }
@@ -194,7 +194,7 @@ public abstract class InternalAggregation implements Aggregation, NamedWriteable
     public final void writeTo(StreamOutput out) throws IOException {
         out.writeString(name);
         out.writeGenericValue(metadata);
-        if (out.getVersion().before(Version.V_7_8_0)) {
+        if (out.getVersion().before(LegacyESVersion.V_7_8_0)) {
             assert pipelineAggregatorsForBwcSerialization != null :
                 "serializing to pre-7.8.0 versions should have called mergePipelineTreeForBWCSerialization";
             out.writeNamedWriteableList(pipelineAggregatorsForBwcSerialization);

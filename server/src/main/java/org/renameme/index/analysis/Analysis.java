@@ -55,7 +55,7 @@ import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.analysis.sv.SwedishAnalyzer;
 import org.apache.lucene.analysis.th.ThaiAnalyzer;
 import org.apache.lucene.analysis.tr.TurkishAnalyzer;
-import org.apache.lucene.util.Version;
+import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.lucene.Lucene;
 import org.renameme.common.settings.Settings;
@@ -80,19 +80,19 @@ import static java.util.Collections.unmodifiableMap;
 
 public class Analysis {
 
-    public static Version parseAnalysisVersion(Settings indexSettings, Settings settings, Logger logger) {
+    public static org.apache.lucene.util.Version parseAnalysisVersion(Settings indexSettings, Settings settings, Logger logger) {
         // check for explicit version on the specific analyzer component
         String sVersion = settings.get("version");
         if (sVersion != null) {
-            return Lucene.parseVersion(sVersion, Version.LATEST, logger);
+            return Lucene.parseVersion(sVersion, org.apache.lucene.util.Version.LATEST, logger);
         }
         // check for explicit version on the index itself as default for all analysis components
         sVersion = indexSettings.get("index.analysis.version");
         if (sVersion != null) {
-            return Lucene.parseVersion(sVersion, Version.LATEST, logger);
+            return Lucene.parseVersion(sVersion, org.apache.lucene.util.Version.LATEST, logger);
         }
         // resolve the analysis version based on the version the index was created with
-        return org.renameme.Version.indexCreated(indexSettings).luceneVersion;
+        return Version.indexCreated(indexSettings).luceneVersion;
     }
 
     public static CharArraySet parseStemExclusion(Settings settings, CharArraySet defaultStemExclusion) {

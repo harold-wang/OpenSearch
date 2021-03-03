@@ -21,6 +21,7 @@ package org.renameme.test.rest.yaml.section;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.client.HasAttributeNodeSelector;
 import org.renameme.client.Node;
@@ -39,9 +40,6 @@ import org.renameme.test.rest.yaml.ClientYamlTestExecutionContext;
 import org.renameme.test.rest.yaml.ClientYamlTestResponse;
 import org.renameme.test.rest.yaml.ClientYamlTestResponseException;
 import org.renameme.test.hamcrest.RegexMatcher;
-import org.renameme.test.rest.yaml.ClientYamlTestExecutionContext;
-import org.renameme.test.rest.yaml.ClientYamlTestResponse;
-import org.renameme.test.rest.yaml.ClientYamlTestResponseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -335,7 +333,7 @@ public class DoSection implements ExecutableSection {
             final boolean matches = matcher.matches();
             if (matches) {
                 final String message = HeaderWarning.extractWarningValueFromWarningHeader(header, true);
-                if (masterVersion.before(Version.V_7_0_0)
+                if (masterVersion.before(LegacyESVersion.V_7_0_0)
                         && message.equals("the default number of shards will change from [5] to [1] in 7.0.0; "
                         + "if you wish to continue using the default of [5] shards, "
                         + "you must manage this on the create index request or with an index template")) {

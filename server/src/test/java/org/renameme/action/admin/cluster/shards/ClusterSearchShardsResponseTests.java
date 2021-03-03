@@ -19,6 +19,7 @@
 
 package org.renameme.action.admin.cluster.shards;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.cluster.routing.ShardRouting;
@@ -77,7 +78,7 @@ public class ClusterSearchShardsResponseTests extends ESTestCase {
         List<NamedWriteableRegistry.Entry> entries = new ArrayList<>();
         entries.addAll(searchModule.getNamedWriteables());
         NamedWriteableRegistry namedWriteableRegistry = new NamedWriteableRegistry(entries);
-        Version version = VersionUtils.randomVersionBetween(random(), Version.V_6_0_0, Version.CURRENT);
+        Version version = VersionUtils.randomVersionBetween(random(), LegacyESVersion.V_6_0_0, Version.CURRENT);
         try(BytesStreamOutput out = new BytesStreamOutput()) {
             out.setVersion(version);
             clusterSearchShardsResponse.writeTo(out);

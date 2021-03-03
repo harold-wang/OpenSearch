@@ -37,10 +37,7 @@ import org.apache.lucene.search.UsageTrackingQueryCachingPolicy;
 import org.apache.lucene.store.AlreadyClosedException;
 import org.apache.lucene.util.SetOnce;
 import org.apache.lucene.util.ThreadInterruptedException;
-import org.renameme.Assertions;
-import org.renameme.RenamemeException;
-import org.renameme.ExceptionsHelper;
-import org.renameme.Version;
+import org.renameme.*;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionRunnable;
 import org.renameme.action.admin.indices.flush.FlushRequest;
@@ -2688,7 +2685,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
                                                         ActionListener<ReplicationResponse> listener) {
         assert assertPrimaryMode();
         // only needed for BWC reasons involving rolling upgrades from versions that do not support PRRLs:
-        assert indexSettings.getIndexVersionCreated().before(Version.V_7_4_0) || indexSettings.isSoftDeleteEnabled() == false;
+        assert indexSettings.getIndexVersionCreated().before(LegacyESVersion.V_7_4_0) || indexSettings.isSoftDeleteEnabled() == false;
         return replicationTracker.addPeerRecoveryRetentionLease(nodeId, globalCheckpoint, listener);
     }
 

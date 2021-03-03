@@ -18,6 +18,7 @@
  */
 package org.renameme.transport;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.bytes.BytesArray;
 import org.renameme.common.bytes.BytesReference;
@@ -115,7 +116,7 @@ abstract class OutboundMessage extends NetworkMessage {
         @Override
         protected void writeVariableHeader(StreamOutput stream) throws IOException {
             super.writeVariableHeader(stream);
-            if (version.onOrAfter(Version.V_6_3_0)) {
+            if (version.onOrAfter(LegacyESVersion.V_6_3_0)) {
                 stream.writeStringArray(features);
             }
             stream.writeString(action);

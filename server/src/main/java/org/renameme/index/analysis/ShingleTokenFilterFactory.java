@@ -22,7 +22,7 @@ package org.renameme.index.analysis;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.miscellaneous.DisableGraphAttribute;
 import org.apache.lucene.analysis.shingle.ShingleFilter;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.logging.DeprecationLogger;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
@@ -43,7 +43,7 @@ public class ShingleTokenFilterFactory extends AbstractTokenFilterFactory {
 
         int shingleDiff = maxShingleSize - minShingleSize + (outputUnigrams ? 1 : 0);
         if (shingleDiff > maxAllowedShingleDiff) {
-            if (indexSettings.getIndexVersionCreated().onOrAfter(Version.V_7_0_0)) {
+            if (indexSettings.getIndexVersionCreated().onOrAfter(LegacyESVersion.V_7_0_0)) {
                 throw new IllegalArgumentException(
                     "In Shingle TokenFilter the difference between max_shingle_size and min_shingle_size (and +1 if outputting unigrams)"
                         + " must be less than or equal to: [" + maxAllowedShingleDiff + "] but was [" + shingleDiff + "]. This limit"
@@ -70,7 +70,7 @@ public class ShingleTokenFilterFactory extends AbstractTokenFilterFactory {
 
     @Override
     public TokenFilterFactory getSynonymFilter() {
-        if (indexSettings.getIndexVersionCreated().onOrAfter(Version.V_7_0_0)) {
+        if (indexSettings.getIndexVersionCreated().onOrAfter(LegacyESVersion.V_7_0_0)) {
             throw new IllegalArgumentException("Token filter [" + name() +
                 "] cannot be used to parse synonyms");
         }

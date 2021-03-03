@@ -20,7 +20,6 @@
 package org.renameme.index.analysis;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.util.Version;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.AbstractIndexComponent;
 import org.renameme.index.IndexSettings;
@@ -29,7 +28,7 @@ public abstract class AbstractIndexAnalyzerProvider<T extends Analyzer> extends 
 
     private final String name;
 
-    protected final Version version;
+    protected final org.apache.lucene.util.Version version;
 
     /**
      * Constructs a new analyzer component, with the index name and its settings and the analyzer name.

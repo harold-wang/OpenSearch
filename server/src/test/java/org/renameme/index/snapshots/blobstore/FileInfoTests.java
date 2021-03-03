@@ -19,7 +19,7 @@
 package org.renameme.index.snapshots.blobstore;
 
 import org.apache.lucene.util.BytesRef;
-import org.apache.lucene.util.Version;
+import org.renameme.Version;
 import org.renameme.RenamemeParseException;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.unit.ByteSizeValue;
@@ -40,7 +40,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class FileInfoTests extends ESTestCase {
-    private static final org.apache.lucene.util.Version MIN_SUPPORTED_LUCENE_VERSION = org.renameme.Version.CURRENT
+    private static final org.apache.lucene.util.Version MIN_SUPPORTED_LUCENE_VERSION = Version.CURRENT
         .minimumIndexCompatibilityVersion().luceneVersion;
 
     public void testToFromXContent() throws IOException {
@@ -52,7 +52,7 @@ public class FileInfoTests extends ESTestCase {
                 hash.bytes[i] = randomByte();
             }
             StoreFileMetadata meta = new StoreFileMetadata("foobar", Math.abs(randomLong()), randomAlphaOfLengthBetween(1, 10),
-                Version.LATEST, hash);
+                org.apache.lucene.util.Version.LATEST, hash);
             ByteSizeValue size = new ByteSizeValue(Math.abs(randomLong()));
             BlobStoreIndexShardSnapshot.FileInfo info = new BlobStoreIndexShardSnapshot.FileInfo("_foobar", meta, size);
             XContentBuilder builder = XContentFactory.contentBuilder(XContentType.JSON).prettyPrint();
@@ -71,7 +71,7 @@ public class FileInfoTests extends ESTestCase {
             assertThat(info.partSize(), equalTo(parsedInfo.partSize()));
             assertThat(parsedInfo.metadata().hash().length, equalTo(hash.length));
             assertThat(parsedInfo.metadata().hash(), equalTo(hash));
-            assertThat(parsedInfo.metadata().writtenBy(), equalTo(Version.LATEST));
+            assertThat(parsedInfo.metadata().writtenBy(), equalTo(org.apache.lucene.util.Version.LATEST));
             assertThat(parsedInfo.isSame(info.metadata()), is(true));
         }
     }
@@ -113,7 +113,7 @@ public class FileInfoTests extends ESTestCase {
             builder.field(FileInfo.NAME, name);
             builder.field(FileInfo.PHYSICAL_NAME, physicalName);
             builder.field(FileInfo.LENGTH, length);
-            builder.field(FileInfo.WRITTEN_BY, Version.LATEST.toString());
+            builder.field(FileInfo.WRITTEN_BY, org.apache.lucene.util.Version.LATEST.toString());
             builder.field(FileInfo.CHECKSUM, "666");
             builder.endObject();
             byte[] xContent = BytesReference.toBytes(BytesReference.bytes(builder));
@@ -130,7 +130,7 @@ public class FileInfoTests extends ESTestCase {
                 assertThat(length, equalTo(parsedInfo.length()));
                 assertEquals("666", parsedInfo.checksum());
                 assertEquals("666", parsedInfo.metadata().checksum());
-                assertEquals(Version.LATEST, parsedInfo.metadata().writtenBy());
+                assertEquals(org.apache.lucene.util.Version.LATEST, parsedInfo.metadata().writtenBy());
             } else {
                 try (XContentParser parser = createParser(JsonXContent.jsonXContent, xContent)) {
                     parser.nextToken();

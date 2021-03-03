@@ -154,7 +154,6 @@ import org.renameme.env.TestEnvironment;
 import org.renameme.gateway.MetaStateService;
 import org.renameme.gateway.TransportNodesListGatewayStartedShards;
 import org.renameme.index.Index;
-import org.renameme.index.IndexingPressure;
 import org.renameme.index.analysis.AnalysisRegistry;
 import org.renameme.index.seqno.GlobalCheckpointSyncAction;
 import org.renameme.index.seqno.RetentionLeaseSyncer;

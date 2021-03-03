@@ -33,7 +33,6 @@ import org.renameme.index.Index;
 import org.renameme.index.IndexNotFoundException;
 import org.renameme.index.shard.ShardId;
 import org.junit.Before;
-import org.renameme.cluster.routing.TestShardRouting;
 
 import java.util.Arrays;
 import java.util.Set;

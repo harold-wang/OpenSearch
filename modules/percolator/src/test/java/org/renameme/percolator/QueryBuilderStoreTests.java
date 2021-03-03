@@ -29,6 +29,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.store.Directory;
 import org.elasticsearch.mock.orig.Mockito;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.CheckedFunction;
@@ -45,9 +46,6 @@ import org.renameme.index.query.QueryShardContext;
 import org.renameme.index.query.TermQueryBuilder;
 import org.renameme.search.SearchModule;
 import org.renameme.search.aggregations.support.CoreValuesSourceType;
-import org.renameme.percolator.PercolateQuery;
-import org.renameme.percolator.PercolateQueryBuilder;
-import org.renameme.percolator.PercolatorFieldMapper;
 import org.renameme.test.ESTestCase;
 
 import java.io.IOException;
@@ -79,7 +77,7 @@ public class QueryBuilderStoreTests extends ESTestCase {
             BinaryFieldMapper fieldMapper = PercolatorFieldMapper.Builder.createQueryBuilderFieldBuilder(
                 new Mapper.BuilderContext(settings, new ContentPath(0)));
 
-            Version version = Version.V_6_0_0_beta2;
+            Version version = LegacyESVersion.V_6_0_0_beta2;
             try (IndexWriter indexWriter = new IndexWriter(directory, config)) {
                 for (int i = 0; i < queryBuilders.length; i++) {
                     queryBuilders[i] = new TermQueryBuilder(randomAlphaOfLength(4), randomAlphaOfLength(8));

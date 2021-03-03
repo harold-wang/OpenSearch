@@ -18,8 +18,8 @@
  */
 package org.renameme.indices.analysis;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -121,7 +121,7 @@ public class PreBuiltCacheFactory {
         }
 
         @Override
-        public void put(org.renameme.Version version, T model) {
+        public void put(Version version, T model) {
             mapModel.put(version.luceneVersion, model);
         }
 

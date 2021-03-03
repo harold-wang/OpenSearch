@@ -18,13 +18,12 @@
  */
 package org.renameme.cluster.coordination;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.cluster.node.DiscoveryNodeRole;
 import org.renameme.common.settings.Settings;
 import org.renameme.discovery.DiscoveryModule;
-import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.transport.MockTransport;
 import org.renameme.transport.TransportRequest;

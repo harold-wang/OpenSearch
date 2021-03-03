@@ -20,8 +20,8 @@ package org.renameme.env;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.cli.Terminal;
 import org.renameme.cluster.coordination.RenamemeNodeCommand;
 import org.renameme.gateway.PersistedClusterStateService;

@@ -43,7 +43,6 @@ import org.renameme.repositories.RepositoryException;
 import org.renameme.repositories.ShardGenerations;
 import org.renameme.repositories.blobstore.BlobStoreRepository;
 import org.renameme.threadpool.ThreadPool;
-import org.renameme.snapshots.AbstractSnapshotIntegTestCase;
 
 import java.io.IOException;
 import java.nio.channels.SeekableByteChannel;

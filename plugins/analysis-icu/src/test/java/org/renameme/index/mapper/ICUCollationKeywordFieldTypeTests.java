@@ -22,10 +22,6 @@ package org.renameme.index.mapper;
 import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
-import org.renameme.index.mapper.ContentPath;
-import org.renameme.index.mapper.Mapper;
-import org.renameme.index.mapper.FieldTypeTestCase;
-import org.renameme.index.mapper.ICUCollationKeywordFieldMapper;
 
 import java.io.IOException;
 import java.util.Collections;

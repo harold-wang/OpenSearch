@@ -28,7 +28,6 @@ import org.renameme.common.collect.Tuple;
 import org.renameme.common.logging.Loggers;
 import org.renameme.common.settings.Setting.Property;
 import org.renameme.index.IndexModule;
-import org.renameme.common.settings.MockSecureSettings;
 import org.renameme.test.ESTestCase;
 import org.renameme.transport.TransportSettings;
 

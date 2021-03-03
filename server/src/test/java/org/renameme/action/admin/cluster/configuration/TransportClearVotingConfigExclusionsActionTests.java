@@ -19,8 +19,8 @@
 package org.renameme.action.admin.cluster.configuration;
 
 import org.apache.lucene.util.SetOnce;
-import org.renameme.RenamemeTimeoutException;
 import org.renameme.Version;
+import org.renameme.RenamemeTimeoutException;
 import org.renameme.action.support.ActionFilters;
 import org.renameme.cluster.ClusterName;
 import org.renameme.cluster.ClusterState;

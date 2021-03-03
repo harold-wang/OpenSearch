@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.cluster.node.reload;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.support.nodes.BaseNodesRequest;
 import org.renameme.common.io.stream.StreamInput;
 
@@ -53,7 +53,7 @@ public class NodesReloadSecureSettingsRequest extends BaseNodesRequest<NodesRelo
 
     public NodesReloadSecureSettingsRequest(StreamInput in) throws IOException {
         super(in);
-        if (in.getVersion().onOrAfter(Version.V_7_7_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
             final BytesReference bytesRef = in.readOptionalBytesReference();
             if (bytesRef != null) {
                 byte[] bytes = BytesReference.toBytes(bytesRef);
@@ -99,7 +99,7 @@ public class NodesReloadSecureSettingsRequest extends BaseNodesRequest<NodesRelo
     @Override
     public void writeTo(StreamOutput out) throws IOException {
         super.writeTo(out);
-        if (out.getVersion().onOrAfter(Version.V_7_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_4_0)) {
             if (this.secureSettingsPassword == null) {
                 out.writeOptionalBytesReference(null);
             } else {

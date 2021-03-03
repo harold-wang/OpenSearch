@@ -19,9 +19,9 @@
 
 package org.renameme.repositories;
 
+import org.renameme.Version;
 import org.renameme.RenamemeParseException;
 import org.renameme.ResourceNotFoundException;
-import org.renameme.Version;
 import org.renameme.common.Nullable;
 import org.renameme.common.UUIDs;
 import org.renameme.common.xcontent.XContentBuilder;

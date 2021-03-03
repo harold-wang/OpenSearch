@@ -21,8 +21,6 @@ package org.renameme.cluster;
 
 import org.apache.lucene.util.LuceneTestCase;
 import org.renameme.Version;
-import org.renameme.cluster.ClusterName;
-import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.metadata.DataStream;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.cluster.metadata.Metadata;

@@ -21,7 +21,7 @@ package org.renameme.search.fetch;
 
 import com.carrotsearch.hppc.IntArrayList;
 import org.apache.lucene.search.ScoreDoc;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.IndicesRequest;
 import org.renameme.action.OriginalIndices;
 import org.renameme.action.support.IndicesOptions;
@@ -57,7 +57,7 @@ public class ShardFetchSearchRequest extends ShardFetchRequest implements Indice
     public ShardFetchSearchRequest(StreamInput in) throws IOException {
         super(in);
         originalIndices = OriginalIndices.readOriginalIndices(in);
-        if (in.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             shardSearchRequest = in.readOptionalWriteable(ShardSearchRequest::new);
             rescoreDocIds = new RescoreDocIds(in);
             aggregatedDfs = in.readOptionalWriteable(AggregatedDfs::new);
@@ -72,7 +72,7 @@ public class ShardFetchSearchRequest extends ShardFetchRequest implements Indice
     public void writeTo(StreamOutput out) throws IOException {
         super.writeTo(out);
         OriginalIndices.writeOriginalIndices(originalIndices, out);
-        if (out.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             out.writeOptionalWriteable(shardSearchRequest);
             rescoreDocIds.writeTo(out);
             out.writeOptionalWriteable(aggregatedDfs);

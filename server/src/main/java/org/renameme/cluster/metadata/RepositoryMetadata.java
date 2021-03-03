@@ -18,6 +18,7 @@
  */
 package org.renameme.cluster.metadata;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -33,7 +34,7 @@ import java.util.Objects;
  */
 public class RepositoryMetadata implements Writeable {
 
-    public static final Version REPO_GEN_IN_CS_VERSION = Version.V_7_6_0;
+    public static final Version REPO_GEN_IN_CS_VERSION = LegacyESVersion.V_7_6_0;
 
     private final String name;
     private final String type;

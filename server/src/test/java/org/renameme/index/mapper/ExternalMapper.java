@@ -20,7 +20,7 @@
 package org.renameme.index.mapper;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.collect.Iterators;
 import org.renameme.common.geo.GeoPoint;
 import org.renameme.common.geo.builders.PointBuilder;
@@ -89,7 +89,7 @@ public class ExternalMapper extends ParametrizedFieldMapper {
             BinaryFieldMapper binMapper = binBuilder.build(context);
             BooleanFieldMapper boolMapper = boolBuilder.build(context);
             GeoPointFieldMapper pointMapper = (GeoPointFieldMapper) latLonPointBuilder.build(context);
-            AbstractShapeGeometryFieldMapper<?, ?> shapeMapper = (context.indexCreatedVersion().before(Version.V_6_6_0))
+            AbstractShapeGeometryFieldMapper<?, ?> shapeMapper = (context.indexCreatedVersion().before(LegacyESVersion.V_6_6_0))
                 ? legacyShapeBuilder.build(context)
                 : shapeBuilder.build(context);
             FieldMapper stringMapper = (FieldMapper)stringBuilder.build(context);

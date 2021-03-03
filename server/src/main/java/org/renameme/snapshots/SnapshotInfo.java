@@ -18,6 +18,7 @@
  */
 package org.renameme.snapshots;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ShardOperationFailedException;
 import org.renameme.action.admin.cluster.snapshots.get.GetSnapshotsRequest;
@@ -53,11 +54,11 @@ import java.util.stream.Collectors;
  */
 public final class SnapshotInfo implements Comparable<SnapshotInfo>, ToXContent, Writeable {
 
-    public static final Version DATA_STREAMS_IN_SNAPSHOT = Version.V_7_9_0;
+    public static final Version DATA_STREAMS_IN_SNAPSHOT = LegacyESVersion.V_7_9_0;
 
     public static final String CONTEXT_MODE_PARAM = "context_mode";
     public static final String CONTEXT_MODE_SNAPSHOT = "SNAPSHOT";
-    public static final Version METADATA_FIELD_INTRODUCED = Version.V_7_3_0;
+    public static final Version METADATA_FIELD_INTRODUCED = LegacyESVersion.V_7_3_0;
     private static final DateFormatter DATE_TIME_FORMATTER = DateFormatter.forPattern("strict_date_optional_time");
     private static final String SNAPSHOT = "snapshot";
     private static final String UUID = "uuid";
@@ -84,7 +85,7 @@ public final class SnapshotInfo implements Comparable<SnapshotInfo>, ToXContent,
     private static final String INCLUDE_GLOBAL_STATE = "include_global_state";
     private static final String USER_METADATA = "metadata";
 
-    private static final Version INCLUDE_GLOBAL_STATE_INTRODUCED = Version.V_6_2_0;
+    private static final Version INCLUDE_GLOBAL_STATE_INTRODUCED = LegacyESVersion.V_6_2_0;
 
     private static final Comparator<SnapshotInfo> COMPARATOR =
         Comparator.comparing(SnapshotInfo::startTime).thenComparing(SnapshotInfo::snapshotId);
@@ -282,8 +283,8 @@ public final class SnapshotInfo implements Comparable<SnapshotInfo>, ToXContent,
     }
 
     SnapshotInfo(SnapshotId snapshotId, List<String> indices, List<String> dataStreams, SnapshotState state, String reason,
-                         Version version, long startTime, long endTime, int totalShards, int successfulShards,
-                         List<SnapshotShardFailure> shardFailures, Boolean includeGlobalState, Map<String, Object> userMetadata) {
+                 Version version, long startTime, long endTime, int totalShards, int successfulShards,
+                 List<SnapshotShardFailure> shardFailures, Boolean includeGlobalState, Map<String, Object> userMetadata) {
         this.snapshotId = Objects.requireNonNull(snapshotId);
         this.indices = Collections.unmodifiableList(Objects.requireNonNull(indices));
         this.dataStreams = Collections.unmodifiableList(Objects.requireNonNull(dataStreams));

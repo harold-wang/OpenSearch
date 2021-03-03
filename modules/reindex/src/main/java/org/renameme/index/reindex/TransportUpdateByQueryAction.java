@@ -20,7 +20,7 @@
 package org.renameme.index.reindex;
 
 import org.apache.logging.log4j.Logger;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionListener;
 import org.renameme.action.index.IndexRequest;
 import org.renameme.action.support.ActionFilters;
@@ -35,7 +35,6 @@ import org.renameme.index.mapper.IdFieldMapper;
 import org.renameme.index.mapper.IndexFieldMapper;
 import org.renameme.index.mapper.RoutingFieldMapper;
 import org.renameme.index.mapper.TypeFieldMapper;
-import org.renameme.index.reindex.*;
 import org.renameme.script.Script;
 import org.renameme.script.ScriptService;
 import org.renameme.tasks.Task;
@@ -90,11 +89,11 @@ public class TransportUpdateByQueryAction extends HandledTransportAction<UpdateB
                                  ClusterState clusterState, ActionListener<BulkByScrollResponse> listener) {
             super(task,
                 // not all nodes support sequence number powered optimistic concurrency control, we fall back to version
-                clusterState.nodes().getMinNodeVersion().onOrAfter(Version.V_6_7_0) == false,
+                clusterState.nodes().getMinNodeVersion().onOrAfter(LegacyESVersion.V_6_7_0) == false,
                 // all nodes support sequence number powered optimistic concurrency control and we can use it
-                clusterState.nodes().getMinNodeVersion().onOrAfter(Version.V_6_7_0),
+                clusterState.nodes().getMinNodeVersion().onOrAfter(LegacyESVersion.V_6_7_0),
                 logger, client, threadPool, request, listener, scriptService, null);
-            useSeqNoForCAS = clusterState.nodes().getMinNodeVersion().onOrAfter(Version.V_6_7_0);
+            useSeqNoForCAS = clusterState.nodes().getMinNodeVersion().onOrAfter(LegacyESVersion.V_6_7_0);
         }
 
         @Override

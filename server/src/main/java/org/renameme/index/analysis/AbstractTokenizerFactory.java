@@ -19,13 +19,12 @@
 
 package org.renameme.index.analysis;
 
-import org.apache.lucene.util.Version;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.AbstractIndexComponent;
 import org.renameme.index.IndexSettings;
 
 public abstract class AbstractTokenizerFactory extends AbstractIndexComponent implements TokenizerFactory {
-    protected final Version version;
+    protected final org.apache.lucene.util.Version version;
     private final String name;
 
     public AbstractTokenizerFactory(IndexSettings indexSettings, Settings settings, String name) {
@@ -34,7 +33,7 @@ public abstract class AbstractTokenizerFactory extends AbstractIndexComponent im
         this.name = name;
     }
 
-    public final Version version() {
+    public final org.apache.lucene.util.Version version() {
         return version;
     }
 

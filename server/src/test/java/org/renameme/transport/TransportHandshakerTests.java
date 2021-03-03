@@ -27,7 +27,6 @@ import org.renameme.common.unit.TimeValue;
 import org.renameme.tasks.TaskId;
 import org.renameme.test.ESTestCase;
 import org.renameme.threadpool.TestThreadPool;
-import org.renameme.transport.TestTransportChannel;
 
 import java.io.IOException;
 import java.util.Collections;

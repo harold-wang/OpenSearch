@@ -23,7 +23,7 @@ import org.apache.lucene.search.BoostQuery;
 import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.automaton.Operations;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.ParsingException;
 import org.renameme.common.io.stream.StreamInput;
@@ -195,7 +195,7 @@ public class QueryStringQueryBuilder extends AbstractQueryBuilder<QueryStringQue
         timeZone = in.readOptionalZoneId();
         escape = in.readBoolean();
         maxDeterminizedStates = in.readVInt();
-        if (in.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             autoGenerateSynonymsPhraseQuery = in.readBoolean();
             fuzzyTranspositions = in.readBoolean();
         }
@@ -230,7 +230,7 @@ public class QueryStringQueryBuilder extends AbstractQueryBuilder<QueryStringQue
         out.writeOptionalZoneId(timeZone);
         out.writeBoolean(this.escape);
         out.writeVInt(this.maxDeterminizedStates);
-        if (out.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             out.writeBoolean(autoGenerateSynonymsPhraseQuery);
             out.writeBoolean(fuzzyTranspositions);
         }

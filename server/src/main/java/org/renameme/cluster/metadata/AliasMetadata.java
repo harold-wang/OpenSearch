@@ -19,8 +19,8 @@
 
 package org.renameme.cluster.metadata;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeGenerationException;
-import org.renameme.Version;
 import org.renameme.cluster.AbstractDiffable;
 import org.renameme.cluster.Diff;
 import org.renameme.common.Nullable;
@@ -196,11 +196,11 @@ public class AliasMetadata extends AbstractDiffable<AliasMetadata> implements To
             out.writeBoolean(false);
         }
 
-        if (out.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             out.writeOptionalBoolean(writeIndex());
         }
 
-        if (out.getVersion().onOrAfter(Version.V_7_7_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
             out.writeOptionalBoolean(isHidden());
         }
     }
@@ -224,13 +224,13 @@ public class AliasMetadata extends AbstractDiffable<AliasMetadata> implements To
             searchRouting = null;
             searchRoutingValues = emptySet();
         }
-        if (in.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             writeIndex = in.readOptionalBoolean();
         } else {
             writeIndex = null;
         }
 
-        if (in.getVersion().onOrAfter(Version.V_7_7_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
             isHidden = in.readOptionalBoolean();
         } else {
             isHidden = null;

@@ -104,7 +104,6 @@ import org.renameme.indices.mapper.MapperRegistry;
 import org.renameme.plugins.SearchPlugin;
 import org.renameme.script.ScriptService;
 import org.renameme.search.SearchModule;
-import org.renameme.search.aggregations.*;
 import org.renameme.search.aggregations.AggregatorFactories.Builder;
 import org.renameme.search.aggregations.MultiBucketConsumerService.MultiBucketConsumer;
 import org.renameme.search.aggregations.bucket.nested.NestedAggregationBuilder;
@@ -124,8 +123,6 @@ import org.renameme.test.ESTestCase;
 import org.renameme.test.InternalAggregationTestCase;
 import org.junit.After;
 import org.junit.Before;
-import org.renameme.common.util.MockBigArrays;
-import org.renameme.common.util.MockPageCacheRecycler;
 
 import java.io.IOException;
 import java.net.InetAddress;

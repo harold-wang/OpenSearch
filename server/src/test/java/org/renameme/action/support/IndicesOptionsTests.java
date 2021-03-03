@@ -19,6 +19,7 @@
 
 package org.renameme.action.support;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.support.IndicesOptions.Option;
 import org.renameme.action.support.IndicesOptions.WildcardStates;
@@ -54,7 +55,7 @@ public class IndicesOptionsTests extends ESTestCase {
     public void testSerialization() throws Exception {
         int iterations = randomIntBetween(5, 20);
         for (int i = 0; i < iterations; i++) {
-            Version version = randomVersionBetween(random(), Version.V_7_0_0, null);
+            Version version = randomVersionBetween(random(), LegacyESVersion.V_7_0_0, null);
             IndicesOptions indicesOptions = IndicesOptions.fromOptions(
                 randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(), randomBoolean(),
                 randomBoolean(), randomBoolean());
@@ -71,7 +72,7 @@ public class IndicesOptionsTests extends ESTestCase {
             assertThat(indicesOptions2.allowNoIndices(), equalTo(indicesOptions.allowNoIndices()));
             assertThat(indicesOptions2.expandWildcardsOpen(), equalTo(indicesOptions.expandWildcardsOpen()));
             assertThat(indicesOptions2.expandWildcardsClosed(), equalTo(indicesOptions.expandWildcardsClosed()));
-            if (version.before(Version.V_7_7_0)) {
+            if (version.before(LegacyESVersion.V_7_7_0)) {
                 assertThat(indicesOptions2.expandWildcardsHidden(), is(true));
             } else {
                 assertThat(indicesOptions2.expandWildcardsHidden(), equalTo(indicesOptions.expandWildcardsHidden()));

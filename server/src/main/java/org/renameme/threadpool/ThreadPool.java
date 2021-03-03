@@ -22,7 +22,7 @@ package org.renameme.threadpool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.ParameterizedMessage;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Nullable;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -655,7 +655,7 @@ public class ThreadPool implements ReportingService<ThreadPoolInfo>, Scheduler {
         public void writeTo(StreamOutput out) throws IOException {
             out.writeString(name);
             if (type == ThreadPoolType.FIXED_AUTO_QUEUE_SIZE &&
-                    out.getVersion().before(Version.V_6_0_0_alpha1)) {
+                    out.getVersion().before(LegacyESVersion.V_6_0_0_alpha1)) {
                 // 5.x doesn't know about the "fixed_auto_queue_size" thread pool type, just write fixed.
                 out.writeString(ThreadPoolType.FIXED.getType());
             } else {

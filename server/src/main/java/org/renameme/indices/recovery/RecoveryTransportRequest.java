@@ -19,7 +19,7 @@
 
 package org.renameme.indices.recovery;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.index.seqno.SequenceNumbers;
@@ -33,7 +33,7 @@ public abstract class RecoveryTransportRequest extends TransportRequest {
 
     RecoveryTransportRequest(StreamInput in) throws IOException {
         super(in);
-        if (in.getVersion().onOrAfter(Version.V_7_9_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_9_0)) {
             requestSeqNo = in.readLong();
         } else {
             requestSeqNo = SequenceNumbers.UNASSIGNED_SEQ_NO;
@@ -51,7 +51,7 @@ public abstract class RecoveryTransportRequest extends TransportRequest {
     @Override
     public void writeTo(StreamOutput out) throws IOException {
         super.writeTo(out);
-        if (out.getVersion().onOrAfter(org.renameme.Version.V_7_9_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_9_0)) {
             out.writeLong(requestSeqNo);
         }
     }

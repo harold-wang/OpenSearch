@@ -18,8 +18,8 @@
  */
 package org.renameme.action.ingest;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeException;
-import org.renameme.Version;
 import org.renameme.common.ParseField;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -84,7 +84,7 @@ public final class SimulateDocumentBaseResult implements SimulateDocumentResult 
      * Read from a stream.
      */
     public SimulateDocumentBaseResult(StreamInput in) throws IOException {
-        if (in.getVersion().onOrAfter(Version.V_7_4_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_4_0)) {
             failure = in.readException();
             ingestDocument = in.readOptionalWriteable(WriteableIngestDocument::new);
         } else {
@@ -100,7 +100,7 @@ public final class SimulateDocumentBaseResult implements SimulateDocumentResult 
 
     @Override
     public void writeTo(StreamOutput out) throws IOException {
-        if (out.getVersion().onOrAfter(Version.V_7_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_4_0)) {
             out.writeException(failure);
             out.writeOptionalWriteable(ingestDocument);
         } else {

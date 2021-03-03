@@ -22,9 +22,9 @@ package org.renameme.indices.recovery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.lucene.store.RateLimiter;
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeException;
 import org.renameme.ExceptionsHelper;
-import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionListenerResponseHandler;
 import org.renameme.action.support.RetryableAction;
@@ -96,7 +96,7 @@ public class RemoteRecoveryTargetHandler implements RecoveryTargetHandler {
                 .withType(TransportRequestOptions.Type.RECOVERY)
                 .withTimeout(recoverySettings.internalActionTimeout())
                 .build();
-        this.retriesSupported = targetNode.getVersion().onOrAfter(Version.V_7_9_0);
+        this.retriesSupported = targetNode.getVersion().onOrAfter(LegacyESVersion.V_7_9_0);
     }
 
     public DiscoveryNode targetNode() {

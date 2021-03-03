@@ -19,7 +19,7 @@
 
 package org.renameme.action.admin.cluster.health;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.support.IndicesOptions;
 import org.renameme.cluster.health.ClusterHealthStatus;
 import org.renameme.common.Priority;
@@ -64,7 +64,7 @@ public class ClusterHealthRequestTests extends ESTestCase {
         for (int runs = 0; runs < randomIntBetween(5, 20); runs++) {
             // Generate a random cluster health request in version < 7.2.0 and serializes it
             final BytesStreamOutput out = new BytesStreamOutput();
-            out.setVersion(randomVersionBetween(random(), Version.V_6_3_0, getPreviousVersion(Version.V_7_2_0)));
+            out.setVersion(randomVersionBetween(random(), LegacyESVersion.V_6_3_0, getPreviousVersion(LegacyESVersion.V_7_2_0)));
 
             final ClusterHealthRequest expected = randomRequest();
             {
@@ -119,7 +119,7 @@ public class ClusterHealthRequestTests extends ESTestCase {
 
             // Serialize to node in version < 7.2.0
             final BytesStreamOutput out = new BytesStreamOutput();
-            out.setVersion(randomVersionBetween(random(), Version.V_6_3_0, getPreviousVersion(Version.V_7_2_0)));
+            out.setVersion(randomVersionBetween(random(), LegacyESVersion.V_6_3_0, getPreviousVersion(LegacyESVersion.V_7_2_0)));
             expected.writeTo(out);
 
             // Deserialize and check the cluster health request

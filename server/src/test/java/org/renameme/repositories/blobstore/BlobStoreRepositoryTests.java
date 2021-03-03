@@ -43,8 +43,6 @@ import org.renameme.repositories.ShardGenerations;
 import org.renameme.repositories.fs.FsRepository;
 import org.renameme.snapshots.SnapshotId;
 import org.renameme.snapshots.SnapshotState;
-import org.renameme.repositories.blobstore.BlobStoreTestUtil;
-import org.renameme.repositories.blobstore.ESBlobStoreRepositoryIntegTestCase;
 import org.renameme.test.ESIntegTestCase;
 import org.renameme.test.ESSingleNodeTestCase;
 

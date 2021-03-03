@@ -18,6 +18,7 @@
  */
 package org.renameme.action.search;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.util.concurrent.AtomicArray;
@@ -54,7 +55,7 @@ public class TransportSearchHelperTests extends ESTestCase {
 
     public void testParseScrollId()  {
         final Version version = VersionUtils.randomVersion(random());
-        boolean includeUUID = version.onOrAfter(Version.V_7_7_0);
+        boolean includeUUID = version.onOrAfter(LegacyESVersion.V_7_7_0);
         final AtomicArray<SearchPhaseResult> queryResults = generateQueryResults();
         String scrollId = TransportSearchHelper.buildScrollId(queryResults, version);
         ParsedScrollId parseScrollId = TransportSearchHelper.parseScrollId(scrollId);

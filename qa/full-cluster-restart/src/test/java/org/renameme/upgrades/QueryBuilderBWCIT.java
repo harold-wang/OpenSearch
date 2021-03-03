@@ -20,7 +20,7 @@
 package org.renameme.upgrades;
 
 import org.apache.http.util.EntityUtils;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.client.Request;
 import org.renameme.client.Response;
 import org.renameme.common.Strings;
@@ -47,8 +47,6 @@ import org.renameme.index.query.SpanTermQueryBuilder;
 import org.renameme.index.query.functionscore.FunctionScoreQueryBuilder;
 import org.renameme.index.query.functionscore.RandomScoreFunctionBuilder;
 import org.renameme.search.SearchModule;
-import org.renameme.upgrades.AbstractFullClusterRestartTestCase;
-import org.renameme.upgrades.AbstractFullClusterRestartTestCase;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -146,7 +144,7 @@ public class QueryBuilderBWCIT extends AbstractFullClusterRestartTestCase {
     }
 
     public void testQueryBuilderBWC() throws Exception {
-        final String type = getOldClusterVersion().before(Version.V_7_0_0) ? "doc" : "_doc";
+        final String type = getOldClusterVersion().before(LegacyESVersion.V_7_0_0) ? "doc" : "_doc";
         String index = "queries";
         if (isRunningAgainstOldCluster()) {
             XContentBuilder mappingsAndSettings = jsonBuilder();

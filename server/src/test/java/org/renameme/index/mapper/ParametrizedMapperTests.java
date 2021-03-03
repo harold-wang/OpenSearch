@@ -20,6 +20,7 @@
 package org.renameme.index.mapper;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.compress.CompressedXContent;
@@ -35,7 +36,6 @@ import org.renameme.index.analysis.NamedAnalyzer;
 import org.renameme.index.mapper.ParametrizedFieldMapper.Parameter;
 import org.renameme.plugins.MapperPlugin;
 import org.renameme.plugins.Plugin;
-import org.renameme.index.mapper.MapperServiceTestCase;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -406,7 +406,7 @@ public class ParametrizedMapperTests extends MapperServiceTestCase {
     public void testDeprecatedParameters() {
         // 'index' is declared explicitly, 'store' is not, but is one of the previously always-accepted params
         String mapping = "{\"type\":\"test_mapper\",\"index\":false,\"store\":true,\"required\":\"value\"}";
-        TestMapper mapper = fromMapping(mapping, Version.V_7_8_0);
+        TestMapper mapper = fromMapping(mapping, LegacyESVersion.V_7_8_0);
         assertWarnings("Parameter [store] has no effect on type [test_mapper] and will be removed in future");
         assertFalse(mapper.index);
         assertEquals("{\"field\":{\"type\":\"test_mapper\",\"index\":false,\"required\":\"value\"}}", Strings.toString(mapper));

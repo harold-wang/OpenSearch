@@ -26,8 +26,6 @@ import org.apache.lucene.analysis.snowball.SnowballFilter;
 import org.renameme.Version;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
-import org.renameme.analysis.common.CommonAnalysisPlugin;
-import org.renameme.analysis.common.StemmerTokenFilterFactory;
 import org.renameme.index.analysis.AnalysisTestsHelper;
 import org.renameme.index.analysis.IndexAnalyzers;
 import org.renameme.index.analysis.NamedAnalyzer;

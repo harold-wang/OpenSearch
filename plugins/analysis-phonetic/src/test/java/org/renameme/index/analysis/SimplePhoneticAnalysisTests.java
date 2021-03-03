@@ -27,8 +27,6 @@ import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.Index;
-import org.renameme.index.analysis.TokenFilterFactory;
-import org.renameme.index.analysis.PhoneticTokenFilterFactory;
 import org.renameme.plugin.analysis.AnalysisPhoneticPlugin;
 import org.renameme.test.ESTestCase;
 import org.hamcrest.MatcherAssert;

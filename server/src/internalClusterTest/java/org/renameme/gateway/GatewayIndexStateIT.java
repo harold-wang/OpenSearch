@@ -21,8 +21,8 @@ package org.renameme.gateway;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.admin.cluster.health.ClusterHealthResponse;
 import org.renameme.action.admin.cluster.state.ClusterStateResponse;
 import org.renameme.action.get.GetResponse;

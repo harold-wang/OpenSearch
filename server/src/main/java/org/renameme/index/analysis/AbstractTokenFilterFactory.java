@@ -19,7 +19,6 @@
 
 package org.renameme.index.analysis;
 
-import org.apache.lucene.util.Version;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.AbstractIndexComponent;
 import org.renameme.index.IndexSettings;
@@ -28,7 +27,7 @@ public abstract class AbstractTokenFilterFactory extends AbstractIndexComponent 
 
     private final String name;
 
-    protected final Version version;
+    protected final org.apache.lucene.util.Version version;
 
     public AbstractTokenFilterFactory(IndexSettings indexSettings, String name, Settings settings) {
         super(indexSettings);
@@ -41,7 +40,7 @@ public abstract class AbstractTokenFilterFactory extends AbstractIndexComponent 
         return this.name;
     }
 
-    public final Version version() {
+    public final org.apache.lucene.util.Version version() {
         return version;
     }
 }

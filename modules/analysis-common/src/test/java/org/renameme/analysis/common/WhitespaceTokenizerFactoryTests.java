@@ -27,7 +27,6 @@ import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.index.Index;
 import org.renameme.index.IndexSettings;
-import org.renameme.analysis.common.WhitespaceTokenizerFactory;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.IndexSettingsModule;
 

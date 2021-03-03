@@ -20,7 +20,6 @@
 package org.renameme.index.snapshots.blobstore;
 
 import org.apache.lucene.util.BytesRef;
-import org.apache.lucene.util.Version;
 import org.renameme.RenamemeParseException;
 import org.renameme.common.ParseField;
 import org.renameme.common.Strings;
@@ -281,7 +280,7 @@ public class BlobStoreIndexShardSnapshot implements ToXContentFragment {
             long length = -1;
             String checksum = null;
             ByteSizeValue partSize = null;
-            Version writtenBy = null;
+            org.apache.lucene.util.Version writtenBy = null;
             String writtenByStr = null;
             BytesRef metaHash = new BytesRef();
             if (token == XContentParser.Token.START_OBJECT) {

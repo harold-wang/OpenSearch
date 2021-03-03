@@ -22,6 +22,7 @@ package org.renameme.cluster;
 import com.carrotsearch.hppc.ObjectContainer;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import com.carrotsearch.hppc.cursors.ObjectObjectCursor;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.ClusterState.Custom;
 import org.renameme.common.Nullable;
@@ -63,7 +64,7 @@ public class SnapshotsInProgress extends AbstractNamedDiffable<Custom> implement
 
     public static final SnapshotsInProgress EMPTY = new SnapshotsInProgress(Collections.emptyList());
 
-    private static final Version VERSION_IN_SNAPSHOT_VERSION = Version.V_7_7_0;
+    private static final Version VERSION_IN_SNAPSHOT_VERSION = LegacyESVersion.V_7_7_0;
 
     public static final String TYPE = "snapshots";
 
@@ -165,10 +166,10 @@ public class SnapshotsInProgress extends AbstractNamedDiffable<Custom> implement
         }
 
         private Entry(Snapshot snapshot, boolean includeGlobalState, boolean partial, State state, List<IndexId> indices,
-                     List<String> dataStreams, long startTime, long repositoryStateId,
-                     ImmutableOpenMap<ShardId, ShardSnapshotStatus> shards, String failure, Map<String, Object> userMetadata,
-                     Version version, @Nullable SnapshotId source,
-                     @Nullable ImmutableOpenMap<RepositoryShardId, ShardSnapshotStatus> clones) {
+                      List<String> dataStreams, long startTime, long repositoryStateId,
+                      ImmutableOpenMap<ShardId, ShardSnapshotStatus> shards, String failure, Map<String, Object> userMetadata,
+                      Version version, @Nullable SnapshotId source,
+                      @Nullable ImmutableOpenMap<RepositoryShardId, ShardSnapshotStatus> clones) {
             this.state = state;
             this.snapshot = snapshot;
             this.includeGlobalState = includeGlobalState;

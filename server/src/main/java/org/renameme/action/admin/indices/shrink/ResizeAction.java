@@ -19,6 +19,7 @@
 
 package org.renameme.action.admin.indices.shrink;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.ActionType;
 
@@ -26,7 +27,7 @@ public class ResizeAction extends ActionType<ResizeResponse> {
 
     public static final ResizeAction INSTANCE = new ResizeAction();
     public static final String NAME = "indices:admin/resize";
-    public static final Version COMPATIBILITY_VERSION = Version.V_6_1_0; // TODO remove this once it's backported
+    public static final Version COMPATIBILITY_VERSION = LegacyESVersion.V_6_1_0; // TODO remove this once it's backported
 
     private ResizeAction() {
         super(NAME, ResizeResponse::new);

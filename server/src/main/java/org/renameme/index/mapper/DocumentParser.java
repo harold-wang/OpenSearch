@@ -21,8 +21,8 @@ package org.renameme.index.mapper;
 
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexableField;
-import org.renameme.RenamemeParseException;
 import org.renameme.Version;
+import org.renameme.RenamemeParseException;
 import org.renameme.common.Strings;
 import org.renameme.common.collect.Tuple;
 import org.renameme.common.settings.Settings;

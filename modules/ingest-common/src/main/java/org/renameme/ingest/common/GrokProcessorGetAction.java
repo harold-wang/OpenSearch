@@ -18,7 +18,7 @@
  */
 package org.renameme.ingest.common;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionListener;
 import org.renameme.action.ActionRequest;
 import org.renameme.action.ActionRequestValidationException;
@@ -66,7 +66,7 @@ public class GrokProcessorGetAction extends ActionType<GrokProcessorGetAction.Re
 
         Request(StreamInput in) throws IOException {
             super(in);
-            this.sorted = in.getVersion().onOrAfter(Version.V_7_10_0) ? in.readBoolean() : false;
+            this.sorted = in.getVersion().onOrAfter(LegacyESVersion.V_7_10_0) ? in.readBoolean() : false;
         }
 
         @Override
@@ -77,7 +77,7 @@ public class GrokProcessorGetAction extends ActionType<GrokProcessorGetAction.Re
         @Override
         public void writeTo(StreamOutput out) throws IOException {
             super.writeTo(out);
-            if (out.getVersion().onOrAfter(Version.V_7_10_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
                 out.writeBoolean(sorted);
             }
         }

@@ -19,7 +19,7 @@
 
 package org.renameme.index.mapper;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.admin.indices.mapping.get.GetMappingsResponse;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
@@ -38,7 +38,7 @@ public class LegacyDynamicMappingTests extends ESSingleNodeTestCase {
     }
 
     public void testTypeNotCreatedOnIndexFailure() throws IOException {
-        final Settings settings = Settings.builder().put(IndexMetadata.SETTING_INDEX_VERSION_CREATED.getKey(), Version.V_6_3_0).build();
+        final Settings settings = Settings.builder().put(IndexMetadata.SETTING_INDEX_VERSION_CREATED.getKey(), LegacyESVersion.V_6_3_0).build();
         try (XContentBuilder mapping = jsonBuilder()) {
             mapping.startObject();
             {

@@ -19,8 +19,8 @@
 
 package org.renameme.action.get;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeParseException;
-import org.renameme.Version;
 import org.renameme.action.ActionRequest;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.CompositeIndicesRequest;
@@ -88,7 +88,7 @@ public class MultiGetRequest extends ActionRequest
             type = in.readOptionalString();
             id = in.readString();
             routing = in.readOptionalString();
-            if (in.getVersion().before(Version.V_7_0_0)) {
+            if (in.getVersion().before(LegacyESVersion.V_7_0_0)) {
                 in.readOptionalString(); // _parent
             }
             storedFields = in.readOptionalStringArray();
@@ -203,7 +203,7 @@ public class MultiGetRequest extends ActionRequest
             out.writeOptionalString(type);
             out.writeString(id);
             out.writeOptionalString(routing);
-            if (out.getVersion().before(Version.V_7_0_0)) {
+            if (out.getVersion().before(LegacyESVersion.V_7_0_0)) {
                 out.writeOptionalString(null); // _parent
             }
             out.writeOptionalStringArray(storedFields);

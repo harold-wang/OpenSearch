@@ -122,15 +122,6 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.rules.RuleChain;
-import org.renameme.bootstrap.BootstrapForTesting;
-import org.renameme.common.io.PathUtilsForTesting;
-import org.renameme.common.util.MockBigArrays;
-import org.renameme.common.util.MockPageCacheRecycler;
-import org.renameme.env.TestEnvironment;
-import org.renameme.script.MockScriptEngine;
-import org.renameme.search.MockSearchService;
-import org.renameme.test.junit.listeners.LoggingListener;
-import org.renameme.test.junit.listeners.ReproduceInfoPrinter;
 
 import java.io.IOException;
 import java.io.InputStream;

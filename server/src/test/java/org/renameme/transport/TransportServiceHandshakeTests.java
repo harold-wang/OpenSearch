@@ -35,7 +35,6 @@ import org.renameme.test.VersionUtils;
 import org.renameme.test.transport.MockTransportService;
 import org.renameme.threadpool.TestThreadPool;
 import org.renameme.threadpool.ThreadPool;
-import org.renameme.transport.TestProfiles;
 import org.renameme.transport.nio.MockNioTransport;
 import org.junit.After;
 import org.junit.AfterClass;

@@ -24,8 +24,9 @@ import org.apache.lucene.document.LatLonPoint;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.index.DocValuesType;
 import org.apache.lucene.index.IndexableField;
-import org.renameme.RenamemeParseException;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
+import org.renameme.RenamemeParseException;
 import org.renameme.common.geo.GeoPoint;
 import org.renameme.common.geo.GeoUtils;
 import org.renameme.common.logging.DeprecationLogger;
@@ -294,7 +295,7 @@ public class GeoContextMapping extends ContextMapping<GeoQueryContext> {
         if (fieldName != null) {
             MappedFieldType mappedFieldType = fieldResolver.apply(fieldName);
             if (mappedFieldType == null) {
-                if (indexVersionCreated.before(Version.V_7_0_0)) {
+                if (indexVersionCreated.before(LegacyESVersion.V_7_0_0)) {
                     deprecationLogger.deprecate("geo_context_mapping",
                         "field [{}] referenced in context [{}] is not defined in the mapping", fieldName, name);
                 } else {
@@ -302,7 +303,7 @@ public class GeoContextMapping extends ContextMapping<GeoQueryContext> {
                         "field [{}] referenced in context [{}] is not defined in the mapping", fieldName, name);
                 }
             } else if (GeoPointFieldMapper.CONTENT_TYPE.equals(mappedFieldType.typeName()) == false) {
-                if (indexVersionCreated.before(Version.V_7_0_0)) {
+                if (indexVersionCreated.before(LegacyESVersion.V_7_0_0)) {
                     deprecationLogger.deprecate("geo_context_mapping",
                         "field [{}] referenced in context [{}] must be mapped to geo_point, found [{}]",
                         fieldName, name, mappedFieldType.typeName());

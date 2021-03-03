@@ -18,7 +18,7 @@
  */
 package org.renameme.index.query;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.geo.ShapeRelation;
 import org.renameme.common.geo.builders.ShapeBuilder;
 import org.renameme.test.geo.RandomShapeGenerator;
@@ -60,7 +60,7 @@ public class GeoShapeQueryBuilderGeoShapeTests extends GeoShapeQueryBuilderTests
         }
         if (randomBoolean()) {
             QueryShardContext context = createShardContext();
-            if (context.indexVersionCreated().onOrAfter(Version.V_7_5_0)) { // CONTAINS is only supported from version 7.5
+            if (context.indexVersionCreated().onOrAfter(LegacyESVersion.V_7_5_0)) { // CONTAINS is only supported from version 7.5
                 if (shapeType == RandomShapeGenerator.ShapeType.LINESTRING || shapeType == RandomShapeGenerator.ShapeType.MULTILINESTRING) {
                     builder.relation(randomFrom(ShapeRelation.DISJOINT, ShapeRelation.INTERSECTS, ShapeRelation.CONTAINS));
                 } else {

@@ -40,7 +40,6 @@ import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.TestUtil;
-import org.apache.lucene.util.Version;
 import org.renameme.script.SimilarityScript;
 import org.renameme.script.SimilarityWeightScript;
 import org.renameme.test.ESTestCase;
@@ -69,7 +68,7 @@ public class ScriptedSimilarityTests extends ESTestCase {
             final int numOverlaps = random().nextInt(length);
             int maxTermFrequency = TestUtil.nextInt(random(), 1, 10);
             int uniqueTermCount = TestUtil.nextInt(random(), 1, 10);
-            FieldInvertState state = new FieldInvertState(Version.LATEST.major, "foo", IndexOptions.DOCS_AND_FREQS, position, length,
+            FieldInvertState state = new FieldInvertState(org.apache.lucene.util.Version.LATEST.major, "foo", IndexOptions.DOCS_AND_FREQS, position, length,
                     numOverlaps, 100, maxTermFrequency, uniqueTermCount);
             assertEquals(
                     sim2.computeNorm(state),

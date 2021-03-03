@@ -19,6 +19,7 @@
 
 package org.renameme.cluster.metadata;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.cluster.Diff;
 import org.renameme.cluster.DiffableUtils;
@@ -93,7 +94,7 @@ public class ComponentTemplateMetadata implements Metadata.Custom {
 
     @Override
     public Version getMinimalSupportedVersion() {
-        return Version.V_7_7_0;
+        return LegacyESVersion.V_7_7_0;
     }
 
     @Override

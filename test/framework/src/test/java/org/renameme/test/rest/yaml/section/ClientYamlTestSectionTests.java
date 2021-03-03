@@ -19,11 +19,10 @@
 
 package org.renameme.test.rest.yaml.section;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParsingException;
 import org.renameme.common.xcontent.XContentParser;
 import org.renameme.common.xcontent.yaml.YamlXContent;
-import org.renameme.test.rest.yaml.section.*;
 
 import java.io.IOException;
 import java.util.Map;
@@ -109,9 +108,9 @@ public class ClientYamlTestSectionTests extends AbstractClientYamlTestFragmentPa
         assertThat(testSection, notNullValue());
         assertThat(testSection.getName(), equalTo("First test section"));
         assertThat(testSection.getSkipSection(), notNullValue());
-        assertThat(testSection.getSkipSection().getLowerVersion(), equalTo(Version.V_6_0_0));
+        assertThat(testSection.getSkipSection().getLowerVersion(), equalTo(LegacyESVersion.V_6_0_0));
         assertThat(testSection.getSkipSection().getUpperVersion(),
-                equalTo(Version.V_6_2_0));
+                equalTo(LegacyESVersion.V_6_2_0));
         assertThat(testSection.getSkipSection().getReason(), equalTo("Update doesn't return metadata fields, waiting for #3259"));
         assertThat(testSection.getExecutableSections().size(), equalTo(2));
         DoSection doSection = (DoSection)testSection.getExecutableSections().get(0);

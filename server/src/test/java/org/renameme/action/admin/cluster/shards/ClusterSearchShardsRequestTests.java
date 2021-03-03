@@ -19,6 +19,7 @@
 
 package org.renameme.action.admin.cluster.shards;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.support.IndicesOptions;
 import org.renameme.common.io.stream.BytesStreamOutput;
@@ -65,7 +66,7 @@ public class ClusterSearchShardsRequestTests extends ESTestCase {
                 // indices options are not equivalent when sent to an older version and re-read due
                 // to the addition of hidden indices as expand to hidden indices is always true when
                 // read from a prior version
-                if (version.onOrAfter(Version.V_7_7_0) || request.indicesOptions().expandWildcardsHidden()) {
+                if (version.onOrAfter(LegacyESVersion.V_7_7_0) || request.indicesOptions().expandWildcardsHidden()) {
                     assertEquals(request.indicesOptions(), deserialized.indicesOptions());
                 }
                 assertEquals(request.routing(), deserialized.routing());

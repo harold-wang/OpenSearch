@@ -56,7 +56,6 @@ import org.renameme.repositories.ShardGenerations;
 import org.renameme.repositories.blobstore.BlobStoreRepository;
 import org.renameme.repositories.blobstore.BlobStoreTestUtil;
 import org.renameme.search.builder.SearchSourceBuilder;
-import org.renameme.snapshots.*;
 import org.renameme.snapshots.mockstore.MockRepository;
 import org.renameme.test.ESIntegTestCase;
 import org.renameme.test.VersionUtils;

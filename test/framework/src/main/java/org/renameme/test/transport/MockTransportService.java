@@ -39,7 +39,6 @@ import org.renameme.common.unit.TimeValue;
 import org.renameme.common.util.MockPageCacheRecycler;
 import org.renameme.common.util.concurrent.AbstractRunnable;
 import org.renameme.common.util.concurrent.RunOnce;
-import org.renameme.common.util.MockPageCacheRecycler;
 import org.renameme.core.internal.io.IOUtils;
 import org.renameme.indices.breaker.NoneCircuitBreakerService;
 import org.renameme.node.Node;
@@ -59,8 +58,6 @@ import org.renameme.transport.TransportRequestOptions;
 import org.renameme.transport.TransportService;
 import org.renameme.transport.TransportSettings;
 import org.renameme.transport.nio.MockNioTransport;
-import org.renameme.test.ESTestCase;
-import org.renameme.test.tasks.MockTaskManager;
 
 import java.io.IOException;
 import java.util.Arrays;

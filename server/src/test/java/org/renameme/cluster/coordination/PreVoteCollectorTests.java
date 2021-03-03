@@ -27,7 +27,6 @@ import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.lease.Releasable;
 import org.renameme.common.settings.Settings;
 import org.renameme.monitor.StatusInfo;
-import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.transport.MockTransport;
 import org.renameme.transport.ConnectTransportException;

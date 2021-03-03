@@ -20,7 +20,7 @@
 package org.renameme.search.aggregations.bucket.range;
 
 import org.apache.lucene.util.BytesRef;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.xcontent.XContentBuilder;
@@ -74,7 +74,7 @@ public final class InternalBinaryRange
         }
 
         private static Bucket createFromStream(StreamInput in, DocValueFormat format, boolean keyed) throws IOException {
-            String key = in.getVersion().onOrAfter(Version.V_6_4_0)
+            String key = in.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)
                 ? in.readString()
                 : in.readOptionalString();
 
@@ -88,7 +88,7 @@ public final class InternalBinaryRange
 
         @Override
         public void writeTo(StreamOutput out) throws IOException {
-            if (out.getVersion().onOrAfter(Version.V_6_4_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
                 out.writeString(key);
             } else {
                 out.writeOptionalString(key);

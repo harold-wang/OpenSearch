@@ -19,7 +19,7 @@
 package org.renameme.cluster.metadata;
 
 import com.carrotsearch.hppc.cursors.ObjectCursor;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.cluster.routing.allocation.RoutingAllocation;
 import org.renameme.cluster.routing.allocation.decider.Decision;
@@ -107,7 +107,7 @@ public final class AutoExpandReplicas {
         if (enabled) {
             int numMatchingDataNodes = 0;
             // Only start using new logic once all nodes are migrated to 7.6.0, avoiding disruption during an upgrade
-            if (allocation.nodes().getMinNodeVersion().onOrAfter(Version.V_7_6_0)) {
+            if (allocation.nodes().getMinNodeVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
                 for (ObjectCursor<DiscoveryNode> cursor : allocation.nodes().getDataNodes().values()) {
                     Decision decision = allocation.deciders().shouldAutoExpandToNode(indexMetadata, cursor.value, allocation);
                     if (decision.type() != Decision.Type.NO) {

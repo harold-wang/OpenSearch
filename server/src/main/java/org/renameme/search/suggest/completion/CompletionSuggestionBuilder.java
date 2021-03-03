@@ -18,8 +18,8 @@
  */
 package org.renameme.search.suggest.completion;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeParseException;
-import org.renameme.Version;
 import org.renameme.common.ParseField;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.io.stream.StreamInput;
@@ -133,7 +133,7 @@ public class CompletionSuggestionBuilder extends SuggestionBuilder<CompletionSug
         fuzzyOptions = in.readOptionalWriteable(FuzzyOptions::new);
         regexOptions = in.readOptionalWriteable(RegexOptions::new);
         contextBytes = in.readOptionalBytesReference();
-        if (in.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             skipDuplicates = in.readBoolean();
         }
     }
@@ -143,7 +143,7 @@ public class CompletionSuggestionBuilder extends SuggestionBuilder<CompletionSug
         out.writeOptionalWriteable(fuzzyOptions);
         out.writeOptionalWriteable(regexOptions);
         out.writeOptionalBytesReference(contextBytes);
-        if (out.getVersion().onOrAfter(Version.V_6_1_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_1_0)) {
             out.writeBoolean(skipDuplicates);
         }
     }

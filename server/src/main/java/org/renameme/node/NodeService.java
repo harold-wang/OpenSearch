@@ -19,10 +19,10 @@
 
 package org.renameme.node;
 
+import org.renameme.Version;
 import org.renameme.index.IndexingPressure;
 import org.renameme.core.internal.io.IOUtils;
 import org.renameme.Build;
-import org.renameme.Version;
 import org.renameme.action.admin.cluster.node.info.NodeInfo;
 import org.renameme.action.admin.cluster.node.stats.NodeStats;
 import org.renameme.action.admin.indices.stats.CommonStatsFlags;

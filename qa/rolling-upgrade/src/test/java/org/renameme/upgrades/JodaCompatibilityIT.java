@@ -20,7 +20,7 @@ package org.renameme.upgrades;
 
 import org.apache.http.HttpStatus;
 import org.apache.http.util.EntityUtils;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.client.Node;
 import org.renameme.client.Request;
 import org.renameme.client.RequestOptions;
@@ -61,7 +61,7 @@ public class JodaCompatibilityIT extends AbstractRollingTestCase {
     @BeforeClass
     public static void init(){
         assumeTrue("upgrading from 7.0-7.6 will fail parsing joda formats",
-            UPGRADE_FROM_VERSION.before(Version.V_7_0_0));
+            UPGRADE_FROM_VERSION.before(LegacyESVersion.V_7_0_0));
     }
 
     public void testJodaBackedDocValueAndDateFields() throws Exception {

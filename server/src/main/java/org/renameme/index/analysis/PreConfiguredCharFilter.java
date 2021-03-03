@@ -44,7 +44,7 @@ public class PreConfiguredCharFilter extends PreConfiguredAnalysisComponent<Char
      * Create a pre-configured char filter that may not vary at all, provide access to the elasticsearch version
      */
     public static PreConfiguredCharFilter singletonWithVersion(String name, boolean useFilterForMultitermQueries,
-            BiFunction<Reader, org.renameme.Version, Reader> create) {
+            BiFunction<Reader, Version, Reader> create) {
         return new PreConfiguredCharFilter(name, CachingStrategy.ONE, useFilterForMultitermQueries,
                 (reader, version) -> create.apply(reader, version));
     }
@@ -62,7 +62,7 @@ public class PreConfiguredCharFilter extends PreConfiguredAnalysisComponent<Char
      * Create a pre-configured token filter that may vary based on the Elasticsearch version.
      */
     public static PreConfiguredCharFilter renamemeVersion(String name, boolean useFilterForMultitermQueries,
-            BiFunction<Reader, org.renameme.Version, Reader> create) {
+            BiFunction<Reader, Version, Reader> create) {
         return new PreConfiguredCharFilter(name, CachingStrategy.RENAMEME, useFilterForMultitermQueries, create);
     }
 
@@ -70,7 +70,7 @@ public class PreConfiguredCharFilter extends PreConfiguredAnalysisComponent<Char
     private final BiFunction<Reader, Version, Reader> create;
 
     protected PreConfiguredCharFilter(String name, CachingStrategy cache, boolean useFilterForMultitermQueries,
-            BiFunction<Reader, org.renameme.Version, Reader> create) {
+            BiFunction<Reader, Version, Reader> create) {
         super(name, cache);
         this.useFilterForMultitermQueries = useFilterForMultitermQueries;
         this.create = create;

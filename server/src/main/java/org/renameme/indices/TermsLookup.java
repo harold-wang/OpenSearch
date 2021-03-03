@@ -19,7 +19,7 @@
 
 package org.renameme.indices;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.Nullable;
 import org.renameme.common.ParseField;
 import org.renameme.common.io.stream.StreamInput;
@@ -77,7 +77,7 @@ public class TermsLookup implements Writeable, ToXContentFragment {
      * Read from a stream.
      */
     public TermsLookup(StreamInput in) throws IOException {
-        if (in.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             type = in.readOptionalString();
         } else {
             // Before 7.0, the type parameter was always non-null and serialized as a (non-optional) string.
@@ -85,7 +85,7 @@ public class TermsLookup implements Writeable, ToXContentFragment {
         }
         id = in.readString();
         path = in.readString();
-        if (in.getVersion().onOrAfter(Version.V_6_0_0_beta1)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_beta1)) {
             index = in.readString();
         } else {
             index = in.readOptionalString();
@@ -98,7 +98,7 @@ public class TermsLookup implements Writeable, ToXContentFragment {
 
     @Override
     public void writeTo(StreamOutput out) throws IOException {
-        if (out.getVersion().onOrAfter(Version.V_7_0_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_0_0)) {
             out.writeOptionalString(type);
         } else {
             if (type == null) {
@@ -110,7 +110,7 @@ public class TermsLookup implements Writeable, ToXContentFragment {
         }
         out.writeString(id);
         out.writeString(path);
-        if (out.getVersion().onOrAfter(Version.V_6_0_0_beta1)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_0_0_beta1)) {
             out.writeString(index);
         } else {
             out.writeOptionalString(index);

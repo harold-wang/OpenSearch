@@ -19,7 +19,7 @@
 
 package org.renameme.analysis.common;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.logging.DeprecationLogger;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
@@ -32,11 +32,11 @@ public class LegacyDelimitedPayloadTokenFilterFactory extends DelimitedPayloadTo
 
     LegacyDelimitedPayloadTokenFilterFactory(IndexSettings indexSettings, Environment env, String name, Settings settings) {
         super(indexSettings, env, name, settings);
-        if (indexSettings.getIndexVersionCreated().onOrAfter(Version.V_7_0_0)) {
+        if (indexSettings.getIndexVersionCreated().onOrAfter(LegacyESVersion.V_7_0_0)) {
             throw new IllegalArgumentException(
                     "[delimited_payload_filter] is not supported for new indices, use [delimited_payload] instead");
         }
-        if (indexSettings.getIndexVersionCreated().onOrAfter(Version.V_6_2_0)) {
+        if (indexSettings.getIndexVersionCreated().onOrAfter(LegacyESVersion.V_6_2_0)) {
             deprecationLogger.deprecate("analysis_legacy_delimited_payload_filter",
                 "Deprecated [delimited_payload_filter] used, replaced by [delimited_payload]");
         }

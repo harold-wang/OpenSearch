@@ -18,8 +18,8 @@
  */
 package org.renameme.script;
 
-import org.renameme.ResourceNotFoundException;
 import org.renameme.Version;
+import org.renameme.ResourceNotFoundException;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.Diff;
 import org.renameme.cluster.DiffableUtils;

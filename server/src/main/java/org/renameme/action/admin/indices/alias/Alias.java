@@ -19,8 +19,8 @@
 
 package org.renameme.action.admin.indices.alias;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeGenerationException;
-import org.renameme.Version;
 import org.renameme.common.Nullable;
 import org.renameme.common.ParseField;
 import org.renameme.common.Strings;
@@ -74,12 +74,12 @@ public class Alias implements Writeable, ToXContentFragment {
         filter = in.readOptionalString();
         indexRouting = in.readOptionalString();
         searchRouting = in.readOptionalString();
-        if (in.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             writeIndex = in.readOptionalBoolean();
         } else {
             writeIndex = null;
         }
-        if (in.getVersion().onOrAfter(Version.V_7_7_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
             isHidden = in.readOptionalBoolean();
         } else {
             isHidden = null;
@@ -224,10 +224,10 @@ public class Alias implements Writeable, ToXContentFragment {
         out.writeOptionalString(filter);
         out.writeOptionalString(indexRouting);
         out.writeOptionalString(searchRouting);
-        if (out.getVersion().onOrAfter(Version.V_6_4_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_6_4_0)) {
             out.writeOptionalBoolean(writeIndex);
         }
-        if (out.getVersion().onOrAfter(Version.V_7_7_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_7_0)) {
             out.writeOptionalBoolean(isHidden);
         }
     }

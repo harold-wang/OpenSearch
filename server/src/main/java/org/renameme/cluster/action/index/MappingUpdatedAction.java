@@ -19,8 +19,8 @@
 
 package org.renameme.cluster.action.index;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.RenamemeException;
-import org.renameme.Version;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.indices.mapping.put.AutoPutMappingAction;
 import org.renameme.action.admin.indices.mapping.put.PutMappingRequest;
@@ -126,7 +126,7 @@ public class MappingUpdatedAction {
         putMappingRequest.source(mappingUpdate.toString(), XContentType.JSON);
         putMappingRequest.masterNodeTimeout(dynamicMappingUpdateTimeout);
         putMappingRequest.timeout(TimeValue.ZERO);
-        if (clusterService.state().nodes().getMinNodeVersion().onOrAfter(Version.V_7_9_0)) {
+        if (clusterService.state().nodes().getMinNodeVersion().onOrAfter(LegacyESVersion.V_7_9_0)) {
             client.execute(AutoPutMappingAction.INSTANCE, putMappingRequest,
                 ActionListener.wrap(r -> listener.onResponse(null), listener::onFailure));
         } else {

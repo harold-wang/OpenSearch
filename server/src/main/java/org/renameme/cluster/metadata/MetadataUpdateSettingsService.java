@@ -21,8 +21,8 @@ package org.renameme.cluster.metadata;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.renameme.ExceptionsHelper;
 import org.renameme.Version;
+import org.renameme.ExceptionsHelper;
 import org.renameme.action.ActionListener;
 import org.renameme.action.admin.indices.settings.put.UpdateSettingsClusterStateUpdateRequest;
 import org.renameme.action.admin.indices.upgrade.post.UpgradeSettingsClusterStateUpdateRequest;

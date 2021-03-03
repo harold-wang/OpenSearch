@@ -26,8 +26,6 @@ import org.renameme.env.Environment;
 import org.renameme.index.IndexSettings;
 import org.renameme.index.analysis.IndexAnalyzers;
 import org.renameme.index.analysis.NamedAnalyzer;
-import org.renameme.analysis.common.CommonAnalysisPlugin;
-import org.renameme.analysis.common.PatternCaptureGroupTokenFilterFactory;
 import org.renameme.test.ESTokenStreamTestCase;
 import org.renameme.test.IndexSettingsModule;
 

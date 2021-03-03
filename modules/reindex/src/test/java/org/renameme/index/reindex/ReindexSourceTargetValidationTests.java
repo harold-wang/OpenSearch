@@ -35,10 +35,8 @@ import org.renameme.common.bytes.BytesArray;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.settings.ClusterSettings;
 import org.renameme.common.settings.Settings;
-import org.renameme.index.reindex.RemoteInfo;
 import org.renameme.indices.SystemIndices;
 import org.renameme.common.util.concurrent.ThreadContext;
-import org.renameme.index.reindex.ReindexValidator;
 import org.renameme.test.ESTestCase;
 
 import java.util.HashMap;

@@ -49,7 +49,8 @@ import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.ArrayUtil;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.BytesRefBuilder;
-import org.apache.lucene.util.Version;
+import org.renameme.LegacyESVersion;
+import org.renameme.Version;
 import org.renameme.ExceptionsHelper;
 import org.renameme.common.UUIDs;
 import org.renameme.common.bytes.BytesReference;
@@ -146,7 +147,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
 
     /**
      * Specific {@link IOContext} used to verify Lucene files footer checksums.
-     * See {@link MetadataSnapshot#checksumFromLuceneFile(Directory, String, Map, Logger, Version, boolean)}
+     * See {@link MetadataSnapshot#checksumFromLuceneFile(Directory, String, Map, Logger, org.apache.lucene.util.Version, boolean)}
      */
     public static final IOContext READONCE_CHECKSUM = new IOContext(IOContext.READONCE.context);
 
@@ -848,9 +849,9 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
                 numDocs = Lucene.getNumDocs(segmentCommitInfos);
                 commitUserDataBuilder.putAll(segmentCommitInfos.getUserData());
                 // we don't know which version was used to write so we take the max version.
-                Version maxVersion = segmentCommitInfos.getMinSegmentLuceneVersion();
+                org.apache.lucene.util.Version maxVersion = segmentCommitInfos.getMinSegmentLuceneVersion();
                 for (SegmentCommitInfo info : segmentCommitInfos) {
-                    final Version version = info.info.getVersion();
+                    final org.apache.lucene.util.Version version = info.info.getVersion();
                     if (version == null) {
                         // version is written since 3.1+: we should have already hit IndexFormatTooOld.
                         throw new IllegalArgumentException("expected valid version value: " + info.info.toString());
@@ -864,7 +865,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
                     }
                 }
                 if (maxVersion == null) {
-                    maxVersion = org.renameme.Version.CURRENT.minimumIndexCompatibilityVersion().luceneVersion;
+                    maxVersion = Version.CURRENT.minimumIndexCompatibilityVersion().luceneVersion;
                 }
                 final String segmentsFile = segmentCommitInfos.getSegmentsFileName();
                 checksumFromLuceneFile(directory, segmentsFile, builder, logger, maxVersion, true);
@@ -893,7 +894,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
         }
 
         private static void checksumFromLuceneFile(Directory directory, String file, Map<String, StoreFileMetadata> builder,
-                Logger logger, Version version, boolean readFileAsHash) throws IOException {
+                                                   Logger logger, org.apache.lucene.util.Version version, boolean readFileAsHash) throws IOException {
             final String checksum;
             final BytesRefBuilder fileHash = new BytesRefBuilder();
             try (IndexInput in = directory.openInput(file, READONCE_CHECKSUM)) {
@@ -1412,7 +1413,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
     /**
      * creates an empty lucene index and a corresponding empty translog. Any existing data will be deleted.
      */
-    public void createEmpty(Version luceneVersion) throws IOException {
+    public void createEmpty(org.apache.lucene.util.Version luceneVersion) throws IOException {
         metadataLock.writeLock().lock();
         try (IndexWriter writer = newEmptyIndexWriter(directory, luceneVersion)) {
             final Map<String, String> map = new HashMap<>();
@@ -1519,7 +1520,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
      * the policy can consider the snapshotted commit as a safe commit for recovery even the commit does not have translog.
      */
     public void trimUnsafeCommits(final long lastSyncedGlobalCheckpoint, final long minRetainedTranslogGen,
-                                  final org.renameme.Version indexVersionCreated) throws IOException {
+                                  final Version indexVersionCreated) throws IOException {
         metadataLock.writeLock().lock();
         try {
             final List<IndexCommit> existingCommits = DirectoryReader.listCommits(directory);
@@ -1532,7 +1533,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
             // We may not have a safe commit if an index was create before v6.2; and if there is a snapshotted commit whose translog
             // are not retained but max_seqno is at most the global checkpoint, we may mistakenly select it as a starting commit.
             // To avoid this issue, we only select index commits whose translog are fully retained.
-            if (indexVersionCreated.before(org.renameme.Version.V_6_2_0)) {
+            if (indexVersionCreated.before(LegacyESVersion.V_6_2_0)) {
                 final List<IndexCommit> recoverableCommits = new ArrayList<>();
                 for (IndexCommit commit : existingCommits) {
                     final String translogGeneration = commit.getUserData().get("translog_generation");
@@ -1613,7 +1614,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
         return new IndexWriter(dir, iwc);
     }
 
-    private static IndexWriter newEmptyIndexWriter(final Directory dir, final Version luceneVersion) throws IOException {
+    private static IndexWriter newEmptyIndexWriter(final Directory dir, final org.apache.lucene.util.Version luceneVersion) throws IOException {
         IndexWriterConfig iwc = newIndexWriterConfig()
             .setOpenMode(IndexWriterConfig.OpenMode.CREATE)
             .setIndexCreatedVersionMajor(luceneVersion.major);

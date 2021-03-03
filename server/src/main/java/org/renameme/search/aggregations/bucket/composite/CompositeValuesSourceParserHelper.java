@@ -19,7 +19,7 @@
 
 package org.renameme.search.aggregations.bucket.composite;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.ParsingException;
 import org.renameme.common.io.stream.StreamInput;
@@ -63,7 +63,7 @@ public class CompositeValuesSourceParserHelper {
         } else if (builder.getClass() == HistogramValuesSourceBuilder.class) {
             code = 2;
         } else if (builder.getClass() == GeoTileGridValuesSourceBuilder.class) {
-            if (out.getVersion().before(Version.V_7_5_0)) {
+            if (out.getVersion().before(LegacyESVersion.V_7_5_0)) {
                 throw new IOException("Attempting to serialize [" + builder.getClass().getSimpleName()
                     + "] to a node with unsupported version [" + out.getVersion() + "]");
             }

@@ -19,6 +19,7 @@
 package org.renameme.search.aggregations.bucket.terms;
 
 import org.apache.lucene.util.BytesRef;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.Strings;
 import org.renameme.common.io.stream.InputStreamStreamInput;
@@ -81,7 +82,7 @@ public class SignificanceHeuristicTests extends ESTestCase {
         ByteArrayOutputStream outBuffer = new ByteArrayOutputStream();
         OutputStreamStreamOutput out = new OutputStreamStreamOutput(outBuffer);
         out.setVersion(version);
-        if (version.before(Version.V_7_8_0)) {
+        if (version.before(LegacyESVersion.V_7_8_0)) {
             sigTerms.mergePipelineTreeForBWCSerialization(PipelineAggregator.PipelineTree.EMPTY);
         }
         out.writeNamedWriteable(sigTerms);

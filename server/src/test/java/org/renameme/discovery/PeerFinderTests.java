@@ -19,8 +19,8 @@
 
 package org.renameme.discovery;
 
-import org.renameme.RenamemeException;
 import org.renameme.Version;
+import org.renameme.RenamemeException;
 import org.renameme.action.ActionListener;
 import org.renameme.cluster.coordination.DeterministicTaskQueue;
 import org.renameme.cluster.coordination.PeersResponse;

@@ -38,7 +38,6 @@ import org.renameme.common.unit.TimeValue;
 import org.renameme.core.internal.io.IOUtils;
 import org.renameme.repositories.blobstore.BlobStoreRepository;
 import org.renameme.threadpool.ThreadPool;
-import org.renameme.snapshots.AbstractSnapshotIntegTestCase;
 
 import java.io.IOException;
 import java.nio.file.Path;

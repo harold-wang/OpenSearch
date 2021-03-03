@@ -43,8 +43,6 @@ import org.renameme.transport.TcpChannel;
 import org.renameme.transport.TcpTransport;
 import org.renameme.transport.TestProfiles;
 import org.renameme.transport.Transport;
-import org.renameme.transport.netty4.Netty4TcpChannel;
-import org.renameme.transport.netty4.Netty4Transport;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -83,7 +81,7 @@ public class SimpleNetty4TransportTests extends AbstractSimpleTransportTestCase 
     public void testConnectException() throws UnknownHostException {
         try {
             serviceA.connectToNode(new DiscoveryNode("C", new TransportAddress(InetAddress.getByName("localhost"), 9876),
-                    emptyMap(), emptySet(),Version.CURRENT));
+                    emptyMap(), emptySet(), Version.CURRENT));
             fail("Expected ConnectTransportException");
         } catch (ConnectTransportException e) {
             assertThat(e.getMessage(), containsString("connect_exception"));
@@ -96,7 +94,7 @@ public class SimpleNetty4TransportTests extends AbstractSimpleTransportTestCase 
             (IOUtils.LINUX || IOUtils.MAC_OS_X) &&
                 JavaVersion.current().compareTo(JavaVersion.parse("11")) >= 0);
         try (MockTransportService serviceC = buildService("TS_C", Version.CURRENT, Settings.EMPTY);
-            MockTransportService serviceD = buildService("TS_D", Version.CURRENT, Settings.EMPTY)) {
+             MockTransportService serviceD = buildService("TS_D", Version.CURRENT, Settings.EMPTY)) {
             serviceC.start();
             serviceC.acceptIncomingRequests();
             serviceD.start();

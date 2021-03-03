@@ -24,7 +24,6 @@ import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
 import org.renameme.index.IndexSettings;
-import org.renameme.index.analysis.AnalysisRegistry;
 import org.renameme.indices.analysis.AnalysisModule;
 import org.renameme.plugins.AnalysisPlugin;
 import org.renameme.test.ESTestCase;

@@ -34,7 +34,6 @@ import org.renameme.cluster.ClusterName;
 import org.renameme.common.settings.Settings;
 import org.renameme.common.settings.SettingsException;
 import org.renameme.env.Environment;
-import org.renameme.node.Node;
 
 public class InternalSettingsPreparer {
 

@@ -52,7 +52,6 @@ import org.renameme.index.query.DateRangeIncludingNowQuery;
 import org.renameme.index.query.QueryRewriteContext;
 import org.renameme.index.query.QueryShardContext;
 import org.joda.time.DateTimeZone;
-import org.renameme.index.mapper.FieldTypeTestCase;
 
 import java.io.IOException;
 import java.time.Instant;

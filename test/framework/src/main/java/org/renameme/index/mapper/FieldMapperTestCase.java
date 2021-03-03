@@ -32,11 +32,6 @@ import org.renameme.common.xcontent.json.JsonXContent;
 import org.renameme.index.IndexService;
 import org.renameme.index.analysis.AnalyzerScope;
 import org.renameme.index.analysis.NamedAnalyzer;
-import org.renameme.index.mapper.ContentPath;
-import org.renameme.index.mapper.FieldMapper;
-import org.renameme.index.mapper.Mapper;
-import org.renameme.index.mapper.MapperService;
-import org.renameme.test.ESSingleNodeTestCase;
 import org.renameme.test.ESSingleNodeTestCase;
 
 import java.io.IOException;

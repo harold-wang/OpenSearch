@@ -19,8 +19,8 @@
 package org.renameme.discovery.zen;
 
 import org.apache.logging.log4j.message.ParameterizedMessage;
-import org.renameme.ExceptionsHelper;
 import org.renameme.Version;
+import org.renameme.ExceptionsHelper;
 import org.renameme.cluster.ClusterName;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.ClusterStateUpdateTask;
@@ -123,7 +123,7 @@ public class NodeJoinControllerTests extends ESTestCase {
 
     private static ClusterState initialState(boolean withMaster) {
         DiscoveryNode localNode = new DiscoveryNode("node", ESTestCase.buildNewFakeTransportAddress(), Collections.emptyMap(),
-            DiscoveryNodeRole.BUILT_IN_ROLES,Version.CURRENT);
+            DiscoveryNodeRole.BUILT_IN_ROLES, Version.CURRENT);
         ClusterState initialClusterState = ClusterState.builder(new ClusterName(ClusterServiceUtils.class.getSimpleName()))
             .nodes(DiscoveryNodes.builder()
                 .add(localNode)

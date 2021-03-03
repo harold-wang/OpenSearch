@@ -19,6 +19,7 @@
 
 package org.renameme.action.admin.indices.rollover;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
@@ -53,7 +54,7 @@ public class MaxSizeCondition extends Condition<ByteSizeValue> {
 
     @Override
     boolean includedInVersion(Version version) {
-        return version.onOrAfter(Version.V_6_1_0);
+        return version.onOrAfter(LegacyESVersion.V_6_1_0);
     }
 
     @Override

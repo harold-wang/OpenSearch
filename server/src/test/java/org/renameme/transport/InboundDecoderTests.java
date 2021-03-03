@@ -19,6 +19,7 @@
 
 package org.renameme.transport;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.common.bytes.BytesReference;
 import org.renameme.common.bytes.ReleasableBytesReference;
@@ -28,8 +29,6 @@ import org.renameme.common.util.PageCacheRecycler;
 import org.renameme.common.util.concurrent.ThreadContext;
 import org.renameme.test.ESTestCase;
 import org.renameme.test.VersionUtils;
-import org.renameme.transport.TestRequest;
-import org.renameme.transport.TestResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -113,7 +112,7 @@ public class InboundDecoderTests extends ESTestCase {
         boolean isCompressed = randomBoolean();
         String action = "test-request";
         long requestId = randomNonNegativeLong();
-        final Version preHeaderVariableInt = Version.V_7_5_0;
+        final Version preHeaderVariableInt = LegacyESVersion.V_7_5_0;
         final String contentValue = randomAlphaOfLength(100);
         final OutboundMessage message = new OutboundMessage.Request(threadContext,  new String[0], new TestRequest(contentValue),
             preHeaderVariableInt, action, requestId, true, isCompressed);

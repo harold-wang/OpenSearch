@@ -25,7 +25,6 @@ import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.common.transport.TransportAddress;
 import org.renameme.index.Index;
 import org.renameme.index.shard.ShardId;
-import org.renameme.cluster.routing.TestShardRouting;
 import org.renameme.test.ESTestCase;
 
 import java.net.InetAddress;

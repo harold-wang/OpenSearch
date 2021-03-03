@@ -19,7 +19,7 @@
 
 package org.renameme.search.query;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.IndicesRequest;
 import org.renameme.action.OriginalIndices;
 import org.renameme.action.search.SearchShardTask;
@@ -58,7 +58,7 @@ public class QuerySearchRequest extends TransportRequest implements IndicesReque
         contextId = new ShardSearchContextId(in);
         dfs = new AggregatedDfs(in);
         originalIndices = OriginalIndices.readOriginalIndices(in);
-        if (in.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             this.shardSearchRequest = in.readOptionalWriteable(ShardSearchRequest::new);
         } else {
             this.shardSearchRequest = null;
@@ -71,7 +71,7 @@ public class QuerySearchRequest extends TransportRequest implements IndicesReque
         contextId.writeTo(out);
         dfs.writeTo(out);
         OriginalIndices.writeOriginalIndices(originalIndices, out);
-        if (out.getVersion().onOrAfter(Version.V_7_10_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_10_0)) {
             out.writeOptionalWriteable(shardSearchRequest);
         }
     }

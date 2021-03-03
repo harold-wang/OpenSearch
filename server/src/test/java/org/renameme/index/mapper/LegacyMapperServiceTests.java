@@ -19,7 +19,7 @@
 
 package org.renameme.index.mapper;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.admin.indices.mapping.put.PutMappingRequest;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.Strings;
@@ -42,7 +42,7 @@ public class LegacyMapperServiceTests extends ESSingleNodeTestCase {
 
     public void testIndexMetadataUpdateDoesNotLoseDefaultMapper() throws IOException {
         final IndexService indexService =
-                createIndex("test", Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, Version.V_6_3_0).build());
+                createIndex("test", Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, LegacyESVersion.V_6_3_0).build());
         try (XContentBuilder builder = JsonXContent.contentBuilder()) {
             builder.startObject();
             {
@@ -70,7 +70,7 @@ public class LegacyMapperServiceTests extends ESSingleNodeTestCase {
     }
 
     public void testDefaultMappingIsDeprecatedOn6() throws IOException {
-        final Settings settings = Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, Version.V_6_3_0).build();
+        final Settings settings = Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, LegacyESVersion.V_6_3_0).build();
         final String mapping;
         try (XContentBuilder defaultMapping = XContentFactory.jsonBuilder()) {
             defaultMapping.startObject();

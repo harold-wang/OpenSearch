@@ -19,7 +19,7 @@
 
 package org.renameme.indices.mapping;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.admin.indices.mapping.get.GetMappingsResponse;
 import org.renameme.action.support.master.AcknowledgedResponse;
 import org.renameme.cluster.metadata.IndexMetadata;
@@ -61,7 +61,7 @@ public class LegacyUpdateMappingIntegrationIT extends ESIntegTestCase {
                     .admin()
                     .indices()
                     .prepareCreate("test")
-                    .setSettings(Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, Version.V_6_3_0).build())
+                    .setSettings(Settings.builder().put(IndexMetadata.SETTING_VERSION_CREATED, LegacyESVersion.V_6_3_0).build())
                     .addMapping(MapperService.DEFAULT_MAPPING, defaultMapping)
                     .get();
         }

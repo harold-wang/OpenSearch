@@ -34,7 +34,6 @@ import org.renameme.transport.SharedGroupFactory;
 import org.renameme.transport.TransportSettings;
 import org.junit.After;
 import org.junit.Before;
-import org.renameme.transport.netty4.Netty4Transport;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

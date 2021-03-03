@@ -23,8 +23,6 @@ import org.renameme.Version;
 import org.renameme.cluster.metadata.IndexMetadata;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
-import org.renameme.analysis.common.AnalysisPredicateScript;
-import org.renameme.analysis.common.CommonAnalysisPlugin;
 import org.renameme.env.TestEnvironment;
 import org.renameme.index.IndexSettings;
 import org.renameme.index.analysis.IndexAnalyzers;

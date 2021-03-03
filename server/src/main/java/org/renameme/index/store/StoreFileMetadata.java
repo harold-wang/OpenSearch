@@ -21,7 +21,6 @@ package org.renameme.index.store;
 
 import org.apache.lucene.codecs.CodecUtil;
 import org.apache.lucene.util.BytesRef;
-import org.apache.lucene.util.Version;
 import org.renameme.common.io.stream.StreamInput;
 import org.renameme.common.io.stream.StreamOutput;
 import org.renameme.common.io.stream.Writeable;
@@ -40,15 +39,15 @@ public class StoreFileMetadata implements Writeable {
 
     private final String checksum;
 
-    private final Version writtenBy;
+    private final org.apache.lucene.util.Version writtenBy;
 
     private final BytesRef hash;
 
-    public StoreFileMetadata(String name, long length, String checksum, Version writtenBy) {
+    public StoreFileMetadata(String name, long length, String checksum, org.apache.lucene.util.Version writtenBy) {
         this(name, length, checksum, writtenBy, null);
     }
 
-    public StoreFileMetadata(String name, long length, String checksum, Version writtenBy, BytesRef hash) {
+    public StoreFileMetadata(String name, long length, String checksum, org.apache.lucene.util.Version writtenBy, BytesRef hash) {
         this.name = Objects.requireNonNull(name, "name must not be null");
         this.length = length;
         this.checksum = Objects.requireNonNull(checksum, "checksum must not be null");
@@ -64,7 +63,7 @@ public class StoreFileMetadata implements Writeable {
         length = in.readVLong();
         checksum = in.readString();
         try {
-            writtenBy = Version.parse(in.readString());
+            writtenBy = org.apache.lucene.util.Version.parse(in.readString());
         } catch (ParseException e) {
             throw new AssertionError(e);
         }
@@ -144,7 +143,7 @@ public class StoreFileMetadata implements Writeable {
     /**
      * Returns the Lucene version this file has been written by or <code>null</code> if unknown
      */
-    public Version writtenBy() {
+    public org.apache.lucene.util.Version writtenBy() {
         return writtenBy;
     }
 

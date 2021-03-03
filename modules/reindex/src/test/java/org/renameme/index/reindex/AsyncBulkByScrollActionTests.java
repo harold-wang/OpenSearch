@@ -67,7 +67,6 @@ import org.renameme.common.util.concurrent.EsRejectedExecutionException;
 import org.renameme.common.xcontent.XContentType;
 import org.renameme.index.Index;
 import org.renameme.index.engine.VersionConflictEngineException;
-import org.renameme.index.reindex.*;
 import org.renameme.index.reindex.ScrollableHitSource.Hit;
 import org.renameme.index.reindex.ScrollableHitSource.SearchFailure;
 import org.renameme.index.shard.ShardId;

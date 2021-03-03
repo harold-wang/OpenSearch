@@ -19,7 +19,7 @@
 
 package org.renameme.index.rankeval;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.ActionRequest;
 import org.renameme.action.ActionRequestValidationException;
 import org.renameme.action.IndicesRequest;
@@ -56,7 +56,7 @@ public class RankEvalRequest extends ActionRequest implements IndicesRequest.Rep
         rankingEvaluationSpec = new RankEvalSpec(in);
         indices = in.readStringArray();
         indicesOptions = IndicesOptions.readIndicesOptions(in);
-        if (in.getVersion().onOrAfter(Version.V_7_6_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
             searchType = SearchType.fromId(in.readByte());
         }
     }
@@ -138,7 +138,7 @@ public class RankEvalRequest extends ActionRequest implements IndicesRequest.Rep
         rankingEvaluationSpec.writeTo(out);
         out.writeStringArray(indices);
         indicesOptions.writeIndicesOptions(out);
-        if (out.getVersion().onOrAfter(Version.V_7_6_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_6_0)) {
             out.writeByte(searchType.id());
         }
     }

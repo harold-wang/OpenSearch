@@ -22,6 +22,7 @@ package org.renameme.search.query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.TotalHits;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.OriginalIndices;
 import org.renameme.action.OriginalIndicesTests;
@@ -117,7 +118,7 @@ public class QuerySearchResultTests extends ESTestCase {
             "ldDH/A3JhdwEBCm1heF9idWNrZXQFbmFtZTEBB2J1Y2tldDH/A3JhdwEAAAIAAf////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
         byte[] bytes = Base64.getDecoder().decode(message);
         try (NamedWriteableAwareStreamInput in = new NamedWriteableAwareStreamInput(StreamInput.wrap(bytes), namedWriteableRegistry)) {
-            in.setVersion(Version.V_7_0_0);
+            in.setVersion(LegacyESVersion.V_7_0_0);
             QuerySearchResult querySearchResult = new QuerySearchResult(in);
             assertEquals(100, querySearchResult.getContextId().getId());
             assertTrue(querySearchResult.hasAggs());

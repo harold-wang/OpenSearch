@@ -19,6 +19,7 @@
 
 package org.renameme.action.admin.indices.close;
 
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.support.ActiveShardCount;
 import org.renameme.action.support.IndicesOptions;
@@ -65,10 +66,10 @@ public class CloseIndexRequestTests extends ESTestCase {
                     // to the addition of hidden indices as expand to hidden indices is always true when
                     // read from a prior version
                     final IndicesOptions indicesOptions = IndicesOptions.readIndicesOptions(in);
-                    if (out.getVersion().onOrAfter(Version.V_7_7_0) || request.indicesOptions().expandWildcardsHidden()) {
+                    if (out.getVersion().onOrAfter(LegacyESVersion.V_7_7_0) || request.indicesOptions().expandWildcardsHidden()) {
                         assertEquals(request.indicesOptions(), indicesOptions);
                     }
-                    if (in.getVersion().onOrAfter(Version.V_7_2_0)) {
+                    if (in.getVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
                         assertEquals(request.waitForActiveShards(), ActiveShardCount.readFrom(in));
                     } else {
                         assertEquals(0, in.available());
@@ -86,7 +87,7 @@ public class CloseIndexRequestTests extends ESTestCase {
                 out.writeTimeValue(sample.timeout());
                 out.writeStringArray(sample.indices());
                 sample.indicesOptions().writeIndicesOptions(out);
-                if (out.getVersion().onOrAfter(Version.V_7_2_0)) {
+                if (out.getVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
                     sample.waitForActiveShards().writeTo(out);
                 }
 
@@ -102,10 +103,10 @@ public class CloseIndexRequestTests extends ESTestCase {
                 // indices options are not equivalent when sent to an older version and re-read due
                 // to the addition of hidden indices as expand to hidden indices is always true when
                 // read from a prior version
-                if (out.getVersion().onOrAfter(Version.V_7_7_0) || sample.indicesOptions().expandWildcardsHidden()) {
+                if (out.getVersion().onOrAfter(LegacyESVersion.V_7_7_0) || sample.indicesOptions().expandWildcardsHidden()) {
                     assertEquals(sample.indicesOptions(), deserializedRequest.indicesOptions());
                 }
-                if (out.getVersion().onOrAfter(Version.V_7_2_0)) {
+                if (out.getVersion().onOrAfter(LegacyESVersion.V_7_2_0)) {
                     assertEquals(sample.waitForActiveShards(), deserializedRequest.waitForActiveShards());
                 } else {
                     assertEquals(ActiveShardCount.NONE, deserializedRequest.waitForActiveShards());

@@ -55,7 +55,6 @@ import org.renameme.index.mapper.NumberFieldMapper.NumberType;
 import org.renameme.index.query.QueryShardContext;
 import org.renameme.search.MultiValueMode;
 import org.junit.Before;
-import org.renameme.index.mapper.FieldTypeTestCase;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

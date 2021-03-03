@@ -19,7 +19,7 @@
 
 package org.renameme.upgrades;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.action.admin.cluster.settings.ClusterGetSettingsResponse;
 import org.renameme.client.Request;
 import org.renameme.client.Response;
@@ -31,8 +31,6 @@ import org.renameme.common.xcontent.XContentParser;
 import org.renameme.common.xcontent.json.JsonXContent;
 import org.renameme.transport.RemoteClusterService;
 import org.renameme.transport.SniffConnectionStrategy;
-import org.renameme.upgrades.AbstractFullClusterRestartTestCase;
-import org.renameme.upgrades.AbstractFullClusterRestartTestCase;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -45,8 +43,8 @@ import static org.hamcrest.Matchers.equalTo;
 public class FullClusterRestartSettingsUpgradeIT extends AbstractFullClusterRestartTestCase {
 
     public void testRemoteClusterSettingsUpgraded() throws IOException {
-        assumeTrue("skip_unavailable did not exist until 6.1.0", getOldClusterVersion().onOrAfter(Version.V_6_1_0));
-        assumeTrue("settings automatically upgraded since 6.5.0", getOldClusterVersion().before(Version.V_6_5_0));
+        assumeTrue("skip_unavailable did not exist until 6.1.0", getOldClusterVersion().onOrAfter(LegacyESVersion.V_6_1_0));
+        assumeTrue("settings automatically upgraded since 6.5.0", getOldClusterVersion().before(LegacyESVersion.V_6_5_0));
         if (isRunningAgainstOldCluster()) {
             final Request putSettingsRequest = new Request("PUT", "/_cluster/settings");
             try (XContentBuilder builder = jsonBuilder()) {

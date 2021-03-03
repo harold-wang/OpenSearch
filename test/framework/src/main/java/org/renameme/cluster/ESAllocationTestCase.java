@@ -20,10 +20,6 @@
 package org.renameme.cluster;
 
 import org.renameme.Version;
-import org.renameme.cluster.ClusterInfoService;
-import org.renameme.cluster.ClusterModule;
-import org.renameme.cluster.ClusterState;
-import org.renameme.cluster.EmptyClusterInfoService;
 import org.renameme.cluster.node.DiscoveryNode;
 import org.renameme.cluster.node.DiscoveryNodeRole;
 import org.renameme.cluster.routing.RecoverySource;

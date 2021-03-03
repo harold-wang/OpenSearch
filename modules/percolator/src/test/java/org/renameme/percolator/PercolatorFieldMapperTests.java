@@ -40,6 +40,7 @@ import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TermRangeQuery;
 import org.apache.lucene.search.join.ScoreMode;
 import org.apache.lucene.util.BytesRef;
+import org.renameme.LegacyESVersion;
 import org.renameme.Version;
 import org.renameme.action.support.PlainActionFuture;
 import org.renameme.cluster.metadata.IndexMetadata;
@@ -86,8 +87,6 @@ import org.renameme.join.ParentJoinPlugin;
 import org.renameme.join.query.HasChildQueryBuilder;
 import org.renameme.join.query.HasParentQueryBuilder;
 import org.renameme.plugins.Plugin;
-import org.renameme.percolator.PercolatorFieldMapper;
-import org.renameme.percolator.PercolatorPlugin;
 import org.renameme.script.MockScriptPlugin;
 import org.renameme.script.Script;
 import org.renameme.test.ESSingleNodeTestCase;
@@ -414,7 +413,7 @@ public class PercolatorFieldMapperTests extends ESSingleNodeTestCase {
         assertThat(t.v1().clauses().get(0).getQuery(), instanceOf(CoveringQuery.class));
         assertThat(t.v1().clauses().get(1).getQuery(), instanceOf(TermQuery.class));
 
-        t = fieldType.createCandidateQuery(indexReader, Version.V_6_0_0);
+        t = fieldType.createCandidateQuery(indexReader, LegacyESVersion.V_6_0_0);
         assertTrue(t.v2());
         assertEquals(2, t.v1().clauses().size());
         assertThat(t.v1().clauses().get(0).getQuery(), instanceOf(TermInSetQuery.class));

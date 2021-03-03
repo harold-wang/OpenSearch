@@ -21,8 +21,8 @@ package org.renameme.indices.cluster;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.renameme.ExceptionsHelper;
 import org.renameme.Version;
+import org.renameme.ExceptionsHelper;
 import org.renameme.action.ActionResponse;
 import org.renameme.action.admin.cluster.reroute.ClusterRerouteRequest;
 import org.renameme.action.admin.cluster.reroute.TransportClusterRerouteAction;

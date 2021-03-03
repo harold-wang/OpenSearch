@@ -20,7 +20,7 @@ package org.renameme.cluster.coordination;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.cluster.ClusterState;
 import org.renameme.cluster.coordination.CoordinationMetadata.VotingConfiguration;
 import org.renameme.cluster.coordination.CoordinationState.VoteCollection;
@@ -175,7 +175,7 @@ public class ClusterFormationFailureHelper {
 
                 return String.format(Locale.ROOT,
                     "master not discovered yet, this node has not previously joined a bootstrapped (v%d+) cluster, and %s: %s",
-                    Version.V_6_6_0.major + 1, bootstrappingDescription, discoveryStateIgnoringQuorum);
+                    LegacyESVersion.V_6_6_0.major + 1, bootstrappingDescription, discoveryStateIgnoringQuorum);
             }
 
             assert clusterState.getLastCommittedConfiguration().isEmpty() == false;

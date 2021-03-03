@@ -22,7 +22,6 @@ package org.renameme.bootstrap;
 import org.apache.lucene.util.Constants;
 import org.apache.lucene.util.LuceneTestCase;
 import org.renameme.Version;
-import org.renameme.bootstrap.Spawner;
 import org.renameme.common.settings.Settings;
 import org.renameme.env.Environment;
 import org.renameme.env.TestEnvironment;

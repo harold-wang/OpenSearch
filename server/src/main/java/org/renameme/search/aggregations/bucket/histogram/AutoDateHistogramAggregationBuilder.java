@@ -19,7 +19,7 @@
 
 package org.renameme.search.aggregations.bucket.histogram;
 
-import org.renameme.Version;
+import org.renameme.LegacyESVersion;
 import org.renameme.common.ParseField;
 import org.renameme.common.Rounding;
 import org.renameme.common.io.stream.StreamInput;
@@ -125,7 +125,7 @@ public class AutoDateHistogramAggregationBuilder extends ValuesSourceAggregation
     public AutoDateHistogramAggregationBuilder(StreamInput in) throws IOException {
         super(in);
         numBuckets = in.readVInt();
-        if (in.getVersion().onOrAfter(Version.V_7_3_0)) {
+        if (in.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
             minimumIntervalExpression = in.readOptionalString();
         }
     }
@@ -133,7 +133,7 @@ public class AutoDateHistogramAggregationBuilder extends ValuesSourceAggregation
     @Override
     protected void innerWriteTo(StreamOutput out) throws IOException {
         out.writeVInt(numBuckets);
-        if (out.getVersion().onOrAfter(Version.V_7_3_0)) {
+        if (out.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
             out.writeOptionalString(minimumIntervalExpression);
         }
     }
@@ -274,7 +274,7 @@ public class AutoDateHistogramAggregationBuilder extends ValuesSourceAggregation
             roughEstimateDurationMillis = in.readVLong();
             innerIntervals = in.readIntArray();
             unitAbbreviation = in.readString();
-            if (in.getVersion().onOrAfter(Version.V_7_3_0)) {
+            if (in.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
                 dateTimeUnit = in.readString();
             } else {
                 /*
@@ -293,7 +293,7 @@ public class AutoDateHistogramAggregationBuilder extends ValuesSourceAggregation
             out.writeVLong(roughEstimateDurationMillis);
             out.writeIntArray(innerIntervals);
             out.writeString(unitAbbreviation);
-            if (out.getVersion().onOrAfter(Version.V_7_3_0)) {
+            if (out.getVersion().onOrAfter(LegacyESVersion.V_7_3_0)) {
                 out.writeString(dateTimeUnit);
             }
         }
