@@ -33,9 +33,9 @@
 package org.opensearch.gradle.internal;
 
 import org.opensearch.gradle.BwcVersions;
-import org.opensearch.gradle.Version;
 import org.opensearch.gradle.info.BuildParams;
 import org.opensearch.gradle.info.GlobalBuildInfoPlugin;
+import org.opensearch.gradle.Version;
 import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -84,14 +84,22 @@ public class InternalDistributionBwcSetupPlugin implements Plugin<Project> {
 
     private void configureBwcProject(Project project, BwcVersions.UnreleasedVersionInfo versionInfo) {
         Provider<BwcVersions.UnreleasedVersionInfo> versionInfoProvider = providerFactory.provider(() -> versionInfo);
+
         Provider<File> checkoutDir = versionInfoProvider.map(info -> new File(project.getBuildDir(), "bwc/checkout-" + info.branch));
+        Provider<File> checkoutESDir = versionInfoProvider.map(info -> new File(project.getBuildDir(), "bwc/checkoutES-" + info.branch));
+
         BwcSetupExtension bwcSetupExtension = project.getExtensions()
             .create("bwcSetup", BwcSetupExtension.class, project, versionInfoProvider, checkoutDir);
         BwcGitExtension gitExtension = project.getPlugins().apply(InternalBwcGitPlugin.class).getGitExtension();
         Provider<Version> bwcVersion = versionInfoProvider.map(info -> info.version);
         gitExtension.setBwcVersion(versionInfoProvider.map(info -> info.version));
         gitExtension.setBwcBranch(versionInfoProvider.map(info -> info.branch));
-        gitExtension.setCheckoutDir(checkoutDir);
+
+        if (versionInfoProvider.map(info -> info.version).get().getId() < 0x08000000) {
+            gitExtension.setCheckoutDir(checkoutESDir);
+        } else {
+            gitExtension.setBwcBranch(versionInfoProvider.map(info -> info.branch));
+        }
 
         // we want basic lifecycle tasks like `clean` here.
         project.getPlugins().apply(LifecycleBasePlugin.class);
